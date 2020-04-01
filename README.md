@@ -61,7 +61,7 @@ Publish Directory: `dist`
 
 ## Local Installation
 
-### Install a new project via the command line
+To install via the command line,
 
 1. Create a folder: `mkdir my-platformkit-site` 
 2. Enter it: `cd my-platformkitsite`
