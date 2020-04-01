@@ -77,9 +77,17 @@
       position:fixed !important;
     }
 
-    main, .content {
-      padding-top:90px;
-      
+    @media(min-width:768px){
+      main, .content {
+        padding-top:90px;
+        
+      }
+    }
+    @media(max-width:768px){
+      main, .content {
+        padding-top:20px;
+        
+      }
     }
 
     .content a:not(.anchor) {
