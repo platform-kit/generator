@@ -14,7 +14,7 @@
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/JAMstack_logo.svg/1280px-JAMstack_logo.svg.png" style="margin:10px;max-height:33px;"/>
 
-<a href="#/?id=platformkit-generator" style="margin-bottom:20px;display:block;" >Read the Docs</a>
+<a href="#/readme.md" style="margin-bottom:20px;display:block;" >Read the Docs</a>
 
 <span style="display:inline-block;">Made with 💖 + ⚡ by <a href="https://www.dharmaworks.com" target="_blank">&nbsp;DharmaWorks</a></span> 
 
