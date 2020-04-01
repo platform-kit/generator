@@ -64,7 +64,7 @@ Publish Directory: `dist`
 To install via the command line,
 
 1. Create a folder: `mkdir my-platformkit-site` 
-2. Enter it: `cd my-platformkitsite`
+2. Enter it: `cd my-platformkit-site`
 3. Install PlatformKit Generator: `yarn add platform-kit/generator`
 4. Install starter content: `./bin/run seedData`
 5. Start the local DEV server at`gridsome develop` at `http://localhost:8080`
