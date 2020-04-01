@@ -3,8 +3,10 @@
 .DS_Store
 src/.temp
 node_modules
+node_modules/*
 dist
 data
+/data
 .env
 .env.*
 static/rss.xml
@@ -15,4 +17,5 @@ static/*.xml
 !/static/docs/readme.md
 !/static/docs/index.html
 !/static/docs/.nojekyll
+workspace/*
 workspace/repository
