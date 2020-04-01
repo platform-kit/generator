@@ -1,6 +1,6 @@
 {
   "name": "platformkit-generator",
-  "private": true,
+  "private": false,
   "bin": {
     "platformkit": "./bin/run"
   },
