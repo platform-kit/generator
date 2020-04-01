@@ -61,17 +61,14 @@ Publish Directory: `dist`
 
 ## Local Installation
 
-### 1. Install gridsome/cli
+### Install a new project via the command line
 
-`npm install --global @gridsome/cli`
-
-### 2. Install platform-kit/generator 
-
-1. `gridsome create my-gridsome-site https://github.com/platform-kit/generator.git`
-2. `cd my-gridsome-site` to open folder
-3. `gridsome develop` to start the local DEV server at `http://localhost:8080`
-4. `npx netlify-cms-proxy-server` to start the local CMS server at `http://localhost:8081` 
-5. Happy coding 🎉🙌
+1. Create a folder: `mkdir my-platformkit-site` 
+2. Enter it: `cd my-platformkitsite`
+3. Install PlatformKit Generator: `npm install platform-kit/generator`
+4. Start the local DEV server at`gridsome develop` at `http://localhost:8080`
+5. Start local CMS server `npx netlify-cms-proxy-server` at `http://localhost:8081` 
+6. Happy coding 🎉🙌
 
 Documentation, content, training & more at https://www.platformkit.com 
 

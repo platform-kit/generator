@@ -1,5 +1,5 @@
-import plugin_gridsome_plugin_netlify_cms_5 from "/Users/jameshuntercarter/htdocs/generator-new/node_modules/gridsome-plugin-netlify-cms/gridsome.client.js"
-import plugin_gridsome_plugin_netlify_cms_6 from "/Users/jameshuntercarter/htdocs/generator-new/node_modules/gridsome-plugin-netlify-cms/gridsome.client.js"
+import plugin_gridsome_plugin_netlify_cms_5 from "/Users/jameshuntercarter/htdocs/generator/node_modules/gridsome-plugin-netlify-cms/gridsome.client.js"
+import plugin_gridsome_plugin_netlify_cms_6 from "/Users/jameshuntercarter/htdocs/generator/node_modules/gridsome-plugin-netlify-cms/gridsome.client.js"
 
 export default [
   {
