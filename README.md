@@ -65,10 +65,11 @@ To install via the command line,
 
 1. Create a folder: `mkdir my-platformkit-site` 
 2. Enter it: `cd my-platformkitsite`
-3. Install PlatformKit Generator: `npm install platform-kit/generator`
-4. Start the local DEV server at`gridsome develop` at `http://localhost:8080`
-5. Start local CMS server `npx netlify-cms-proxy-server` at `http://localhost:8081` 
-6. Happy coding 🎉🙌
+3. Install PlatformKit Generator: `yarn add platform-kit/generator`
+4. Install starter content: `./bin/run seedData`
+5. Start the local DEV server at`gridsome develop` at `http://localhost:8080`
+6. Start local CMS server `npx netlify-cms-proxy-server` at `http://localhost:8081` 
+7. Happy coding 🎉🙌
 
 Documentation, content, training & more at https://www.platformkit.com 
 
