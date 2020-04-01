@@ -1,0 +1,532 @@
+backend:
+  name: git-gateway
+
+media_folder: "static/files"
+public_folder: "/files"
+publish_mode: editorial_workflow
+
+collections:   
+  - name: "ideas"
+    label: " 💡 Ideas"
+    description: "Capture the lightning when it strikes. For internal use only, by default."
+    label_singular: " 💡 Idea"
+    editor:
+      preview: false
+    folder: "data/ideas"
+    create: true
+    slug: "{{id}}"
+    summary: "{{title}} ({{status}})"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - label: ID
+        name: id
+        widget: ncw-id
+        prefix: idea          
+        hint: Automatically generated unique ID.
+      - label: "Status"
+        name: "status"
+        widget: "select"
+        required: false
+        options: ["Unsorted", "To Do", "In Progress", "Done"]
+        default: ["Unsorted"]
+      - {label: "Description", name: "description", widget: "text", required: false}       
+  - name: "pages"
+    label: " 📄 Pages"    
+    label_singular: " 📄 Page"
+    description: "Easily create landing pages & A/B test them."
+    editor:
+      preview: false
+    folder: "data/pages"
+    create: true
+    slug: "{{id}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - label: ID
+        name: id
+        widget: ncw-id
+        prefix: page
+        hint: Automatically generated unique ID.
+      - {label: "Slug", name: "slug", widget: "string", required: true, pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', "Must be only lowercase letters, numbers, and dashes."]}
+      - {label: "Published", name: "published", widget: "boolean", required: false}      
+      - {label: "Description", name: "description", widget: "text", required: false}            
+      - {label: "Thumbnail Image", name: "thumbnail_image", widget: "image", required: false}     
+      - label: "Tags"
+        name: "tags"
+        widget: "list"
+        required: false    
+      - label: "Sections"
+        label_singular: "Section"
+        name: "sections"
+        widget: "list"
+        types:                    
+          # - label: "Topic Section"
+          #   name: "topics"
+          #  widget: "object"  
+          #  fields:
+          #  - {label: "Topics", name: "list", widget: "relation", collection: "topics", searchFields: ["title", "description"], valueField: "id", displayFields: ["title"], multiple: true, required: false}
+          - label: "Content Items Section"
+            name: "contentItems"
+            widget: "object"  
+            fields:
+            - {label: "Content Items", name: "list", widget: "relation", collection: "content", searchFields: ["title", "description"], valueField: "id", displayFields: ["title"], multiple: true, required: false}      
+         # - label: "Content Series Section"
+         #   name: "series"
+         #   widget: "object"  
+         #   fields:
+         #   - {label: "Content Series Section", name: "list", widget: "relation", collection: "series", searchFields: ["title", "description"], valueField: "id", displayFields: ["title"], multiple: true, required: false}      
+         # - label: "Offerings Section"
+         #   name: "offerings"
+         #   widget: "object"  
+         #   fields:
+         #   - {label: "Offerings List", name: "list", widget: "relation", collection: "offerings", searchFields: ["title", "description"], valueField: "id", displayFields: ["title"], multiple: true, required: false}      
+          - label: "Collections Section"
+            name: "collections"
+            widget: "object"  
+            fields:
+            - {label: "Collections List", name: "list", widget: "relation", collection: "collections", searchFields: ["title", "description"], valueField: "id", displayFields: ["title"], multiple: true, required: false}      
+          - label: "Value Proposition Section"
+            name: "valuePropositions"
+            widget: "object"  
+            fields:
+            - {label: "Value Proposition List", name: "list", widget: "relation", collection: "valuePropositions", searchFields: ["title", "description"], valueField: "id", displayFields: ["title"], multiple: true, required: false}                  
+          - label: "Custom Page Elements"
+            name: "html"
+            widget: "object"  
+            fields:
+            - {label: "Page Element List", name: "list", widget: "relation", collection: "pageElements", searchFields: ["title", "description"], valueField: "id", displayFields: ["title"], multiple: true, required: false}                        
+      - {label: "Internal Notes", name: "notes", widget: "text", required: false}
+  - name: "topics"
+    label: "  🏷️ Topics"
+    label_singular: " 🏷️ Topic"
+    description: "Top-level content categories."
+    editor:
+      preview: false
+    folder: "data/topics"
+    create: true
+    slug: "{{id}}"   
+    fields:
+      - {label: "Title", name: "title", widget: "string"}      
+      - label: ID
+        name: id
+        widget: ncw-id
+        prefix: topic          
+        hint: Automatically generated unique ID.
+      - {label: "Slug", name: "slug", widget: "string", required: true, pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', "Must be only lowercase letters, numbers, and dashes."]}
+      - {label: "Published", name: "published", widget: "boolean", required: false}
+      - {label: "Description", name: "description", widget: "text", required: false}               
+      - label: "Sub-Topics"
+        name: "subTopics"
+        widget: "relation"
+        collection: "topics"
+        searchFields: ["title", "description"]
+        valueField: "id"
+        displayFields: ["title"]
+        multiple: true
+        required: false
+  - name: "series"
+    label: " 📚 Series"
+    label_singular: " 📚 Series"
+    description: "Curated lists of content."
+    editor:
+      preview: false
+    folder: "data/series"
+    create: true
+    slug: "{{id}}"   
+    fields:
+      - {label: "Title", name: "title", widget: "string"}      
+      - label: ID
+        name: id
+        widget: ncw-id
+        prefix: series          
+        hint: Automatically generated unique ID.
+      - {label: "Slug", name: "slug", widget: "string", required: true, pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', "Must be only lowercase letters, numbers, and dashes."]}
+      - {label: "Published", name: "published", widget: "boolean", required: false}
+      - {label: "Description", name: "description", widget: "text", required: false}         
+      - label: "Content Items"
+        name: "contentItems"
+        widget: "relation"
+        collection: "content"
+        searchFields: ["title", "description"]
+        valueField: "id"
+        displayFields: ["title"]
+        multiple: true
+        required: false
+      - label: "Topics"
+        name: "topics"
+        widget: "relation"
+        collection: "topics"
+        searchFields: ["title", "description"]
+        valueField: "id"
+        displayFields: ["title"]
+        multiple: true
+        required: false
+  - name: "content"
+    label: " 📝 Content"
+    label_singular: " 📝 Content Item"
+    description: "Create & publish individual content items here."
+    editor:
+      preview: false
+    folder: "data/content"
+    create: true
+    slug: "{{id}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - label: ID
+        name: id
+        widget: ncw-id
+        prefix: content          
+        hint: Automatically generated unique ID.
+      - {label: "Slug", name: "slug", widget: "string", required: true, pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', "Must be only lowercase letters, numbers, and dashes."]}
+      - {label: "Published", name: "published", widget: "boolean", required: false}
+      - {label: "Featured", name: "featured", widget: "boolean", required: false}
+      - {label: "Subtitle", name: "subtitle", widget: "string", required: false}
+      - {label: "Description", name: "description", widget: "text", required: false}
+      - {label: "Minutes To Consume", name: "minutes_to_consume", widget: "number", min: 1, step: 1, required: false}
+      - {label: "Publish Date", name: "date", widget: "date", required: false}      
+      - {label: "Cover Image", name: "cover_image", widget: "image", required: false}
+      - {label: "Thumbnail Image", name: "thumbnail_image", widget: "image", required: false}
+      - label: "Tags"
+        name: "tags"
+        widget: "list"
+        required: false
+        hint: "List of topics, tags, keywords, hashtags, etc, separated by commas."
+      - {label: "Excerpt", name: "excerpt", widget: "markdown", required: false}      
+      - {label: "Content", name: "body", widget: "markdown", required: false}      
+  - name: "offerings"
+    label: " 📦 Offerings"
+    label_singular: " 📦 Offering"
+    description: "Your products & services."
+    editor:
+      preview: false
+    folder: "data/offerings"
+    create: true
+    slug: "{{id}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - label: ID
+        name: id
+        widget: ncw-id
+        prefix: offering          
+        hint: Automatically generated unique ID.
+      - {label: "Slug", name: "slug", widget: "string", required: true, pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', "Must be only lowercase letters, numbers, and dashes."]}
+      - {label: "Published", name: "published", widget: "boolean", required: false}
+      - {label: "Featured", name: "featured", widget: "boolean", required: false}
+      - {label: "Type", name: "type", widget: "select",   options: ["product", "service"]}
+      - {label: "Price ($)", name: "price", widget: "number"}
+      - {label: "Description", name: "description", widget: "text", required: false}
+      - {label: "Publish Date", name: "date", widget: "date", required: false}      
+      - {label: "Cover Image", name: "cover_image", widget: "image", required: false}
+      - {label: "Thumbnail Image", name: "thumbnail_image", widget: "image", required: false}
+      - label: "Tags"
+        name: "tags"
+        widget: "list"
+      - {label: "Content", name: "body", widget: "markdown", required: false}
+      - {label: "Buy Button URL", name: "buy_button_url", widget: "string", required: false}
+      - {label: "Buy Button HTML", name: "buy_button_html", widget: "markdown", required: false}
+      - {label: "Buy Button Data", name: "buy_button_data", widget: "code", output_code_only: true, default_language: "json", allow_language_selection: false, required: false }      
+      - label: "Up-Sells"
+        name: "up_sells"
+        widget: "relation"
+        collection: "offerings"
+        searchFields: ["title", "description"]
+        valueField: "id"
+        displayFields: ["title"]
+        multiple: true
+        required: false
+      - label: "Down-Sells"
+        name: "down_sells"
+        widget: "relation"
+        collection: "offerings"
+        searchFields: ["title", "description"]
+        valueField: "id"
+        displayFields: ["title"]
+        multiple: true
+        required: false
+      - label: "Cross-Sells"
+        name: "cross_sells"
+        widget: "relation"
+        collection: "offerings"
+        searchFields: ["title", "description"]
+        valueField: "id"
+        displayFields: ["title"]
+        multiple: true
+        required: false
+  - name: "collections"
+    label: " 🗂️ Collections"
+    label_singular: " 🗂️ Collection"
+    description: "Curated lists of your offerings."
+    editor:
+      preview: false
+    folder: "data/collections"
+    create: true
+    slug: "{{id}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - label: ID
+        name: id
+        widget: ncw-id
+        prefix: collection          
+        hint: Automatically generated unique ID.
+      - {label: "Slug", name: "slug", widget: "string", required: true, pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', "Must be only lowercase letters, numbers, and dashes."]}      
+      - {label: "Published", name: "published", widget: "boolean", required: false}
+      - {label: "Featured", name: "featured", widget: "boolean", required: false}
+      - {label: "Description", name: "description", widget: "text", required: false}
+      - {label: "Publish Date", name: "date", widget: "date", required: false}      
+      - {label: "Cover Image", name: "cover_image", widget: "image", required: false}
+      - {label: "Thumbnail Image", name: "thumbnail_image", widget: "image", required: false}
+      - label: "Offerings"
+        name: "offerings"
+        widget: "relation"
+        collection: "offerings"
+        searchFields: ["title", "description"]
+        valueField: "id"
+        displayFields: ["title"]
+        multiple: true
+        required: false
+      - label: "Sub-Collections"
+        name: "subCollections"
+        widget: "relation"
+        collection: "collections"
+        searchFields: ["title", "description"]
+        valueField: "id"
+        displayFields: ["title"]
+        multiple: true
+        required: false
+      - label: "Tags"
+        name: "tags"
+        widget: "list"
+        required: false
+      - {label: "Content", name: "body", widget: "markdown", required: false}
+  - name: "values"
+    label: " ⭐ Core Values"
+    label_singular: " ⭐ Core Value"
+    description: "The values you want to deliver."
+    editor:
+      preview: false
+    folder: "data/values"
+    create: true
+    slug: "{{id}}"
+    summary: "{{title}} - Priority Level {{priority}}"
+    fields:
+      - {label: "Core Value", name: "title", widget: "string", hint: "Choose your words wisely."}        
+      - label: ID
+        name: id
+        widget: ncw-id
+        prefix: value          
+        hint: Automatically generated unique ID.
+      - {label: "Published", name: "published", widget: "boolean", required: false, hint:  "If enabled, these answers will be visible to the public."}      
+      - {label: "Why", name: "why", widget: "string", hint: "Why you care about this value."}        
+      - {label: "How", name: "how", widget: "string", hint: "How you act on it."}            
+      - {label: "What", name: "what", widget: "string", hint: "What you produce."}        
+      - {label: "Priority", name: "priority", widget: "number",  min: 1, max: 10, step:1, default: 0,  hint: "How much of a priority is this? (1 = most important, 10 = lest important)"}        
+  - name: "socialPosts"
+    label: " 💬 Social Media"
+    label_singular: " 💬 Social Media Post"
+    description: "Schedule social media posts with text, images, & videos."
+    editor:
+      preview: false
+    folder: "data/socialPosts"
+    create: true
+    slug: "{{id}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - label: ID
+        name: id
+        widget: ncw-id
+        prefix: socialPost          
+        hint: Automatically generated unique ID.
+      - {label: "Slug", name: "slug", widget: "string", required: true, pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', "Must be only lowercase letters, numbers, and dashes."]}
+      - {label: "Published", name: "published", widget: "boolean", required: false}
+      - {label: "Featured", name: "featured", widget: "boolean", required: false}
+      - {label: "Description", name: "description", widget: "string"}      
+      - {label: "Publish Date", name: "date", widget: "date", required: false}      
+      - {label: "Link", name: "link", widget: "string", required: false}
+      - {label: "Thumbnail Image", name: "thumbnail_image", widget: "image", required: false}      
+      - label: "Re-Post Schedule"
+        name: "repost_rules"
+        widget: "list"
+        fields:                    
+          - label: "Start Date"
+            name: "start_date"
+            widget: "datetime"
+            default: ""
+            dateFormat: "DD.MM.YYYY" # e.g. 24.12.2021
+            timeFormat: "HH:mm" # e.g. 21:07
+            format: "LLL"
+          - label: "End Date"
+            name: "end_date"
+            widget: "datetime"
+            default: ""
+            dateFormat: "DD.MM.YYYY" # e.g. 24.12.2021
+            timeFormat: "HH:mm" # e.g. 21:07
+            format: "LLL"              
+          - {label: "Monday", name: "monday", widget: "boolean", default: false}
+          - {label: "Tuesday", name: "tuesday", widget: "boolean", default: false}
+          - {label: "Wednesday", name: "wednesday", widget: "boolean", default: false}
+          - {label: "Thursday", name: "thursday", widget: "boolean", default: false}
+          - {label: "Friday", name: "friday", widget: "boolean", default: false}
+          - {label: "Saturday", name: "saturday", widget: "boolean", default: false}
+          - {label: "Sunday", name: "sunday", widget: "boolean", default: false}
+  - label: " ⚙️ Site Settings"
+    name: "settings"
+    description: "Configure your platform."
+    editor:
+      preview: false
+    files:
+      - label: "🏢 Company"
+        name: "company"
+        file: "data/company.json"
+        fields:
+          - {label: Comapany Name, name: company-name, widget: string, required: false}
+          - {label: address, name: address, widget: text, required: false}        
+      - label: " 💎 Brand"
+        name: "brand"
+        file: "data/brand.json"
+        fields:          
+          - {label: Brand Color, name: brandColor, widget: color, required: false}
+          - {label: Logo, name: logo, widget: image, required: false}
+          - {label: Logo Inverted, name: logoInverted, widget: image, required: false}          
+          - {label: Fav Icon, name: favicon, widget: image, required: false }
+          - {label: Touch Icon, name: touchicon, widget: image, required: false}      
+      - label: "💻 Theme"
+        name: "theme"
+        file: "data/theme.json"
+        fields:
+          - {label: "Homepage", name: "homepage", widget: "relation", collection: "pages", searchFields: ["title", "description"], valueField: "id", displayFields: ["title"], multiple: false, required: false}      
+          - {label: Global Javascript, name: global_head, widget: "code", output_code_only: true, default_language: "javascript", allow_language_selection: false, required: false }     
+          - {label: Global CSS, name: global_css, widget: "code", output_code_only: true, default_language: "css", allow_language_selection: false, required: false }                
+          - {label: Global HTML Footer, name: global_footer, widget: "code", output_code_only: true, default_language: "html", allow_language_selection: false, required: false }     
+      - label: "📱 Social"
+        name: "social"
+        file: "data/social.json"
+        fields:
+          - {label: Facebook, name: facebook, widget: string, required: false, hint: "Your username."}                              
+          - {label: Instagram, name: instagram, widget: string, required: false, hint: "Your username."}                    
+          - {label: Twitter, name: twitter, widget: string, required: false, hint: "Your username."}                             
+          - {label: Github, name: github, widget: string, required: false, hint: "Your username, or username/repo."}                             
+      - label: "⚖️ Legal"
+        name: "legal"
+        file: "data/legal.json"
+        fields:
+          - {label: Copyright Notice, name: copyright, widget: text, required: false}                      
+          - {label: Terms of Service, name: terms, widget: markdown, required: false}
+      - label: " 🔧 Features"
+        name: "features"
+        file: "data/features.json"
+        fields:          
+          - {label: Enable Content RSS, name: enable_content_rss, widget: boolean, default: false, required: false}    
+          - {label: Enable Social RSS, name: enable_social_rss, widget: boolean, default: false, required: false}    
+      - label: "🔗 Integrations"
+        name: "integrations"
+        file: "data/integrations.json"
+        fields:
+          - {label: Snipcart ID, name: snipcart_id, widget: string, required: false}  
+      - label: " 🗣️ Language"
+        name: "language"
+        file: "data/language.json"
+        fields:
+        - { label: "content_button_text", name: "content-button-text", widget: "string"}           
+        - { label: "products_button_text", name: "products-button-text", widget: "string"}           
+        - { label: "services_button_text", name: "services-button-text", widget: "string"}
+        - { label: "cart", name: "cart", widget: "string"}
+        - { label: "article", name: "article", widget: "string"}
+        - { label: "read_article", name: "read_article", widget: "string"}
+        - { label: "company", name: "company", widget: "string"}        
+        - { label: "featured_content", name: "featured_content", widget: "string"}
+        - { label: "featured_products", name: "featured_products", widget: "string"}
+        - { label: "featured_services", name: "featured_services", widget: "string"}        
+        - label: "Custom Strings"
+          name: "custom_strings"
+          widget: "list"
+          fields:                               
+            - { label: "String ID", name: "string_id", widget: "string", required: true, pattern: ['^[a-zA-Z0-9_]*$', "Must be only lowercase letters, numbers, and dashes."]}
+            - { label: "Text", name: "text", widget: "string", required: true}              
+  - name: "pageElements"
+    label: " 💻 Page Elements"
+    label_singular: " 💻 Page Element"
+    description: "Reusable bits of HTML for building pages."
+    editor:
+      preview: false
+    folder: "data/pageElements"
+    create: true
+    slug: "{{id}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - label: ID
+        name: id
+        widget: ncw-id
+        prefix: pageElements
+        hint: Automatically generated unique ID.
+      - label: Published
+        name: published
+        widget: boolean
+      - {label: "Code", name: "code", defaultLanguage: "html", widget: "code", output_code_only: false, default_language: "html", allow_language_selection: true, required: true}                    
+  - name: "valuePropositions"
+    label: " 🌟 Value Propositions"
+    label_singular: " 🌟 Value Proposition"
+    description: "So what? Who cares? Why you?"
+    editor:
+      preview: false
+    folder: "data/valuePropositions"
+    create: true
+    slug: "{{id}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - label: ID
+        name: id
+        widget: ncw-id
+        prefix: valueProposition          
+        hint: Automatically generated unique ID.
+      - {label: "Slug", name: "slug", widget: "string", required: true, pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', "Must be only lowercase letters, numbers, and underscores."]}
+      - {label: "Published", name: "published", widget: "boolean", required: false}
+      - {label: "Featured", name: "featured", widget: "boolean", required: false}
+      - {label: "Description", name: "description", widget: "string"}  
+      - {label: "Headline", name: "headline", widget: "string"}  
+      - {label: "Publish Date", name: "date", widget: "date", required: false}      
+      - {label: "Cover Image", name: "cover_image", widget: "image", required: false}
+      - {label: "Thumbnail Image", name: "thumbnail_image", widget: "image", required: false}
+      - label: "Related Values"
+        name: "relatedValues"
+        widget: "relation"
+        collection: "values"
+        searchFields: ["title"]
+        valueField: "id"
+        displayFields: ["title"]
+        multiple: true
+        required: true
+      - label: "Related Collections"
+        name: "relatedCollections"
+        widget: "relation"
+        collection: "collections"
+        searchFields: ["title", "description"]
+        valueField: "id"
+        displayFields: ["title"]
+        multiple: true
+        required: false 
+      - {label: "Call To Action Text", name: "call_to_action_text", widget: "string", required: false}  
+      - {label: "Call To Action Button", name: "call_to_action_button_text", widget: "string", required: false}  
+      - {label: "Call To Action Button URL", name: "call_to_action_button_url", widget: "string", required: false}
+      - {label: "Call To Action Background Image", name: "call_to_action_background_image", widget: "image", required: false}  
+  - name: "customerJourneys"
+    label: " 📋 Customer Journeys"
+    label_singular: " 📋 Customer Journey"
+    description: "Design how your customers move through their lifecycle with your business."
+    editor:
+      preview: false
+    folder: "data/customerJourneys"
+    create: true
+    slug: "{{id}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - label: ID
+        name: id
+        widget: ncw-id
+        prefix: customerJourney          
+        hint: Automatically generated unique ID.      
+      - label: "Stages"
+        name: "stages"
+        widget: "list"
+        fields:                    
+          - { label: "Stage Name", name: "name", widget: "string"}
+          - {label: ID, name: id, widget: ncw-id, prefix: stage, hint: Automatically generated unique ID.}
+          - { label: "Enabled", name: "enabled", widget: "boolean", default: false, required: true}          

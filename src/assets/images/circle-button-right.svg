@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="66px" height="66px" viewBox="0 0 66 66" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 62 (91390) - https://sketch.com -->
+    <title>Circle Button Right</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="58" height="58" rx="29"></rect>
+        <filter x="-12.1%" y="-8.6%" width="124.1%" height="124.1%" filterUnits="objectBoundingBox" id="filter-3">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.154568737   0 0 0 0 0.153233614   0 0 0 0 0.708644701  0 0 0 0.171683785 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <circle id="path-4" cx="22" cy="22" r="22"></circle>
+        <polygon id="path-6" points="14.5706667 15.1 9.68533333 10 14.5706667 4.9 13.0666667 3.33333333 6.66666667 10 13.0666667 16.6666667"></polygon>
+    </defs>
+    <g id="Content" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g transform="translate(-1286.000000, -476.000000)" id="Featured-Items">
+            <g transform="translate(-1.000000, 122.000000)">
+                <g id="Content" transform="translate(93.000000, 70.000000)">
+                    <g id="Nav" transform="translate(0.000000, 286.000000)">
+                        <g id="Circle-Button-Right" transform="translate(1198.000000, 0.000000)">
+                            <g id="Button-Right">
+                                <mask id="mask-2" fill="white">
+                                    <use xlink:href="#path-1"></use>
+                                </mask>
+                                <g id="◼️-Background">
+                                    <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-1"></use>
+                                    <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+                                </g>
+                                <g id="Buttons-/-Round-/-44px" style="mix-blend-mode: multiply;" mask="url(#mask-2)">
+                                    <g transform="translate(7.000000, 7.000000)" id="Styles-/-Base-Color">
+                                        <g>
+                                            <mask id="mask-5" fill="white">
+                                                <use xlink:href="#path-4"></use>
+                                            </mask>
+                                            <use id="◼️-Background" fill="#FFFFFF" xlink:href="#path-4"></use>
+                                            <g id="Icons-/-Arrow-#2-Right" mask="url(#mask-5)">
+                                                <g transform="translate(12.000000, 12.000000)">
+                                                    <mask id="mask-7" fill="white">
+                                                        <use xlink:href="#path-6"></use>
+                                                    </mask>
+                                                    <use id="🔹-Icon-Color" stroke="none" fill="#616161" fill-rule="evenodd" transform="translate(10.618667, 10.000000) scale(-1, 1) translate(-10.618667, -10.000000) " xlink:href="#path-6"></use>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

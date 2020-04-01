@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="66px" height="66px" viewBox="0 0 66 66" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
+    <title>Scroll-Down-Button</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="261.701913%" id="linearGradient-1">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#202A36" offset="100%"></stop>
+        </linearGradient>
+        <rect id="path-2" x="0" y="0" width="58" height="58" rx="29"></rect>
+        <filter x="-12.1%" y="-8.6%" width="124.1%" height="124.1%" filterUnits="objectBoundingBox" id="filter-4">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <circle id="path-5" cx="22" cy="22" r="22"></circle>
+        <polygon id="path-7" points="13.7373333 15.1 8.852 10 13.7373333 4.9 12.2333333 3.33333333 5.83333333 10 12.2333333 16.6666667"></polygon>
+    </defs>
+    <g id="Content-Item" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g transform="translate(-686.000000, -517.000000)" id="Content-Heading">
+            <g transform="translate(-1.000000, 122.000000)">
+                <g id="Group-2" transform="translate(355.000000, 169.000000)">
+                    <g id="Scroll-Down-Button" transform="translate(336.000000, 228.000000)">
+                        <mask id="mask-3" fill="white">
+                            <use xlink:href="#path-2"></use>
+                        </mask>
+                        <g id="◼️-Background">
+                            <use fill="black" fill-opacity="1" filter="url(#filter-4)" xlink:href="#path-2"></use>
+                            <use fill="url(#linearGradient-1)" fill-rule="evenodd" xlink:href="#path-2"></use>
+                        </g>
+                        <g id="Buttons-/-Round-/-44px" style="mix-blend-mode: multiply;" mask="url(#mask-3)">
+                            <g transform="translate(7.000000, 10.000000)" id="Styles-/-Base-Color">
+                                <g>
+                                    <mask id="mask-6" fill="white">
+                                        <use xlink:href="#path-5"></use>
+                                    </mask>
+                                    <use id="◼️-Background" fill="#FFFFFF" xlink:href="#path-5"></use>
+                                    <g id="Icons-/-Arrow-#2-Down" mask="url(#mask-6)">
+                                        <g transform="translate(12.000000, 12.000000)">
+                                            <mask id="mask-8" fill="white">
+                                                <use xlink:href="#path-7"></use>
+                                            </mask>
+                                            <use id="🔹-Icon-Color" stroke="none" fill="#616161" fill-rule="evenodd" transform="translate(9.785333, 10.000000) scale(1, -1) rotate(90.000000) translate(-9.785333, -10.000000) " xlink:href="#path-7"></use>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

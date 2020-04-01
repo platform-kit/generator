@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html ${htmlAttrs}>
+  <head>
+    ${head}
+           
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">          
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/customer-js@0.0.3/customer.js"></script>
+
+    <style>
+      .snip-layout   {
+        z-index:999999999999999999 !important;        
+      }
+    </style>
+  </head>
+  <body ${bodyAttrs}>      
+    ${app}
+    ${scripts}            
+    <script src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll@15/dist/smooth-scroll.polyfills.min.js"></script>
+    <script>var scroll = new SmoothScroll('a[href*="#"]')    </script>
+  </body>
+</html>
