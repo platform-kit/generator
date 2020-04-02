@@ -8,15 +8,14 @@
 - [x] Sell products & services.
 - [x] Sell subscriptions.
 - [x] Schedule social media posts.
-- [x] Maintain beautiful documentation.
+- [x] Help & documentation.
 - [x] A/B test everything.
 
 ## Developer Features
-- [x] Highly customizable.
-- [x] Integrated analytics.
-- [x] Integrated marketing automations.
-- [x] Local development environment.
 - [x] 1-step install/deploy.
+- [x] Local development environment.
+- [x] Integrated analytics & marketing automation.
+- [x] Edit or add custom template components easily.
 
 ## End-User Features
 - [x] Beautiful and simple design.
@@ -26,26 +25,20 @@
 ## Tech Stack
 - [x] **Markdown** for data storage
 - [x] **GraphQL** for APIs
+- [x] **Gridsome** for static site generation
 - [x] **Vue** for markup
-- [x] **Gridsome** for code generation
 - [x] **Bootstrap** for UI
 
+## Demo
 
-## Benefits
+PlatformKit is powering both of these sites:
 
-No coding necessary.
-
-If you want to write custom code, you only need one language: Javascript.
-
-No technical debt or lock-in, unlike traditional monolithic solutions.
-
-Since the data is [static files](https://daringfireball.net/projects/markdown/), you can easily change the entire architecture in the future.
-
-
-## Demo URL
+<a href="https://www.platformkit.com" target="_blank">https://www.platformkit.com</a>
 
 <a href="https://www.dharmaworks.com" target="_blank">https://www.dharmaworks.com</a>
 
+## Latest Build Status
+![Netlify Status](https://api.netlify.com/api/v1/badges/899741a9-07d9-47c8-b9c3-eaa0f624b96b/deploy-status)
 
 ## Cloud Installation
 
