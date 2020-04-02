@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Documentation</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="description" content="Description">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css">
+  <link rel="icon" href="icon.png" sizes="16x16" type="image/png">
+  <link rel="apple-touch-icon" href="touch-icon.png">
+
+  <style>
+    body {
+      
+    }
+    section.cover.show{            
+      
+      background:linear-gradient(-90deg,rgba(255,255,255,0), rgba(100, 100, 210, 0.1) )!important;
+      border-bottom:1px solid rgba(100,100,100,0.1) !important;
+      z-index:10000 !important;
+      
+    }
+    .markdown-section code{    
+    color: #005ce9 !important;
+    background: #005ce911 !important;
+    }
+
+    label {
+      color: #555 !important;
+    }
+
+    a span {
+      
+
+    }
+
+    li.active .section-link {
+      color:#fd4e3e !important;
+    }
+
+    a, h1, h2, h3, h4, h5, h6 {
+      color:#888 !important;
+    }
+    .search input {
+    
+      background:rgba(77,77,77,0.2);
+      border-radius:4px;
+      transition: all 0.3s;      
+    }
+    
+    .markdown-section strong {      
+        color:#777;
+    }
+    .search input:focus,.search input:active {
+    
+    background: #fff;
+    border-radius:4px;
+  }
+
+    aside, .sidebar {
+      
+      
+      border: none !important;
+      z-index:10;            
+      height: 100vh !important;
+      /* background: #a5b9ec22 !important; */ /* equivalent color with transparency */
+      background:#f2f6fd !important;
+      padding: 15px !important;
+      border-radius: 0px;
+    }
+
+    
+
+    nav {
+      z-index:100 !important;
+      position:fixed !important;
+    }
+
+    @media(min-width:768px){
+      main, .content {
+        padding-top:90px;
+        
+      }
+    }
+    @media(max-width:768px){
+      main, .content {
+        padding-top:20px;
+        
+      }
+    }
+
+    .content a:not(.anchor) {
+      background: #f2f6fd;
+      padding: 4px 10px;
+      border-radius: 4px;
+      color:#000 !important;
+      text-decoration: none;
+    }
+
+    .anchor span {
+      color: #444444 !important;
+    }
+
+    .sidebar-toggle {
+      position: fixed;
+      background:transparent !important;
+      min-width: auto;
+      border-radius:4px !important;
+      width:auto !important;      
+    }
+
+    
+    body.close .sidebar-toggle {
+      background-color:transparent !important;
+    }
+  
+
+    div.search {
+      
+      border-bottom:none !important;
+    }
+
+    #dark_mode {    
+      margin-top: -35px !important;
+      margin-bottom: 32px;
+      top:10px !important;
+      left:0px !important;
+      margin-bottom:25px !important;
+    }
+
+    #dark_mode label {
+      position:absolute !important;
+      top:0px !important;
+      left:15px !important;
+      margin-top:20px !important;
+    }
+
+
+    .sidebar-toggle-button {
+      background: #fff !important;
+      padding: 5px 4px 1px 4px !important;
+      border-radius: 2px !important;
+    }
+
+    .app-name-link img {
+      max-width:100px;
+    }
+  </style>
+  <link
+    rel="stylesheet"
+    href="//cdn.jsdelivr.net/npm/docsify-dark-mode@latest/dist/style.min.css"
+  />
+</head>
+<body>
+  
+    
+  
+    <div id="app"></div>
+  
+  
+  <script>
+    window.$docsify = {
+      name: 'platform-kit',
+      repo: 'platform-kit/generator',
+      coverpage: 'cover.md',
+      // loadSidebar: 'sidebar.md',
+      logo: '/logo.png',
+      name: 'Documentation',
+      nameLink: '#',
+      themeColor: '#fd4e3e',
+      // basePath: 'https://raw.githubusercontent.com/platform-kit/generator/master',
+      relativePath: false,
+      subMaxLevel: 2,
+      maxLevel: 4,    
+      search : {
+        hideOtherSidebarContent: true, // whether or not to hide other sidebar content
+        depth: 2,
+        paths: [
+          '/',            // => /README.md          
+        ]
+      },
+      darkMode: {
+        dark: {
+          background: "#111",
+          toggleBtnBg: "#fd4e3e",
+          textColor: "#fff"
+        },
+        light: {
+          background: "white",
+          toggleBtnBg: "#333",
+          textColor: "#000"
+        }
+      }
+    ,
+
+
+    }
+  </script>
+  <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify-dark-mode@latest/dist/index.min.js"></script>
+
+</body>
+</html>

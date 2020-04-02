@@ -11,10 +11,5 @@ data
 static/rss.xml
 static/social-rss.xml
 static/*.xml
-/static/docs
-!/static/docs/cover.md
-!/static/docs/readme.md
-!/static/docs/index.html
-!/static/docs/.nojekyll
 workspace/*
 workspace/repository
