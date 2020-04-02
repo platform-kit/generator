@@ -46,23 +46,31 @@ Click the button below to deploy to Netlify instantly.
 
 <a href="https://app.netlify.com/start/deploy?repository=https://github.com/platform-kit/generator"><img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify"></a>
 
-Use these settings:
+### If you want to generate the content/e-commerce portion of the site
 
-Build Command: `gridsome build`
+Build Command: `./bin/run getData; ./bin/run copyData; gridsome build`
 
 Publish Directory: `dist`
 
+### If you only want to generate the docs
+
+Build Command: `./bin/run getData; ./bin/run copyData; gridsome build`
+
+Publish Directory: `dist/docs`
+
 ## Local Installation
 
-To install via the command line,
+To install via the command line, enter the target folder and run these commands:
 
-1. Create a folder: `mkdir my-platformkit-site` 
-2. Enter it: `cd my-platformkit-site`
-3. Install PlatformKit Generator: `yarn add platform-kit/generator`
-4. Install starter content: `./bin/run seedData`
-5. Start the local DEV server at`gridsome develop` at `http://localhost:8080`
-6. Start local CMS server `npx netlify-cms-proxy-server` at `http://localhost:8081` 
-7. Happy coding 🎉🙌
+1. Install PlatformKit Generator: `yarn add platform-kit/generator`
+2. Install starter content: `./bin/run seedData`
+3. Start the local DEV server at`gridsome develop` at `http://localhost:8080`
+4. Start local CMS server `npx netlify-cms-proxy-server` at `http://localhost:8081` 
+5. Happy coding 🎉🙌
+
+## Development Guide
+
+For more detailed instructions, check out the [Development Guide](/guides/development.md)
 
 Documentation, content, training & more at https://www.platformkit.com 
 
