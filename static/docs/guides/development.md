@@ -29,8 +29,8 @@ Below are the instructions for each.
 ## Developing content & theme as one repository
 
 1. Install PlatformKit Generator: `yarn add platform-kit/generator`
-2. Start the local DEV server at`gridsome develop` at `http://localhost:8080`
-3. Start local CMS server `npx netlify-cms-proxy-server` at `http://localhost:8081` 
-4. Open `http://localhost:8080/admin-local` and create content.
-5. Delete the line from the .gitignore file which references `data` directory
+2. Delete the line from the .gitignore file which references `data` directory
+3. Start the local DEV server at`gridsome develop` at `http://localhost:8080`
+4. Start local CMS server `npx netlify-cms-proxy-server` at `http://localhost:8081` 
+5. Open `http://localhost:8080/admin-local` and create content.
 6. Push the changes from the root directory of your project when you're done.
