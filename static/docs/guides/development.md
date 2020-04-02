@@ -6,9 +6,7 @@ However you can also develop them together as a single project.
 
 Below are the instructions for each.
 
-## Developing content & theme separately
-
-## Theme only
+## Developing the generator
 
 1. Install PlatformKit Generator: `yarn add platform-kit/generator`
 2. Install starter content: `./bin/run seedData`
@@ -16,7 +14,7 @@ Below are the instructions for each.
 4. Start local CMS server `npx netlify-cms-proxy-server`
 5. Push the changes from the root directory of your project when you're done.
 
-## Content only
+## Developing content
 
 1. Install PlatformKit Generator: `yarn add platform-kit/generator`
 2. Add a `REPOSITORY` value the `.env` file in your root directory to reference your Github repo
@@ -28,7 +26,7 @@ Below are the instructions for each.
 8. Push your content from the workspace to the data folder: `./bin/run copyData`
 9. Push the changes from `/workspace/repository` when you're done.
 
-## Developing content & theme as one repository
+## Developing a monorepo
 
 1. Install PlatformKit Generator: `yarn add platform-kit/generator`
 2. Delete the line from the .gitignore file which references `data` directory
