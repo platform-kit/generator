@@ -7,6 +7,7 @@
         >Terms of Service</h2>
       </div>
       <div
+        v-if="legalSettings != null && legalSettings.terms != null"
         id="terms"
         class="p-5"
         v-html="$options.filters.markdown(legalSettings.terms)"
