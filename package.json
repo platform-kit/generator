@@ -33,6 +33,7 @@
     "docsify-cli": "^4.4.0",
     "dotenv": "^8.2.0",
     "dotenv-flow": "^3.1.0",
+    "dotenv-webpack": "^1.7.0",
     "front-matter": "^3.1.0",
     "fse": "^4.0.1",
     "gridsome": "^0.7.0",
@@ -51,6 +52,7 @@
     "nodegit": "^0.26.5",
     "oclif": "^1.15.2",
     "promisify-node": "^0.5.0",
+    "stripe": "^8.38.0",
     "v-markdown": "^1.0.2",
     "vue": "^2.6.11"
   },
