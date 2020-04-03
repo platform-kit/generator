@@ -9,10 +9,11 @@ Below are the instructions for each.
 ## Developing the generator
 
 1. Install PlatformKit Generator: `git clone https://github.com/your-username/generator project-name` where `your-username` is the username where you've forked `platform-kit/generator` and `project-name` is the name of the folder you'd like to work in.
-2. Install starter content: `./bin/run seedData`
-3. Start the local DEV server at`gridsome develop` at `http://localhost:8080`
-4. Start local CMS server `npx netlify-cms-proxy-server`
-5. Push the changes from the root directory of your project when you're done.
+2. Install dependencies: `yarn install`
+3. Install starter content: `./bin/run seedData`
+4. Start the local DEV server at`gridsome develop` at `http://localhost:8080`
+5. Start local CMS server `npx netlify-cms-proxy-server`
+6. Push the changes from the root directory of your project when you're done.
 
 ## Developing content
 
