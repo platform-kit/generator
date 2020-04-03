@@ -15,15 +15,16 @@ exports.handler = async (event, context) => {
     var fm = require('front-matter');
     var data = fm(content);
     delete data.frontmatter;
+    delete data.bodyBegin;
  
     return {
       statusCode: 200,
-      body: JSON.stringify({data: data}, null, 2)
+      body: JSON.stringify({status: 200, data: data, error: false, message: null }, null, 2)
       // // more keys you can return:
       // headers: { "headerName": "headerValue", ... },
       // isBase64Encoded: true,
     }
   } catch (err) {
-    return { statusCode: 500, body: err.toString() }
+    return { statusCode: 500, body: JSON.stringify({status: 500, data: null, error: true, message: err.toString()},null, 2) }
   }
 }
