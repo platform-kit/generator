@@ -14,3 +14,5 @@ static/*.xml
 static/docs/README.md
 workspace/*
 workspace/repository
+# Local Netlify folder
+.netlify
