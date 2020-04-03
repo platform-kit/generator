@@ -62,11 +62,12 @@ Publish Directory: `dist/docs`
 
 To install via the command line, enter the target folder and run these commands:
 
-1. Install PlatformKit Generator: `yarn add platform-kit/generator`
+1. Install PlatformKit Generator: `git clone https://github.com/platform-kit/generator project-name` where `project-name` is the name of your project.
 2. Install starter content: `./bin/run seedData`
-3. Start the local DEV server at`gridsome develop` at `http://localhost:8080`
-4. Start local CMS server `npx netlify-cms-proxy-server` at `http://localhost:8081` 
-5. Happy coding 🎉🙌
+3. Install Gridsome CLI: `npm install --global @gridsome/cli`
+4. Start the local DEV server at`gridsome develop` at `http://localhost:8080`
+5. Start local CMS server `npx netlify-cms-proxy-server` at `http://localhost:8081` 
+6. Happy coding 🎉🙌
 
 ## Development Guide
 
