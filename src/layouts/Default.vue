@@ -60,6 +60,7 @@
                   <span><i class="fa fa-user mr-2 opacity-50"></i> Login</span>                  
                 </a>
                 <a href="#login" class="nav-link" @click="logout" v-if="!$auth.state.loading && $auth.state.isAuthenticated" >
+                  <img :src="$auth.state.user.picture" v-if="$auth.state.user.picture != null "  style="display:inline-block;height:25px;width:25px;margin-right:10px;border-radius:30px;background:#333;">&nbsp;</span>
                   <i class="fa fa-lock mr-2 opacity-50"></i>
                   <span>Logout</span>                  
                 </a>
