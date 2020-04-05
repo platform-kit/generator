@@ -12,7 +12,7 @@
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Bootstrap_logo.svg/1200px-Bootstrap_logo.svg.png" style="margin:10px 10px 10px 20px;max-width:33px;padding:-10px;border-radius:33px;"/>
 
-<img src="https://raw.githubusercontent.com/jamstack/jamstack.org/master/src/img/jamstack-full-logo.svg" style="margin: 10px;max-height: 33px;background: #fff;padding: 5px;border-radius: 4px;"/>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Jamstack_logo_%282017%29.svg/640px-Jamstack_logo_%282017%29.svg.png" style="margin: 10px;max-height: 33px;background: #fff;padding: 5px;border-radius: 4px;"/>
 
 <a href="#/readme.md" style="margin-bottom:20px;" >Read the Docs</a>
 
