@@ -47,7 +47,7 @@ export default function (Vue, { router, head, isClient }) {
       router.push(
         appState && appState.targetUrl
           ? appState.targetUrl
-          : 'default redirect'
+          : '/'
       );
     }
   })
