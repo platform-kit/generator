@@ -434,9 +434,11 @@ export default {
       this.$auth.loginWithRedirect();
     },
     logout() {
+      if(window != null){
       this.$auth.logout({
         returnTo: window.location.origin
-      });
+      })
+      }
     },   
    
     containsSearch(node) {
