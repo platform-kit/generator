@@ -23,7 +23,7 @@ class CopyStaticFilesCommand extends Command {
     if (fs.existsSync('./workspace/repository/static')) {
       // Do something
       console.log(123);
-      ncp('./workspace/repository/static/files', './static/files', function (err) {
+      ncp('./workspace/repository/static', './static', function (err) {
         if (err) {
           return console.error(err);
         }
