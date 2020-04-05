@@ -56,10 +56,10 @@
                 </g-link>
                 <g-link to="/products" class="nav-link" v-on:click="this.search = null">Products</g-link>
                 <g-link to="/services" class="nav-link" v-on:click="this.search = null">Services</g-link>
-                <a href="#login" class="nav-link" @click="login" v-if="!$auth.state.loading && !$auth.state.isAuthenticated" >                  
+                <a href="#login" class="nav-link" @click="login" v-if="useAuth == true && !$auth.state.loading && !$auth.state.isAuthenticated" >                  
                   <span><i class="fa fa-user mr-2 opacity-50"></i> Login</span>                  
                 </a>
-                <a href="#login" class="nav-link" @click="logout" v-if="!$auth.state.loading && $auth.state.isAuthenticated" >
+                <a href="#login" class="nav-link" @click="logout" v-if="useAuth == true && !$auth.state.loading && $auth.state.isAuthenticated" >
                   <img :src="$auth.state.user.picture" v-if="$auth.state.user.picture != null "  style="display:inline-block;height:25px;width:25px;margin-right:10px;border-radius:30px;background:#333;">&nbsp;</span>
                   <i class="fa fa-lock mr-2 opacity-50"></i>
                   <span>Logout</span>                  
@@ -366,7 +366,8 @@ export default {
       window: null,
       lock: null,
       user: null,
-      auth: null
+      auth: null,
+      useAuth: false
     };
   },
   props: {
@@ -377,9 +378,16 @@ export default {
     SiteFooter
   },
   async mounted() {
-    this.window = window;
-    this.user = this.$auth.state.user;
-    this.auth = this.$auth.state;
+    this.window = window;    
+    
+     
+      
+
+    if(process.env.GRIDSOME_AUTH0_DOMAIN != null){
+      this.useAuth = true;
+      this.user = this.$auth.state.user;
+      this.auth = this.$auth.state;
+    }
 
     var URL = window.location.href;
     var arr = URL.split("/");
