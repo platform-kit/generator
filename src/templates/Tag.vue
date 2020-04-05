@@ -1,12 +1,6 @@
 <template>
   <Layout>
-    <h1 class="tag-title text-center space-bottom">
-      # {{ $page.tag.title }}
-    </h1>
-
-    <div class="posts">
-      <PostCard v-for="edge in $page.tag.belongsTo.edges" :key="edge.node.id" :post="edge.node"/>
-    </div>
+ 
   </Layout>
 </template>
 
@@ -38,7 +32,7 @@ query Tag ($id: ID!) {
 export default {
 
   metaInfo: {
-    title: 'Hello, world!'
+    title: ''
   }
 }
 </script>

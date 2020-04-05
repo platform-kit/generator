@@ -423,7 +423,7 @@ export default {
     /* this.cart = window.cart */
     this.count = 0;
 
-    window.setInterval(() => {
+    this.window.setInterval(() => {
       this.itemCount();
     }, 100);
 
@@ -434,7 +434,7 @@ export default {
       this.$auth.loginWithRedirect();
     },
     logout() {
-      if(window != null){
+      if(this.window != null){
       this.$auth.logout({
         returnTo: window.location.origin
       })
