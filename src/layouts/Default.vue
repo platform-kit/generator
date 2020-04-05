@@ -12,7 +12,11 @@
           style
         >
           <div class="container">
-            <a href="/" class="m-0 ml-xs-2 p-0 text-decoration-none" v-on:click="this.search = null">
+            <a
+              href="/"
+              class="m-0 ml-xs-2 p-0 text-decoration-none"
+              v-on:click="this.search = null"
+            >
               <g-image
                 v-if="brandSettings != null && brandSettings.logo"
                 :src="brandSettings.logo"
@@ -35,6 +39,7 @@
                 v-bind:class="{ 'badge-danger': count > 0 }"
               >{{ count }}</div>
             </a>
+
             <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
             <b-collapse id="nav-collapse" is-nav>
@@ -51,8 +56,20 @@
                 </g-link>
                 <g-link to="/products" class="nav-link" v-on:click="this.search = null">Products</g-link>
                 <g-link to="/services" class="nav-link" v-on:click="this.search = null">Services</g-link>
+                <a href="#login" class="nav-link" @click="login" v-if="!$auth.state.loading" >
+                  
+                  <span v-if="!$auth.state.isAuthenticated"><i class="fa fa-user mr-2 opacity-50"></i> Login</span>
+                  <span v-else><i class="fa fa-user-circle mr-2 opacity-50"></i> Account</span>
+                </a>
+                <a href="#login" class="nav-link" @click="logout" v-if="!$auth.state.loading && $auth.state.isAuthenticated" >
+                  <i class="fa fa-lock mr-2 opacity-50"></i>
+                  <span>Logout</span>                  
+                </a>
                 <a href="#" class="nav-link snipcart-checkout mr-2 text-primary d-none d-sm-block">
-                  <font-awesome :icon="['fa', 'shopping-cart']" class="text-primary opacity-50" />Cart
+                  <font-awesome
+                    :icon="['fa', 'shopping-cart']"
+                    class="text-primary opacity-50 mr-2"
+                  />Cart
                   <div
                     class="badge badge-pill text-white mt-1 mb-1 ml-1 mr-0"
                     style="float:right;position:relative;top:-1px;left:5px;display:block;border-radius:25px;height:auto;width:auto;"
@@ -330,6 +347,8 @@ import brandSettings from "../../data/brand.json";
 import themeSettings from "../../data/theme.json";
 import socialSettings from "../../data/social.json";
 
+
+
 export default {
   data() {
     return {
@@ -344,7 +363,11 @@ export default {
       currentPage: null,
       brandSettings: brandSettings,
       themeSettings: themeSettings,
-      socialSettings: socialSettings
+      socialSettings: socialSettings,
+      window: null,
+      lock: null,
+      user: null,
+      auth: null
     };
   },
   props: {
@@ -355,6 +378,10 @@ export default {
     SiteFooter
   },
   async mounted() {
+    this.window = window;
+    this.user = this.$auth.state.user;
+    this.auth = this.$auth.state;
+
     var URL = window.location.href;
     var arr = URL.split("/");
     //arr[0]='example.com'
@@ -392,8 +419,19 @@ export default {
     window.setInterval(() => {
       this.itemCount();
     }, 100);
+
+    // this.authResults = this.auth();
   },
   methods: {
+    login() {
+      this.$auth.loginWithRedirect();
+    },
+    logout() {
+      this.$auth.logout({
+        returnTo: window.location.origin
+      });
+    },   
+   
     containsSearch(node) {
       var search = this.search.toLowerCase();
       var title = node.title.toLowerCase();
@@ -426,10 +464,14 @@ export default {
       this.count = this.cart.cart.items.length    
       */
 
-      if(window != null && window.Snipcart != null && window.Snipcart.api != null && window.snipcart.items != null){
-      this.count = window.Snipcart.api.items.count();
+      if (
+        window != null &&
+        window.Snipcart != null &&
+        window.Snipcart.api != null &&
+        window.snipcart.items != null
+      ) {
+        this.count = window.Snipcart.api.items.count();
       }
-      
     },
 
     updateSearch() {

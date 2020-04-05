@@ -12,6 +12,7 @@ import { faShoppingCart, faCartPlus, faCalendar } from '@fortawesome/free-solid-
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import marked from 'marked'
 import themeSettings from '../data/theme.json'
+import { Auth0Plugin, authGuard } from "@marketredesign/auth0-spa-vue"
 
 config.autoAddCss = false;
 library.add(faGithub, faTwitter)
@@ -38,6 +39,18 @@ export default function (Vue, { router, head, isClient }) {
   Vue.use(BootstrapVue)
 
   Vue.use(IconsPlugin)  
+
+  Vue.use(Auth0Plugin, {
+    domain: process.env.GRIDSOME_AUTH0_DOMAIN,
+    clientId: process.env.GRIDSOME_AUTH0_CLIENT_ID,
+    onRedirectCallback: appState => {
+      router.push(
+        appState && appState.targetUrl
+          ? appState.targetUrl
+          : 'default redirect'
+      );
+    }
+  })
 
   Vue.component('font-awesome', FontAwesomeIcon)
 
