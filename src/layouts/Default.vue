@@ -56,10 +56,8 @@
                 </g-link>
                 <g-link to="/products" class="nav-link" v-on:click="this.search = null">Products</g-link>
                 <g-link to="/services" class="nav-link" v-on:click="this.search = null">Services</g-link>
-                <a href="#login" class="nav-link" @click="login" v-if="!$auth.state.loading" >
-                  
-                  <span v-if="!$auth.state.isAuthenticated"><i class="fa fa-user mr-2 opacity-50"></i> Login</span>
-                  <span v-else><i class="fa fa-user-circle mr-2 opacity-50"></i> Account</span>
+                <a href="#login" class="nav-link" @click="login" v-if="!$auth.state.loading && !$auth.state.isAuthenticated" >                  
+                  <span><i class="fa fa-user mr-2 opacity-50"></i> Login</span>                  
                 </a>
                 <a href="#login" class="nav-link" @click="logout" v-if="!$auth.state.loading && $auth.state.isAuthenticated" >
                   <i class="fa fa-lock mr-2 opacity-50"></i>
