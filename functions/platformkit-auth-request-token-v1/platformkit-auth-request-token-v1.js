@@ -43,7 +43,7 @@ exports.handler = async (event, context) => {
         };
 
 
-        message = 'Check your e-mail for login instructions.';
+        message = 'Check your e-mail for login instructions. \n '; // + token;
 
 
         var nodemailer = require('nodemailer');
