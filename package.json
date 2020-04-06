@@ -22,7 +22,6 @@
     "@gridsome/remark-prismjs": "^0.2.0",
     "@gridsome/source-filesystem": "^0.6.2",
     "@gridsome/transformer-remark": "^0.5.0",
-    "@marketredesign/auth0-spa-vue": "^1.1.2",
     "@microflash/gridsome-plugin-feed": "^1.0.3",
     "@ncwidgets/file-relation": "^0.6.1",
     "@ncwidgets/id": "^0.6.0",

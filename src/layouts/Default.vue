@@ -383,11 +383,13 @@ export default {
      
       
 
+    /*
     if(process.env.GRIDSOME_AUTH0_DOMAIN != null){
       this.useAuth = true;
       this.user = this.$auth.state.user;
       this.auth = this.$auth.state;
     }
+    */
 
     var URL = window.location.href;
     var arr = URL.split("/");
@@ -431,14 +433,14 @@ export default {
   },
   methods: {
     login() {
-      this.$auth.loginWithRedirect();
+      /* this.$auth.loginWithRedirect(); */
     },
     logout() {
-      if(this.window != null){
+      /* if(this.window != null){
       this.$auth.logout({
         returnTo: window.location.origin
       })
-      }
+      } */
     },   
    
     containsSearch(node) {
