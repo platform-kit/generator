@@ -16,6 +16,7 @@
     "/src"
   ],
   "dependencies": {
+    "@babel/preset-typescript": "^7.9.0",
     "@fortawesome/fontawesome-free": "^5.12.1",
     "@fortawesome/free-solid-svg-icons": "^5.12.1",
     "@gridsome/plugin-google-analytics": "^0.1.0",
@@ -30,6 +31,7 @@
     "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
     "bootstrap-vue": "^2.5.0",
+    "cryptr": "^6.0.2",
     "customer-js": "^0.0.3",
     "docsify-cli": "^4.4.0",
     "dotenv": "^8.2.0",
@@ -41,6 +43,8 @@
     "gridsome-plugin-feed": "^1.0.2",
     "gridsome-plugin-netlify-cms": "^1.0.9",
     "gridsome-plugin-rss": "^1.2.0",
+    "hashids": "^2.2.1",
+    "jsonwebtoken": "^8.5.1",
     "marked": "^0.8.1",
     "moment": "^2.24.0",
     "ncp": "^2.0.0",
@@ -51,6 +55,8 @@
     "netlify-lambda": "^1.6.3",
     "node-webhooks": "^1.4.2",
     "nodegit": "^0.26.5",
+    "nodemailer": "^6.4.6",
+    "nodemailer-smtp-transport": "^2.7.4",
     "oclif": "^1.15.2",
     "promisify-node": "^0.5.0",
     "sharp": "^0.25.2",
