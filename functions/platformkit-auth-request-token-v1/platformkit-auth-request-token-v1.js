@@ -43,7 +43,7 @@ exports.handler = async (event, context) => {
         };
 
 
-        message = 'Check your e-mail for login instructions. \n ' + token;
+        message = 'Check your e-mail for login instructions.';
 
 
         var nodemailer = require('nodemailer');
@@ -58,8 +58,8 @@ exports.handler = async (event, context) => {
             }
         }));
 
-        var text = message + 'To log in to ' + process.env.APP_DOMAIN + ', go to this link: ' + process.env.APP_URL + '?token=' + token + "Your login token is:  " + token;
-        var html = message + "<br><a href='" + process.env.APP_URL + '?token=' + token + "'>Click here to log in to " + process.env.APP_DOMAIN + "</a>";
+        var text = 'To log in to ' + process.env.APP_DOMAIN + ', go to this link: ' + process.env.APP_URL + '?token=' + token + "Your login token is:  " + token;
+        var html = "<br><a href='" + process.env.APP_URL + '?token=' + token + "'>Click here to log in to " + process.env.APP_DOMAIN + "</a>";
 
         var mailOptions = {
             from: mailSender,
