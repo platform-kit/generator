@@ -63,10 +63,10 @@
                   id="dropdown-user-account"
                   variant="light"                  
                   :html="auth.data.sub"
-                  class="my-auto text-dark nav-link p-0 mx-3 d-inline-block mx-0"
+                  class="my-auto text-dark nav-link p-0 mx-0 mx-lg-3 d-inline-block mx-0"
                 >
-                  <b-dropdown-item href="#logout" class="d-block" @click="logout()">
-                    <i class="fa fa-sign-out mr-2"></i>Sign Out
+                  <b-dropdown-item  href="#logout" @click="logout()">
+                    <i class="text-danger fa fa-sign-out mr-2"></i>Sign Out
                   </b-dropdown-item>
                 </b-dropdown>
                 <a href="#login" v-b-modal.modal-login class="nav-link" v-else>
@@ -239,7 +239,7 @@
       </div>
 
       <b-modal id="modal-login" title="Sign In" style="z-index:99999 !important;">
-        <div class="p-4">
+        <div class="p-4" v-if="authRequest == null">
           <p class="my-4 mx-auto text-center pb-3">Enter your email to continue.</p>
           <b-input-group class="mt-3">
             <template v-slot:prepend>
@@ -252,14 +252,30 @@
             <b-form-input autocomplete="off" placeholder="tony.stark@marvel.com" v-model="email"></b-form-input>
           </b-input-group>
         </div>
-        <template v-slot:modal-footer>
-          <div
+        <div class="p-4 text-center my-auto" v-else>
+          <i class="fa fa-check text-primary opacity-50 mb-2"></i><br>
+          <span class="text-dark mb-2 d-block" >Check your e-mail.</span>
+          A login link has been sent to the e-mail you provided:
+          <span class="text-weight-500 mt-2 d-block">{{ email }}</span>
+        </div>
+        <template v-slot:modal-footer v-if="authRequest == null">
+          <div            
             class="btn btn-dark br-25 px-4"
             @click="requestLogin()"
             v-bind:class="{ disabled: email == null || email == '' }"
           >
             Continue
             <i class="ml-2 fa fa-arrow-right opacity-50"></i>
+          </div>
+        </template>
+        <template v-slot:modal-footer v-else>
+          <div            
+            class="btn btn-dark br-25 px-4"
+            @click="email = null; authRequest = null;"
+            v-bind:class="{ disabled: email == null || email == '' }"
+          >
+            Try Again
+            <i class="ml-2 fa fa-refresh opacity-50"></i>
           </div>
         </template>
       </b-modal>
@@ -403,7 +419,8 @@ export default {
       user: null,
       auth: null,
       useAuth: false,
-      email: null
+      email: null,
+      authRequest: null
     };
   },
   props: {
@@ -522,7 +539,7 @@ export default {
           )
           .then
           // alert(1234) // if it worked...
-          ()
+          (response => this.authRequest = true)
           .catch(function(error) {
             console.log(error);
           });
