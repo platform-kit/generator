@@ -62,7 +62,7 @@
                   v-if="auth != null"
                   id="dropdown-user-account"
                   variant="neutral"                  
-                  :html="auth.data.sub"
+                  :html="auth.data.sub.substr(0, 22) + '...' "
                   class="my-auto text-dark nav-link p-0 mx-0 mx-lg-3 d-inline-block mx-0"
                 >
                   <b-dropdown-item  href="#logout" @click="logout()">
