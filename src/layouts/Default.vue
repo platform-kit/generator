@@ -497,7 +497,7 @@ export default {
   methods: {
     getUrlVars() {
       var vars = {};
-      var parts = window.location.href.replace(
+      var parts = this.window.location.href.replace(
         /[?&]+([^=&]+)=([^&]*)/gi,
         function(m, key, value) {
           vars[key] = value;
