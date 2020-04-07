@@ -239,9 +239,10 @@
       </div>
 
       <b-modal id="modal-login" title="Sign In" style="z-index:99999 !important;">
-        <div class="p-4" v-if="authRequest == null">
-          <p class="my-4 mx-auto text-center pb-3">Enter your email to continue.</p>
-          <b-input-group class="mt-3">
+        <div class="pb-4 px-4 text-center" v-if="authRequest == null">
+          <i class="fa fa-envelope text-primary opacity-50 mb-0"></i><br>
+          <p class="mb-4 mt-2 mx-auto text-center pb-2">Enter your email to continue.</p>
+          <b-input-group class="mt-1">
             <template v-slot:prepend>
               <b-input-group-text class="bg-light">
                 <strong class="text-dark opacity-50">
@@ -252,7 +253,7 @@
             <b-form-input autocomplete="off" placeholder="tony.stark@marvel.com" v-model="email"></b-form-input>
           </b-input-group>
         </div>
-        <div class="p-4 text-center my-auto" v-else>
+        <div class="pb-4 px-4 text-center my-auto" v-else>
           <i class="fa fa-check text-primary opacity-50 mb-2"></i><br>
           <span class="text-dark mb-2 d-block" >Check your e-mail.</span>
           A login link has been sent to the e-mail you provided:
