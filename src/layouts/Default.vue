@@ -724,7 +724,7 @@ export default {
 }
 
 .nav-link.active {
-  background: #ddedff;
+  
   border-radius: 4px;
 }
 
