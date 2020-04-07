@@ -56,26 +56,24 @@
                 </g-link>
                 <g-link to="/products" class="nav-link" v-on:click="this.search = null">Products</g-link>
                 <g-link to="/services" class="nav-link" v-on:click="this.search = null">Services</g-link>
-                <a
-                  href="#login"
-                  class="nav-link"
-                  @click="login"
-                  v-if="useAuth == true && !$auth.state.loading && !$auth.state.isAuthenticated"
-                >
-                  <span>
-                    <i class="fa fa-user mr-2 opacity-50"></i> Login
-                  </span>
-                </a>
-                <a
-                  href="#login"
-                  class="nav-link"
-                  @click="logout"
+
+                <b-dropdown
+                  block
                   v-if="auth != null"
+                  id="dropdown-1"
+                  variant="light"
+                  :html="auth.data.sub"
+                  class="my-auto text-dark nav-link p-0"
                 >
-                  
-                  <i class="fa fa-user mr-2 opacity-50"></i>
-                  <span>{{ auth.data.sub }}</span>
+                  <b-dropdown-item href="#logout" class="d-block" @click="logout()">
+                    <i class="fa fa-sign-out mr-2"></i>Sign Out
+                  </b-dropdown-item>
+                </b-dropdown>
+                <a href="#login" v-b-modal.modal-login class="nav-link" v-else>
+                  <i class="fa fa-user opacity-50 text-dark mr-1"></i>
+                  Login
                 </a>
+
                 <a href="#" class="nav-link snipcart-checkout mr-2 text-primary d-none d-sm-block">
                   <font-awesome
                     :icon="['fa', 'shopping-cart']"
@@ -90,7 +88,7 @@
                 <form class="form-inline my-2 my-lg-0">
                   <input
                     class="form-control mr-sm-2"
-                    style="height:42px;"
+                    style="height:42px;"                    
                     type="search"
                     v-model="search"
                     @change="updateSearch"
@@ -132,7 +130,6 @@
         </b-navbar>
       </header>
 
-      
       <main class="main px-0 pt-0" v-if="search == null || search == ''">
         <slot />
       </main>
@@ -240,6 +237,32 @@
           </div>
         </div>
       </div>
+
+      <b-modal id="modal-login" title="Sign In" style="z-index:99999 !important;">
+        <div class="p-4">
+          <p class="my-4 mx-auto text-center pb-3">Enter your email to continue.</p>
+          <b-input-group class="mt-3">
+            <template v-slot:prepend>
+              <b-input-group-text class="bg-light">
+                <strong class="text-dark opacity-50">
+                  <i class="fa fa-envelope"></i>
+                </strong>
+              </b-input-group-text>
+            </template>
+            <b-form-input autocomplete="off" placeholder="tony.stark@marvel.com" v-model="email"></b-form-input>
+          </b-input-group>
+        </div>
+        <template v-slot:modal-footer>
+          <div
+            class="btn btn-dark br-25 px-4"
+            @click="requestLogin()"
+            v-bind:class="{ disabled: email == null || email == '' }"
+          >
+            Continue
+            <i class="ml-2 fa fa-arrow-right opacity-50"></i>
+          </div>
+        </template>
+      </b-modal>
 
       <div id="globalFooter" v-html="themeSettings.global_footer">{{ themeSettings.global_footer }}</div>
       <SiteFooter v-if="currentPage != 'recent'"></SiteFooter>
@@ -379,7 +402,8 @@ export default {
       lock: null,
       user: null,
       auth: null,
-      useAuth: false
+      useAuth: false,
+      email: null
     };
   },
   props: {
@@ -389,25 +413,27 @@ export default {
     Logo,
     SiteFooter
   },
-  async mounted() {    
-    var oldAuth = JSON.parse(localStorage.auth);
-    if(oldAuth.hasOwnProperty('data')) {
-      this.$auth = JSON.parse(localStorage.auth);
-      this.auth = JSON.parse(localStorage.auth);
+  async mounted() {
+    var oldAuth = null;
+    if (localStorage.auth != null) {
+      //alert(typeof localStorage.auth);
+      var oldAuth = JSON.parse(localStorage.auth);
+    } else {
+      oldAuth = null;
+    }
+    if (oldAuth != null && oldAuth.hasOwnProperty("data")) {
+      if (JSON.parse(localStorage.auth)) {
+        this.$auth = JSON.parse(localStorage.auth);
+        this.auth = JSON.parse(localStorage.auth);
+      } else {
+        this.$auth = null;
+        this.auth = null;
+        localstorage.auth = null;
+      }
     }
     this.window = window;
-    function getUrlVars() {
-      var vars = {};
-      var parts = window.location.href.replace(
-        /[?&]+([^=&]+)=([^&]*)/gi,
-        function(m, key, value) {
-          vars[key] = value;
-        }
-      );
-      return vars;
-    }
 
-    var token = getUrlVars()["token"];
+    var token = this.getUrlVars()["token"];
     if (typeof token != "undefined") {
       this.$userToken = token;
       this.callApi({
@@ -449,22 +475,32 @@ export default {
     this.window.setInterval(() => {
       this.itemCount();
     }, 100);
-    
   },
   methods: {
+    getUrlVars() {
+      var vars = {};
+      var parts = window.location.href.replace(
+        /[?&]+([^=&]+)=([^&]*)/gi,
+        function(m, key, value) {
+          vars[key] = value;
+        }
+      );
+      return vars;
+    },
     callApi(input) {
       try {
         axios
           .get(
             process.env.GRIDSOME_API_URL +
               input.function +
-              "?token=" + input.token
+              "?token=" +
+              input.token
           )
-          .then(response => (
+          .then(response =>
             //this.login(response.data)
             //this.$auth = response.data
             this.login(response)
-            ))
+          )
           .catch(function(error) {
             console.log(error);
           });
@@ -472,14 +508,37 @@ export default {
         console.log(error);
       }
     },
-    login(authResponse) {      
+
+    requestLogin() {
+      try {
+        axios
+          .get(
+            process.env.GRIDSOME_API_URL +
+              "platformkit-auth-request-token-v1" +
+              "?email=" +
+              this.email + 
+              "&redirect=" + 
+              this.currentPage
+          )
+          .then
+          // alert(1234) // if it worked...
+          ()
+          .catch(function(error) {
+            console.log(error);
+          });
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    login(authResponse) {
       this.$auth = authResponse.data;
       this.auth = authResponse.data;
-      localStorage.auth = JSON.stringify(this.auth);      
-
+      localStorage.auth = JSON.stringify(this.auth);
     },
     logout() {
-  
+      localStorage.auth = null;
+      this.$auth = null;
+      this.auth = null;
     },
 
     containsSearch(node) {
@@ -558,7 +617,7 @@ export default {
   min-height: var(--header-height);
   padding: 0 calc(var(--space) / 2);
   top: 0;
-  z-index: 10000;
+  z-index: 1000;
 
   &__left,
   &__right {
