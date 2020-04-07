@@ -60,6 +60,7 @@ exports.handler = async (event, context) => {
         var transporter = nodemailer.createTransport(smtpTransport({
             host: mailHost,
             port: mailPort,
+            secure: true,
             auth: {
                 user: sesAccessKey,
                 pass: sesSecretKey
