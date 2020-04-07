@@ -39,11 +39,11 @@ exports.handler = async (event, context) => {
 
         if (email != null) {
 
-            token = jwt.sign({ sub: encryptedEmail }, loginSecretKey, { expiresIn: '1h' });
+            token = jwt.sign({ sub: email }, loginSecretKey, { expiresIn: '1h' });
         };
 
 
-        message = 'Check your e-mail for login instructions. \n '; // + token;
+        message = 'Check your e-mail for login instructions.' + token;
 
 
         var nodemailer = require('nodemailer');

@@ -56,13 +56,25 @@
                 </g-link>
                 <g-link to="/products" class="nav-link" v-on:click="this.search = null">Products</g-link>
                 <g-link to="/services" class="nav-link" v-on:click="this.search = null">Services</g-link>
-                <a href="#login" class="nav-link" @click="login" v-if="useAuth == true && !$auth.state.loading && !$auth.state.isAuthenticated" >                  
-                  <span><i class="fa fa-user mr-2 opacity-50"></i> Login</span>                  
+                <a
+                  href="#login"
+                  class="nav-link"
+                  @click="login"
+                  v-if="useAuth == true && !$auth.state.loading && !$auth.state.isAuthenticated"
+                >
+                  <span>
+                    <i class="fa fa-user mr-2 opacity-50"></i> Login
+                  </span>
                 </a>
-                <a href="#login" class="nav-link" @click="logout" v-if="useAuth == true && !$auth.state.loading && $auth.state.isAuthenticated" >
-                  <img :src="$auth.state.user.picture" v-if="$auth.state.user.picture != null "  style="display:inline-block;height:25px;width:25px;margin-right:10px;border-radius:30px;background:#333;">&nbsp;</span>
-                  <i class="fa fa-lock mr-2 opacity-50"></i>
-                  <span>Logout</span>                  
+                <a
+                  href="#login"
+                  class="nav-link"
+                  @click="logout"
+                  v-if="auth != null"
+                >
+                  
+                  <i class="fa fa-user mr-2 opacity-50"></i>
+                  <span>{{ auth.data.sub }}</span>
                 </a>
                 <a href="#" class="nav-link snipcart-checkout mr-2 text-primary d-none d-sm-block">
                   <font-awesome
@@ -120,6 +132,7 @@
         </b-navbar>
       </header>
 
+      
       <main class="main px-0 pt-0" v-if="search == null || search == ''">
         <slot />
       </main>
@@ -345,8 +358,7 @@ import moment from "moment";
 import brandSettings from "../../data/brand.json";
 import themeSettings from "../../data/theme.json";
 import socialSettings from "../../data/social.json";
-
-
+import axios from "axios";
 
 export default {
   data() {
@@ -377,27 +389,36 @@ export default {
     Logo,
     SiteFooter
   },
-  async mounted() {
-    this.window = window;    
-    
-     
-      
-
-    /*
-    if(process.env.GRIDSOME_AUTH0_DOMAIN != null){
-      this.useAuth = true;
-      this.user = this.$auth.state.user;
-      this.auth = this.$auth.state;
+  async mounted() {    
+    var oldAuth = JSON.parse(localStorage.auth);
+    if(oldAuth.hasOwnProperty('data')) {
+      this.$auth = JSON.parse(localStorage.auth);
+      this.auth = JSON.parse(localStorage.auth);
     }
-    */
+    this.window = window;
+    function getUrlVars() {
+      var vars = {};
+      var parts = window.location.href.replace(
+        /[?&]+([^=&]+)=([^&]*)/gi,
+        function(m, key, value) {
+          vars[key] = value;
+        }
+      );
+      return vars;
+    }
+
+    var token = getUrlVars()["token"];
+    if (typeof token != "undefined") {
+      this.$userToken = token;
+      this.callApi({
+        function: "platformkit-auth-validate-token-v1",
+        token: token
+      });
+    }
 
     var URL = window.location.href;
     var arr = URL.split("/");
-    //arr[0]='example.com'
-    //arr[1]='event'
-    //arr[2]='14aD9Uxp?p=10'
     var str = arr[1];
-    //console.log(arr[3])
     this.currentPage = arr[3];
 
     let list = this.$static.featuredContent.edges;
@@ -428,21 +449,39 @@ export default {
     this.window.setInterval(() => {
       this.itemCount();
     }, 100);
-
-    // this.authResults = this.auth();
+    
   },
   methods: {
-    login() {
-      /* this.$auth.loginWithRedirect(); */
+    callApi(input) {
+      try {
+        axios
+          .get(
+            process.env.GRIDSOME_API_URL +
+              input.function +
+              "?token=" + input.token
+          )
+          .then(response => (
+            //this.login(response.data)
+            //this.$auth = response.data
+            this.login(response)
+            ))
+          .catch(function(error) {
+            console.log(error);
+          });
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    login(authResponse) {      
+      this.$auth = authResponse.data;
+      this.auth = authResponse.data;
+      localStorage.auth = JSON.stringify(this.auth);      
+
     },
     logout() {
-      /* if(this.window != null){
-      this.$auth.logout({
-        returnTo: window.location.origin
-      })
-      } */
-    },   
-   
+  
+    },
+
     containsSearch(node) {
       var search = this.search.toLowerCase();
       var title = node.title.toLowerCase();

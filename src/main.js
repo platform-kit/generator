@@ -35,6 +35,9 @@ export default function (Vue, { router, head, isClient }) {
     });
   }
 
+  Vue.prototype.$userToken = null
+  Vue.prototype.$auth = null
+
   Vue.use(BootstrapVue)
 
   Vue.use(IconsPlugin)
