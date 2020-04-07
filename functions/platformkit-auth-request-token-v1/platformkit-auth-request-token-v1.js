@@ -7,6 +7,11 @@ var mailSender = process.env.MAIL_SENDER;
 console.log(process.env.APP_DOMAIN);
 console.log(process.env.APP_URL);
 console.log(process.env.API_URL);
+console.log(process.env.MAIL_USER);
+console.log(process.env.MAIL_KEY);
+console.log(process.env.MAIL_HOST);
+console.log(process.env.MAIL_PORT);
+console.log(process.env.MAIL_SENDER);
 
 
 // Docs on event and context https://www.netlify.com/docs/functions/#the-handler-method
