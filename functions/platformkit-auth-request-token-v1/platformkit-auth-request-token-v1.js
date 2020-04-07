@@ -4,6 +4,15 @@ var mailHost = process.env.MAIL_HOST;
 var mailPort = process.env.MAIL_PORT;
 var mailSender = process.env.MAIL_SENDER;
 
+console.log('\nAPP_DOMAIN: \n');
+console.log(process.env.APP_DOMAIN);
+
+console.log('\nAPP_URL: \n');
+console.log(process.env.APP_URL);
+
+console.log('\nAPI_URL: \n')
+console.log(process.env.API_URL);
+
 
 
 
