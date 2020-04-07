@@ -4,16 +4,9 @@ var mailHost = process.env.MAIL_HOST;
 var mailPort = process.env.MAIL_PORT;
 var mailSender = process.env.MAIL_SENDER;
 
-console.log('\nAPP_DOMAIN: \n');
 console.log(process.env.APP_DOMAIN);
-
-console.log('\nAPP_URL: \n');
 console.log(process.env.APP_URL);
-
-console.log('\nAPI_URL: \n');
 console.log(process.env.API_URL);
-
-
 
 
 // Docs on event and context https://www.netlify.com/docs/functions/#the-handler-method
@@ -70,6 +63,7 @@ exports.handler = async (event, context) => {
 
         var text = 'To log in to ' + process.env.APP_DOMAIN + ', go to this link: ' + process.env.APP_URL + '?token=' + token + "Your login token is:  " + token;
         var html = "<br><a href='" + process.env.APP_URL + redirect + '?token=' + token  + "'>Click here to log in to " + process.env.APP_DOMAIN + "</a>";
+        console.log("HTML output: \n" + html + "\n");
 
         var mailOptions = {
             from: mailSender,
