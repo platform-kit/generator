@@ -61,7 +61,7 @@
                   block
                   v-if="auth != null"
                   id="dropdown-user-account"
-                  variant="light"                  
+                  variant="neutral"                  
                   :html="auth.data.sub"
                   class="my-auto text-dark nav-link p-0 mx-0 mx-lg-3 d-inline-block mx-0"
                 >
