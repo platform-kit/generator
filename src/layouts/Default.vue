@@ -60,10 +60,10 @@
                 <b-dropdown
                   block
                   v-if="auth != null"
-                  id="dropdown-1"
-                  variant="light"
+                  id="dropdown-user-account"
+                  variant="light"                  
                   :html="auth.data.sub"
-                  class="my-auto text-dark nav-link p-0"
+                  class="my-auto text-dark nav-link p-0 mx-3 d-inline-block mx-0"
                 >
                   <b-dropdown-item href="#logout" class="d-block" @click="logout()">
                     <i class="fa fa-sign-out mr-2"></i>Sign Out
