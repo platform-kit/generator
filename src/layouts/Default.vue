@@ -59,14 +59,17 @@
 
                 <b-dropdown
                   block
+                  right
+                  menu-class="w-100 m-0"
                   v-if="auth != null"
                   id="dropdown-user-account"
                   variant="neutral"                  
                   :html="auth.data.sub.substr(0, 22) + '...' "
-                  class="my-auto text-dark nav-link p-0 mx-0 mx-lg-3 d-inline-block mx-0"
+                  style="padding:0px !important;"
+                  class="my-auto text-dark nav-link p-0 mx-0 mx-lg-3 d-inline-block"
                 >
                   <b-dropdown-item  href="#logout" @click="logout()">
-                    <i class="text-danger fa fa-sign-out mr-2"></i>Sign Out
+                    Sign Out<i class="text-danger fa fa-sign-out m-1 pull-right"></i>
                   </b-dropdown-item>
                 </b-dropdown>
                 <a href="#login" v-b-modal.modal-login class="nav-link" v-else>

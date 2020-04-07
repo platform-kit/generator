@@ -57,18 +57,29 @@ exports.handler = async (event, context) => {
         var nodemailer = require('nodemailer');
         var smtpTransport = require('nodemailer-smtp-transport');
 
-        var transporter = nodemailer.createTransport(smtpTransport({
-            host: mailHost,
-            port: mailPort,
-            //secure: true,
-            auth: {
-                user: sesAccessKey,
-                pass: sesSecretKey
-            }
-        }));
+        if (process.env.MAIL_SERVICE != null) {
+            var transporter = nodemailer.createTransport({
+                service: process.env.MAIL_SERVICE, // no need to set host or port etc.
+                auth: {
+                    user: sesAccessKey,
+                    pass: sesSecretKey
+                }
+           });
+        }
+        else {
+            var transporter = nodemailer.createTransport(smtpTransport({
+                host: mailHost,
+                port: mailPort,
+                //secure: true,
+                auth: {
+                    user: sesAccessKey,
+                    pass: sesSecretKey
+                }
+            }));
+        }
 
         var text = 'To log in to ' + process.env.APP_DOMAIN + ', go to this link: ' + process.env.APP_URL + '?token=' + token + "Your login token is:  " + token;
-        var html = "<br><a href='" + process.env.APP_URL + redirect + '?token=' + token  + "'>Click here to log in to " + process.env.APP_DOMAIN + "</a>";
+        var html = "<br><a href='" + process.env.APP_URL + redirect + '?token=' + token + "'>Click here to log in to " + process.env.APP_DOMAIN + "</a>";
         console.log("HTML output: \n" + html + "\n");
 
         var mailOptions = {
