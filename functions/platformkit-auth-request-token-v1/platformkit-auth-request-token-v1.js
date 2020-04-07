@@ -10,7 +10,7 @@ console.log(process.env.APP_DOMAIN);
 console.log('\nAPP_URL: \n');
 console.log(process.env.APP_URL);
 
-console.log('\nAPI_URL: \n')
+console.log('\nAPI_URL: \n');
 console.log(process.env.API_URL);
 
 
