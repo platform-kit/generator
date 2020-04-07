@@ -80,6 +80,7 @@ exports.handler = async (event, context) => {
 
         transporter.sendMail(mailOptions, function (error, info) {
             if (error) {
+                console.log(error);
                 const response = {
                     statusCode: 500,
                     body: JSON.stringify({
@@ -94,6 +95,7 @@ exports.handler = async (event, context) => {
                     message: `Email processed succesfully!`
                 }),
             };
+            console.log(response);
             //callback(null, response);
         });
 
