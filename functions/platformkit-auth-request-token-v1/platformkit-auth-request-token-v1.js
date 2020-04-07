@@ -21,7 +21,7 @@ exports.handler = async (event, context) => {
         // Get filename from url parameter
 
         const email = event.queryStringParameters.email || null;
-        const redirect = event.queryStringParameters.redirect || '/';
+        const redirect = event.queryStringParameters.redirect || '';
         var data = null;
         var message = null;
         let token = null;
