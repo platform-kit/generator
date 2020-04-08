@@ -3,6 +3,7 @@ var sesSecretKey = process.env.MAIL_KEY;
 var mailHost = process.env.MAIL_HOST;
 var mailPort = process.env.MAIL_PORT;
 var mailSender = process.env.MAIL_SENDER;
+var mailSecure = process.env.MAIL_SECURE;
 
 console.log(process.env.APP_DOMAIN);
 console.log(process.env.APP_URL);
@@ -57,7 +58,7 @@ exports.handler = async (event, context) => {
         var smtpTransport = require('nodemailer-smtp-transport');
 
         if (process.env.MAIL_TRANSPORT == 'nodemailer-mailgun-transport') {
-            console.log(123);
+            console.log('nodemailer-mailgun-transport');
             const mg = require('nodemailer-mailgun-transport');
             var transporter = nodemailer.createTransport(
                 mg(
@@ -70,6 +71,7 @@ exports.handler = async (event, context) => {
             );
         }
         else if (process.env.MAIL_SERVICE != null && process.env.MAIL_SERVICE != '') {
+            console.log(process.env.MAIL_SERVICE);
             var transporter = nodemailer.createTransport({
                 service: process.env.MAIL_SERVICE, // no need to set host or port etc.
                 auth: {
@@ -82,7 +84,7 @@ exports.handler = async (event, context) => {
             var transporter = nodemailer.createTransport(smtpTransport({
                 host: mailHost,
                 port: mailPort,
-                //secure: true,
+                secure: mailSecure,
                 auth: {
                     user: sesAccessKey,
                     pass: sesSecretKey
