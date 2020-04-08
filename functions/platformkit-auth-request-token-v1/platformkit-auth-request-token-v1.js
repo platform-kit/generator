@@ -12,7 +12,8 @@ console.log(process.env.MAIL_KEY);
 console.log(process.env.MAIL_HOST);
 console.log(process.env.MAIL_PORT);
 console.log(process.env.MAIL_SENDER);
-
+console.log(process.env.MAIL_DOMAIN);
+console.log(process.env.MAIL_API_KEY);
 
 // Docs on event and context https://www.netlify.com/docs/functions/#the-handler-method
 exports.handler = async (event, context) => {
@@ -55,25 +56,27 @@ exports.handler = async (event, context) => {
         var nodemailer = require('nodemailer');
         var smtpTransport = require('nodemailer-smtp-transport');
 
-        if (process.env.MAIL_TRANSPORT == 'nodemailer-mailgun-transport' ) {
+        if (process.env.MAIL_TRANSPORT == 'nodemailer-mailgun-transport') {
             console.log(123);
             const mg = require('nodemailer-mailgun-transport');
             var transporter = nodemailer.createTransport(
                 mg(
-                {auth: {
-                    api_key: process.env.MAIL_API_KEY,
-                    domain: process.env.MAIL_DOMAIN
-                }})
-           );
+                    {
+                        auth: {
+                            api_key: process.env.MAIL_API_KEY,
+                            domain: process.env.MAIL_DOMAIN
+                        }
+                    })
+            );
         }
-        else if (process.env.MAIL_SERVICE != null) {
+        else if (process.env.MAIL_SERVICE != null && process.env.MAIL_SERVICE != '') {
             var transporter = nodemailer.createTransport({
                 service: process.env.MAIL_SERVICE, // no need to set host or port etc.
                 auth: {
                     user: sesAccessKey,
                     pass: sesSecretKey
                 }
-           });
+            });
         }
         else {
             var transporter = nodemailer.createTransport(smtpTransport({

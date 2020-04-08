@@ -45,6 +45,7 @@
     "gridsome-plugin-rss": "^1.2.0",
     "hashids": "^2.2.1",
     "jsonwebtoken": "^8.5.1",
+    "mailgun-js": "^0.22.0",
     "marked": "^0.8.1",
     "moment": "^2.24.0",
     "ncp": "^2.0.0",
