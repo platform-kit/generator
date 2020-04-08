@@ -11,7 +11,7 @@ published: true
 featured: true
 subtitle: Subtitle goes here.
 description: >-
-  This is a basic example of a content post.
+  This is a basic example of content that requires a subscription.
 minutes_to_consume: 2
 date: 2019-03-14T00:00:00.000Z
 cover_image: /files/examples/art-lasovsky-8XddFc6NkBY-unsplash.jpg

@@ -63,13 +63,14 @@
                   menu-class="w-100 m-0"
                   v-if="auth != null"
                   id="dropdown-user-account"
-                  variant="neutral"                  
+                  variant="neutral"
                   :html="auth.data.sub.substr(0, 22) + '...' "
                   style="padding:0px !important;"
                   class="my-auto text-dark nav-link p-0 mx-0 mx-lg-3 d-inline-block"
                 >
-                  <b-dropdown-item  href="#logout" @click="logout()">
-                    Sign Out<i class="text-danger fa fa-sign-out m-1 pull-right"></i>
+                  <b-dropdown-item href="#logout" @click="logout()">
+                    Sign Out
+                    <i class="text-danger fa fa-sign-out m-1 pull-right"></i>
                   </b-dropdown-item>
                 </b-dropdown>
                 <a href="#login" v-b-modal.modal-login class="nav-link" v-else>
@@ -91,7 +92,7 @@
                 <form class="form-inline my-2 my-lg-0">
                   <input
                     class="form-control mr-sm-2"
-                    style="height:42px;"                    
+                    style="height:42px;"
                     type="search"
                     v-model="search"
                     @change="updateSearch"
@@ -242,8 +243,14 @@
       </div>
 
       <b-modal id="modal-login" title="Sign In" style="z-index:99999 !important;">
+        <div class="pb-4 px-4 text-center" v-if="authRequestStatus != null && authRequest == null">
+          <div class="m-auto justify-content-center">
+            <i class="fa fa-spinner fa-spin text-dark"></i>
+          </div>
+        </div>
         <div class="pb-4 px-4 text-center" v-if="authRequest == null">
-          <i class="fa fa-envelope text-primary opacity-50 mb-0"></i><br>
+          <i class="fa fa-envelope text-primary opacity-50 mb-0"></i>
+          <br />
           <p class="mb-4 mt-2 mx-auto text-center pb-2">Enter your email to continue.</p>
           <b-input-group class="mt-1">
             <template v-slot:prepend>
@@ -256,14 +263,18 @@
             <b-form-input autocomplete="off" placeholder="tony.stark@marvel.com" v-model="email"></b-form-input>
           </b-input-group>
         </div>
+        
         <div class="pb-4 px-4 text-center my-auto" v-else>
-          <i class="fa fa-check text-primary opacity-50 mb-2"></i><br>
-          <span class="text-dark mb-2 d-block" >Check your e-mail.</span>
+          <i class="fa fa-check text-success opacity-90 mb-2"></i>
+          <br />
+          <span class="text-dark mb-2 d-block">Check your e-mail.</span>
           A login link has been sent to the e-mail you provided:
-          <span class="text-weight-500 mt-2 d-block">{{ email }}</span>
+          <span
+            class="text-weight-500 mt-2 d-block"
+          >{{ email }}</span>
         </div>
         <template v-slot:modal-footer v-if="authRequest == null">
-          <div            
+          <div
             class="btn btn-dark br-25 px-4"
             @click="requestLogin()"
             v-bind:class="{ disabled: email == null || email == '' }"
@@ -273,9 +284,9 @@
           </div>
         </template>
         <template v-slot:modal-footer v-else>
-          <div            
+          <div
             class="btn btn-dark br-25 px-4"
-            @click="email = null; authRequest = null;"
+            @click="email = null; authRequest = null; authRequestStatus = null;"
             v-bind:class="{ disabled: email == null || email == '' }"
           >
             Try Again
@@ -424,6 +435,7 @@ export default {
       auth: null,
       useAuth: false,
       email: null,
+      authRequestStatus: null,
       authRequest: null
     };
   },
@@ -532,21 +544,24 @@ export default {
 
     requestLogin() {
       try {
+        this.authRequestStatus = 'loading';
         axios
           .get(
             process.env.GRIDSOME_API_URL +
               "platformkit-auth-request-token-v1" +
               "?email=" +
-              this.email + 
-              "&redirect=" + 
+              this.email +
+              "&redirect=" +
               this.currentPage
           )
-          .then
-          // alert(1234) // if it worked...
-          (response => this.authRequest = true)
+          .then(
+            // alert(1234) // if it worked...
+            response => (this.authRequest = response.data)
+          )
           .catch(function(error) {
             console.log(error);
           });
+          
       } catch (error) {
         console.log(error);
       }
@@ -727,7 +742,6 @@ export default {
 }
 
 .nav-link.active {
-  
   border-radius: 4px;
 }
 
