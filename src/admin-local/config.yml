@@ -184,6 +184,8 @@ collections:
       - {label: "Description", name: "description", widget: "text", required: false}
       - {label: "Minutes To Consume", name: "minutes_to_consume", widget: "number", min: 1, step: 1, required: false}
       - {label: "Publish Date", name: "date", widget: "date", required: false}      
+      - {label: "Preview Media", name: "media_preview", widget: "string", required: false, hint: "Link to a audio or video preview.", pattern: ['https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)', 'Should be a url (http://...)']}
+      - {label: "Full Media", name: "media_full", widget: "string", required: false, hint: "Link to a full-length video or audio file.", pattern: ['https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)', 'Should be a url (http://...)']}
       - {label: "Cover Image", name: "cover_image", widget: "image", required: false}
       - {label: "Thumbnail Image", name: "thumbnail_image", widget: "image", required: false}
       - label: "Tags"
@@ -192,7 +194,7 @@ collections:
         required: false
         hint: "List of topics, tags, keywords, hashtags, etc, separated by commas."
       - {label: "Excerpt", name: "excerpt", widget: "markdown", required: false}      
-      - {label: "Content", name: "body", widget: "markdown", required: false}      
+      - {label: "Content", name: "body", widget: "markdown", required: false}          
   - name: "offerings"
     label: " 📦 Offerings"
     label_singular: " 📦 Offering"

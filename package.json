@@ -60,11 +60,13 @@
     "nodemailer-mailgun-transport": "^2.0.0",
     "nodemailer-smtp-transport": "^2.7.4",
     "oclif": "^1.15.2",
+    "plyr": "^3.5.10",
     "promisify-node": "^0.5.0",
     "sharp": "^0.25.2",
     "stripe": "^8.38.0",
     "v-markdown": "^1.0.2",
-    "vue": "^2.6.11"
+    "vue": "^2.6.11",
+    "vue-plyr": "^6.0.4"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.27",

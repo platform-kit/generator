@@ -13,6 +13,9 @@ import '@fortawesome/fontawesome-svg-core/styles.css'
 import marked from 'marked'
 import themeSettings from '../data/theme.json'
 
+import Vue from 'vue'
+import VuePlyr from 'vue-plyr'
+
 config.autoAddCss = false;
 library.add(faGithub, faTwitter)
 library.add(faShoppingCart, faCartPlus, faCalendar)
@@ -42,9 +45,19 @@ export default function (Vue, { router, head, isClient }) {
 
   Vue.use(IconsPlugin)
 
+  // Vue Plyr - video player
+  // The second argument is optional and sets the default config values for every player.
+  Vue.use(VuePlyr, {
+    plyr: {
+      fullscreen: { enabled: true }
+    },
+    emit: ['ended']
+  })
+
   Vue.component('font-awesome', FontAwesomeIcon)
 
   Vue.filter('markdown', (string) => marked(string))
+
 
   // Set default layout as a global component
   Vue.component('Layout', DefaultLayout)

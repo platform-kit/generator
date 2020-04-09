@@ -1,18 +1,18 @@
 ---
-title: Get Manifestation Help
+title: Launch your own content platform
 id: valueProposition-IuH13NPbn
-slug: get-manifestation-help
+slug: launch-your-own-content-platform
 published: true
 featured: true
-description: Get Manifestation Help From Experts
-headline: Get Manifestation Help From A Coach
+description: Launch your own content platform
+headline: Launch your own content platform
 date: 2020-03-26T20:41:57.040Z
-cover_image: /files/designecologist-p1smtxl4jow-unsplash.jpg
+cover_image: /files/examples/florian-klauer-mk7D-4UCfmg-unsplash.jpg
 relatedValues:
   - value-sgW-0XJZG
 relatedCollections:
   - collection-jF56aqYVr
 call_to_action_text: ''
-call_to_action_button_text: Book A Session
-call_to_action_button_url: 'https://www.dharmaworks.com/services'
+call_to_action_button_text: Learn More
+call_to_action_button_url: '/services'
 ---

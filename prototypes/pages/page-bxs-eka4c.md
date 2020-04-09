@@ -7,15 +7,13 @@ description: ''
 sections:
   - type: valuePropositions
     list:
-      - valueProposition-9qU0M5fKJ
+      - valueProposition-IuH13NPbn
   - type: contentItems
     list:
+      - content-jf4Kbfe1C
       - content-jf4Kbye1C
-      - content-XBABdly9U
-      - content-ZZWxeHiYn
-  - type: valuePropositions
-    list:
-      - valueProposition-IuH13NPbn
+      - content-jfsKbye1C
+  
   - type: collections
     list:
       - collection-jF56aqYVr
