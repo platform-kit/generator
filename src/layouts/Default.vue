@@ -28,6 +28,7 @@
             <a
               href="#"
               class="nav-link snipcart-checkout d-inline-block d-sm-none text-primary"
+              v-if="count > 0"
               style="position:absolute !important;top:22px;right:75px;"
             >
               <font-awesome :icon="['fa', 'shopping-cart']" class="text-primary opacity-50" />
