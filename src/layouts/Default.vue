@@ -47,7 +47,7 @@
               <b-navbar-nav class="ml-auto">
                 <g-link to="/content" exact class="nav-link" v-on:click="this.search = null">
                   <div
-                    class="badge badge-pill bg-light-blue text-dark-blue m-1"
+                    class="badge badge-pill bg-light-blue text-dark-blue m-1 d-none d-xl-inline"
                     v-if="hasNewContent"
                     style="position:relative;top:-1px;right:5px;"
                   >
@@ -82,7 +82,7 @@
                   <font-awesome
                     :icon="['fa', 'shopping-cart']"
                     class="text-primary opacity-50 mr-2"
-                  />Cart
+                  /><span class="d-none d-xl-inline">Cart</span>
                   <div
                     class="badge badge-pill text-white mt-1 mb-1 ml-1 mr-0"
                     style="float:right;position:relative;top:-1px;left:5px;display:block;border-radius:25px;height:auto;width:auto;"
