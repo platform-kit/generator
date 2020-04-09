@@ -74,12 +74,12 @@
                     <i class="text-danger fa fa-sign-out m-1 pull-right"></i>
                   </b-dropdown-item>
                 </b-dropdown>
-                <a href="#login" v-b-modal.modal-login class="nav-link" v-else>
+                <a href="#login" v-b-modal.modal-login class="nav-link mr-2" v-else>
                   <i class="fa fa-user opacity-50 text-dark mr-1"></i>
                   Login
                 </a>
 
-                <a href="#" class="nav-link snipcart-checkout mr-2 text-primary d-none d-sm-block">
+                <a href="#" class="nav-link snipcart-checkout mr-2 text-primary d-none d-sm-block" v-if="count > 0">
                   <font-awesome
                     :icon="['fa', 'shopping-cart']"
                     class="text-primary opacity-50 mr-2"
