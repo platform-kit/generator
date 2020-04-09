@@ -5,6 +5,7 @@ var mailPort = process.env.MAIL_PORT;
 var mailSender = process.env.MAIL_SENDER;
 var mailSecure = process.env.MAIL_SECURE;
 
+/*
 console.log(process.env.APP_DOMAIN);
 console.log(process.env.APP_URL);
 console.log(process.env.API_URL);
@@ -15,6 +16,7 @@ console.log(process.env.MAIL_PORT);
 console.log(process.env.MAIL_SENDER);
 console.log(process.env.MAIL_DOMAIN);
 console.log(process.env.MAIL_API_KEY);
+*/
 
 // Docs on event and context https://www.netlify.com/docs/functions/#the-handler-method
 exports.handler = async (event, context) => {
@@ -58,7 +60,7 @@ exports.handler = async (event, context) => {
         var smtpTransport = require('nodemailer-smtp-transport');
 
         if (process.env.MAIL_TRANSPORT == 'nodemailer-mailgun-transport') {
-            console.log('nodemailer-mailgun-transport');
+            // console.log('nodemailer-mailgun-transport');
             const mg = require('nodemailer-mailgun-transport');
             var transporter = nodemailer.createTransport(
                 mg(
@@ -71,7 +73,7 @@ exports.handler = async (event, context) => {
             );
         }
         else if (process.env.MAIL_SERVICE != null && process.env.MAIL_SERVICE != '') {
-            console.log(process.env.MAIL_SERVICE);
+            // console.log(process.env.MAIL_SERVICE);
             var transporter = nodemailer.createTransport({
                 service: process.env.MAIL_SERVICE, // no need to set host or port etc.
                 auth: {
@@ -94,7 +96,7 @@ exports.handler = async (event, context) => {
 
         var text = 'To log in to ' + process.env.APP_DOMAIN + ', go to this link: ' + process.env.APP_URL + '?token=' + token + "Your login token is:  " + token;
         var html = "<br><a href='" + process.env.APP_URL + redirect + '?token=' + token + "'>Click here to log in to " + process.env.APP_DOMAIN + "</a>";
-        console.log("HTML output: \n" + html + "\n");
+        //console.log("HTML output: \n" + html + "\n");
 
         var mailOptions = {
             from: mailSender,
@@ -106,9 +108,7 @@ exports.handler = async (event, context) => {
 
         let info = await transporter.sendMail(mailOptions);
 
-        console.log(info);
-
-
+        //console.log(info);
 
         return {
             statusCode: 200,
@@ -118,9 +118,6 @@ exports.handler = async (event, context) => {
             // headers: { "headerName": "headerValue", ... },
             // isBase64Encoded: true,
         }
-
-
-
 
     } catch (err) {
         console.log(err);

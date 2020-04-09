@@ -14,7 +14,7 @@ module.exports = function (api) {
         
 
     if(node.internal.typeName === 'ContentItem') {
-      console.log(node);               
+      //console.log(node);               
       node.relatedCollections = null;      
       
     }

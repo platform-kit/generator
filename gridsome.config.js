@@ -21,7 +21,7 @@ var getImage = function (input){
   else {
     str = '/images/' + str;
   }
-  console.log(str);
+  //console.log(str);
   return str;
 }
 
