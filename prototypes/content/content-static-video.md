@@ -15,7 +15,7 @@ description: This is a basic example of a content post.
 minutes_to_consume: 2
 date: 2019-03-14T00:00:00.000Z
 media_preview: ''
-cover_image: /files/examples/art-lasovsky-8XddFc6NkBY-unsplash.jpg
+cover_image: /files/examples/william-bayreuther-UqlWfdDiEIM-unsplash.jpg
 series: false
 tags:
   - Markdown

@@ -7,7 +7,7 @@ featured: true
 thumbnail_image: /files/6-tips-thumbnail.jpg
 relatedCollections:
   - manifesting
-media_full: 'https://www.youtube.com/embed/nZkWyOlvLhM'
+media_full: 'https://www.youtube.com/embed/oY59wZdCDo0'
 keywords: publishing content
 slug: content-example-youtube
 subtitle: Subtitle goes here.
@@ -15,7 +15,7 @@ description: This is a basic example of a content post.
 minutes_to_consume: 2
 date: 2019-03-14T00:00:00.000Z
 media_preview: ''
-cover_image: /files/examples/art-lasovsky-8XddFc6NkBY-unsplash.jpg
+cover_image: /files/examples/gianandrea-villa-KWrNwBE87EY-unsplash.jpg
 series: false
 tags:
   - Markdown
