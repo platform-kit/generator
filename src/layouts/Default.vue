@@ -20,7 +20,7 @@
               <g-image
                 v-if="brandSettings != null && brandSettings.logo"
                 :src="brandSettings.logo"
-                style="transform:scale(1.5);margin-left:25px;margin-top:-5px;width:120px;display:inline-block;"
+                style="transform:scale(1.5);margin-left:25px;margin-top:-5px;width:110px;display:inline-block;"
               />
               <span class="text-dark opacity-80" v-else>PlatformKit</span>
             </a>
