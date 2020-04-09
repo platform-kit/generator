@@ -1,7 +1,7 @@
 ---
-title: Learn Real Magic
+title: Learn Your Own Platform
 id: page-bxS-eKa4c
-slug: learn-real-magic
+slug: launch-your-own-platform
 published: true
 description: ''
 sections:
