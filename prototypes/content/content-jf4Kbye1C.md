@@ -1,21 +1,21 @@
 ---
 canonical_url: false
-title: Content Example - Static Video
-id: content-static-video
+title: Content Example - Vimeo
+id: content-jf4Kbye1C
 published: true
 featured: true
 thumbnail_image: /files/6-tips-thumbnail.jpg
 relatedCollections:
   - manifesting
-media_full: 'http://localhost:8080/files/examples/Pexels-Videos-1437396.mp4'
+media_full: 'https://player.vimeo.com/video/397439878'
 keywords: publishing content
-slug: content-example-static-video
+slug: content-example-vimeo
 subtitle: Subtitle goes here.
 description: This is a basic example of a content post.
 minutes_to_consume: 2
 date: 2019-03-14T00:00:00.000Z
-media_preview: ''
-cover_image: /files/examples/william-bayreuther-UqlWfdDiEIM-unsplash.jpg
+media_preview: 'https://player.vimeo.com/video/181873015'
+cover_image: /files/examples/jakob-owens-CiUR8zISX60-unsplash.jpg
 series: false
 tags:
   - Markdown

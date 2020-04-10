@@ -3,7 +3,7 @@
     <div
       class="bg-none d-inline-block justify-content-center text-center"
       v-if="$page.contentItem.media_preview != null"
-      style="width:100%;"
+      style="width:100%;min-height:330px;height:auto;background:#000;display:block;"
     >
       <div class="mx-auto d-block">
         <vue-plyr style="background:#000;" v-if="$page.contentItem.media_full.includes('.mp4') ">
@@ -167,7 +167,7 @@ export default {
       axios
         .get(
           "/.netlify/functions/platformkit-content-read-v1?file=" +
-            file +
+            this.$page.contentItem.id +
             "&token=" +
             token
         )
