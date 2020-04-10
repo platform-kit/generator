@@ -11,84 +11,86 @@ module.exports = function (api) {
   })
 
   api.onCreateNode(node => {
-        
 
-    if(node.internal.typeName === 'ContentItem') {
+
+    if (node.internal.typeName === 'ContentItem') {
       //console.log(node);               
       node.relatedCollections = null;
+      
       if(node.role == 'prototype'){
         node.published = false;
-      }      
+      }
+      
     }
 
-    if(node.internal.typeName === 'ValueProposition') {
+    if (node.internal.typeName === 'ValueProposition') {
 
-      if(node.hasOwnProperty('title') == false) {
+      if (node.hasOwnProperty('title') == false) {
         node.title = '';
-      }          
+      }
 
-      if(node.hasOwnProperty('published') == false) {
+      if (node.hasOwnProperty('published') == false) {
         node.published = false;
-      }    
+      }
 
-      if(node.hasOwnProperty('headline') == false) {
+      if (node.hasOwnProperty('headline') == false) {
         node.headline = '';
-      }   
-      
-      if(node.hasOwnProperty('call_to_action_text') == false) {
+      }
+
+      if (node.hasOwnProperty('call_to_action_text') == false) {
         node.call_to_action_text = '';
-      } 
-      
-      if(node.hasOwnProperty('call_to_action_button_text') == false) {
+      }
+
+      if (node.hasOwnProperty('call_to_action_button_text') == false) {
         node.call_to_action_button_text = '';
-      } 
+      }
 
-      if(node.hasOwnProperty('call_to_action_button_url') == false) {
+      if (node.hasOwnProperty('call_to_action_button_url') == false) {
         node.call_to_action_button_url = '';
-      } 
+      }
 
-      if(node.hasOwnProperty('slug') == false) {
+      if (node.hasOwnProperty('slug') == false) {
         node.slug = '';
-      } 
+      }
 
-      if(node.hasOwnProperty('date') == false) {      
+      if (node.hasOwnProperty('date') == false) {
         node.date = new Date();
-      } 
+      }
 
-      if(node.hasOwnProperty('featured') == false) {
+      if (node.hasOwnProperty('featured') == false) {
         node.featured = false;
-      } 
+      }
 
 
-      if(node.hasOwnProperty('description') == false) {
+      if (node.hasOwnProperty('description') == false) {
         node.description = '';
-      } 
+      }
 
-      if(node.hasOwnProperty('cover_image') == false) {
+      if (node.hasOwnProperty('cover_image') == false) {
         node.cover_image = '';
-      } 
+      }
 
     }
 
-    if(node.internal.typeName === 'Offering') {
-      if(node.hasOwnProperty('buy_button_data') == false ) {
+    if (node.internal.typeName === 'Offering') {
+      if (node.hasOwnProperty('buy_button_data') == false) {
         node.buy_button_data = '{}';
-      } 
+      }
       node.buy_button_data = '{}';
 
-      if(node.hasOwnProperty('buy_button_data') == false ) {
+      if (node.hasOwnProperty('buy_button_data') == false) {
         node.price = null;
       }
 
-      
-        
-           
+
+
+
     }
 
-    
+
 
     return node;
-    
-  })   
- 
+
+  })
+
 }
