@@ -15,7 +15,10 @@ module.exports = function (api) {
 
     if(node.internal.typeName === 'ContentItem') {
       //console.log(node);               
-      node.relatedCollections = null;      
+      node.relatedCollections = null;
+      if(node.role == 'prototype'){
+        node = null;
+      }
       
     }
 
