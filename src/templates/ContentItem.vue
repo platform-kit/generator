@@ -6,36 +6,49 @@
       style="width:100%;"
     >
       <div class="mx-auto d-block">
-        <vue-plyr style="background:#000;">
-          <div v-if="$page.contentItem.media_full.includes('.mp4') ">
-            <video :src="$page.contentItem.media_full" playsinline controls style="width:100%;max-height:600px;margin:0px;border-radius:5px;">
-                
-            </video>
-          </div>
-          <div
-            class="plyr__video-embed"
-            v-else-if="$page.contentItem.media_preview.includes('vimeo') "
-          >
-           
+        <vue-plyr style="background:#000;" v-if="$page.contentItem.media_full.includes('.mp4') ">
+          <video
+            :src="$page.contentItem.media_full"
+            playsinline
+            controls
+            style="width:100%;max-height:600px;margin:0px;border-radius:5px;"
+          ></video>
+        </vue-plyr>
+        <vue-plyr
+          style="background:#000;"
+          v-else-if="media != null && premiumContent != null && media.includes('vimeo')"
+        >
+          <div class="plyr__video-embed">
             <iframe
-              v-if="premiumContent != null && media != null"
-              
+              style="height:calc(100vh - 300px) !important;"
               :src="media + '?loop=false&byline=false&portrait=false&title=false&speed=true&transparent=0&gesture=media'"
               allowfullscreen
               allowtransparency
               allow="autoplay"
             ></iframe>
-             <iframe
-              v-else
-              :src="media.toString() + '?loop=false&byline=false&portrait=false&title=false&speed=true&transparent=0&gesture=media'"
+          </div>
+        </vue-plyr>
+        <vue-plyr
+          style="background:#000;"
+          v-else-if="media != null && premiumContent == null && media.includes('vimeo')"
+        >
+          <div class="plyr__video-embed">
+            <iframe
+              style="height:calc(100vh - 300px) !important;"
+              :src="media + '?loop=false&byline=false&portrait=false&title=false&speed=true&transparent=0&gesture=media'"
               allowfullscreen
               allowtransparency
               allow="autoplay"
             ></iframe>
           </div>
+        </vue-plyr>
+        <vue-plyr
+          style="background:#000;"
+          v-else-if="media != null && premiumContent != null && media.includes('youtube')"
+        >
           <div
             class="plyr__video-embed"
-            v-else-if="$page.contentItem.media_full.includes('youtube') "
+            
           >
             <iframe
               :src="$page.contentItem.media_full + '?loop=false&byline=false&portrait=false&title=false&speed=true&transparent=0&gesture=media'"
@@ -101,63 +114,7 @@
       </div>
     </div>
 
-    <div class="container-fluid w-100" v-if="relatedCollection != null">
-      <span
-        v-for="edge, index in $page.collections.edges"
-        v-if="relatedCollection == edge.node.slug"
-      >
-        <h5
-          class="opacity-50 text-primary mb-4 w-100 text-center pt-3 pt-md-0 pb-3 pb-md-5"
-        >Recommended For You...</h5>
-        <div deck class="row mb-3 mx-3 pb-3 mt-2 justify-content-center">
-          <b-card
-            v-for="offering, offeringIndex in $page.offerings.edges"
-            v-if="edge.node.offerings.includes(offering.node.slug)"
-            class="col-12 col-md-4 col-lg-2 mr-2 mb-2 raised col-lg-2 mx-0 border-0 h-100"
-            style="min-height:730px;float:left;"
-            :key="offering.node.id"
-          >
-            <div
-              style="width:100%;height:375px;                              
-                position: absolute;
-                top: 0px;
-                right: 0px;                
-                background-size:cover;                
-                background-position:center;
-                background-color:transparent;                
-                border-radius:5px 5px 0px 0px;
-                overflow:hidden;"
-              class="card-image"
-              :style="{ backgroundImage: `url('${offering.node.cover_image}')` }"
-            ></div>
-            <b-card-text
-              class="pt-5 px-3 text-primary"
-              style="line-height:25px;margin-top:350px;z-index:99999999999 !important;"
-            >
-              <h5>{{ offering.node.title }}</h5>
-            </b-card-text>
-            <b-card-text class="pb-3 px-3" style="line-height:28px;z-index:99999999999 !important;">
-              {{ offering.node.description.substr(0, 120) }}
-              <span
-                v-if="offering.node.description.length >= 120"
-                style="opacity:.5;"
-              >...</span>
-            </b-card-text>
-
-            <b-button
-              :href="'/buy/' + offering.node.slug"
-              style="position:absolute;bottom:25px;right:25px;"
-              variant="dark"
-            >
-              Learn More
-              <span style="opacity:0.5;">→</span>
-            </b-button>
-          </b-card>
-        </div>
-
-        <!-- Recent posts -->
-      </span>
-    </div>
+    <!-- Recent posts -->
   </Layout>
 </template>
 
@@ -187,47 +144,52 @@ export default {
       var str = "/content/" + arr[1];
       //alert(str)
       const results = await this.$fetch(str);
-      this.getPremiumContent();
+      this.getPremiumContent(arr[1]);
 
       //this.relatedCollections = results.data.contentItem.relatedCollections;
       //this.getRelatedCollection();
-      
     } catch (error) {
       console.log(error);
     }
   },
   methods: {
-     getPremiumContent(){      
+    getPremiumContent(file) {
+      //alert(file);
       try {
         var token = JSON.parse(localStorage.auth).token;
-      }
-      catch(err) {
+      } catch (err) {
         var token = null;
       }
-      if(token != null) {
+      if (token != null) {
         //alert(token);
       }
-      
-      axios
-      .get('/.netlify/functions/platformkit-content-read-v1?file=content-vimeo&token=' + token)
-      .then(response => (this.getMedia(response)));
 
-      
-      
+      axios
+        .get(
+          "/.netlify/functions/platformkit-content-read-v1?file=" +
+            file +
+            "&token=" +
+            token
+        )
+        .then(response => this.getMedia(response));
     },
-    getMedia(response){
-      if(response == null || typeof response == 'undefined '){}
-      else {
+    getMedia(response) {
+      if (response == null || typeof response == "undefined ") {
+      } else {
         this.premiumContent = response.data;
       }
       var media = null;
-      if(this.premiumContent != null && this.premiumContent.data != null && this.premiumContent.data.attributes != null && this.premiumContent.data.attributes.media_full != null){
-         media = this.premiumContent.data.attributes.media_full;
+      if (
+        this.premiumContent != null &&
+        this.premiumContent.data != null &&
+        this.premiumContent.data.attributes != null &&
+        this.premiumContent.data.attributes.media_full != null
+      ) {
+        media = this.premiumContent.data.attributes.media_full;
+      } else {
+        media = this.$page.contentItem.media_preview;
       }
-      else {
-         media = this.$page.contentItem.media_preview;
-      }
-      this.media = media;
+      this.media = media.toString();
       return media;
     },
     limitRelatedProducts(includes) {
