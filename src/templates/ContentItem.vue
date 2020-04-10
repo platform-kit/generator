@@ -2,7 +2,7 @@
   <Layout>
     <div
       class="bg-none d-inline-block justify-content-center text-center"
-      v-if="$page.contentItem.media_preview != null"
+      v-if="$page.contentItem.media_preview != null && $page.contentItem.media_preview != ''"
       style="width:100%;min-height:330px;height:auto;background:#000;display:block;"
     >
       <div class="mx-auto d-block">
