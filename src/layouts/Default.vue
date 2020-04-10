@@ -571,11 +571,13 @@ export default {
       this.$auth = authResponse.data;
       this.auth = authResponse.data;
       localStorage.auth = JSON.stringify(this.auth);
+      location = location.href.split("?")[0];
     },
     logout() {
       localStorage.auth = null;
       this.$auth = null;
       this.auth = null;
+      location.reload();
     },
 
     containsSearch(node) {
