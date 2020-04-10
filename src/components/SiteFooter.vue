@@ -31,28 +31,28 @@
             <li class="list-group-item border-0 text-weight-200">
               <g-link
                   v-if="socialSettings != null && socialSettings.facebok != null"
-                  class="nav-item btn btn-light btn-outline-light text-dark d-none d-xl-inline-block"
+                  class="mr-1 btn btn-light btn-outline-light text-dark d-none d-xl-inline-block"
                   :to="'https://facebook.com/' + socialSettings.facebook"
                 >
                   <i class="fa fa-facebook"></i>
                 </g-link>
                 <g-link
                   v-if="socialSettings != null && socialSettings.instagram != null"
-                  class="nav-item btn btn-light btn-outline-light text-dark d-none d-xl-inline-block"
+                  class="mr-1 btn btn-light btn-outline-light text-dark d-none d-xl-inline-block"
                   :to="'https://instagram.com/' + socialSettings.instagram"
                 >
                   <i class="fa fa-instagram"></i>
                 </g-link>
                 <g-link
                   v-if="socialSettings != null && socialSettings.twitter != null"
-                  class="nav-item btn btn-light btn-outline-light text-dark d-none d-xl-inline-block"
+                  class="mr-1 btn btn-light btn-outline-light text-dark d-none d-xl-inline-block"
                   :to="'https://twitter.com/' + socialSettings.twitter"
                 >
                   <i class="fa fa-twitter"></i>
                 </g-link>
                 <g-link
                   v-if="socialSettings != null && socialSettings.github != null"
-                  class="nav-item btn btn-light btn-outline-light text-dark d-none d-xl-inline-block"
+                  class="mr-1 btn btn-light btn-outline-light text-dark d-none d-xl-inline-block"
                   :to="'https://github.com/' + socialSettings.github"
                 >
                   <i class="fa fa-github"></i>
