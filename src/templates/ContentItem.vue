@@ -14,10 +14,20 @@
           </div>
           <div
             class="plyr__video-embed"
-            v-else-if="$page.contentItem.media_full.includes('vimeo') "
+            v-else-if="$page.contentItem.media_preview.includes('vimeo') "
           >
+           
             <iframe
-              :src="$page.contentItem.media_full + '?loop=false&byline=false&portrait=false&title=false&speed=true&transparent=0&gesture=media'"
+              v-if="premiumContent != null && media != null"
+              
+              :src="media + '?loop=false&byline=false&portrait=false&title=false&speed=true&transparent=0&gesture=media'"
+              allowfullscreen
+              allowtransparency
+              allow="autoplay"
+            ></iframe>
+             <iframe
+              v-else
+              :src="media.toString() + '?loop=false&byline=false&portrait=false&title=false&speed=true&transparent=0&gesture=media'"
               allowfullscreen
               allowtransparency
               allow="autoplay"
@@ -152,12 +162,15 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   data() {
     return {
       relatedCollection: null,
       relatedCollections: null,
-      relatedProductsCount: 0
+      relatedProductsCount: 0,
+      premiumContent: null,
+      media: null
     };
   },
   components: {},
@@ -174,14 +187,49 @@ export default {
       var str = "/content/" + arr[1];
       //alert(str)
       const results = await this.$fetch(str);
+      this.getPremiumContent();
 
-      this.relatedCollections = results.data.contentItem.relatedCollections;
-      this.getRelatedCollection();
+      //this.relatedCollections = results.data.contentItem.relatedCollections;
+      //this.getRelatedCollection();
+      
     } catch (error) {
       console.log(error);
     }
   },
   methods: {
+     getPremiumContent(){      
+      try {
+        var token = JSON.parse(localStorage.auth).token;
+      }
+      catch(err) {
+        var token = null;
+      }
+      if(token != null) {
+        //alert(token);
+      }
+      
+      axios
+      .get('/.netlify/functions/platformkit-content-read-v1?file=content-vimeo&token=' + token)
+      .then(response => (this.getMedia(response)));
+
+      
+      
+    },
+    getMedia(response){
+      if(response == null || typeof response == 'undefined '){}
+      else {
+        this.premiumContent = response.data;
+      }
+      var media = null;
+      if(this.premiumContent != null && this.premiumContent.data != null && this.premiumContent.data.attributes != null && this.premiumContent.data.attributes.media_full != null){
+         media = this.premiumContent.data.attributes.media_full;
+      }
+      else {
+         media = this.$page.contentItem.media_preview;
+      }
+      this.media = media;
+      return media;
+    },
     limitRelatedProducts(includes) {
       /*  Currently doesn't work
       if(this.relatedProductsCount < 3) {               

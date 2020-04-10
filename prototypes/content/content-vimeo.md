@@ -1,7 +1,7 @@
 ---
 canonical_url: false
 title: Content Example - Vimeo
-id: content-jf4Kbye1C
+id: content-vimeo
 published: true
 featured: true
 thumbnail_image: /files/6-tips-thumbnail.jpg

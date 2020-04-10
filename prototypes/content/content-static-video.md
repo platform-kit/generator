@@ -1,7 +1,7 @@
 ---
 canonical_url: false
 title: Content Example - Static Video
-id: content-jf4Kbfe1C
+id: content-static-video
 published: true
 featured: true
 thumbnail_image: /files/6-tips-thumbnail.jpg

@@ -1,7 +1,7 @@
 ---
 canonical_url: false
 title: Content Example - Youtube
-id: content-jfsKbye1C
+id: content-youtube
 published: true
 featured: true
 thumbnail_image: /files/6-tips-thumbnail.jpg
