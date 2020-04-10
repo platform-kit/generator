@@ -236,7 +236,7 @@
 
 <page-query>
 query {
-  latestFeaturedContent: allContentItem( sortBy: "date", order: DESC, filter: {featured: { eq: true }}) {
+  latestFeaturedContent: allContentItem( sortBy: "date", order: DESC, filter: { published: { eq: true }, featured: { eq: true }}) {
     edges {
       node {
         id
@@ -255,7 +255,7 @@ query {
       }
     }
   }
-  featuredContent: allContentItem(sortBy: "date", order: DESC, filter: { featured: { eq: true }}) {
+  featuredContent: allContentItem(sortBy: "date", order: DESC, filter: { published: { eq: true }, featured: { eq: true }}) {
     edges {
       node {
         id
