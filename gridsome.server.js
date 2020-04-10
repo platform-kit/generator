@@ -17,9 +17,8 @@ module.exports = function (api) {
       //console.log(node);               
       node.relatedCollections = null;
       if(node.role == 'prototype'){
-        node = null;
-      }
-      
+        node.published = false;
+      }      
     }
 
     if(node.internal.typeName === 'ValueProposition') {
