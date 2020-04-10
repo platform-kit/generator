@@ -17,8 +17,10 @@ module.exports = function (api) {
       //console.log(node);               
       node.relatedCollections = null;
       
-      if(node.role == 'prototype'){
-        node.published = false;
+      if(node.role == 'prototype'){      
+        if(process.env.ENVIRONMENT != 'development'){
+          node.published = false;
+        }
       }
       
     }

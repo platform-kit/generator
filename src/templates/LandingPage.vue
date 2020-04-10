@@ -26,9 +26,12 @@
             </div>
           </div>
         </div>
+        
         <div v-else-if="section.type == 'contentItems'" class="border-bottom row ">
+          
           <div class="posts py-3 container" v-if="$page.contentItems.edges.length > 0">
             <div class="col-md-12 px-0 px-md-3 ">
+              
               <b-card-group deck class="my-3 mt-4 my-md-3 mt-md-5">
                 <div
                   v-if="section.list.includes(edge.node.id)"
