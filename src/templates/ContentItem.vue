@@ -20,16 +20,23 @@
               class="badge px-3 text-dark pull-left mb-0 opacity-80 text-left"
               style="margin-left:0px;"
             >{{ $page.contentItem.title }}</span>
-            <div class="raised " style="border-radius:5px !important;overflow:hidden;margin:30px;">
-              <div 
-              v-b-modal.modal-login 
+            <div class="raised" style="border-radius:5px !important;overflow:hidden;margin:30px;">
+              <div
+                v-b-modal.modal-login
                 style="cursor:pointer;background:#000;min-height:300px;width:100%;background-size:cover;background-position:center;"
                 v-if="media == ''"
-                class="d-flex justify-content-center "
+                class="d-flex justify-content-center"
                 :style="{ backgroundImage:
                   'url('+ $page.contentItem.cover_image + ')'
                  }"
-              ><div class="my-auto raised bg-light br-25 text-center justify-content-center d-flex" style="height:50px;width:50px;background-image:linear-gradient(0deg, rgba(0,150,200,0.5) -20%, #fff);"><span class="my-auto fa fa-play "></span></div></div>
+              >
+                <div
+                  class="my-auto raised bg-light br-25 text-center justify-content-center d-flex"
+                  style="height:50px;width:50px;background-image:linear-gradient(0deg, rgba(0,150,200,0.5) -20%, #fff);"
+                >
+                  <span class="my-auto fa fa-play"></span>
+                </div>
+              </div>
               <vue-plyr style="background:#000;" v-else-if="media.includes('.mp4') ">
                 <video
                   :src="media"
@@ -65,9 +72,13 @@
             </div>
           </div>
           <div class="col-md-6 my-auto" my-auto justify-content-center text-center>
-            <h3 class="text-primary opacity-90 mt-2 d-none d-lg-inline-block">You must sign in to to view this content.</h3>
-            <h5 class="text-primary opacity-90 mt-0 d-inline-block d-lg-none">You must sign in to to view this content.</h5>
-            <div class="btn btn-primary br-25 px-4 mt-3 mb-5" v-b-modal.modal-login >
+            <h3
+              class="text-primary opacity-90 mt-2 d-none d-lg-inline-block"
+            >You must sign in to to view this content.</h3>
+            <h5
+              class="text-primary opacity-90 mt-0 d-inline-block d-lg-none"
+            >You must sign in to to view this content.</h5>
+            <div class="btn btn-primary br-25 px-4 mt-3 mb-5" v-b-modal.modal-login>
               Sign In
               <i class="fa fa-sign-in ml-2"></i>
             </div>
@@ -174,9 +185,15 @@
           {{ $page.contentItem.description }}
         </div>
         <div
+          v-if="premiumContent != null && premiumContent.error != true"
           class="content col-md-9 bg-none border-top mt-3 pt-5 px-3 p-md-5"
           v-html="$page.contentItem.content"
         >{{ $page.contentItem.content }}</div>
+        <div v-else v-html="$options.filters.markdown($page.contentItem.excerpt)" class="content col-md-9 bg-none border-top mt-3 pt-5 px-3 p-md-5">
+          
+            
+          {{ $options.filters.markdown($page.contentItem.excerpt) }}
+        </div>
       </div>
     </div>
 
@@ -353,6 +370,7 @@ query ContentItem ($id: ID!) {
       keywords
       featured      
       description
+      excerpt
       cover_image
       media_preview
       media_full
