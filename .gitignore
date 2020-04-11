@@ -17,3 +17,5 @@ workspace/*
 workspace/repository
 # Local Netlify folder
 .netlify
+.git.bfg*
+remove.txt
