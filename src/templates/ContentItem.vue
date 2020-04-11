@@ -65,8 +65,8 @@
             </div>
           </div>
           <div class="col-md-6 my-auto" my-auto justify-content-center text-center>
-            <h3 class="text-dark opacity-80 mt-2 d-none d-lg-inline-block">You must sign in to to view this content.</h3>
-            <h5 class="text-dark opacity-80 mt-0 d-inline-block d-lg-none">You must sign in to to view this content.</h5>
+            <h3 class="text-primary opacity-90 mt-2 d-none d-lg-inline-block">You must sign in to to view this content.</h3>
+            <h5 class="text-primary opacity-90 mt-0 d-inline-block d-lg-none">You must sign in to to view this content.</h5>
             <div class="btn btn-primary br-25 px-4 mt-3 mb-5" v-b-modal.modal-login >
               Sign In
               <i class="fa fa-sign-in ml-2"></i>
