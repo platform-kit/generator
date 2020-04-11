@@ -25,7 +25,7 @@
               style="margin-left:30px;"
             >PREVIEW</span>
             <span
-              class="badge px-3  pull-left mb-0 opacity-80 text-left"
+              class="badge px-3 pull-left mb-0 opacity-80 text-left"
               style="margin-left:0px;color:#000;"
             >{{ $page.contentItem.title }}</span>
             <div class="raised" style="border-radius:5px !important;overflow:hidden;margin:30px;">
@@ -45,12 +45,15 @@
                   <span class="my-auto fa fa-play"></span>
                 </div>
               </div>
-              <vue-plyr style="background:#000;" v-else-if="media.includes('.mp4') ">
+              <vue-plyr
+                style="border-radius:5px;overflow:hidden;background:#000;"
+                v-else-if="media.includes('.mp4') "
+              >
                 <video
                   :src="media"
                   playsinline
                   controls
-                  style="width:100%;max-height:600px;margin:0px;border-radius:5px;"
+                  style="width:100%;max-height:600px;margin:0px;border-radius:5px;overflow:hidden;"
                 ></video>
               </vue-plyr>
               <vue-plyr style="background:#000;" v-else-if="media.includes('vimeo')">
@@ -68,8 +71,12 @@
                 style="background:#000;overflow:hidden;border-radius:5px;"
                 v-else-if="media.includes('youtube') "
               >
-                <div class="plyr__video-embed">
+                <div
+                  class="plyr__video-embed d-block"
+                  style="overflow:hidden !important;border-radius:5px;"
+                >
                   <iframe
+                    style="overflow:hidden !important;border-radius:5px;display:block;"
                     :src="media + '?loop=false&byline=false&portrait=false&title=false&speed=true&transparent=0&gesture=media'"
                     allowfullscreen
                     allowtransparency
@@ -81,12 +88,16 @@
           </div>
           <div class="col-md-6 my-auto" my-auto justify-content-center text-center>
             <h3
-              class=" opacity-90 mt-2 d-none d-lg-inline-block"
+              class="opacity-90 mt-2 d-none d-lg-inline-block"
             >You must sign in to to view this content.</h3>
             <h5
-              class=" opacity-90 mt-0 d-inline-block d-lg-none"
+              class="opacity-90 mt-0 d-inline-block d-lg-none"
             >You must sign in to to view this content.</h5>
-            <div class="btn br-25 px-4 mt-3 mb-5 border-0 raised" style="background-image:linear-gradient(0deg, rgba(0,150,200,0.25) -20%, #fff 80%);" v-b-modal.modal-login>
+            <div
+              class="btn br-25 px-4 mt-3 mb-5 border-0 raised"
+              style="background-image:linear-gradient(0deg, rgba(0,150,200,0.25) -20%, #fff 80%);"
+              v-b-modal.modal-login
+            >
               Sign In
               <i class="fa fa-sign-in ml-2"></i>
             </div>
