@@ -14,7 +14,7 @@
       <!-- Featured posts -->
       <div class="posts mt-4">
         <div class="container mt-1 mt-lg-0">
-          <div class="row mt-2 mb-3" v-for="edge, index in $page.featuredContent.edges" :key="edge.node.id">
+          <div class="row mt-2 mb-3" v-for="edge, index in $page.featuredContent.edges" :key="edge.node.id" v-if="edge.node.cover_image != null && edge.node.cover_image != ''">
             <br />
             <span
               class="badge badge-pill px-3 bg-light-blue border-light-blue text-primary"
@@ -31,6 +31,7 @@
               v-bind:class="{ odd: (index % 2 === 0) == false, even: (index % 2 === 0) }"
             >
               <div
+                v-if="edge.node.cover_image != null && edge.node.cover_image != ''"
                 style="width:50%;height:100%;                              
                 position: absolute;
                 top: 0px;
@@ -236,25 +237,7 @@
 
 <page-query>
 query {
-  latestFeaturedContent: allContentItem( sortBy: "date", order: DESC, filter: { published: { eq: true }, featured: { eq: true }}) {
-    edges {
-      node {
-        id
-        title
-        slug
-        date (format: "D. MMMM YYYY")        
-        featured
-        description
-        cover_image
-        path
-        tags {
-          id
-          title
-          path
-        }
-      }
-    }
-  }
+  
   featuredContent: allContentItem(sortBy: "date", order: DESC, filter: { published: { eq: true }, featured: { eq: true }}) {
     edges {
       node {

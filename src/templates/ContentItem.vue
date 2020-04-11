@@ -5,6 +5,14 @@
       v-if="($page.contentItem.media_full != null && $page.contentItem.media_full != '') || ($page.contentItem.media_preview != null && $page.contentItem.media_preview  != '') "
       style="width:100%;min-height:330px;height:auto;background-size:cover !important;background-position:center;display:block;"
     >
+      <div
+        style="pointer-events:none;position:absolute;top:0px;left:-100px;height:500px;cursor:pointer;background:#000;min-height:300px;width:100%;background-size:cover;background-position:center;z-index:0 !important;filter:blur(50px) contrast(200%);opacity:0.35;width:calc(100% + 200px);"
+        v-if="$page.contentItem.cover_image != null && $page.contentItem.cover_image != null != ''"
+        class="d-flex justify-content-center"
+        :style="{ backgroundImage:
+                  'url('+ $page.contentItem.cover_image + ')'
+                 }"
+      ></div>
       <div class="container">
         <div
           class="row"
@@ -17,8 +25,8 @@
               style="margin-left:30px;"
             >PREVIEW</span>
             <span
-              class="badge px-3 text-dark pull-left mb-0 opacity-80 text-left"
-              style="margin-left:0px;"
+              class="badge px-3  pull-left mb-0 opacity-80 text-left"
+              style="margin-left:0px;color:#000;"
             >{{ $page.contentItem.title }}</span>
             <div class="raised" style="border-radius:5px !important;overflow:hidden;margin:30px;">
               <div
@@ -73,12 +81,12 @@
           </div>
           <div class="col-md-6 my-auto" my-auto justify-content-center text-center>
             <h3
-              class="text-primary opacity-90 mt-2 d-none d-lg-inline-block"
+              class=" opacity-90 mt-2 d-none d-lg-inline-block"
             >You must sign in to to view this content.</h3>
             <h5
-              class="text-primary opacity-90 mt-0 d-inline-block d-lg-none"
+              class=" opacity-90 mt-0 d-inline-block d-lg-none"
             >You must sign in to to view this content.</h5>
-            <div class="btn btn-primary br-25 px-4 mt-3 mb-5" v-b-modal.modal-login>
+            <div class="btn br-25 px-4 mt-3 mb-5 border-0 raised" style="background-image:linear-gradient(0deg, rgba(0,150,200,0.25) -20%, #fff 80%);" v-b-modal.modal-login>
               Sign In
               <i class="fa fa-sign-in ml-2"></i>
             </div>
@@ -189,11 +197,11 @@
           class="content col-md-9 bg-none border-top mt-3 pt-5 px-3 p-md-5"
           v-html="$page.contentItem.content"
         >{{ $page.contentItem.content }}</div>
-        <div v-else v-html="$options.filters.markdown($page.contentItem.excerpt)" class="content col-md-9 bg-none border-top mt-3 pt-5 px-3 p-md-5">
-          
-            
-          {{ $options.filters.markdown($page.contentItem.excerpt) }}
-        </div>
+        <div
+          v-else
+          v-html="$options.filters.markdown($page.contentItem.excerpt)"
+          class="content col-md-9 bg-none border-top mt-3 pt-5 px-3 p-md-5"
+        >{{ $options.filters.markdown($page.contentItem.excerpt) }}</div>
       </div>
     </div>
 
