@@ -9,19 +9,28 @@
         <div
           class="row"
           style="min-height:600px;"
-          v-if="$page.contentItem.media_full != null && premiumContent != null && premiumContent.error == true"
+          v-if="media!= null && premiumContent != null && premiumContent.error == true"
         >
           <div class="col-md-6 m-auto justify-content-center text-left px-4 mb-0 pb-0">
             <span
-              class="badge badge-pill px-3 badge-dark bg-light-green text-dark-green pull-left mb-0 opacity-80 text-left"
+              class="badge badge-pill badge-primary px-3 bg-light-blue text-primary pull-left mb-0 opacity-80 text-left"
               style="margin-left:30px;"
             >PREVIEW</span>
             <span
               class="badge px-3 text-dark pull-left mb-0 opacity-80 text-left"
               style="margin-left:0px;"
             >{{ $page.contentItem.title }}</span>
-            <div class="raised" style="border-radius:5px !important;overflow:hidden;margin:30px;">
-              <vue-plyr style="background:#000;" v-if="media.includes('.mp4') ">
+            <div class="raised " style="border-radius:5px !important;overflow:hidden;margin:30px;">
+              <div 
+              v-b-modal.modal-login 
+                style="cursor:pointer;background:#000;min-height:300px;width:100%;background-size:cover;background-position:center;"
+                v-if="media == ''"
+                class="d-flex justify-content-center "
+                :style="{ backgroundImage:
+                  'url('+ $page.contentItem.cover_image + ')'
+                 }"
+              ><div class="my-auto raised bg-light br-25 text-center justify-content-center d-flex" style="height:50px;width:50px;background-image:linear-gradient(0deg, rgba(0,150,200,0.5) -20%, #fff);"><span class="my-auto fa fa-play "></span></div></div>
+              <vue-plyr style="background:#000;" v-else-if="media.includes('.mp4') ">
                 <video
                   :src="media"
                   playsinline
@@ -40,18 +49,10 @@
                   ></iframe>
                 </div>
               </vue-plyr>
-              <vue-plyr style="background:#000;" v-else-if="media.includes('vimeo')">
-                <div class="plyr__video-embed">
-                  <iframe
-                    style="height:calc(100vh - 300px) !important;"
-                    :src="media + '?loop=false&byline=false&portrait=false&title=false&speed=true&transparent=0&gesture=media'"
-                    allowfullscreen
-                    allowtransparency
-                    allow="autoplay"
-                  ></iframe>
-                </div>
-              </vue-plyr>
-              <vue-plyr style="background:#000;overflow:hidden;border-radius:5px;"  v-else-if="media.includes('youtube')">
+              <vue-plyr
+                style="background:#000;overflow:hidden;border-radius:5px;"
+                v-else-if="media.includes('youtube') "
+              >
                 <div class="plyr__video-embed">
                   <iframe
                     :src="media + '?loop=false&byline=false&portrait=false&title=false&speed=true&transparent=0&gesture=media'"
@@ -64,18 +65,16 @@
             </div>
           </div>
           <div class="col-md-6 my-auto" my-auto justify-content-center text-center>
-            <h3 class="text-dark opacity-80 mt-2">You must sign in to to view this content.</h3>
-            <div class="btn btn-primary br-25 px-4 mt-3 mb-5">
+            <h3 class="text-dark opacity-80 mt-2 d-none d-lg-inline-block">You must sign in to to view this content.</h3>
+            <h5 class="text-dark opacity-80 mt-0 d-inline-block d-lg-none">You must sign in to to view this content.</h5>
+            <div class="btn btn-primary br-25 px-4 mt-3 mb-5" v-b-modal.modal-login >
               Sign In
               <i class="fa fa-sign-in ml-2"></i>
             </div>
           </div>
         </div>
 
-        <div
-          class="mx-0 px-0 d-block col-md-12 pb-3 mt-4 pt-1"
-          v-else-if="$page.contentItem.media_full != null || $page.contentItem.media_preview != null"
-        >
+        <div class="mx-0 px-0 d-block col-md-12 pb-3 mt-4 pt-1" v-else-if="media != null">
           <vue-plyr class="br-5" style="background:#000;" v-if="media.includes('.mp4') ">
             <video
               :src="media"
@@ -110,7 +109,11 @@
               ></iframe>
             </div>
           </vue-plyr>
-          <vue-plyr style="background:#000;overflow:hidden;border-radius:5px;" v-else-if="media.includes('youtube')">
+          <vue-plyr
+            style="background:#000;overflow:hidden;border-radius:5px;"
+            v-else-if="media.includes('youtube')"
+          >
+            123
             <div class="plyr__video-embed">
               <iframe
                 :src="media + '?loop=false&byline=false&portrait=false&title=false&speed=true&transparent=0&gesture=media'"
@@ -159,9 +162,9 @@
         <div
           id="more"
           class="col-md-12 bg-white br-5 py-5 p-md-5 mb-0 text-center"
-          style="font-size:115%; margin-top:-50px;z-index:99999; box-shadow:0px -20px 30px rgba(0,50,100,0.1)"
+          style="font-size:115%; margin-top:-50px;z-index:9; box-shadow:0px -20px 30px rgba(0,50,100,0.1)"
         >
-          <div v-if="media != '' && media != null" >
+          <div v-if="media != '' && media != null">
             <h4 class="d-block text-dark text-weight-300">{{ $page.contentItem.title }}</h4>
             <p
               class="py-2 text-dark text-weight-400 mb-2"
