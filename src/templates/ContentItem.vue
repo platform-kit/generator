@@ -1,105 +1,168 @@
 <template>
   <Layout>
     <div
-      class="bg-none d-inline-block justify-content-center text-center"
-      v-if="$page.contentItem.media_preview != null && $page.contentItem.media_preview != ''"
-      style="width:100%;min-height:330px;height:auto;background:#000;display:block;"
+      class="d-inline-block justify-content-center text-center"
+      v-if="($page.contentItem.media_full != null && $page.contentItem.media_full != '') || ($page.contentItem.media_preview != null && $page.contentItem.media_preview  != '') "
+      style="width:100%;min-height:330px;height:auto;background-size:cover !important;background-position:center;display:block;"
     >
-      <div class="mx-auto d-block">
-        <vue-plyr style="background:#000;" v-if="$page.contentItem.media_full.includes('.mp4') ">
-          <video
-            :src="$page.contentItem.media_full"
-            playsinline
-            controls
-            style="width:100%;max-height:600px;margin:0px;border-radius:5px;"
-          ></video>
-        </vue-plyr>
-        <vue-plyr
-          style="background:#000;"
-          v-else-if="media != null && premiumContent != null && media.includes('vimeo')"
+      <div class="container">
+        <div
+          class="row"
+          style="min-height:600px;"
+          v-if="$page.contentItem.media_full != null && premiumContent != null && premiumContent.error == true"
         >
-          <div class="plyr__video-embed">
-            <iframe
-              style="height:calc(100vh - 300px) !important;"
-              :src="media + '?loop=false&byline=false&portrait=false&title=false&speed=true&transparent=0&gesture=media'"
-              allowfullscreen
-              allowtransparency
-              allow="autoplay"
-            ></iframe>
+          <div class="col-md-6 m-auto justify-content-center text-left px-4 mb-0 pb-0">
+            <span
+              class="badge badge-pill px-3 badge-dark bg-light-green text-dark-green pull-left mb-0 opacity-80 text-left"
+              style="margin-left:30px;"
+            >PREVIEW</span>
+            <span
+              class="badge px-3 text-dark pull-left mb-0 opacity-80 text-left"
+              style="margin-left:0px;"
+            >{{ $page.contentItem.title }}</span>
+            <div class="raised" style="border-radius:5px !important;overflow:hidden;margin:30px;">
+              <vue-plyr style="background:#000;" v-if="media.includes('.mp4') ">
+                <video
+                  :src="media"
+                  playsinline
+                  controls
+                  style="width:100%;max-height:600px;margin:0px;border-radius:5px;"
+                ></video>
+              </vue-plyr>
+              <vue-plyr style="background:#000;" v-else-if="media.includes('vimeo')">
+                <div class="plyr__video-embed">
+                  <iframe
+                    style="height:calc(100vh - 300px) !important;"
+                    :src="media + '?loop=false&byline=false&portrait=false&title=false&speed=true&transparent=0&gesture=media'"
+                    allowfullscreen
+                    allowtransparency
+                    allow="autoplay"
+                  ></iframe>
+                </div>
+              </vue-plyr>
+              <vue-plyr style="background:#000;" v-else-if="media.includes('vimeo')">
+                <div class="plyr__video-embed">
+                  <iframe
+                    style="height:calc(100vh - 300px) !important;"
+                    :src="media + '?loop=false&byline=false&portrait=false&title=false&speed=true&transparent=0&gesture=media'"
+                    allowfullscreen
+                    allowtransparency
+                    allow="autoplay"
+                  ></iframe>
+                </div>
+              </vue-plyr>
+              <vue-plyr style="background:#000;overflow:hidden;border-radius:5px;"  v-else-if="media.includes('youtube')">
+                <div class="plyr__video-embed">
+                  <iframe
+                    :src="media + '?loop=false&byline=false&portrait=false&title=false&speed=true&transparent=0&gesture=media'"
+                    allowfullscreen
+                    allowtransparency
+                    allow="autoplay"
+                  ></iframe>
+                </div>
+              </vue-plyr>
+            </div>
           </div>
-        </vue-plyr>
-        <vue-plyr
-          style="background:#000;"
-          v-else-if="media != null && premiumContent == null && media.includes('vimeo')"
-        >
-          <div class="plyr__video-embed">
-            <iframe
-              style="height:calc(100vh - 300px) !important;"
-              :src="media + '?loop=false&byline=false&portrait=false&title=false&speed=true&transparent=0&gesture=media'"
-              allowfullscreen
-              allowtransparency
-              allow="autoplay"
-            ></iframe>
+          <div class="col-md-6 my-auto" my-auto justify-content-center text-center>
+            <h3 class="text-dark opacity-80 mt-2">You must sign in to to view this content.</h3>
+            <div class="btn btn-primary br-25 px-4 mt-3 mb-5">
+              Sign In
+              <i class="fa fa-sign-in ml-2"></i>
+            </div>
           </div>
-        </vue-plyr>
-        <vue-plyr
-          style="background:#000;"
-          v-else-if="media != null && premiumContent != null && media.includes('youtube')"
+        </div>
+
+        <div
+          class="mx-0 px-0 d-block col-md-12 pb-3 mt-4 pt-1"
+          v-else-if="$page.contentItem.media_full != null || $page.contentItem.media_preview != null"
         >
-          <div
-            class="plyr__video-embed"
-            
+          <vue-plyr class="br-5" style="background:#000;" v-if="media.includes('.mp4') ">
+            <video
+              :src="media"
+              playsinline
+              controls
+              style="width:100%;max-height:600px;margin:0px;border-radius:5px;"
+            ></video>
+          </vue-plyr>
+          <vue-plyr
+            class="br-5"
+            style="overflow:hidden;background:#000;"
+            v-else-if="media.includes('vimeo')"
           >
-            <iframe
-              :src="$page.contentItem.media_full + '?loop=false&byline=false&portrait=false&title=false&speed=true&transparent=0&gesture=media'"
-              allowfullscreen
-              allowtransparency
-              allow="autoplay"
-            ></iframe>
-          </div>
-        </vue-plyr>
+            <div class="plyr__video-embed">
+              <iframe
+                style="height:calc(100vh - 300px) !important;"
+                :src="media + '?loop=false&byline=false&portrait=false&title=false&speed=true&transparent=0&gesture=media'"
+                allowfullscreen
+                allowtransparency
+                allow="autoplay"
+              ></iframe>
+            </div>
+          </vue-plyr>
+          <vue-plyr style="background:#000;" v-else-if="media.includes('vimeo')">
+            <div class="plyr__video-embed">
+              <iframe
+                style="height:calc(100vh - 300px) !important;"
+                :src="media + '?loop=false&byline=false&portrait=false&title=false&speed=true&transparent=0&gesture=media'"
+                allowfullscreen
+                allowtransparency
+                allow="autoplay"
+              ></iframe>
+            </div>
+          </vue-plyr>
+          <vue-plyr style="background:#000;overflow:hidden;border-radius:5px;" v-else-if="media.includes('youtube')">
+            <div class="plyr__video-embed">
+              <iframe
+                :src="media + '?loop=false&byline=false&portrait=false&title=false&speed=true&transparent=0&gesture=media'"
+                allowfullscreen
+                allowtransparency
+                allow="autoplay"
+              ></iframe>
+            </div>
+          </vue-plyr>
+        </div>
       </div>
       <div class="w-100 bg-none d-block" style="height:45px;"></div>
     </div>
-    <b-card
-      v-else
-      class="mb-4 px-0 bg-dark card-image-tinted border-0"
-      style="width:100%;height:500px;                                                         
+    <div v-else>
+      <b-card
+        class="mb-4 px-0 bg-dark card-image-tinted border-0"
+        style="width:100%;height:500px;                                                         
                 background-size:cover;
                 border-radius:0px !important;
                 background-position:center !important;"
-      :style="{ backgroundImage:
+        :style="{ backgroundImage:
                   'url('+ $page.contentItem.cover_image + ')'
                  }"
-    >
-      <div class="row h-100">
-        <div class="col-sm-12 text-center" style="margin-top:150px;">
-          <h1
-            class="d-none d-md-block text-white text-weight-300 text-shadow"
-          >{{ $page.contentItem.title }}</h1>
-          <h2
-            class="d-block d-md-none text-white text-weight-300 text-shadow"
-          >{{ $page.contentItem.title }}</h2>
-          <div
-            class="badge badge-pill badge-dark border-0 px-3 py-2 text-white opacity-90 mt-3 text-weight-400 bg-black"
-            style="font-size:85%;"
-          >{{ $page.contentItem.subtitle }}</div>
-          <br />
-          <a data-scroll href="#more" class="scroll-button-down mt-4"></a>
+      >
+        <div class="row h-100">
+          <div class="col-sm-12 text-center" style="margin-top:150px;">
+            <h1
+              class="d-none d-md-block text-white text-weight-300 text-shadow"
+            >{{ $page.contentItem.title }}</h1>
+            <h2
+              class="d-block d-md-none text-white text-weight-300 text-shadow"
+            >{{ $page.contentItem.title }}</h2>
+            <div
+              class="badge badge-pill badge-dark border-0 px-3 py-2 text-white opacity-90 mt-3 text-weight-400 bg-black"
+              style="font-size:85%;"
+            >{{ $page.contentItem.subtitle }}</div>
+            <br />
+            <a data-scroll href="#more" class="scroll-button-down mt-4"></a>
+          </div>
         </div>
-      </div>
-    </b-card>
+      </b-card>
+    </div>
 
     <div class="container">
-      <div class="row mx-3 mx-md-0 justify-content-center">
+      <div class="row mx-0 mx-md-0 justify-content-center">
         <div
           id="more"
-          class="col-md-9 bg-white br-5 p-4 p-md-5 mb-0"
-          style="font-size:115%; margin-top:-50px;z-index:99; box-shadow:0px -45px 30px rgba(0,50,7,0.2)"
+          class="col-md-12 bg-white br-5 py-5 p-md-5 mb-0 text-center"
+          style="font-size:115%; margin-top:-50px;z-index:99999; box-shadow:0px -20px 30px rgba(0,50,100,0.1)"
         >
-          <div v-if="$page.contentItem.media_preview != null">
-            <h1 class="d-none d-md-block text-dark text-weight-300">{{ $page.contentItem.title }}</h1>
-            <h2 class="d-block d-md-none text-dark text-weight-300">{{ $page.contentItem.title }}</h2>
+          <div v-if="media != '' && media != null" >
+            <h4 class="d-block text-dark text-weight-300">{{ $page.contentItem.title }}</h4>
             <p
               class="py-2 text-dark text-weight-400 mb-2"
               style="font-size:100%;"
