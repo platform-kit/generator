@@ -192,7 +192,7 @@
         <div
           id="more"
           class="col-md-12 bg-white br-5 py-5 p-md-5 mb-0 text-center"
-          style="font-size:115%; margin-top:-50px;z-index:9; box-shadow:0px -20px 30px rgba(0,50,100,0.1)"
+          style="font-size:115%; margin-top:-50px;z-index:9; box-shadow:0px -16px 16px rgba(0,50,100,0.09)"
         >
           <div v-if="media != '' && media != null">
             <h4 class="d-block text-dark text-weight-300">{{ $page.contentItem.title }}</h4>
