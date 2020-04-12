@@ -13,6 +13,9 @@ exports.handler = async (event, context) => {
   var tokenResult = null;
   var decodedUser = null;
 
+
+  try {
+
   if (token != null) {
     var tokenData = jwt.verify(token, loginSecretKey, function (err, decoded) {
       if (err) {
@@ -69,5 +72,17 @@ exports.handler = async (event, context) => {
     // headers: { "headerName": "headerValue", ... },
     // isBase64Encoded: true,
   }
+}
+catch (err){
+
+  return {
+    statusCode: 500,
+
+    body: JSON.stringify({ status: 500, data: null, error: true, message: err, meta: {user: user} }, null, 3)
+    // // more keys you can return:
+    // headers: { "headerName": "headerValue", ... },
+    // isBase64Encoded: true,
+  }
+}
 
 }
