@@ -59,6 +59,9 @@ exports.handler = async (event, context) => {
         return await stripe.checkout.sessions.create({
           customer: id,
           payment_method_types: ['card'],
+          payment_intent_data: {
+            setup_future_usage: 'off_session',
+          },
           line_items: lineItems,
           success_url: process.env.APP_URL,
           cancel_url: process.env.APP_URL
@@ -73,6 +76,9 @@ exports.handler = async (event, context) => {
         return await stripe.checkout.sessions.create({
           customer_email: email,
           payment_method_types: ['card'],
+          payment_intent_data: {
+            setup_future_usage: 'off_session',
+          },
           line_items: lineItems,
           success_url: process.env.APP_URL,
           cancel_url: process.env.APP_URL
@@ -83,6 +89,9 @@ exports.handler = async (event, context) => {
       var session = await (async () => {
         return await stripe.checkout.sessions.create({
           payment_method_types: ['card'],
+          payment_intent_data: {
+            setup_future_usage: 'off_session',
+          },
           line_items: lineItems,
           success_url: process.env.APP_URL,
           cancel_url: process.env.APP_URL
