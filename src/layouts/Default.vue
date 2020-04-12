@@ -480,6 +480,9 @@ export default {
     var arr = URL.split("/");
     var str = arr[1];
     this.currentPage = arr[3];
+    if(arr[4] != null) {
+      this.currentPage = this.currentPage + '/' + arr[4];
+    }
 
     let list = this.$static.featuredContent.edges;
     let results = [];
