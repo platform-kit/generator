@@ -18,7 +18,7 @@ tags:
   - Markdown
   - Cover Image
 type: product
-buy_button_html: "<a href='https://www.google.com' class='btn btn-lg btn-primary'>Buy Now</a> "
+buy_button_html: 
 buy_button_data: "{}"
-buy_button_url: "https://www.google.com"
+buy_button_url: 
 ---
