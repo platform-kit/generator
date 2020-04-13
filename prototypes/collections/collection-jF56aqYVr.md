@@ -1,7 +1,7 @@
 ---
 boost: 10
 canonical_url: false
-title: Services
+title: Example Collection
 id: collection-jF56aqYVr
 slug: collection-example
 published: true
@@ -17,7 +17,7 @@ thumbnail_image: /files/examples/art-lasovsky-8XddFc6NkBY-unsplash.jpg
 offerings:
   - offering-Kg8tzWA9Y  
   - offering-Kg8tzWAY2
-  - offering-thgcqbouz
+  - offering-thgcQbOuz
 subCollections: []
 series: false
 tags:

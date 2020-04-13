@@ -57,6 +57,7 @@
                 </g-link>
                 <g-link to="/products" class="nav-link" v-on:click="this.search = null">Products</g-link>
                 <g-link to="/services" class="nav-link" v-on:click="this.search = null">Services</g-link>
+                <g-link to="/pricing" class="nav-link" v-on:click="this.search = null">Pricing</g-link>
 
                 <b-dropdown
                   block
