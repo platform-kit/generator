@@ -21,4 +21,5 @@ type: service
 buy_button_html: "<a href='https://calendly.com/dharmaworks/60min' class='btn btn-lg btn-primary'>Book A Session</a> "
 buy_button_data: "{}"
 buy_button_url: "https://calendly.com/dharmaworks/60min"
+role: prototype
 ---

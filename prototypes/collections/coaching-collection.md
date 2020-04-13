@@ -1,7 +1,7 @@
 ---
 boost: 10
 canonical_url: false
-title: 1-On-1 Coaching
+title: Services
 id: collection-jF56aqYVr
 slug: collection-example
 published: true
@@ -17,6 +17,7 @@ thumbnail_image: /files/examples/art-lasovsky-8XddFc6NkBY-unsplash.jpg
 offerings:
   - offering-Kg8tzWA9Y  
   - offering-Kg8tzWAY2
+  - offering-thgcqbouz
 subCollections: []
 series: false
 tags:

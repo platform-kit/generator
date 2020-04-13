@@ -3,73 +3,122 @@
     <div class="container mt-3 mt-lg-5">
       <div class="row pb-4 text-center mb-3 mt-2">
         <div class="col-md-12 col-lg-6 br-5 justify-content-center">
-          <div :style="{ backgroundImage: `url('${$page.offering.cover_image}')` }" class="br-5 raised square-image d-inline-block" style="background-position:center;background-size:cover;height:500px;width:500px;">
-          </div>        
+          <div
+            :style="{ backgroundImage: `url('${$page.offering.cover_image}')` }"
+            class="br-5 raised square-image d-inline-block"
+            style="background-position:center;background-size:cover;height:500px;width:500px;"
+          ></div>
         </div>
-        <div class="col-md-12 col-lg-6 br-5 text-left pl-3 pl-sm-3 pl-md-5 py-0 py-lg-5 mt-3 mt-md-0">
-          <div class="badge badge-pill bg-very-light-blue border-primary-translucent px-3 py-2 text-primary text-capitalize ">{{ $page.offering.type }}</div><br>
-          <h4 class="my-3">{{ $page.offering.title}}</h4>
-          <p class="text-dark my-3 pb-3">
-            {{ $page.offering.description }}
-            <hr></hr>
-            <div class="btn btn-lg text-left pr-0 pl-0 ml-0 mb-3 price mr-4"><span><span class=" text-dark-blue opacity-30">$</span><span class="">{{ $page.offering.price }}</span></span></div><br>
-            <div class="d-inline-block" v-if="($page.offering.buy_button_html == null || $page.offering.buy_button_html == '') && ($page.offering.buy_button_url == null || $page.offering.buy_button_url == '')">
-
-               <stripe-checkout
-               class="d-inline ml-2"
+        <div
+          class="col-md-12 col-lg-6 br-5 text-left pl-3 pl-sm-3 pl-md-5 py-0 py-lg-5 mt-3 mt-md-0"
+        >
+          <div
+            class="badge badge-pill bg-very-light-blue border-primary-translucent px-3 py-2 text-primary text-capitalize"
+          >{{ $page.offering.type }}</div>
+          <br />
+          <h4 class="my-3 ">{{ $page.offering.title}}</h4>
+          <p v-if="$page.offering.description != null && $page.offering.description != ''" class="text-dark my-3 pb-4">{{ $page.offering.description }}</p>
+          <div v-else class="mt-1 pt-1"></div>
+          <hr class="my-3 mb-4" />
+          <div v-if="$page.offering.price != null && $page.offering.price != ''">
+            <div class="btn btn-lg text-left pr-0 pl-0 ml-0 mb-3 price mr-4">
+              <span>
+                <span class="text-dark-blue opacity-30">$</span>
+                <span class>{{ $page.offering.price }}</span>
+              </span>
+            </div>
+            <br />
+            <div
+              class="d-inline-block"
+              v-if="($page.offering.buy_button_html == null || $page.offering.buy_button_html == '') && ($page.offering.buy_button_url == null || $page.offering.buy_button_url == '')"
+            >
+              <stripe-checkout
+                class="d-inline mr-2"
                 ref="checkoutRef"
                 :sessionId="sessionId"
                 :pk="publishableKey"
                 :successUrl="successUrl"
                 :cancelUrl="cancelUrl"
-                >   
-                  <template slot="checkout-button">
-                    <button class="btn btn-lg btn-light btn-buy raised px-4 btn-buy" @click="buy"><font-awesome :icon="['fa', 'shopping-cart']" class="mr-4"/>Buy Now</button>
-                  </template>
-               </stripe-checkout>
-                          
+              >
+                <template slot="checkout-button">
+                  <button class="btn btn-lg btn-light btn-buy raised px-4 btn-buy" @click="buy">
+                    <font-awesome :icon="['fa', 'shopping-cart']" class="mr-4" />Buy Now
+                  </button>
+                </template>
+              </stripe-checkout>
             </div>
-            <div v-else-if="$page.offering.buy_button_url != null && $page.offering.buy_button_html != ''" class="d-inline-block">   
-              <a class="btn btn-lg btn-light btn-buy raised px-4 btn-buy m"
-                  :href="$page.offering.buy_button_url"
-                  target="_blank"
-                  >
-                <font-awesome :icon="['fa', 'shopping-cart']" class="mr-4"/>Buy Now
-              </a>                           
+            <div
+              v-else-if="$page.offering.buy_button_url != null && $page.offering.buy_button_html != ''"
+              class="d-inline-block"
+            >
+              <a
+                class="btn btn-lg btn-light btn-buy raised px-4 btn-buy m"
+                :href="$page.offering.buy_button_url"
+                target="_blank"
+              >
+                <font-awesome :icon="['fa', 'shopping-cart']" class="mr-4" />Buy Now
+              </a>
             </div>
-            <div v-else-if="$page.offering.buy_button_html != null" class="d-inline-block" v-html="$page.offering.buy_button_html">              
-              {{ $page.offering.buy_button_html }}
+            <div
+              v-else-if="$page.offering.buy_button_html != null"
+              class="d-inline-block"
+              v-html="$page.offering.buy_button_html"
+            >{{ $page.offering.buy_button_html }}</div>
+          </div>
+          <div v-else-if="$page.offering.plans != null">
+            <div v-for="edge, index in $page.plans.edges" v-if="$page.offering.plans.includes(edge.node.id)" >
+              <div class="btn btn-lg text-left pr-0 pl-0 ml-0 mb-3 price mr-4">
+              <span>
+                <span class="opacity-80 text-dark">{{ edge.node.title }} </span>
+                <span class="text-dark-blue opacity-30 ml-3">$</span>
+                <span class>{{ edge.node.price }}</span>
+              </span>
             </div>
-          </p>
+            <br />
+              <stripe-checkout
+                class="d-inline mr-2"
+                ref="checkoutRef"
+                :sessionId="sessionId"
+                :pk="publishableKey"
+                :successUrl="successUrl"
+                :cancelUrl="cancelUrl"
+              >
+                <template slot="checkout-button">
+                  <button class="btn btn-lg btn-primary raised px-4 " @click="subscribe(edge.node.id)">
+                    Subscribe<i class="fa fa-shopping-cart ml-3" ></i>
+                  </button>
+                </template>
+              </stripe-checkout>
+            </div>
+          </div>
         </div>
-      </div>      
-    </div>  
+      </div>
+    </div>
   </Layout>
 </template>
 
 <script>
-import { StripeCheckout } from 'vue-stripe-checkout';
+import { StripeCheckout } from "vue-stripe-checkout";
 import axios from "axios";
 import socialSettings from "../../data/social.json";
 
 export default {
-   components: {
+  components: {
     StripeCheckout
   },
-  data () {
-    return {      
-      window: null,      
+  data() {
+    return {
+      window: null,
       publishableKey: process.env.GRIDSOME_STRIPE_PUBLIC_KEY,
       cancelUrl: process.env.GRIDSOME_APP_URL,
       items: [],
-      successUrl:  process.env.GRIDSOME_APP_URL,
+      successUrl: process.env.GRIDSOME_APP_URL,
       checkoutSession: null,
       sessionId: null,
-      socialSettings: socialSettings,
-    }
+      socialSettings: socialSettings
+    };
   },
-  async mounted() {         
-    
+  async mounted() {
     if (localStorage.auth != null) {
       //alert(typeof localStorage.auth);
       var auth = JSON.parse(localStorage.auth);
@@ -77,27 +126,47 @@ export default {
     console.log(auth);
     this.window = window;
     this.cancelUrl = window.location.href;
-    this.successUrl = window.location.href;         
-  },  
-  methods: {   
-    buy(){
-
-      var queryString = '';
+    this.successUrl = window.location.href;
+  },
+  methods: {
+    subscribe(plan) {
+      
+      var offeringString = this.$page.offering.id + '::' + plan;
+      //alert(offeringString);
+      
+      var queryString = "";
       if (localStorage.auth != null) {
         //alert(typeof localStorage.auth);
         var email = JSON.parse(localStorage.auth).data.sub;
-        queryString = '&email=' + email;
-      }      
+        queryString = "&email=" + email;
+      }
 
       axios
         .get(
           "/.netlify/functions/platformkit-payments-checkout-v1?items=" +
-            this.$page.offering.id + queryString
-          
+            this.$page.offering.id + '::' + plan +
+            queryString
         )
         .then(response => this.getCheckoutSession(response));
-    },    
-    getCheckoutSession(response){
+        
+    },
+    buy() {
+      var queryString = "";
+      if (localStorage.auth != null) {
+        //alert(typeof localStorage.auth);
+        var email = JSON.parse(localStorage.auth).data.sub;
+        queryString = "&email=" + email;
+      }
+
+      axios
+        .get(
+          "/.netlify/functions/platformkit-payments-checkout-v1?items=" +
+            this.$page.offering.id +
+            queryString
+        )
+        .then(response => this.getCheckoutSession(response));
+    },
+    getCheckoutSession(response) {
       if (response == null || typeof response == "undefined ") {
       } else {
         this.checkoutSession = response.data;
@@ -105,31 +174,39 @@ export default {
         this.checkout();
       }
     },
-    getThumbnailImage(){
-      if(this.$page.offering.thumbnail_image != null){
-        return process.env.GRIDSOME_APP_URL + '/files/' + this.$page.offering.thumbnail_image
+    getThumbnailImage() {
+      if (this.$page.offering.thumbnail_image != null) {
+        return (
+          process.env.GRIDSOME_APP_URL +
+          "/files/" +
+          this.$page.offering.thumbnail_image
+        );
       }
-      if(this.$page.offering.cover_image != null){
-        return process.env.GRIDSOME_APP_URL + '/files/' + this.$page.offering.cover_image
+      if (this.$page.offering.cover_image != null) {
+        return (
+          process.env.GRIDSOME_APP_URL +
+          "/files/" +
+          this.$page.offering.cover_image
+        );
+      } else {
+        return "";
       }
-      else {
-        return ''
-      }
-    },
-    checkout () {
-      this.$refs.checkoutRef.redirectToCheckout();
+    },  
+    checkout() {
+      //console.log(this.$refs);
+      this.$refs.checkoutRef[0].redirectToCheckout();
     }
   },
-  metaInfo () {
+  metaInfo() {
     return {
       title: this.$page.offering.title,
       meta: [
-      {
-          name: 'description',
+        {
+          name: "description",
           content: this.$page.offering.description
         },
         {
-          name: 'keywords',
+          name: "keywords",
           content: this.$page.offering.keywords
         },
         {
@@ -138,7 +215,7 @@ export default {
         },
         {
           name: "twitter:card",
-          content: this.getThumbnailImage() ? "summary_large_image" : "summary",
+          content: this.getThumbnailImage() ? "summary_large_image" : "summary"
         },
         {
           name: "twitter:creator",
@@ -153,9 +230,9 @@ export default {
           content: this.getThumbnailImage()
         }
       ]
-    }
+    };
   }
-}
+};
 </script>
 
 <page-query>
@@ -170,6 +247,7 @@ query Offering ($id: ID!) {
       featured    
       type
       price
+      plans
       boost
       description
       cover_image
@@ -182,6 +260,18 @@ query Offering ($id: ID!) {
         path
       }
   }
+  plans: allSubscriptionPlan(sortBy: "price", order: DESC, filter: { published: { eq: true }}) {
+    edges {
+      node {
+        id
+        title
+        price
+        published
+        featured
+        path        
+      }
+    }
+  }
 }
 </page-query>
 
@@ -193,7 +283,6 @@ query Offering ($id: ID!) {
 }
 
 .post {
-
   &__header {
     width: calc(100% + var(--space) * 2);
     margin-left: calc(var(--space) * -1);

@@ -21,4 +21,5 @@ type: product
 buy_button_html: 
 buy_button_data: "{}"
 buy_button_url: 
+role: prototype
 ---

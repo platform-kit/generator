@@ -45,24 +45,44 @@ exports.handler = async (event, context) => {
       id = (await user.getDetails());
       id = id.customer_identities.stripe[id.customer_identities.stripe.length - 1];
     }
+    
 
     var cart = new cartTools();
     var error = false;
     var message = null;
-    var lineItems = cart.getItemsForCheckout(items);
-    var data = lineItems;
+    //var lineItems = cart.getItemsForCheckout(items);
+    var stripeItems = cart.getItemsForCheckout(items);
+    console.log('----');
+    var pushed = await(cart.push(stripeItems));
+    var cartContents = {items: [{plan: pushed.plan.id}]};
+
+
+    /*
+    return {
+      statusCode: 500,
+
+      body: JSON.stringify(pushed, null, 3)
+      // // more keys you can return:
+      // headers: { "headerName": "headerValue", ... },
+      // isBase64Encoded: true,
+    }
+    */
+
+    console.log('PLAN: ' + pushed.plan.id);
+    var stripeItems = {items: [{plan: 'subscriptionPlan-KIs4QHz_W'}]};
+    var data = stripeItems;
+  
+
+
 
     if (id != null) {
       var session = await (async () => {
 
-
         return await stripe.checkout.sessions.create({
           customer: id,
+          mode: 'subscription',
           payment_method_types: ['card'],
-          payment_intent_data: {
-            setup_future_usage: 'off_session',
-          },
-          line_items: lineItems,
+          subscription_data: stripeItems,
           success_url: process.env.APP_URL,
           cancel_url: process.env.APP_URL
         });
@@ -75,11 +95,9 @@ exports.handler = async (event, context) => {
 
         return await stripe.checkout.sessions.create({
           customer_email: email,
-          payment_method_types: ['card'],
-          payment_intent_data: {
-            setup_future_usage: 'off_session',
-          },
-          line_items: lineItems,
+          mode: 'subscription',
+          payment_method_types: ['card'],     
+          subscription_data: stripeItems,
           success_url: process.env.APP_URL,
           cancel_url: process.env.APP_URL
         });
@@ -88,11 +106,9 @@ exports.handler = async (event, context) => {
     else {
       var session = await (async () => {
         return await stripe.checkout.sessions.create({
-          payment_method_types: ['card'],
-          payment_intent_data: {
-            setup_future_usage: 'off_session',
-          },
-          line_items: lineItems,
+          mode: 'subscription',
+          payment_method_types: ['card'],        
+          subscription_data: stripeItems,
           success_url: process.env.APP_URL,
           cancel_url: process.env.APP_URL
         });
@@ -111,6 +127,8 @@ exports.handler = async (event, context) => {
     }
   }
   catch (err) {
+
+    console.log(err);
 
     return {
       statusCode: 500,

@@ -111,6 +111,15 @@ module.exports = {
       // Create offerings from markdown files
       use: '@gridsome/source-filesystem',
       options: {
+        typeName: 'SubscriptionPlan',
+        path: 'data/subscriptionPlans/*.md',       
+      }
+    },
+
+    {
+      // Create offerings from markdown files
+      use: '@gridsome/source-filesystem',
+      options: {
         typeName: 'Collection',
         path: 'data/collections/*.md',
         refs: {
