@@ -183,6 +183,8 @@ collections:
       - {label: "Description", name: "description", widget: "text", required: false}
       - {label: "Minutes To Consume", name: "minutes_to_consume", widget: "number", min: 1, step: 1, required: false}
       - {label: "Publish Date", name: "date", widget: "date", required: false}      
+      - {label: "Preview Media", name: "media_preview", widget: "string", required: false, hint: "Link to a audio or video preview.", pattern: ['https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)', 'Should be a url (http://...)']}
+      - {label: "Full Media", name: "media_full", widget: "string", required: false, hint: "Link to a full-length video or audio file.", pattern: ['https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)', 'Should be a url (http://...)']}
       - {label: "Cover Image", name: "cover_image", widget: "image", required: false}
       - {label: "Thumbnail Image", name: "thumbnail_image", widget: "image", required: false}
       - label: "Tags"
@@ -191,15 +193,16 @@ collections:
         required: false
         hint: "List of topics, tags, keywords, hashtags, etc, separated by commas."
       - {label: "Excerpt", name: "excerpt", widget: "markdown", required: false}      
-      - {label: "Content", name: "body", widget: "markdown", required: false}      
+      - {label: "Content", name: "body", widget: "markdown", required: false}            
   - name: "offerings"
-    label: " 📦 Offerings"
-    label_singular: " 📦 Offering"
-    description: "Your products & services."
+    label: " 📦 Products"
+    label_singular: " 📦 Products"
+    description: "Your products."
     editor:
       preview: false
     folder: "data/offerings"
     create: true
+    filter: {field: "type", value: "product"}
     slug: "{{id}}"
     fields:
       - {label: "Title", name: "title", widget: "string"}
@@ -211,8 +214,98 @@ collections:
       - {label: "Slug", name: "slug", widget: "string", required: true, pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', "Must be only lowercase letters, numbers, and dashes."]}
       - {label: "Published", name: "published", widget: "boolean", required: false}
       - {label: "Featured", name: "featured", widget: "boolean", required: false}
-      - {label: "Type", name: "type", widget: "select",   options: ["product", "service"]}
-      - {label: "Price ($)", name: "price", widget: "number"}
+      - {label: "Type", name: "type", widget: "hidden",   options: ["product"]}
+      - {label: "Base Price ($)", name: "price", widget: "number"}
+      - label: "Variants"
+        name: "variants"
+        widget: "list"
+        fields:
+          - {label: ID, name: id, widget: ncw-id, prefix: sku, hint: Automatically generated unique ID.}
+          - {label: Name, name: name, widget: string, required: false }
+          - label: Price
+            name: price
+            widget: number
+            hint: '(in $USD)'
+            required: true
+          - label: Image
+            name: image
+            widget: image
+            hint: 'Image of this variant.'
+            required: false
+          - label: "Attributes"
+            name: "attributes"
+            widget: "list"
+            required: false
+            fields:
+              - {label: Key, name: key, widget: string}
+              - {label: Value, name: value, widget: string}
+      - {label: "Description", name: "description", widget: "text", required: false}
+      - {label: "Publish Date", name: "date", widget: "date", required: false}      
+      - {label: "Cover Image", name: "cover_image", widget: "image", required: false}
+      - {label: "Thumbnail Image", name: "thumbnail_image", widget: "image", required: false}           
+      - {label: "Buy Button URL", name: "buy_button_url", widget: "string", required: false}
+      - {label: "Buy Button HTML", name: "buy_button_html", widget: "markdown", required: false}      
+  - name: "services"
+    label: " 💼 Services"
+    label_singular: " 💼 Service"
+    description: "Your services."
+    editor:
+      preview: false
+    folder: "data/offerings"
+    create: true
+    filter: {field: "type", value: "service"}
+    slug: "{{id}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - label: ID
+        name: id
+        widget: ncw-id
+        prefix: offering          
+        hint: Automatically generated unique ID.
+      - {label: "Slug", name: "slug", widget: "string", required: true, pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', "Must be only lowercase letters, numbers, and dashes."]}
+      - {label: "Published", name: "published", widget: "boolean", required: false}
+      - {label: "Featured", name: "featured", widget: "boolean", required: false}
+      - {label: "Type", name: "type", widget: "hidden",   options: ["service"]}
+      - {label: "Description", name: "description", widget: "text", required: false}
+      - {label: "Publish Date", name: "date", widget: "date", required: false}      
+      - {label: "Cover Image", name: "cover_image", widget: "image", required: false}
+      - {label: "Thumbnail Image", name: "thumbnail_image", widget: "image", required: false}
+      - label: "Tags"
+        name: "tags"
+        widget: "list"
+      - {label: "Content", name: "body", widget: "markdown", required: false}
+      - {label: "Buy Button URL", name: "buy_button_url", widget: "string", required: false}
+      - {label: "Buy Button HTML", name: "buy_button_html", widget: "markdown", required: false}           
+  - name: "subscriptionsProducts"
+    label: " 🔁 Subscriptions"
+    label_singular: " 🔁 Service"
+    description: "Your subscription products."
+    editor:
+      preview: false
+    folder: "data/offerings"
+    create: true
+    filter: {field: "type", value: "subscription"}
+    slug: "{{id}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - label: ID
+        name: id
+        widget: ncw-id
+        prefix: offering          
+        hint: Automatically generated unique ID.
+      - {label: "Slug", name: "slug", widget: "string", required: true, pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', "Must be only lowercase letters, numbers, and dashes."]}
+      - {label: "Published", name: "published", widget: "boolean", required: false}
+      - {label: "Featured", name: "featured", widget: "boolean", required: false}
+      - {label: "Type", name: "type", widget: "hidden", options: ["subscription"]}
+      - label: "Pricing Plans"
+        name: "plans"
+        widget: "relation"
+        collection: "subscriptionPlans"
+        searchFields: ["title", "description"]
+        valueField: "id"
+        displayFields: ["title"]
+        multiple: true
+        required: false      
       - {label: "Description", name: "description", widget: "text", required: false}
       - {label: "Publish Date", name: "date", widget: "date", required: false}      
       - {label: "Cover Image", name: "cover_image", widget: "image", required: false}
@@ -250,7 +343,29 @@ collections:
         valueField: "id"
         displayFields: ["title"]
         multiple: true
-        required: false
+        required: false            
+  - name: "subscriptionPlans"
+    label: "💳  Subscription Plans"
+    label_singular: " 💳 Subscription Plan"
+    description: "Pricing plans for subscription products."
+    editor:
+      preview: false
+    folder: "data/subscriptionPlans"
+    create: true
+    slug: "{{id}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - label: ID
+        name: id
+        widget: ncw-id
+        prefix: subscriptionPlan
+        hint: Automatically generated unique ID.
+      - {label: "Slug", name: "slug", widget: "string", required: true, pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', "Must be only lowercase letters, numbers, and dashes."]}
+      - {label: "Published", name: "published", widget: "boolean", required: false}
+      - {label: "Featured", name: "featured", widget: "boolean", required: false}      
+      - {label: "Billing Interval", name: "interval", widget: "select", required:true, options: ["day", "week", "month", "year"]}
+      - {label: "Price ($)", name: "price", widget: "number", required: true}
+      - {label: "Trial (# of days)", name: "trial_days", widget: "number", required: false}
   - name: "collections"
     label: " 🗂️ Collections"
     label_singular: " 🗂️ Collection"
@@ -529,4 +644,4 @@ collections:
         fields:                    
           - { label: "Stage Name", name: "name", widget: "string"}
           - {label: ID, name: id, widget: ncw-id, prefix: stage, hint: Automatically generated unique ID.}
-          - { label: "Enabled", name: "enabled", widget: "boolean", default: false, required: true}          
+          - { label: "Enabled", name: "enabled", widget: "boolean", default: false, required: true}
