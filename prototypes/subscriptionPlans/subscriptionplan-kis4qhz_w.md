@@ -6,4 +6,5 @@ published: true
 featured: true
 interval: month
 price: 99
+trial_days: 7
 ---
