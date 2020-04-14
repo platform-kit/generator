@@ -69,53 +69,9 @@ exports.handler = async (event, context) => {
     */
 
     console.log('PLAN: ' + pushed.plan.id);
-    var stripeItems = {items: [{plan: 'subscriptionPlan-KIs4QHz_W'}]};
+    var stripeItems = {items: [{plan: pushed.plan.id}]};
     var data = stripeItems;
-  
-
-
-
-    if (id != null) {
-      var session = await (async () => {
-
-        return await stripe.checkout.sessions.create({
-          customer: id,
-          // mode: 'subscription',
-          payment_method_types: ['card'],
-          subscription_data: stripeItems,
-          success_url: process.env.APP_URL,
-          cancel_url: process.env.APP_URL
-        });
-      })();
-    }
-
-    if (email != null) {
-      var session = await (async () => {
-
-
-        return await stripe.checkout.sessions.create({
-          customer_email: email,
-          // mode: 'subscription',
-          payment_method_types: ['card'],     
-          subscription_data: stripeItems,
-          success_url: process.env.APP_URL,
-          cancel_url: process.env.APP_URL
-        });
-      })();
-    }
-    else {
-      var session = await (async () => {
-        return await stripe.checkout.sessions.create({
-          // mode: 'subscription',
-          payment_method_types: ['card'],        
-          subscription_data: stripeItems,
-          success_url: process.env.APP_URL,
-          cancel_url: process.env.APP_URL
-        });
-      })();
-    }
-
-    data = { sessionID: session.id, data: data };
+      
 
     return {
       statusCode: 200,

@@ -4,7 +4,7 @@
       <div class="row pb-4 text-center mb-3 mt-2">
         <div class="col-md-12 col-lg-6 br-5 justify-content-center">
           <div
-            :style="{ backgroundImage: `url('${$page.offering.cover_image}')` }"
+            :style="{ backgroundImage: `url('${getImage()}')` }"
             class="br-5 raised square-image d-inline-block"
             style="background-position:center;background-size:cover;height:500px;width:500px;"
           ></div>
@@ -16,37 +16,113 @@
             class="badge badge-pill bg-very-light-blue border-primary-translucent px-3 py-2 text-primary text-capitalize"
           >{{ $page.offering.type }}</div>
           <br />
-          <h4 class="my-3 ">{{ $page.offering.title}}</h4>
-          <p v-if="$page.offering.description != null && $page.offering.description != ''" class="text-dark my-3 pb-4">{{ $page.offering.description }}</p>
+          <h4 class="my-3">{{ $page.offering.title}}</h4>
+          <p
+            v-if="$page.offering.description != null && $page.offering.description != ''"
+            class="text-dark my-3 pb-4"
+          >{{ $page.offering.description }}</p>
           <div v-else class="mt-1 pt-1"></div>
-          <hr class="my-3 mb-4" v-if="$page.offering.type != 'subscription'" />
-          <div v-if="$page.offering.type == 'product' && ($page.offering.buy_button_html == null || $page.offering.buy_button_html == '') && ($page.offering.buy_button_url == null || $page.offering.buy_button_url == '')">
-            <div class="btn btn-lg text-left pr-0 pl-0 ml-0 mb-3 price mr-4">
-              <span>
-                <span class="text-dark-blue opacity-30">$</span>
-                <span class>{{ $page.offering.price }}</span>
-              </span>
-            </div>
-            <br />
+          
+          <div
+            v-if="$page.offering.type == 'product' && ($page.offering.buy_button_html == null || $page.offering.buy_button_html == '') && ($page.offering.buy_button_url == null || $page.offering.buy_button_url == '')"
+            class="w-100"
+          >
             <div
-              class="d-inline-block"
-              v-if="($page.offering.buy_button_html == null || $page.offering.buy_button_html == '') && ($page.offering.buy_button_url == null || $page.offering.buy_button_url == '')"
+              class="d-block w-100"
+              v-if="$page.offering.variants == null && ($page.offering.buy_button_html == null || $page.offering.buy_button_html == '') && ($page.offering.buy_button_url == null || $page.offering.buy_button_url == '')"
             >
-              <stripe-checkout
-                class="d-inline mr-2"
-                ref="checkoutRef"
-                :sessionId="sessionId"
-                :pk="publishableKey"
-                :successUrl="successUrl"
-                :cancelUrl="cancelUrl"
+              <div class="bg-light border br-5 p-3 w-100 d-block">
+                <div class="btn btn-lg text-left pr-0 pl-0 ml-0 my-2 price mr-4">
+                  <span>
+                    <span class="text-dark-blue opacity-30">$</span>
+                    <span class>{{ $page.offering.price }}</span>
+                  </span>
+                </div>
+                <stripe-checkout
+                  class="d-inline mr-2"
+                  ref="checkoutRef"
+                  :sessionId="sessionId"
+                  :pk="publishableKey"
+                  :successUrl="successUrl"
+                  :cancelUrl="cancelUrl"
+                >
+                  <template slot="checkout-button">
+                    <button
+                      class="btn btn-lg btn-light btn-buy raised px-4 btn-buy pull-right my-2"
+                      @click="buy"
+                    >
+                      Buy Now
+                      <i class="fa fa-caret-right opacity-30 text-light ml-3"></i>
+                      <i class="fa fa-shopping-cart ml-3"></i>
+                    </button>
+                  </template>
+                </stripe-checkout>
+              </div>
+            </div>
+            <div
+              class="d-block w-100"
+              v-if="$page.offering.variants != null && ($page.offering.buy_button_html == null || $page.offering.buy_button_html == '') && ($page.offering.buy_button_url == null || $page.offering.buy_button_url == '')"
+            >
+              <div
+                class="bg-light border br-5 p-3 w-100 d-block mb-2 text-right"
+                v-for="variant in $page.offering.variants"
+                v-b-toggle="'collapse-' + variant.id"
+                style="cursor:pointer;"
+                v-bind:key="variant.id"
+                @mouseover="setImage(variant.image)"
+                @mouseleave="clearImage()"
               >
-                <template slot="checkout-button">
-                  <button class="btn btn-lg btn-light btn-buy raised px-4 btn-buy" @click="buy">
-                    <font-awesome :icon="['fa', 'shopping-cart']" class="mr-4" />Buy Now
-                  </button>
-                </template>
-              </stripe-checkout>
-            </div>            
+              <div :style="{ backgroundImage: `url('${ variant.image}')` }"
+              v-if="variant.image != null"
+              class="br-5 pull-left  d-inline mr-3 my-2 ml-2"
+              style="height:50px;width:50px;background-size:cover !important;background-position:center;"></div>
+                <div
+                  
+                  class="btn btn-lg pull-left pr-0 pl-0 ml-0 my-2 price mr-4"
+                >
+                  <span>
+                    <span class="text-dark-blue opacity-30">$</span>
+                    <span class>{{ variant.price }}</span>
+                    <span
+                      class="ml-2 opacity-50" style="font-size:80%;"
+                      v-if="variant.name != null && variant.name != ''"
+                    >{{ variant.name }}</span>
+                  </span>
+                </div>
+                
+                <stripe-checkout
+                  class="d-inline mr-2"
+                  ref="checkoutRef"
+                  :items="[$page.offering.id + '~' + variant.id]"
+                  :pk="publishableKey"
+                  :successUrl="successUrl"
+                  :cancelUrl="cancelUrl"
+                >
+                  <template slot="checkout-button">
+                    <button
+                      class="btn btn-light btn-buy raised px-4 btn-buy my-3"
+                      @click="buy"
+                    >
+                      Buy Now
+                      <i class="fa fa-caret-right opacity-30 text-light ml-3"></i>
+                      <i class="fa fa-shopping-cart ml-3"></i>
+                    </button>
+                  </template>
+                </stripe-checkout>
+                <div class="w-100 text-left" v-if="variant.attributes != null">
+                  <b-collapse :id="'collapse-' + variant.id" class="mt-2">
+                   <span
+                          class="badge badge-dark text-capitalize mr-2"
+                          v-for="attribute in variant.attributes"
+                          v-bind:key="attribute.key"
+                        >
+                          <span class="opacity-40 mr-2 text-uppercase">{{ attribute.key }}</span>
+                          {{ attribute.value }}
+                        </span>
+                  </b-collapse>
+                </div>
+              </div>
+            </div>
             <div
               v-else-if="$page.offering.buy_button_url != null && $page.offering.buy_button_html != ''"
               class="d-inline-block"
@@ -66,16 +142,19 @@
             >{{ $page.offering.buy_button_html }}</div>
           </div>
           <div v-else-if="$page.offering.plans != null">
-            <div v-for="edge, index in $page.plans.edges" v-if="$page.offering.plans.includes(edge.node.id)"
-            class="bg-light border br-5 p-3" >
+            <div
+              v-for="edge, index in $page.plans.edges"
+              v-if="$page.offering.plans.includes(edge.node.id)"
+              class="bg-light border br-5 p-3"
+            >
               <div class="btn btn-lg text-left pr-0 pl-0 ml-0 my-1 price mr-4">
-              <span>
-                <span class="opacity-80 text-dark">{{ edge.node.title }} </span>
-                <span class="text-dark-blue opacity-30 ml-3">$</span>
-                <span class>{{ edge.node.price }}</span>
-              </span>
-            </div>
-            
+                <span>
+                  <span class="opacity-80 text-dark">{{ edge.node.title }}</span>
+                  <span class="text-dark-blue opacity-30 ml-3">$</span>
+                  <span class>{{ edge.node.price }}</span>
+                </span>
+              </div>
+
               <stripe-checkout
                 class="d-inline mr-2 pull-right"
                 ref="checkoutRef"
@@ -85,8 +164,13 @@
                 :cancelUrl="cancelUrl"
               >
                 <template slot="checkout-button">
-                  <button class="btn btn-lg btn-primary raised px-4 mt-1" @click="subscribe(edge.node.id)">
-                    Subscribe<i class="fa fa-shopping-cart ml-3" ></i>
+                  <button
+                    class="btn btn-lg btn-primary raised px-4 mt-1 btn-buy"
+                    @click="subscribe(edge.node.id)"
+                  >
+                    Subscribe
+                    <i class="fa fa-caret-right opacity-30 text-light ml-3"></i>
+                    <i class="fa fa-shopping-cart ml-3"></i>
                   </button>
                 </template>
               </stripe-checkout>
@@ -116,7 +200,8 @@ export default {
       successUrl: process.env.GRIDSOME_APP_URL,
       checkoutSession: null,
       sessionId: null,
-      socialSettings: socialSettings
+      socialSettings: socialSettings,
+      image: null
     };
   },
   async mounted() {
@@ -131,10 +216,9 @@ export default {
   },
   methods: {
     subscribe(plan) {
-      
-      var offeringString = this.$page.offering.id + '::' + plan;
+      var offeringString = this.$page.offering.id + "::" + plan;
       //alert(offeringString);
-      
+
       var queryString = "";
       if (localStorage.auth != null) {
         //alert(typeof localStorage.auth);
@@ -145,11 +229,12 @@ export default {
       axios
         .get(
           "/.netlify/functions/platformkit-payments-checkout-v1?items=" +
-            this.$page.offering.id + '::' + plan +
+            this.$page.offering.id +
+            "::" +
+            plan +
             queryString
         )
         .then(response => this.getCheckoutSession(response));
-        
     },
     buy() {
       var queryString = "";
@@ -175,6 +260,18 @@ export default {
         this.checkout();
       }
     },
+    setImage(input){
+      this.image = input;
+    },
+    clearImage(){
+      this.image = this.$page.offering.cover_image;
+    },
+    getImage(){
+      if(this.image == null){
+        this.image = this.$page.offering.cover_image;
+      }
+      return this.image;       
+    },
     getThumbnailImage() {
       if (this.$page.offering.thumbnail_image != null) {
         return (
@@ -192,12 +289,11 @@ export default {
       } else {
         return "";
       }
-    },  
+    },
     checkout() {
       //console.log(this.$refs);
-
       // TURN BACK ON:
-      this.$refs.checkoutRef[0].redirectToCheckout();
+      //this.$refs.checkoutRef[0].redirectToCheckout();
     }
   },
   metaInfo() {
@@ -251,9 +347,19 @@ query Offering ($id: ID!) {
       type
       price
       plans
-      boost
+      boost      
       description
       cover_image
+      variants {
+        id
+        name
+        price
+        image
+        attributes {
+          key
+          value
+        }
+      }
       path
       buy_button_html
       buy_button_url

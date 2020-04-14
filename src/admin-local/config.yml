@@ -222,6 +222,7 @@ collections:
         widget: "list"
         fields:
           - {label: ID, name: id, widget: ncw-id, prefix: sku, hint: Automatically generated unique ID.}
+          - {label: Name, name: name, widget: string, required: false }
           - label: Price
             name: price
             widget: number
