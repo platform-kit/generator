@@ -531,12 +531,7 @@ collections:
         file: "data/features.json"
         fields:          
           - {label: Enable Content RSS, name: enable_content_rss, widget: boolean, default: false, required: false}    
-          - {label: Enable Social RSS, name: enable_social_rss, widget: boolean, default: false, required: false}    
-      - label: "🔗 Integrations"
-        name: "integrations"
-        file: "data/integrations.json"
-        fields:
-          - {label: Snipcart ID, name: snipcart_id, widget: string, required: false}  
+          - {label: Enable Social RSS, name: enable_social_rss, widget: boolean, default: false, required: false}          
       - label: " 🗣️ Language"
         name: "language"
         file: "data/language.json"
