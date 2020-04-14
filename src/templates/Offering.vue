@@ -22,7 +22,25 @@
             class="text-dark my-3 pb-4"
           >{{ $page.offering.description }}</p>
           <div v-else class="mt-1 pt-1"></div>
-          
+
+          <div
+              v-if="$page.offering.buy_button_url != null && $page.offering.buy_button_url != ''"
+              class="d-inline-block"
+            >
+              <a
+                class="btn btn-lg btn-light btn-buy raised px-4 btn-buy m"
+                :href="$page.offering.buy_button_url"
+                target="_blank"
+              >
+                <font-awesome :icon="['fa', 'shopping-cart']" class="mr-4" />Buy Now
+              </a>
+            </div>
+            <div
+              v-else-if="$page.offering.buy_button_html != null && $page.offering.buy_button_html != ''"
+              class="d-inline-block"
+              v-html="$page.offering.buy_button_html"
+            >{{ $page.offering.buy_button_html }}</div>
+
           <div
             v-if="$page.offering.type == 'product' && ($page.offering.buy_button_html == null || $page.offering.buy_button_html == '') && ($page.offering.buy_button_url == null || $page.offering.buy_button_url == '')"
             class="w-100"
@@ -61,7 +79,7 @@
             </div>
             <div
               class="d-block w-100"
-              v-if="$page.offering.variants != null && ($page.offering.buy_button_html == null || $page.offering.buy_button_html == '') && ($page.offering.buy_button_url == null || $page.offering.buy_button_url == '')"
+              v-if="$page.offering.variants != null"
             >
               <div
                 class="bg-light border br-5 p-3 w-100 d-block mb-2 text-right"
@@ -72,36 +90,36 @@
                 @mouseover="setImage(variant.image)"
                 @mouseleave="clearImage()"
               >
-              <div :style="{ backgroundImage: `url('${ variant.image}')` }"
-              v-if="variant.image != null"
-              class="br-5 pull-left  d-inline mr-3 my-2 ml-2"
-              style="height:50px;width:50px;background-size:cover !important;background-position:center;"></div>
                 <div
-                  
-                  class="btn btn-lg pull-left pr-0 pl-0 ml-0 my-2 price mr-4"
-                >
+                  :style="{ backgroundImage: `url('${ variant.image}')` }"
+                  v-if="variant.image != null"
+                  class="br-5 pull-left d-inline mr-3 my-2 ml-2"
+                  style="height:50px;width:50px;background-size:cover !important;background-position:center;"
+                ></div>
+                <div class="btn btn-lg pull-left pr-0 pl-0 ml-0 my-2 price mr-4">
                   <span>
                     <span class="text-dark-blue opacity-30">$</span>
                     <span class>{{ variant.price }}</span>
                     <span
-                      class="ml-2 opacity-50" style="font-size:80%;"
+                      class="ml-2 opacity-50"
+                      style="font-size:80%;"
                       v-if="variant.name != null && variant.name != ''"
                     >{{ variant.name }}</span>
                   </span>
                 </div>
-                
+
                 <stripe-checkout
                   class="d-inline mr-2"
-                  ref="checkoutRef"
-                  :items="[$page.offering.id + '~' + variant.id]"
+                  ref="checkoutRef2"
+                  :items="items"
                   :pk="publishableKey"
                   :successUrl="successUrl"
                   :cancelUrl="cancelUrl"
                 >
                   <template slot="checkout-button">
                     <button
-                      class="btn btn-light btn-buy raised px-4 btn-buy my-3"
-                      @click="buy"
+                      class="btn btn-lg btn-light btn-buy raised px-4 btn-buy my-2"
+                      @click="buy(variant)"
                     >
                       Buy Now
                       <i class="fa fa-caret-right opacity-30 text-light ml-3"></i>
@@ -111,35 +129,19 @@
                 </stripe-checkout>
                 <div class="w-100 text-left" v-if="variant.attributes != null">
                   <b-collapse :id="'collapse-' + variant.id" class="mt-2">
-                   <span
-                          class="badge badge-dark text-capitalize mr-2"
-                          v-for="attribute in variant.attributes"
-                          v-bind:key="attribute.key"
-                        >
-                          <span class="opacity-40 mr-2 text-uppercase">{{ attribute.key }}</span>
-                          {{ attribute.value }}
-                        </span>
+                    <span
+                      class="badge badge-dark text-capitalize mr-2"
+                      v-for="attribute in variant.attributes"
+                      v-bind:key="attribute.key"
+                    >
+                      <span class="opacity-40 mr-2 text-uppercase">{{ attribute.key }}</span>
+                      {{ attribute.value }}
+                    </span>
                   </b-collapse>
                 </div>
               </div>
             </div>
-            <div
-              v-else-if="$page.offering.buy_button_url != null && $page.offering.buy_button_html != ''"
-              class="d-inline-block"
-            >
-              <a
-                class="btn btn-lg btn-light btn-buy raised px-4 btn-buy m"
-                :href="$page.offering.buy_button_url"
-                target="_blank"
-              >
-                <font-awesome :icon="['fa', 'shopping-cart']" class="mr-4" />Buy Now
-              </a>
-            </div>
-            <div
-              v-else-if="$page.offering.buy_button_html != null"
-              class="d-inline-block"
-              v-html="$page.offering.buy_button_html"
-            >{{ $page.offering.buy_button_html }}</div>
+            
           </div>
           <div v-else-if="$page.offering.plans != null">
             <div
@@ -149,9 +151,15 @@
             >
               <div class="btn btn-lg text-left pr-0 pl-0 ml-0 my-1 price mr-4">
                 <span>
-                  <span class="opacity-80 text-dark">{{ edge.node.title }}</span>
-                  <span class="text-dark-blue opacity-30 ml-3">$</span>
-                  <span class>{{ edge.node.price }}</span>
+                  <span class="text-dark-blue opacity-30">$</span>
+                  <span class>
+                    {{ edge.node.price }}
+                    <span
+                      class="opacity-30 mr-2"
+                      style="font-size:80%;"
+                    >/ {{ edge.node.interval }}</span>
+                  </span>
+                  <span class="opacity-80 text-dark" style="font-size:80%;">{{ edge.node.title }}</span>
                 </span>
               </div>
 
@@ -236,22 +244,20 @@ export default {
         )
         .then(response => this.getCheckoutSession(response));
     },
-    buy() {
-      var queryString = "";
-      if (localStorage.auth != null) {
-        //alert(typeof localStorage.auth);
-        var email = JSON.parse(localStorage.auth).data.sub;
-        queryString = "&email=" + email;
-      }
-
-      axios
-        .get(
-          "/.netlify/functions/platformkit-payments-checkout-v1?items=" +
-            this.$page.offering.id +
-            queryString
-        )
-        .then(response => this.getCheckoutSession(response));
-    },
+    buy(variant) {            
+      console.log(variant);
+      console.log(variant.id);
+      var obj = {};
+      /* obj.sku = variant.id;
+      obj.quantity = 1;
+      obj.name = variant.name;
+      */
+      obj.sku = variant.id;
+      obj.quantity = 1;
+      
+      this.items.push(obj);
+      this.$refs.checkoutRef2[0].redirectToCheckout();
+    },    
     getCheckoutSession(response) {
       if (response == null || typeof response == "undefined ") {
       } else {
@@ -260,17 +266,17 @@ export default {
         this.checkout();
       }
     },
-    setImage(input){
+    setImage(input) {
       this.image = input;
     },
-    clearImage(){
+    clearImage() {
       this.image = this.$page.offering.cover_image;
     },
-    getImage(){
-      if(this.image == null){
+    getImage() {
+      if (this.image == null) {
         this.image = this.$page.offering.cover_image;
       }
-      return this.image;       
+      return this.image;
     },
     getThumbnailImage() {
       if (this.$page.offering.thumbnail_image != null) {
@@ -293,7 +299,7 @@ export default {
     checkout() {
       //console.log(this.$refs);
       // TURN BACK ON:
-      //this.$refs.checkoutRef[0].redirectToCheckout();
+      this.$refs.checkoutRef[0].redirectToCheckout();
     }
   },
   metaInfo() {
@@ -375,6 +381,7 @@ query Offering ($id: ID!) {
         id
         title
         price
+        interval
         published
         featured
         path        
