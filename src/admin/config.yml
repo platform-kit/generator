@@ -411,29 +411,7 @@ collections:
         name: "tags"
         widget: "list"
         required: false
-      - {label: "Content", name: "body", widget: "markdown", required: false}
-  - name: "values"
-    label: " ⭐ Core Values"
-    label_singular: " ⭐ Core Value"
-    description: "The values you want to deliver."
-    editor:
-      preview: false
-    folder: "data/values"
-    create: true
-    slug: "{{id}}"
-    summary: "{{title}} - Priority Level {{priority}}"
-    fields:
-      - {label: "Core Value", name: "title", widget: "string", hint: "Choose your words wisely."}        
-      - label: ID
-        name: id
-        widget: ncw-id
-        prefix: value          
-        hint: Automatically generated unique ID.
-      - {label: "Published", name: "published", widget: "boolean", required: false, hint:  "If enabled, these answers will be visible to the public."}      
-      - {label: "Why", name: "why", widget: "string", hint: "Why you care about this value."}        
-      - {label: "How", name: "how", widget: "string", hint: "How you act on it."}            
-      - {label: "What", name: "what", widget: "string", hint: "What you produce."}        
-      - {label: "Priority", name: "priority", widget: "number",  min: 1, max: 10, step:1, default: 0,  hint: "How much of a priority is this? (1 = most important, 10 = lest important)"}        
+      - {label: "Content", name: "body", widget: "markdown", required: false}  
   - name: "socialPosts"
     label: " 💬 Social Media"
     label_singular: " 💬 Social Media Post"
@@ -590,40 +568,21 @@ collections:
       - {label: "Slug", name: "slug", widget: "string", required: true, pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', "Must be only lowercase letters, numbers, and underscores."]}
       - {label: "Published", name: "published", widget: "boolean", required: false}
       - {label: "Featured", name: "featured", widget: "boolean", required: false}
-      - {label: "Description", name: "description", widget: "string"}  
-      - {label: "Headline", name: "headline", widget: "string"}  
-      - {label: "Publish Date", name: "date", widget: "date", required: false}      
+      - {label: "Description", name: "description", widget: "string", hint: "For SEO purposes."}  
+      - {label: "Headline", name: "headline", widget: "string", hint: "For SEO purposes."}  
       - {label: "Cover Image", name: "cover_image", widget: "image", required: false}
-      - {label: "Thumbnail Image", name: "thumbnail_image", widget: "image", required: false}
-      - label: "Related Values"
-        name: "relatedValues"
-        widget: "relation"
-        collection: "values"
-        searchFields: ["title"]
-        valueField: "id"
-        displayFields: ["title"]
-        multiple: true
-        required: true
-      - label: "Related Collections"
-        name: "relatedCollections"
-        widget: "relation"
-        collection: "collections"
-        searchFields: ["title", "description"]
-        valueField: "id"
-        displayFields: ["title"]
-        multiple: true
-        required: false 
+      - {label: "Thumbnail Image", name: "thumbnail_image", widget: "image", required: false, hint: "This image will be displayed in search results & social posts."}            
       - {label: "Call To Action Text", name: "call_to_action_text", widget: "string", required: false}  
       - {label: "Call To Action Button", name: "call_to_action_button_text", widget: "string", required: false}  
-      - {label: "Call To Action Button URL", name: "call_to_action_button_url", widget: "string", required: false}
+      - {label: "Call To Action Button URL", name: "call_to_action_button_url", widget: "string", required: true}
       - {label: "Call To Action Background Image", name: "call_to_action_background_image", widget: "image", required: false}  
-  - name: "customerJourneys"
-    label: " 📋 Customer Journeys"
-    label_singular: " 📋 Customer Journey"
+  - name: "Marketing Experiments"
+    label: " 📋 Marketing Experiments"
+    label_singular: " 📋 Marketing Experiment"
     description: "Design how your customers move through their lifecycle with your business."
     editor:
       preview: false
-    folder: "data/customerJourneys"
+    folder: "data/marketingExperiments"
     create: true
     slug: "{{id}}"
     fields:
@@ -632,11 +591,10 @@ collections:
         name: id
         widget: ncw-id
         prefix: customerJourney          
-        hint: Automatically generated unique ID.      
-      - label: "Stages"
-        name: "stages"
-        widget: "list"
-        fields:                    
-          - { label: "Stage Name", name: "name", widget: "string"}
-          - {label: ID, name: id, widget: ncw-id, prefix: stage, hint: Automatically generated unique ID.}
-          - { label: "Enabled", name: "enabled", widget: "boolean", default: false, required: true}
+        hint: Automatically generated unique ID.                         
+      - { label: "Enabled", name: "enabled", widget: "boolean", default: false, required: true}
+      - {label: "Topics", name: "collections", widget: "relation", collection: "topics", searchFields: ["title", "description"], valueField: "id", displayFields: ["title"], multiple: true, required: false, hint: "Select the topics where these value propositions will be displayed."}            
+      - {label: "Value Propositions", name: "valuePropositions", widget: "relation", collection: "valuePropositions", searchFields: ["title", "description"], valueField: "id", displayFields: ["title"], multiple: true, required: false, hint: "Select the value propositions to display when a user explores one of the above topics."}                         
+      - { label: "Hypothesis", name: "hypothesis", widget: "text", required: true}                      
+      - { label: "Results", name: "results", widget: "text", required: true}   
+        
