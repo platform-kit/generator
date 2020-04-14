@@ -215,46 +215,36 @@ collections:
       - {label: "Slug", name: "slug", widget: "string", required: true, pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', "Must be only lowercase letters, numbers, and dashes."]}
       - {label: "Published", name: "published", widget: "boolean", required: false}
       - {label: "Featured", name: "featured", widget: "boolean", required: false}
-      - {label: "Type", name: "type", widget: "select",   options: ["product", "service"]}
-      - {label: "Base Price ($)", name: "price", widget: "number", allow_edit: false}      
+      - {label: "Type", name: "type", widget: "hidden",   options: ["product"]}
+      - {label: "Base Price ($)", name: "price", widget: "number"}
+      - label: "Variants"
+        name: "variants"
+        widget: "list"
+        fields:
+          - {label: ID, name: id, widget: ncw-id, prefix: sku, hint: Automatically generated unique ID.}
+          - label: Price
+            name: price
+            widget: number
+            hint: '(in $USD)'
+            required: true
+          - label: Image
+            name: image
+            widget: image
+            hint: 'Image of this variant.'
+            required: false
+          - label: "Attributes"
+            name: "attributes"
+            widget: "list"
+            required: false
+            fields:
+              - {label: Key, name: key, widget: string}
+              - {label: Value, name: value, widget: string}
       - {label: "Description", name: "description", widget: "text", required: false}
       - {label: "Publish Date", name: "date", widget: "date", required: false}      
       - {label: "Cover Image", name: "cover_image", widget: "image", required: false}
-      - {label: "Thumbnail Image", name: "thumbnail_image", widget: "image", required: false}
-      - label: "Tags"
-        name: "tags"
-        widget: "list"
-      - {label: "Content", name: "body", widget: "markdown", required: false}
+      - {label: "Thumbnail Image", name: "thumbnail_image", widget: "image", required: false}           
       - {label: "Buy Button URL", name: "buy_button_url", widget: "string", required: false}
-      - {label: "Buy Button HTML", name: "buy_button_html", widget: "markdown", required: false}
-      - {label: "Buy Button Data", name: "buy_button_data", widget: "code", output_code_only: true, default_language: "json", allow_language_selection: false, required: false }      
-      - label: "Up-Sells"
-        name: "up_sells"
-        widget: "relation"
-        collection: "offerings"
-        searchFields: ["title", "description"]
-        valueField: "id"
-        displayFields: ["title"]
-        multiple: true
-        required: false
-      - label: "Down-Sells"
-        name: "down_sells"
-        widget: "relation"
-        collection: "offerings"
-        searchFields: ["title", "description"]
-        valueField: "id"
-        displayFields: ["title"]
-        multiple: true
-        required: false
-      - label: "Cross-Sells"
-        name: "cross_sells"
-        widget: "relation"
-        collection: "offerings"
-        searchFields: ["title", "description"]
-        valueField: "id"
-        displayFields: ["title"]
-        multiple: true
-        required: false
+      - {label: "Buy Button HTML", name: "buy_button_html", widget: "markdown", required: false}      
   - name: "services"
     label: " 💼 Services"
     label_singular: " 💼 Service"
@@ -275,7 +265,7 @@ collections:
       - {label: "Slug", name: "slug", widget: "string", required: true, pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', "Must be only lowercase letters, numbers, and dashes."]}
       - {label: "Published", name: "published", widget: "boolean", required: false}
       - {label: "Featured", name: "featured", widget: "boolean", required: false}
-      - {label: "Type", name: "type", widget: "select",   options: ["product", "service"]}           
+      - {label: "Type", name: "type", widget: "hidden",   options: ["service"]}
       - {label: "Description", name: "description", widget: "text", required: false}
       - {label: "Publish Date", name: "date", widget: "date", required: false}      
       - {label: "Cover Image", name: "cover_image", widget: "image", required: false}
@@ -285,35 +275,7 @@ collections:
         widget: "list"
       - {label: "Content", name: "body", widget: "markdown", required: false}
       - {label: "Buy Button URL", name: "buy_button_url", widget: "string", required: false}
-      - {label: "Buy Button HTML", name: "buy_button_html", widget: "markdown", required: false}
-      - {label: "Buy Button Data", name: "buy_button_data", widget: "code", output_code_only: true, default_language: "json", allow_language_selection: false, required: false }      
-      - label: "Up-Sells"
-        name: "up_sells"
-        widget: "relation"
-        collection: "offerings"
-        searchFields: ["title", "description"]
-        valueField: "id"
-        displayFields: ["title"]
-        multiple: true
-        required: false
-      - label: "Down-Sells"
-        name: "down_sells"
-        widget: "relation"
-        collection: "offerings"
-        searchFields: ["title", "description"]
-        valueField: "id"
-        displayFields: ["title"]
-        multiple: true
-        required: false
-      - label: "Cross-Sells"
-        name: "cross_sells"
-        widget: "relation"
-        collection: "offerings"
-        searchFields: ["title", "description"]
-        valueField: "id"
-        displayFields: ["title"]
-        multiple: true
-        required: false    
+      - {label: "Buy Button HTML", name: "buy_button_html", widget: "markdown", required: false}           
   - name: "subscriptionsProducts"
     label: " 🔁 Subscriptions"
     label_singular: " 🔁 Service"
@@ -334,7 +296,7 @@ collections:
       - {label: "Slug", name: "slug", widget: "string", required: true, pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', "Must be only lowercase letters, numbers, and dashes."]}
       - {label: "Published", name: "published", widget: "boolean", required: false}
       - {label: "Featured", name: "featured", widget: "boolean", required: false}
-      - {label: "Type", name: "type", widget: "select",   options: ["product", "service"]}
+      - {label: "Type", name: "type", widget: "hidden", options: ["subscription"]}
       - label: "Pricing Plans"
         name: "plans"
         widget: "relation"

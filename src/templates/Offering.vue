@@ -19,8 +19,8 @@
           <h4 class="my-3 ">{{ $page.offering.title}}</h4>
           <p v-if="$page.offering.description != null && $page.offering.description != ''" class="text-dark my-3 pb-4">{{ $page.offering.description }}</p>
           <div v-else class="mt-1 pt-1"></div>
-          <hr class="my-3 mb-4" />
-          <div v-if="$page.offering.price != null && $page.offering.price != ''">
+          <hr class="my-3 mb-4" v-if="$page.offering.type != 'subscription'" />
+          <div v-if="$page.offering.type == 'product' && ($page.offering.buy_button_html == null || $page.offering.buy_button_html == '') && ($page.offering.buy_button_url == null || $page.offering.buy_button_url == '')">
             <div class="btn btn-lg text-left pr-0 pl-0 ml-0 mb-3 price mr-4">
               <span>
                 <span class="text-dark-blue opacity-30">$</span>
@@ -46,7 +46,7 @@
                   </button>
                 </template>
               </stripe-checkout>
-            </div>
+            </div>            
             <div
               v-else-if="$page.offering.buy_button_url != null && $page.offering.buy_button_html != ''"
               class="d-inline-block"
@@ -66,17 +66,18 @@
             >{{ $page.offering.buy_button_html }}</div>
           </div>
           <div v-else-if="$page.offering.plans != null">
-            <div v-for="edge, index in $page.plans.edges" v-if="$page.offering.plans.includes(edge.node.id)" >
-              <div class="btn btn-lg text-left pr-0 pl-0 ml-0 mb-3 price mr-4">
+            <div v-for="edge, index in $page.plans.edges" v-if="$page.offering.plans.includes(edge.node.id)"
+            class="bg-light border br-5 p-3" >
+              <div class="btn btn-lg text-left pr-0 pl-0 ml-0 my-1 price mr-4">
               <span>
                 <span class="opacity-80 text-dark">{{ edge.node.title }} </span>
                 <span class="text-dark-blue opacity-30 ml-3">$</span>
                 <span class>{{ edge.node.price }}</span>
               </span>
             </div>
-            <br />
+            
               <stripe-checkout
-                class="d-inline mr-2"
+                class="d-inline mr-2 pull-right"
                 ref="checkoutRef"
                 :sessionId="sessionId"
                 :pk="publishableKey"
@@ -84,7 +85,7 @@
                 :cancelUrl="cancelUrl"
               >
                 <template slot="checkout-button">
-                  <button class="btn btn-lg btn-primary raised px-4 " @click="subscribe(edge.node.id)">
+                  <button class="btn btn-lg btn-primary raised px-4 mt-1" @click="subscribe(edge.node.id)">
                     Subscribe<i class="fa fa-shopping-cart ml-3" ></i>
                   </button>
                 </template>
@@ -194,6 +195,8 @@ export default {
     },  
     checkout() {
       //console.log(this.$refs);
+
+      // TURN BACK ON:
       this.$refs.checkoutRef[0].redirectToCheckout();
     }
   },

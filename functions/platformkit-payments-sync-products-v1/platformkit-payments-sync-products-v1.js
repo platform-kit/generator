@@ -69,7 +69,7 @@ exports.handler = async (event, context) => {
     */
 
     console.log('PLAN: ' + pushed.plan.id);
-    var stripeItems = {items: [{plan: pushed.plan.id}]};
+    var stripeItems = {items: [{plan: 'subscriptionPlan-KIs4QHz_W'}]};
     var data = stripeItems;
   
 
