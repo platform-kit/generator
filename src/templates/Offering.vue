@@ -24,22 +24,22 @@
           <div v-else class="mt-1 pt-1"></div>
 
           <div
-              v-if="$page.offering.buy_button_url != null && $page.offering.buy_button_url != ''"
-              class="d-inline-block"
+            v-if="$page.offering.buy_button_url != null && $page.offering.buy_button_url != ''"
+            class="d-inline-block"
+          >
+            <a
+              class="btn btn-lg btn-light btn-buy raised px-4 btn-buy m"
+              :href="$page.offering.buy_button_url"
+              target="_blank"
             >
-              <a
-                class="btn btn-lg btn-light btn-buy raised px-4 btn-buy m"
-                :href="$page.offering.buy_button_url"
-                target="_blank"
-              >
-                <font-awesome :icon="['fa', 'shopping-cart']" class="mr-4" />Buy Now
-              </a>
-            </div>
-            <div
-              v-else-if="$page.offering.buy_button_html != null && $page.offering.buy_button_html != ''"
-              class="d-inline-block"
-              v-html="$page.offering.buy_button_html"
-            >{{ $page.offering.buy_button_html }}</div>
+              <font-awesome :icon="['fa', 'shopping-cart']" class="mr-4" />Buy Now
+            </a>
+          </div>
+          <div
+            v-else-if="$page.offering.buy_button_html != null && $page.offering.buy_button_html != ''"
+            class="d-inline-block"
+            v-html="$page.offering.buy_button_html"
+          >{{ $page.offering.buy_button_html }}</div>
 
           <div
             v-if="$page.offering.type == 'product' && ($page.offering.buy_button_html == null || $page.offering.buy_button_html == '') && ($page.offering.buy_button_url == null || $page.offering.buy_button_url == '')"
@@ -77,10 +77,7 @@
                 </stripe-checkout>
               </div>
             </div>
-            <div
-              class="d-block w-100"
-              v-if="$page.offering.variants != null"
-            >
+            <div class="d-block w-100" v-if="$page.offering.variants != null">
               <div
                 class="bg-light border br-5 p-3 w-100 d-block mb-2 text-right"
                 v-for="variant in $page.offering.variants"
@@ -107,8 +104,29 @@
                     >{{ variant.name }}</span>
                   </span>
                 </div>
-
                 <stripe-checkout
+                  v-if="customerEmail != null"
+                  class="d-inline mr-2"
+                  ref="checkoutRef2"
+                  :items="items"
+                  :pk="publishableKey"
+                  :successUrl="successUrl"
+                  :cancelUrl="cancelUrl"
+                  :customerEmail="customerEmail"
+                >
+                  <template slot="checkout-button">
+                    <button
+                      class="btn btn-lg btn-light btn-buy raised px-4 btn-buy my-2"
+                      @click="buy(variant)"
+                    >
+                      Buy Now
+                      <i class="fa fa-caret-right opacity-30 text-light ml-3"></i>
+                      <i class="fa fa-shopping-cart ml-3"></i>
+                    </button>
+                  </template>
+                </stripe-checkout>
+                <stripe-checkout
+                  v-else
                   class="d-inline mr-2"
                   ref="checkoutRef2"
                   :items="items"
@@ -127,6 +145,7 @@
                     </button>
                   </template>
                 </stripe-checkout>
+
                 <div class="w-100 text-left" v-if="variant.attributes != null">
                   <b-collapse :id="'collapse-' + variant.id" class="mt-2">
                     <span
@@ -141,7 +160,6 @@
                 </div>
               </div>
             </div>
-            
           </div>
           <div v-else-if="$page.offering.plans != null">
             <div
@@ -209,13 +227,17 @@ export default {
       checkoutSession: null,
       sessionId: null,
       socialSettings: socialSettings,
-      image: null
+      image: null,
+      customerEmail: null
     };
   },
   async mounted() {
     if (localStorage.auth != null) {
       //alert(typeof localStorage.auth);
       var auth = JSON.parse(localStorage.auth);
+    }
+    if(auth != null && auth.data != null && auth.data.sub != null){
+      this.customerEmail = auth.data.sub;
     }
     console.log(auth);
     this.window = window;
@@ -244,7 +266,7 @@ export default {
         )
         .then(response => this.getCheckoutSession(response));
     },
-    buy(variant) {            
+    buy(variant) {
       console.log(variant);
       console.log(variant.id);
       var obj = {};
@@ -254,10 +276,11 @@ export default {
       */
       obj.sku = variant.id;
       obj.quantity = 1;
-      
+
       this.items.push(obj);
+
       this.$refs.checkoutRef2[0].redirectToCheckout();
-    },    
+    },
     getCheckoutSession(response) {
       if (response == null || typeof response == "undefined ") {
       } else {
