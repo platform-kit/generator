@@ -86,7 +86,7 @@
             <div class="container px-3">
               <b-card-group
                 deck
-                class="mb-3 mt-2 justify-content-center"
+                class="mb-3 mt-2 mx-1 justify-content-center"
                 v-for="collection, index in $page.collections.edges"
                 v-bind:key="collection.node.id"
                 v-if="collection.node.featured == true  && collection.node.offerings.length > 0 && section.list.includes(collection.node.id)"
@@ -99,7 +99,7 @@
                   v-for="edge, index in $page.offerings.edges"
                   v-bind:key="edge.node.id"
                   v-if="collection.node.offerings.includes(edge.node.id) && edge.node.featured == true"
-                  class="col-md-3 px-0 pr-md-2 mb-1"
+                  class="col-md-4 px-0 pr-md-2 mb-1"
                 >
                   <div
                     class="card raised border-0 mb-1 pull-left mx-0 px-0 h-100 mr-md-3 px-0 pb-3 m-0 mb-4"
