@@ -1,12 +1,12 @@
 <template>
   <Layout>
-    <div class="container-fluid " v-if="$page.landingPage.sections != null">
+    <div class="container-fluid" v-if="$page.landingPage.sections != null">
       <div v-for="section, index in $page.landingPage.sections" class="section">
         <div v-if="section.type == 'valuePropositions'" class="row">
           <div
-            class="image-tinted bg-dark justify-content-center text-light text-center w-100  d-inline-flex"
+            class="image-tinted bg-dark justify-content-center text-light text-center w-100 d-inline-flex"
             v-if="section.list.includes(edge.node.id)"
-            v-on:click="window.location.assign('/content/' + edge.node.slug)"
+            
             v-for="edge, index in $page.valuePropositions.edges"
             v-bind:class="{ 'col-lg-3': section.list.length >= 4, 'col-lg-6': section.list.length == 2, 'col-lg-4': section.list.length == 3, 'col-lg-12': section.list.length == 1   }"
             style="
@@ -15,23 +15,23 @@
                 background-position:center center;"
             :style="{ backgroundImage: `url('${edge.node.cover_image}')` }"
           >
-            <div class="my-auto py-4 px-2 pr-0 pr-lg-4">
-              <h1 class="text-shadow text-weight-800">{{ edge.node.headline }}</h1>
-              <h3 class="text-shadow text-weight-300">{{ edge.node.call_to_action_text }}</h3>
+            <div class="w-100 my-auto py-0 px-2 pr-0 pr-lg-4">
+              <h2>{{ edge.node.call_to_action_text }}</h2>
+
               <a
-                :href="edge.node.call_to_action_button_url"
-                v-if="edge.node.call_to_action_button_url != null && edge.node.call_to_action_button_url != ''"
-                class="btn btn-light mt-3 btn-lg br-25 px-4 raised text-dark border-0"                
-              >{{ edge.node.call_to_action_button_text }}</a>
+                v-for="page in $page.pages.edges"
+                v-if="page.node.id == edge.node.conversionPage"
+                :href="'/' + page.node.slug"
+                v-on:click="window.location.assign('/' + page.node.slug)"
+                class="d-inline-block btn btn-light btn-lg mt-3 raised br-25"
+              >Learn More</a>
             </div>
           </div>
         </div>
-        
-        <div v-else-if="section.type == 'contentItems'" class="border-bottom row ">
-          
+
+        <div v-else-if="section.type == 'contentItems'" class="border-bottom row">
           <div class="posts py-3 container" v-if="$page.contentItems.edges.length > 0">
-            <div class="col-md-12 px-0 px-md-3 ">
-              
+            <div class="col-md-12 px-0 px-md-3">
               <b-card-group deck class="my-3 mt-4 my-md-3 mt-md-5">
                 <div
                   v-if="section.list.includes(edge.node.id)"
@@ -45,7 +45,6 @@
                     class="raised border-0 mb-3 pull-left mx-0 px-0 h-100 mr-md-3 bg-dark"
                     :key="edge.node.id"
                     :post="edge.node"
-                    
                     :img-src="edge.node.cover_image"
                     img-top
                     img-width="50%;"
@@ -55,10 +54,22 @@
                       style="line-height:25px;"
                     >
                       <h3>{{ edge.node.title }}</h3>
-                      <br><span class="badge badge-pill px-3 bg-light-green border-light-green text-dark-green " style="position:absolute;top:12px;left:-10px;"><span class="opacity-90">{{ edge.node.minutes_to_consume }} Minute Read</span></span>
-                      <h4 v-if="section.list.length == 1" class="description d-none d-lg-inline-block text-weight-200" >{{ edge.node.description }}</h4>
-                      <h4 v-if="section.list.length == 2" class=" d-none d-lg-inline-block text-weight-200" style="font-size:200%;">{{ edge.node.subtitle }}</h4>
-                      
+                      <br />
+                      <span
+                        class="badge badge-pill px-3 bg-light-green border-light-green text-dark-green"
+                        style="position:absolute;top:12px;left:-10px;"
+                      >
+                        <span class="opacity-90">{{ edge.node.minutes_to_consume }} Minute Read</span>
+                      </span>
+                      <h4
+                        v-if="section.list.length == 1"
+                        class="description d-none d-lg-inline-block text-weight-200"
+                      >{{ edge.node.description }}</h4>
+                      <h4
+                        v-if="section.list.length == 2"
+                        class="d-none d-lg-inline-block text-weight-200"
+                        style="font-size:200%;"
+                      >{{ edge.node.subtitle }}</h4>
                     </b-card-text>
                     <b-button
                       :href="'/content/' + edge.node.slug"
@@ -69,7 +80,6 @@
                       <span style="opacity:0.5;">→</span>
                     </b-button>
                   </b-card>
-                  
                 </div>
               </b-card-group>
             </div>
@@ -146,15 +156,14 @@
           </div>
         </div>
 
-        <div v-else-if="section.type == 'html'" >
-        
+        <div v-else-if="section.type == 'html'">
           <div
-          v-if="section.list.includes(edge.node.id) && edge.node.code.lang == 'html'"                                  
+            v-if="section.list.includes(edge.node.id) && edge.node.code.lang == 'html'"
             v-for="edge, index in $page.pageElements.edges"
-            v-html="edge.node.code.code" class="row">
-            test
-          </div>
-          </div>
+            v-html="edge.node.code.code"
+            class="row"
+          >test</div>
+        </div>
       </div>
     </div>
   </Layout>
@@ -217,6 +226,14 @@ query LandingPage ($id: ID!) {
       }
     }
   }
+  pages: allLandingPage(filter: { published: { eq: true }}) {
+    edges {
+      node {
+        id        
+        slug                
+      }
+    }
+  }
    contentItems: allContentItem(sortBy: "date", order: DESC, filter: { published: { eq: true }}) {
     edges {
       node {
@@ -247,7 +264,7 @@ query LandingPage ($id: ID!) {
         headline
         call_to_action_text
         call_to_action_button_text
-        call_to_action_button_url
+        conversionPage
         slug
         date (format: "D. MMMM YYYY")        
         featured
@@ -276,43 +293,50 @@ query LandingPage ($id: ID!) {
 
 
 <script>
-
-
 export default {
   data() {
     return {
-      test: null
+      test: null,
+      window: null
     };
   },
   async mounted() {
+    this.window = window;
     try {
     } catch (error) {
       console.log(error);
     }
   },
-  methods: {    
-      getThumbnailImage(){
-      if(this.$page.landingPage.thumbnail_image != null){
-        return 'https://www.dharmaworks.com' + this.$page.landingPage.thumbnail_image.src
-      }
-      if(this.$page.landingPage.cover_image != null){
-        return 'https://www.dharmaworks.com' + this.$page.landingPage.cover_image.src
-      }
-      else {
-        return ''
-      }
+  methods: {
+    goToCollection(id) {
+      alert(id);
     },
+    getThumbnailImage() {
+      if (this.$page.landingPage.thumbnail_image != null) {
+        return (
+          "https://www.dharmaworks.com" +
+          this.$page.landingPage.thumbnail_image.src
+        );
+      }
+      if (this.$page.landingPage.cover_image != null) {
+        return (
+          "https://www.dharmaworks.com" + this.$page.landingPage.cover_image.src
+        );
+      } else {
+        return "";
+      }
+    }
   },
   metaInfo() {
     return {
       title: this.$page.landingPage.title,
       meta: [
         {
-          name: 'description',
+          name: "description",
           content: this.$page.landingPage.description
         },
         {
-          name: 'keywords',
+          name: "keywords",
           content: this.$page.landingPage.keywords
         },
         {
@@ -321,7 +345,7 @@ export default {
         },
         {
           name: "twitter:card",
-          content: this.getThumbnailImage() ? "summary_large_image" : "summary",
+          content: this.getThumbnailImage() ? "summary_large_image" : "summary"
         },
         {
           name: "twitter:creator",
@@ -343,20 +367,20 @@ export default {
 
 
 <style scoped>
-.section:nth-child(odd){ 
-    background: linear-gradient(90deg, #ddedff66, #ddedff33, #ddedff66);
+.section:nth-child(odd) {
+  background: linear-gradient(90deg, #ddedff66, #ddedff33, #ddedff66);
 }
-.section:nth-child(even){ 
-    background: linear-gradient(90deg, #ddedff33, #ddedff88, #ddedff33);
+.section:nth-child(even) {
+  background: linear-gradient(90deg, #ddedff33, #ddedff88, #ddedff33);
 }
 
-@media(min-width:768px){
+@media (min-width: 768px) {
   .description {
-    margin:50px;
+    margin: 50px;
   }
 }
 .description {
-  line-height:150%;
-  font-size:200%;
+  line-height: 150%;
+  font-size: 200%;
 }
 </style>

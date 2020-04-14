@@ -220,10 +220,7 @@ collections:
       - {label: "Description", name: "description", widget: "text", required: false}
       - {label: "Publish Date", name: "date", widget: "date", required: false}      
       - {label: "Cover Image", name: "cover_image", widget: "image", required: false}
-      - {label: "Thumbnail Image", name: "thumbnail_image", widget: "image", required: false}
-      - label: "Tags"
-        name: "tags"
-        widget: "list"
+      - {label: "Thumbnail Image", name: "thumbnail_image", widget: "image", required: false}      
       - {label: "Content", name: "body", widget: "markdown", required: false}
       - {label: "Buy Button URL", name: "buy_button_url", widget: "string", required: false, hint: "If this is set, a button will be rendered linking to the given URL."}
       - {label: "Buy Button HTML", name: "buy_button_html", widget: "code", output_code_only: true, default_language: "css", allow_language_selection: false,  required: false,hint: "If this is set, and the buy button URL is NOT set, this will be rendered."}        
@@ -464,37 +461,16 @@ collections:
         name: id
         widget: ncw-id
         prefix: valueProposition          
-        hint: Automatically generated unique ID.
-      - {label: "Slug", name: "slug", widget: "string", required: true, pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', "Must be only lowercase letters, numbers, and underscores."]}
-      - {label: "Published", name: "published", widget: "boolean", required: false}
-      - {label: "Featured", name: "featured", widget: "boolean", required: false}
-      - {label: "Description", name: "description", widget: "string", hint: "For SEO purposes."}  
-      - {label: "Headline", name: "headline", widget: "string", hint: "For SEO purposes."}  
-      - {label: "Cover Image", name: "cover_image", widget: "image", required: false}
-      - {label: "Thumbnail Image", name: "thumbnail_image", widget: "image", required: false, hint: "This image will be displayed in search results & social posts."}            
-      - {label: "Call To Action Text", name: "call_to_action_text", widget: "string", required: false}  
-      - {label: "Call To Action Button", name: "call_to_action_button_text", widget: "string", required: false}  
-      - {label: "Call To Action Button URL", name: "call_to_action_button_url", widget: "string", required: true}
-      - {label: "Call To Action Background Image", name: "call_to_action_background_image", widget: "image", required: false}  
-  - name: "Marketing Experiments"
-    label: " 📋 Marketing Experiments"
-    label_singular: " 📋 Marketing Experiment"
-    description: "Design how your customers move through their lifecycle with your business."
-    editor:
-      preview: false
-    folder: "data/marketingExperiments"
-    create: true
-    slug: "{{id}}"
-    fields:
-      - {label: "Title", name: "title", widget: "string"}
-      - label: ID
-        name: id
-        widget: ncw-id
-        prefix: customerJourney          
-        hint: Automatically generated unique ID.                         
-      - { label: "Enabled", name: "enabled", widget: "boolean", default: false, required: true}
-      - {label: "Topics", name: "collections", widget: "relation", collection: "topics", searchFields: ["title", "description"], valueField: "id", displayFields: ["title"], multiple: true, required: false, hint: "Select the topics where these value propositions will be displayed."}            
-      - {label: "Value Propositions", name: "valuePropositions", widget: "relation", collection: "valuePropositions", searchFields: ["title", "description"], valueField: "id", displayFields: ["title"], multiple: true, required: false, hint: "Select the value propositions to display when a user explores one of the above topics."}                         
-      - { label: "Hypothesis", name: "hypothesis", widget: "text", required: true}                      
-      - { label: "Results", name: "results", widget: "text", required: true}   
-        
+        hint: Automatically generated unique ID.      
+      - {label: "Published", name: "published", widget: "boolean", required: false}      
+      - {label: "Call To Action Text", name: "call_to_action_text", widget: "string", required: true}        
+      - {label: "Call To Action Button", name: "call_to_action_button", widget: "string", required: true}
+      - label: "Conversion Page"
+        name: "conversionPage"
+        multiple: false
+        widget: "relation"
+        collection: "pages"
+        searchFields: ["title"]
+        valueField: "id"
+        displayFields: ["title"]
+      - {label: "Cover Image", name: "cover_image", widget: "image", required: false}              
