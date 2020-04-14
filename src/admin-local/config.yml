@@ -99,7 +99,7 @@ collections:
   - name: "topics"
     label: "  🏷️ Topics"
     label_singular: " 🏷️ Topic"
-    description: "Top-level content categories."
+    description: "Create topics to organize your content."
     editor:
       preview: false
     folder: "data/topics"
@@ -114,53 +114,7 @@ collections:
         hint: Automatically generated unique ID.
       - {label: "Slug", name: "slug", widget: "string", required: true, pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', "Must be only lowercase letters, numbers, and dashes."]}
       - {label: "Published", name: "published", widget: "boolean", required: false}
-      - {label: "Description", name: "description", widget: "text", required: false}               
-      - label: "Sub-Topics"
-        name: "subTopics"
-        widget: "relation"
-        collection: "topics"
-        searchFields: ["title", "description"]
-        valueField: "id"
-        displayFields: ["title"]
-        multiple: true
-        required: false
-  - name: "series"
-    label: " 📚 Series"
-    label_singular: " 📚 Series"
-    description: "Curated lists of content."
-    editor:
-      preview: false
-    folder: "data/series"
-    create: true
-    slug: "{{id}}"   
-    fields:
-      - {label: "Title", name: "title", widget: "string"}      
-      - label: ID
-        name: id
-        widget: ncw-id
-        prefix: series          
-        hint: Automatically generated unique ID.
-      - {label: "Slug", name: "slug", widget: "string", required: true, pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', "Must be only lowercase letters, numbers, and dashes."]}
-      - {label: "Published", name: "published", widget: "boolean", required: false}
-      - {label: "Description", name: "description", widget: "text", required: false}         
-      - label: "Content Items"
-        name: "contentItems"
-        widget: "relation"
-        collection: "content"
-        searchFields: ["title", "description"]
-        valueField: "id"
-        displayFields: ["title"]
-        multiple: true
-        required: false
-      - label: "Topics"
-        name: "topics"
-        widget: "relation"
-        collection: "topics"
-        searchFields: ["title", "description"]
-        valueField: "id"
-        displayFields: ["title"]
-        multiple: true
-        required: false
+      - {label: "Description", name: "description", widget: "text", required: false}                      
   - name: "content"
     label: " 📝 Content"
     label_singular: " 📝 Content Item"
@@ -179,22 +133,18 @@ collections:
         hint: Automatically generated unique ID.
       - {label: "Slug", name: "slug", widget: "string", required: true, pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', "Must be only lowercase letters, numbers, and dashes."]}
       - {label: "Published", name: "published", widget: "boolean", required: false}
-      - {label: "Featured", name: "featured", widget: "boolean", required: false}
-      - {label: "Subtitle", name: "subtitle", widget: "string", required: false}
-      - {label: "Description", name: "description", widget: "text", required: false}
-      - {label: "Minutes To Consume", name: "minutes_to_consume", widget: "number", min: 1, step: 1, required: false}
-      - {label: "Publish Date", name: "date", widget: "date", required: false}      
-      - {label: "Preview Media", name: "media_preview", widget: "string", required: false, hint: "Link to a audio or video preview.", pattern: ['https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)', 'Should be a url (http://...)']}
-      - {label: "Full Media", name: "media_full", widget: "string", required: false, hint: "Link to a full-length video or audio file.", pattern: ['https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)', 'Should be a url (http://...)']}
+      - {label: "Featured", name: "featured", widget: "boolean", required: false}      
+      - {label: "Topics", name: "collections", widget: "relation", collection: "topics", searchFields: ["title", "description"], valueField: "id", displayFields: ["title"], multiple: true, required: false, hint: "The topics this content covers."}            
+      - {label: "Excerpt", name: "excerpt", widget: "markdown", required: false, hint: "The content that is visible to non-paying users."}      
+      - {label: "Content", name: "body", widget: "markdown", required: false, hint: "The content that is visible to paying users."}                  
+      - {label: "Preview Media", name: "media_preview", widget: "string", required: false, hint: "Link to a short audio or video preview. Can be Youtube, Vimeo, or .mp4. This will be visible to non-paying users.", pattern: ['https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)', 'Should be a url (http://...)']}
+      - {label: "Full Media", name: "media_full", widget: "string", required: false, hint: "Link to a full-length video or audio file. Can be Youtube, Vimeo, or .mp4. This will only be visible to paying users.", pattern: ['https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)', 'Should be a url (http://...)']}
       - {label: "Cover Image", name: "cover_image", widget: "image", required: false}
       - {label: "Thumbnail Image", name: "thumbnail_image", widget: "image", required: false}
-      - label: "Tags"
-        name: "tags"
-        widget: "list"
-        required: false
-        hint: "List of topics, tags, keywords, hashtags, etc, separated by commas."
-      - {label: "Excerpt", name: "excerpt", widget: "markdown", required: false}      
-      - {label: "Content", name: "body", widget: "markdown", required: false}            
+      - {label: "Label / Subtitle", name: "subtitle", widget: "string", required: false, hint: "A short blurb designed to entice the user."}
+      - {label: "Description", name: "description", widget: "text", required: false, hint: "For SEO purposes."}
+      - {label: "Minutes To Consume", name: "minutes_to_consume", widget: "number", min: 1, step: 1, required: false}
+      - {label: "Publish Date", name: "date", widget: "date", required: false}            
   - name: "offerings"
     label: " 📦 Products"
     label_singular: " 📦 Products"
@@ -244,8 +194,8 @@ collections:
       - {label: "Publish Date", name: "date", widget: "date", required: false}      
       - {label: "Cover Image", name: "cover_image", widget: "image", required: false}
       - {label: "Thumbnail Image", name: "thumbnail_image", widget: "image", required: false}           
-      - {label: "Buy Button URL", name: "buy_button_url", widget: "string", required: false}
-      - {label: "Buy Button HTML", name: "buy_button_html", widget: "markdown", required: false}      
+      - {label: "Buy Button URL", name: "buy_button_url", widget: "string", required: false, hint: "If this is set, a button will be rendered linking to the given URL."}
+      - {label: "Buy Button HTML", name: "buy_button_html", widget: "code", output_code_only: true, default_language: "css", allow_language_selection: false,  required: false,hint: "If this is set, and the buy button URL is NOT set, this will be rendered."}      
   - name: "services"
     label: " 💼 Services"
     label_singular: " 💼 Service"
@@ -275,8 +225,30 @@ collections:
         name: "tags"
         widget: "list"
       - {label: "Content", name: "body", widget: "markdown", required: false}
-      - {label: "Buy Button URL", name: "buy_button_url", widget: "string", required: false}
-      - {label: "Buy Button HTML", name: "buy_button_html", widget: "markdown", required: false}           
+      - {label: "Buy Button URL", name: "buy_button_url", widget: "string", required: false, hint: "If this is set, a button will be rendered linking to the given URL."}
+      - {label: "Buy Button HTML", name: "buy_button_html", widget: "code", output_code_only: true, default_language: "css", allow_language_selection: false,  required: false,hint: "If this is set, and the buy button URL is NOT set, this will be rendered."}        
+  - name: "subscriptionPlans"
+    label: "💳  Pricing Plans"
+    label_singular: " 💳 Pricing Plan"
+    description: "Pricing plans for subscription products."
+    editor:
+      preview: false
+    folder: "data/subscriptionPlans"
+    create: true
+    slug: "{{id}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - label: ID
+        name: id
+        widget: ncw-id
+        prefix: subscriptionPlan
+        hint: Automatically generated unique ID.
+      - {label: "Slug", name: "slug", widget: "string", required: true, pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', "Must be only lowercase letters, numbers, and dashes."]}
+      - {label: "Published", name: "published", widget: "boolean", required: false}
+      - {label: "Featured", name: "featured", widget: "boolean", required: false}      
+      - {label: "Billing Interval", name: "interval", widget: "select", required:true, options: ["day", "week", "month", "year"]}
+      - {label: "Price ($)", name: "price", widget: "number", required: true}
+      - {label: "Trial (# of days)", name: "trial_days", widget: "number", required: false}
   - name: "subscriptionsProducts"
     label: " 🔁 Subscriptions"
     label_singular: " 🔁 Service"
@@ -297,7 +269,8 @@ collections:
       - {label: "Slug", name: "slug", widget: "string", required: true, pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', "Must be only lowercase letters, numbers, and dashes."]}
       - {label: "Published", name: "published", widget: "boolean", required: false}
       - {label: "Featured", name: "featured", widget: "boolean", required: false}
-      - {label: "Type", name: "type", widget: "hidden", options: ["subscription"]}
+      - {label: "Type", name: "type", widget: "hidden", options: ["subscription"]}         
+      - {label: "Description", name: "description", widget: "text", required: false, hint: "For SEO purposes."}            
       - label: "Pricing Plans"
         name: "plans"
         widget: "relation"
@@ -306,67 +279,10 @@ collections:
         valueField: "id"
         displayFields: ["title"]
         multiple: true
-        required: false      
-      - {label: "Description", name: "description", widget: "text", required: false}
-      - {label: "Publish Date", name: "date", widget: "date", required: false}      
-      - {label: "Cover Image", name: "cover_image", widget: "image", required: false}
-      - {label: "Thumbnail Image", name: "thumbnail_image", widget: "image", required: false}
-      - label: "Tags"
-        name: "tags"
-        widget: "list"
-      - {label: "Content", name: "body", widget: "markdown", required: false}
-      - {label: "Buy Button URL", name: "buy_button_url", widget: "string", required: false}
-      - {label: "Buy Button HTML", name: "buy_button_html", widget: "markdown", required: false}
-      - {label: "Buy Button Data", name: "buy_button_data", widget: "code", output_code_only: true, default_language: "json", allow_language_selection: false, required: false }      
-      - label: "Up-Sells"
-        name: "up_sells"
-        widget: "relation"
-        collection: "offerings"
-        searchFields: ["title", "description"]
-        valueField: "id"
-        displayFields: ["title"]
-        multiple: true
-        required: false
-      - label: "Down-Sells"
-        name: "down_sells"
-        widget: "relation"
-        collection: "offerings"
-        searchFields: ["title", "description"]
-        valueField: "id"
-        displayFields: ["title"]
-        multiple: true
-        required: false
-      - label: "Cross-Sells"
-        name: "cross_sells"
-        widget: "relation"
-        collection: "offerings"
-        searchFields: ["title", "description"]
-        valueField: "id"
-        displayFields: ["title"]
-        multiple: true
-        required: false            
-  - name: "subscriptionPlans"
-    label: "💳  Subscription Plans"
-    label_singular: " 💳 Subscription Plan"
-    description: "Pricing plans for subscription products."
-    editor:
-      preview: false
-    folder: "data/subscriptionPlans"
-    create: true
-    slug: "{{id}}"
-    fields:
-      - {label: "Title", name: "title", widget: "string"}
-      - label: ID
-        name: id
-        widget: ncw-id
-        prefix: subscriptionPlan
-        hint: Automatically generated unique ID.
-      - {label: "Slug", name: "slug", widget: "string", required: true, pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', "Must be only lowercase letters, numbers, and dashes."]}
-      - {label: "Published", name: "published", widget: "boolean", required: false}
-      - {label: "Featured", name: "featured", widget: "boolean", required: false}      
-      - {label: "Billing Interval", name: "interval", widget: "select", required:true, options: ["day", "week", "month", "year"]}
-      - {label: "Price ($)", name: "price", widget: "number", required: true}
-      - {label: "Trial (# of days)", name: "trial_days", widget: "number", required: false}
+        required: false   
+      - {label: "Buy Button URL", name: "buy_button_url", widget: "string", required: false, hint: "If this is set, a button will be rendered linking to the given URL."}
+      - {label: "Buy Button HTML", name: "buy_button_html", widget: "code", output_code_only: true, default_language: "css", allow_language_selection: false,  required: false,hint: "If this is set, and the buy button URL is NOT set, this will be rendered."}      
+      - {label: "Cover Image", name: "cover_image", widget: "image", required: false}      
   - name: "collections"
     label: " 🗂️ Collections"
     label_singular: " 🗂️ Collection"
@@ -386,10 +302,7 @@ collections:
       - {label: "Slug", name: "slug", widget: "string", required: true, pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', "Must be only lowercase letters, numbers, and dashes."]}      
       - {label: "Published", name: "published", widget: "boolean", required: false}
       - {label: "Featured", name: "featured", widget: "boolean", required: false}
-      - {label: "Description", name: "description", widget: "text", required: false}
-      - {label: "Publish Date", name: "date", widget: "date", required: false}      
-      - {label: "Cover Image", name: "cover_image", widget: "image", required: false}
-      - {label: "Thumbnail Image", name: "thumbnail_image", widget: "image", required: false}
+      - {label: "Description", name: "description", widget: "text", required: false}      
       - label: "Offerings"
         name: "offerings"
         widget: "relation"
@@ -398,21 +311,7 @@ collections:
         valueField: "id"
         displayFields: ["title"]
         multiple: true
-        required: false
-      - label: "Sub-Collections"
-        name: "subCollections"
-        widget: "relation"
-        collection: "collections"
-        searchFields: ["title", "description"]
-        valueField: "id"
-        displayFields: ["title"]
-        multiple: true
-        required: false
-      - label: "Tags"
-        name: "tags"
-        widget: "list"
-        required: false
-      - {label: "Content", name: "body", widget: "markdown", required: false}  
+        required: false                  
   - name: "socialPosts"
     label: " 💬 Social Media"
     label_singular: " 💬 Social Media Post"
