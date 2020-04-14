@@ -10,7 +10,7 @@ featured: true
 published: true
 date: 2020-03-26T20:41:57.040Z
 call_to_action_text: Are you ready to launch your business TODAY?
-cover_image: ''
+cover_image: /files/examples/leap-design-YucomIwAKXQ-unsplash.jpg
 headline: Launch your own content platform
 call_to_action_button_text: Learn More
 title: Launch your own e-commerce platform
