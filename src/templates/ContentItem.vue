@@ -87,22 +87,21 @@
             </div>
           </div>
           <div class="col-md-6 my-auto" my-auto justify-content-center text-center>
-            
             <div v-if="$page.contentItem.requiredSubscription == null">
-            <h3
-              class="opacity-90 mt-2 d-none d-lg-inline-block"
-            >You must sign in to to view this content.</h3>
-            <h5
-              class="opacity-90 mt-0 d-inline-block d-lg-none"
-            >You must sign in to to view this content.</h5>
+              <h3
+                class="opacity-90 mt-2 d-none d-lg-inline-block"
+              >You must sign in to to view this content.</h3>
+              <h5
+                class="opacity-90 mt-0 d-inline-block d-lg-none"
+              >You must sign in to to view this content.</h5>
             </div>
             <div v-else>
-            <h3
-              class="opacity-90 mt-2 d-none d-lg-inline-block"
-            >Sign up or sign in to to view this content.</h3>
-            <h5
-              class="opacity-90 mt-0 d-inline-block d-lg-none"
-            >Sign up or sign to to view this content.</h5>
+              <h3
+                class="opacity-90 mt-2 d-none d-lg-inline-block"
+              >Sign up or sign in to to view this content.</h3>
+              <h5
+                class="opacity-90 mt-0 d-inline-block d-lg-none"
+              >Sign up or sign to to view this content.</h5>
             </div>
             <div
               class="btn br-25 px-4 mt-3 mb-5 border-0 raised"
@@ -112,9 +111,9 @@
               Sign In
               <i class="fa fa-user ml-2"></i>
             </div>
-            <a 
-              class="btn br-25 px-4 mt-3 mb-5 ml-2 border-0 raised"    
-              style="background-image:linear-gradient(0deg, rgba(0,150,200,0.25) -20%, #fff 80%);"          
+            <a
+              class="btn br-25 px-4 mt-3 mb-5 ml-2 border-0 raised"
+              style="background-image:linear-gradient(0deg, rgba(0,150,200,0.25) -20%, #fff 80%);"
               href="/pricing"
             >
               Sign Up
@@ -232,6 +231,53 @@
           v-html="$options.filters.markdown($page.contentItem.excerpt)"
           class="content col-md-9 bg-none border-top mt-3 pt-5 px-3 p-md-5"
         >{{ $options.filters.markdown($page.contentItem.excerpt) }}</div>
+      </div>
+    </div>
+    
+    <div v-if="$page.contentItem.topics != null" class="row">
+      <div v-for="listedTopic in $page.contentItem.topics" v-bind:key="listedTopic" class="w-100">
+        <div v-for="topic in $page.topics.edges" v-bind:key="topic" class="w-100">
+          <div class="w-100"
+            v-for="valueProposition in $page.valuePropositions.edges"
+            v-bind:key="valueProposition"
+          >
+           
+
+
+
+              <div
+              class="bg-dark justify-content-center text-light text-center w-100 d-inline-flex"
+              style="
+                height:500px;                                     
+                background-size:cover !important;
+                background-position:center center;"
+              :style="{ backgroundImage: `url('${valueProposition.node.cover_image}')` }"
+            >
+              <div class="w-100 my-auto py-0 px-2 pr-0 pr-lg-4">
+                <h2>{{ valueProposition.node.call_to_action_text }}</h2>
+
+                <a
+                  v-for="page in $page.pages.edges"
+                  v-bind:key="page"
+                  
+                  :href="'/' + page.node.slug"
+                  x-v-on:click="window.location.assign('/' + page.node.slug)"
+                  class="d-inline-block btn btn-light btn-lg mt-3 raised br-25"
+                >Learn More</a>
+              </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+          </div>
+        </div>
       </div>
     </div>
 
@@ -414,11 +460,7 @@ query ContentItem ($id: ID!) {
       media_full
       requiredSubscription
       path
-      tags {
-        id
-        title
-        path
-      }
+      topics
   }
   collections: allCollection( sortBy: "slug", order: DESC, filter: { published: { eq: true } } ) {
     edges {
@@ -460,6 +502,41 @@ query ContentItem ($id: ID!) {
           title
           path
         }
+      }
+    }
+  }
+  valuePropositions: allValueProposition(sortBy: "date", order: DESC, filter: { published: { eq: true }}) {
+    edges {
+      node {
+        id
+        title
+        headline
+        call_to_action_text
+        call_to_action_button_text
+        conversionPage
+        slug
+        date (format: "D. MMMM YYYY")        
+        featured
+        description
+        cover_image
+        path        
+      }
+    }
+  }
+  pages: allLandingPage(filter: { published: { eq: true }}) {
+    edges {
+      node {
+        id        
+        slug                
+      }
+    }
+  }
+  topics: allTopic(filter: { published: { eq: true }}) {
+    edges {
+      node {
+        id        
+        slug        
+        valuePropositions                
       }
     }
   }

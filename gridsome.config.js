@@ -79,6 +79,14 @@ module.exports = {
       // Create content from markdown files
       use: '@gridsome/source-filesystem',
       options: {
+        typeName: 'Topic',
+        path: 'data/topics/*.md',
+      }
+    },
+    {
+      // Create content from markdown files
+      use: '@gridsome/source-filesystem',
+      options: {
         typeName: 'ContentItem',
         path: 'data/content/*.md',
         refs: {
