@@ -28,7 +28,7 @@
               class="d-none d-md-inline-flex raised hero-card border-0 mb-3 p-0 mr-md-4 w-100"
               :key="edge.node.id"
               :post="edge.node"
-              v-bind:class="{ odd: (index % 2 === 0) == false, even: (index % 2 === 0 || index === 0) }"
+              v-bind:class="{ odd: (index % 2 === 0) == false, even: (index % 2 === 0 ) }"
             >
               <div
                 v-if="edge.node.cover_image != null && edge.node.cover_image != ''"

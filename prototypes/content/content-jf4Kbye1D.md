@@ -21,6 +21,8 @@ tags:
   - Markdown
   - Cover Image
 role: prototype
+requiredSubscription:
+  - subscriptionPlan-KIs4QHz_W
 ---
 
 ### This is markdown content
