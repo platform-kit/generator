@@ -7,6 +7,75 @@ media_folder: "static/files"
 public_folder: "/files"
 
 collections:   
+  - label: " ⚙️ Site Settings"
+    name: "settings"
+    description: "Configure your platform."
+    editor:
+      preview: false
+    files:
+      - label: "🏢 Company"
+        name: "company"
+        file: "data/company.json"
+        fields:
+          - {label: Comapany Name, name: company-name, widget: string, required: false}
+          - {label: address, name: address, widget: text, required: false}        
+      - label: " 💎 Brand"
+        name: "brand"
+        file: "data/brand.json"
+        fields:          
+          - {label: Brand Color, name: brandColor, widget: color, required: false}
+          - {label: Logo, name: logo, widget: image, required: false}
+          - {label: Logo Inverted, name: logoInverted, widget: image, required: false}          
+          - {label: Fav Icon, name: favicon, widget: image, required: false }
+          - {label: Touch Icon, name: touchicon, widget: image, required: false}      
+      - label: "💻 Theme"
+        name: "theme"
+        file: "data/theme.json"
+        fields:
+          - {label: "Homepage", name: "homepage", widget: "relation", collection: "pages", searchFields: ["title", "description"], valueField: "id", displayFields: ["title"], multiple: false, required: false}      
+          - {label: Global Javascript, name: global_head, widget: "code", output_code_only: true, default_language: "javascript", allow_language_selection: false, required: false }     
+          - {label: Global CSS, name: global_css, widget: "code", output_code_only: true, default_language: "css", allow_language_selection: false, required: false }                
+          - {label: Global HTML Footer, name: global_footer, widget: "code", output_code_only: true, default_language: "html", allow_language_selection: false, required: false }     
+      - label: "📱 Social"
+        name: "social"
+        file: "data/social.json"
+        fields:
+          - {label: Facebook, name: facebook, widget: string, required: false, hint: "Your username."}                              
+          - {label: Instagram, name: instagram, widget: string, required: false, hint: "Your username."}                    
+          - {label: Twitter, name: twitter, widget: string, required: false, hint: "Your username."}                             
+          - {label: Github, name: github, widget: string, required: false, hint: "Your username, or username/repo."}                             
+      - label: "⚖️ Legal"
+        name: "legal"
+        file: "data/legal.json"
+        fields:
+          - {label: Copyright Notice, name: copyright, widget: text, required: false}                      
+          - {label: Terms of Service, name: terms, widget: markdown, required: false}
+      - label: " 🔧 Features"
+        name: "features"
+        file: "data/features.json"
+        fields:          
+          - {label: Enable Content RSS, name: enable_content_rss, widget: boolean, default: false, required: false}    
+          - {label: Enable Social RSS, name: enable_social_rss, widget: boolean, default: false, required: false}          
+      - label: " 🗣️ Language"
+        name: "language"
+        file: "data/language.json"
+        fields:
+        - { label: "content_button_text", name: "content-button-text", widget: "string"}           
+        - { label: "products_button_text", name: "products-button-text", widget: "string"}           
+        - { label: "services_button_text", name: "services-button-text", widget: "string"}
+        - { label: "cart", name: "cart", widget: "string"}
+        - { label: "article", name: "article", widget: "string"}
+        - { label: "read_article", name: "read_article", widget: "string"}
+        - { label: "company", name: "company", widget: "string"}        
+        - { label: "featured_content", name: "featured_content", widget: "string"}
+        - { label: "featured_products", name: "featured_products", widget: "string"}
+        - { label: "featured_services", name: "featured_services", widget: "string"}        
+        - label: "Custom Strings"
+          name: "custom_strings"
+          widget: "list"
+          fields:                               
+            - { label: "String ID", name: "string_id", widget: "string", required: true, pattern: ['^[a-zA-Z0-9_]*$', "Must be only lowercase letters, numbers, and dashes."]}
+            - { label: "Text", name: "text", widget: "string", required: true}    
   - name: "pages"
     label: "📰 Landing Pages"    
     label_singular: "Landing Page"
@@ -377,73 +446,4 @@ collections:
         valueField: "id"
         displayFields: ["title"]
         multiple: true
-        required: false        
-  - label: " ⚙️ Site Settings"
-    name: "settings"
-    description: "Configure your platform."
-    editor:
-      preview: false
-    files:
-      - label: "🏢 Company"
-        name: "company"
-        file: "data/company.json"
-        fields:
-          - {label: Comapany Name, name: company-name, widget: string, required: false}
-          - {label: address, name: address, widget: text, required: false}        
-      - label: " 💎 Brand"
-        name: "brand"
-        file: "data/brand.json"
-        fields:          
-          - {label: Brand Color, name: brandColor, widget: color, required: false}
-          - {label: Logo, name: logo, widget: image, required: false}
-          - {label: Logo Inverted, name: logoInverted, widget: image, required: false}          
-          - {label: Fav Icon, name: favicon, widget: image, required: false }
-          - {label: Touch Icon, name: touchicon, widget: image, required: false}      
-      - label: "💻 Theme"
-        name: "theme"
-        file: "data/theme.json"
-        fields:
-          - {label: "Homepage", name: "homepage", widget: "relation", collection: "pages", searchFields: ["title", "description"], valueField: "id", displayFields: ["title"], multiple: false, required: false}      
-          - {label: Global Javascript, name: global_head, widget: "code", output_code_only: true, default_language: "javascript", allow_language_selection: false, required: false }     
-          - {label: Global CSS, name: global_css, widget: "code", output_code_only: true, default_language: "css", allow_language_selection: false, required: false }                
-          - {label: Global HTML Footer, name: global_footer, widget: "code", output_code_only: true, default_language: "html", allow_language_selection: false, required: false }     
-      - label: "📱 Social"
-        name: "social"
-        file: "data/social.json"
-        fields:
-          - {label: Facebook, name: facebook, widget: string, required: false, hint: "Your username."}                              
-          - {label: Instagram, name: instagram, widget: string, required: false, hint: "Your username."}                    
-          - {label: Twitter, name: twitter, widget: string, required: false, hint: "Your username."}                             
-          - {label: Github, name: github, widget: string, required: false, hint: "Your username, or username/repo."}                             
-      - label: "⚖️ Legal"
-        name: "legal"
-        file: "data/legal.json"
-        fields:
-          - {label: Copyright Notice, name: copyright, widget: text, required: false}                      
-          - {label: Terms of Service, name: terms, widget: markdown, required: false}
-      - label: " 🔧 Features"
-        name: "features"
-        file: "data/features.json"
-        fields:          
-          - {label: Enable Content RSS, name: enable_content_rss, widget: boolean, default: false, required: false}    
-          - {label: Enable Social RSS, name: enable_social_rss, widget: boolean, default: false, required: false}          
-      - label: " 🗣️ Language"
-        name: "language"
-        file: "data/language.json"
-        fields:
-        - { label: "content_button_text", name: "content-button-text", widget: "string"}           
-        - { label: "products_button_text", name: "products-button-text", widget: "string"}           
-        - { label: "services_button_text", name: "services-button-text", widget: "string"}
-        - { label: "cart", name: "cart", widget: "string"}
-        - { label: "article", name: "article", widget: "string"}
-        - { label: "read_article", name: "read_article", widget: "string"}
-        - { label: "company", name: "company", widget: "string"}        
-        - { label: "featured_content", name: "featured_content", widget: "string"}
-        - { label: "featured_products", name: "featured_products", widget: "string"}
-        - { label: "featured_services", name: "featured_services", widget: "string"}        
-        - label: "Custom Strings"
-          name: "custom_strings"
-          widget: "list"
-          fields:                               
-            - { label: "String ID", name: "string_id", widget: "string", required: true, pattern: ['^[a-zA-Z0-9_]*$', "Must be only lowercase letters, numbers, and dashes."]}
-            - { label: "Text", name: "text", widget: "string", required: true}                
+        required: false                      
