@@ -56,7 +56,7 @@
                     <span class>{{ $page.offering.price }}</span>
                   </span>
                 </div>
-                <stripe-checkout
+                <stripe-checkout v-if="window != null"
                   class="d-inline mr-2"
                   ref="checkoutRef"
                   :sessionId="sessionId"
@@ -105,7 +105,7 @@
                   </span>
                 </div>
                 <stripe-checkout
-                  v-if="customerEmail != null"
+                  v-if="customerEmail != null && window != null"
                   class="d-inline mr-2"
                   ref="checkoutRef2"
                   :items="items"
@@ -126,7 +126,7 @@
                   </template>
                 </stripe-checkout>
                 <stripe-checkout
-                  v-else
+                  v-else-if="window != null"
                   class="d-inline mr-2"
                   ref="checkoutRef2"
                   :items="items"
