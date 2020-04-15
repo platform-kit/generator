@@ -204,7 +204,7 @@ collections:
     editor:
       preview: false
     folder: "data/offerings"
-    create: true    
+    create: false    
     slug: "{{id}}"
     fields:
       - {label: "Title", name: "title", widget: "string"}
