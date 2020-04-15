@@ -6,7 +6,7 @@ local_backend:
 media_folder: "static/files"
 public_folder: "/files"
 
-logo_url: ../logos/platformkit.png
+logo_url: ../../logos/logo.png
 sortableFields: [title', 'published', 'featured']
 
 collections:   

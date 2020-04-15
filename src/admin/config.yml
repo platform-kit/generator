@@ -5,7 +5,7 @@ media_folder: "static/files"
 public_folder: "/files"
 publish_mode: editorial_workflow
 
-logo_url: ../logos/platformkit.png
+logo_url: ../../logos/logo.png
 sortableFields: [title', 'published', 'featured']
 
 collections:
