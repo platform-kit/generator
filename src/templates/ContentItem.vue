@@ -87,20 +87,39 @@
             </div>
           </div>
           <div class="col-md-6 my-auto" my-auto justify-content-center text-center>
+            
+            <div v-if="$page.contentItem.requiredSubscription == null">
             <h3
               class="opacity-90 mt-2 d-none d-lg-inline-block"
             >You must sign in to to view this content.</h3>
             <h5
               class="opacity-90 mt-0 d-inline-block d-lg-none"
             >You must sign in to to view this content.</h5>
+            </div>
+            <div v-else>
+            <h3
+              class="opacity-90 mt-2 d-none d-lg-inline-block"
+            >Sign up or sign in to to view this content.</h3>
+            <h5
+              class="opacity-90 mt-0 d-inline-block d-lg-none"
+            >Sign up or sign to to view this content.</h5>
+            </div>
             <div
               class="btn br-25 px-4 mt-3 mb-5 border-0 raised"
               style="background-image:linear-gradient(0deg, rgba(0,150,200,0.25) -20%, #fff 80%);"
               v-b-modal.modal-login
             >
               Sign In
-              <i class="fa fa-sign-in ml-2"></i>
+              <i class="fa fa-user ml-2"></i>
             </div>
+            <a 
+              class="btn br-25 px-4 mt-3 mb-5 ml-2 border-0 raised"    
+              style="background-image:linear-gradient(0deg, rgba(0,150,200,0.25) -20%, #fff 80%);"          
+              href="/pricing"
+            >
+              Sign Up
+              <i class="fa fa-sign-in ml-2"></i>
+            </a>
           </div>
         </div>
 
@@ -393,6 +412,7 @@ query ContentItem ($id: ID!) {
       cover_image
       media_preview
       media_full
+      requiredSubscription
       path
       tags {
         id
