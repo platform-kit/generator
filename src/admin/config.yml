@@ -8,7 +8,7 @@ publish_mode: editorial_workflow
 logo_url: ../../logos/logo.png
 sortableFields: [title', 'published', 'featured']
 
-collections:
+collections:   
   - label: " ⚙️ Settings"
     name: "settings"
     description: "Configure your platform."
@@ -77,7 +77,7 @@ collections:
           widget: "list"
           fields:                               
             - { label: "String ID", name: "string_id", widget: "string", required: true, pattern: ['^[a-zA-Z0-9_]*$', "Must be only lowercase letters, numbers, and dashes."]}
-            - { label: "Text", name: "text", widget: "string", required: true}                   
+            - { label: "Text", name: "text", widget: "string", required: true}    
   - name: "pages"
     label: "📰 Landing Pages"    
     label_singular: "Landing Page"
@@ -159,7 +159,7 @@ collections:
         widget: ncw-id
         prefix: valueProposition          
         hint: Automatically generated unique ID.      
-      - {label: "Published", name: "published", widget: "boolean", required: false}      
+      - {label: "Published", name: "published", widget: "boolean", required: false}            
       - {label: "Call To Action Text", name: "call_to_action_text", widget: "string", required: true}        
       - {label: "Call To Action Button", name: "call_to_action_button", widget: "string", required: true}
       - label: "Conversion Page"
@@ -220,7 +220,8 @@ collections:
         hint: Automatically generated unique ID.
       - {label: "Slug", name: "slug", widget: "string", required: true, pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', "Must be only lowercase letters, numbers, and dashes."]}
       - {label: "Published", name: "published", widget: "boolean", required: false}
-      - {label: "Description", name: "description", widget: "text", required: false}                      
+      - {label: "Description", name: "description", widget: "text", required: false}  
+      - {label: "Value Propositions", name: "valuePropositions", widget: "relation", collection: "valuePropositions", searchFields: ["title", "description"], valueField: "id", displayFields: ["title"], multiple: true, required: false, hint: "The value propositions selected here will be displayed on content with this topic."}                                         
   - name: "socialPosts"
     label: "💬 Social Media"
     label_singular: "Social Media Post"
@@ -448,4 +449,4 @@ collections:
         valueField: "id"
         displayFields: ["title"]
         multiple: true
-        required: false        
+        required: false                      
