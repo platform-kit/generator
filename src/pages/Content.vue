@@ -18,7 +18,7 @@
             <br />
             <span
               class="badge badge-pill px-3 bg-light-blue border-light-blue text-primary"
-              style="float:right;z-index:1000 !important;margin-left:0px;margin-top:5px;position:relative;left:-12px;top:30px;"
+              style="float:right;z-index:900 !important;margin-left:0px;margin-top:5px;position:relative;left:-12px;top:30px;"
             >
               <span class="opacity-90">{{ edge.node.minutes_to_consume }} Minute Read</span>
             </span>
@@ -28,7 +28,7 @@
               class="d-none d-md-inline-flex raised hero-card border-0 mb-3 p-0 mr-md-4 w-100"
               :key="edge.node.id"
               :post="edge.node"
-              v-bind:class="{ odd: (index % 2 === 0) == false, even: (index % 2 === 0) }"
+              v-bind:class="{ odd: (index % 2 === 0) == false, even: (index % 2 === 0 || index === 0) }"
             >
               <div
                 v-if="edge.node.cover_image != null && edge.node.cover_image != ''"
