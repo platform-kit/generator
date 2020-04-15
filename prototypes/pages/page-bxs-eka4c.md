@@ -1,5 +1,5 @@
 ---
-title: Learn Your Own Platform
+title: Launch Your Own Platform
 id: page-bxS-eKa4c
 slug: launch-your-own-platform
 published: true
