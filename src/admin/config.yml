@@ -5,6 +5,9 @@ media_folder: "static/files"
 public_folder: "/files"
 publish_mode: editorial_workflow
 
+logo_url: ../logos/platformkit.png
+sortableFields: [title', 'published', 'featured']
+
 collections:
   - label: " ⚙️ Settings"
     name: "settings"

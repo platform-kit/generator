@@ -6,6 +6,9 @@ local_backend:
 media_folder: "static/files"
 public_folder: "/files"
 
+logo_url: ../logos/platformkit.png
+sortableFields: [title', 'published', 'featured']
+
 collections:   
   - label: " ⚙️ Settings"
     name: "settings"
