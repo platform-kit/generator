@@ -240,9 +240,11 @@ export default {
       this.customerEmail = auth.data.sub;
     }
     console.log(auth);
+    if(window != null){
     this.window = window;
-    this.cancelUrl = window.location.href;
-    this.successUrl = window.location.href;
+      this.cancelUrl = window.location.href;
+      this.successUrl = window.location.href;
+    }
   },
   methods: {
     subscribe(plan) {
