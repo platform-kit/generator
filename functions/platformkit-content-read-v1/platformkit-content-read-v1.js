@@ -42,6 +42,7 @@ exports.handler = async (event, context) => {
     // Convert it to JSON
     var fm = require('front-matter');
     var data = fm(content);
+
     delete data.frontmatter;
     delete data.bodyBegin;
 
@@ -60,10 +61,61 @@ exports.handler = async (event, context) => {
     }
 
     // If customer is not subscriber, delete the body of the content item from the response
-    if (tokenResult == false || meta.user.subscriptions.length == 0) {
+    if (tokenResult == false || (meta != null && meta.user != null && meta.user.subscruptions != null && meta.user.subscriptions.length == 0)) {
       data.body = null;
       data.attributes.media_full = null;
     }
+
+    console.log('Token Result:');
+    console.log(tokenResult);
+
+    //console.log('----- User has -----');
+    // console.log(user.subscriptions);
+
+    if (data.attributes.requiredSubscription != null && user != null) {
+
+      var subscriptions = Object.values(user.subscriptions);
+      subscriptions = Object.values(subscriptions);
+      //console.log('12345');
+      //console.log(typeof subscriptions);
+      //console.log('----- User has -----');
+      //console.log(user.getDetails().subscriptions);
+      //console.log(data.attributes.id + ' requires ' + data.attributes.requiredSubscription);      
+
+      var hasRequired = false;
+
+      // Or, using array extras
+      var result = Object.entries(subscriptions).forEach(([key, value]) => {
+        /* 
+        console.log('---------- ---------- ---------- Inside function');
+        console.log(value.plan); // "a 5", "b 7", "c 9"
+        */
+
+        var currentPlan = value.plan.id;
+        var required = data.attributes.requiredSubscription;
+
+        console.log(required);
+        console.log(currentPlan);
+        console.log(currentPlan.includes(required));
+        if (currentPlan.includes(required)) {
+          hasRequired = currentPlan.includes(required);
+        }
+
+        //console.log('Customer has required subscription.');
+
+      });
+
+      if (hasRequired !== true) {
+        data.body = null;
+        data.attributes.media_full = null;
+      }
+
+      console.log('Final auth result:');
+      console.log(hasRequired);
+
+    }
+
+
 
     return {
       statusCode: 200,

@@ -28,7 +28,7 @@ exports.handler = async (event, context) => {
         //const cryptr = new Cryptr(process.env.JWT_SECRET);
         //const email = cryptr.decrypt(data.sub);
         //data.sub = email;
-        token = token = jwt.sign({ sub: data.sub }, loginSecretKey, { expiresIn: '7 days' });
+        token = token = jwt.sign({ sub: data.sub }, loginSecretKey, { expiresIn: '365 days' });
         data = jwt.verify(token, loginSecretKey);
         var message = null;      
         message = 'Token validated.';
