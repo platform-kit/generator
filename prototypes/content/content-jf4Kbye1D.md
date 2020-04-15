@@ -21,6 +21,8 @@ tags:
   - Markdown
   - Cover Image
 role: prototype
+topics:
+  - topic-KIRVXSW_O
 requiredSubscription:
   - subscriptionPlan-KIs4QHz_W
 ---
