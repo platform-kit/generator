@@ -7,6 +7,33 @@
   <title>Admin Panel</title>
   <script src="index.js" type="module"></script>
   <style>
+    html {
+      background-color: rgba(255, 255, 255, 0.5) !important;
+    }
+
+    body {
+      background-color: rgba(255, 255, 255, 0.5) !important;
+      background-image: linear-gradient(180deg, rgba(238, 255, 250, 0.5) 0px, rgba(255, 255, 255, 0.5) 300px) !important;
+      background-repeat: no-repeat;
+    }
+
+    header {
+      padding: 10px 0px 0px 0px !important;
+      height: 75px !important;
+      box-shadow: 5px 5px 25px rgba(0, 100, 150, 0.15) !important;
+      border-bottom: 1px solid #ddedff !important;
+    }
+
+    main>div:nth-child(1),
+    main>div:nth-child(2),
+    main>div:nth-child(3),
+    main ul,
+    main li {
+      margin: 0px 0px 10px 0px;
+      display: inline-block;
+      width: 100% !important;
+    }
+
     aside a span {
       display: inline-flex !important;
       justify-content: center;
@@ -28,6 +55,14 @@
     aside a[href="#/collections/settings"] {
       color: #000;
       margin-left: -25px;
+    }
+
+    .css-hn3jn7-EditorContainer {
+      padding-top: 75px !important;
+    }
+
+    .css-1qmdeys-ToolbarContainer {
+      height: 75px !important;
     }
   </style>
 </head>
