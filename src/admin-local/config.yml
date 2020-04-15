@@ -53,7 +53,7 @@ collections:
             - {label: "Page Element List", name: "list", widget: "relation", collection: "pageElements", searchFields: ["title", "description"], valueField: "id", displayFields: ["title"], multiple: true, required: false}                               
       - {label: "Thumbnail Image", name: "thumbnail_image", widget: "image", required: false}              
   - name: "pageElements"
-    label: "— 💻 Code Snippets"
+    label: "💻 Code Snippets"
     label_singular: "Code Snippet"
     description: "Reusable bits of HTML for building pages."
     editor:
@@ -73,9 +73,9 @@ collections:
         widget: boolean
       - {label: "Code", name: "code", defaultLanguage: "html", widget: "code", output_code_only: false, default_language: "html", allow_language_selection: true, required: true}                        
   - name: "valuePropositions"
-    label: "— 📣 Value Propositions"
+    label: "📣 Value Propositions"
     label_singular: "Value Proposition"
-    description: "So what? Who cares? Why you?"
+    description: "Make your customers an offer they can't refuse."
     editor:
       preview: false
     folder: "data/valuePropositions"
@@ -130,8 +130,9 @@ collections:
       - {label: "Minutes To Consume", name: "minutes_to_consume", widget: "number", min: 1, step: 1, required: false}      
       - {label: "Cover Image", name: "cover_image", widget: "image", required: false}
       - {label: "Thumbnail Image", name: "thumbnail_image", widget: "image", required: false}      
+      - {label: "Required Subscription", name: "requiredSubscription", widget: "relation", required: false, multiple: true, collection: "subscriptionPlans", searchFields: ["title", "description"], valueField: "id", displayFields: ["title"]}      
   - name: "topics"
-    label: "— 🗃️ Topics"
+    label: "🗃️ Topics"
     label_singular: "Topic"
     description: "Create topics to organize your content."
     editor:
@@ -150,7 +151,7 @@ collections:
       - {label: "Published", name: "published", widget: "boolean", required: false}
       - {label: "Description", name: "description", widget: "text", required: false}                      
   - name: "socialPosts"
-    label: "— 💬 Social Media"
+    label: "💬 Social Media"
     label_singular: "Social Media Post"
     description: "Schedule social media posts with text, images, & videos."
     editor:
@@ -217,7 +218,7 @@ collections:
       - {label: "Published", name: "published", widget: "boolean", required: false}
       - {label: "Featured", name: "featured", widget: "boolean", required: false}
   - name: "products"
-    label: "— 📦 Products"
+    label: "📦 Products"
     label_singular: "Product"
     description: "Your products."
     editor:
@@ -267,7 +268,7 @@ collections:
       - {label: "Buy Button URL", name: "buy_button_url", widget: "string", required: false, hint: "If this is set, a button will be rendered linking to the given URL."}
       - {label: "Buy Button HTML", name: "buy_button_html", widget: "code", output_code_only: true, default_language: "css", allow_language_selection: false,  required: false,hint: "If this is set, and the buy button URL is NOT set, this will be rendered."}      
   - name: "services"
-    label: "— 💼 Services"
+    label: "💼 Services"
     label_singular: "Service"
     description: "Your services."
     editor:
@@ -293,7 +294,7 @@ collections:
       - {label: "Buy Button URL", name: "buy_button_url", widget: "string", required: false, hint: "If this is set, a button will be rendered linking to the given URL."}
       - {label: "Buy Button HTML", name: "buy_button_html", widget: "code", output_code_only: true, default_language: "css", allow_language_selection: false,  required: false,hint: "If this is set, and the buy button URL is NOT set, this will be rendered."}        
   - name: "subscriptionProducts"
-    label: "— 🔁 Subscriptions"
+    label: "🔁 Subscriptions"
     label_singular: "Subscription"
     description: "Your subscription products."
     editor:
@@ -327,7 +328,7 @@ collections:
       - {label: "Buy Button HTML", name: "buy_button_html", widget: "code", output_code_only: true, default_language: "css", allow_language_selection: false,  required: false,hint: "If this is set, and the buy button URL is NOT set, this will be rendered."}      
       - {label: "Cover Image", name: "cover_image", widget: "image", required: false}                            
   - name: "subscriptionPlans"
-    label: "— 💳 Pricing Plans"
+    label: "💳 Pricing Plans"
     label_singular: "Pricing Plan"
     description: "Pricing plans for subscription products."
     editor:
@@ -349,7 +350,7 @@ collections:
       - {label: "Price ($)", name: "price", widget: "number", required: true}
       - {label: "Trial (# of days)", name: "trial_days", widget: "number", required: false}  
   - name: "collections"
-    label: "— 🗂️ Collections"
+    label: "🗂️ Collections"
     label_singular: "Collection"
     description: "Curated lists of your offerings."
     editor:

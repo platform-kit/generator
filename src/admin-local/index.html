@@ -1,15 +1,38 @@
 <!doctype html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Panel</title>
-  <link rel="icon" 
-      type="image/png" 
-      href="/files/icon.png">
-  <script src="127.0.0.1:8080/index.js" type="module"></script>    
+  <link rel="icon" type="image/png" href="../logos/icon.png">
+  <script src="127.0.0.1:8888/index.js" type="module"></script>  
+  <style>
+    aside a span {
+      display: inline-flex !important;
+      justify-content: center;
+      align-items: center
+    }
+
+    aside a span svg {
+      display: none !important;
+    }
+
+    aside a span::before {
+      font-family: "Font Awesome 5 Free" !important;
+      font-size: 1rem;
+    }
+
+    aside a[href="#/collections/content"], aside a[href="#/collections/pages"] , aside a[href="#/collections/offerings"] , aside a[href="#/collections/settings"]  {
+      color:#000;
+      margin-left:-25px;
+    }
+ 
+  </style>
 </head>
+
 <body>
 
 </body>
+
 </html>
