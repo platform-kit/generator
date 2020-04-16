@@ -278,6 +278,7 @@ query LandingPage ($id: ID!) {
 
 
 <script>
+import socialSettings from "../../data/social.json";
 export default {
   data() {
     return {
@@ -299,13 +300,13 @@ export default {
     getThumbnailImage() {
       if (this.$page.landingPage.thumbnail_image != null) {
         return (
-          "https://www.dharmaworks.com" +
+          process.env.GRIDSOME_APP_URL +
           this.$page.landingPage.thumbnail_image.src
         );
       }
       if (this.$page.landingPage.cover_image != null) {
         return (
-          "https://www.dharmaworks.com" + this.$page.landingPage.cover_image.src
+          process.env.GRIDSOME_APP_URL + this.$page.landingPage.cover_image.src
         );
       } else {
         return "";
@@ -334,7 +335,7 @@ export default {
         },
         {
           name: "twitter:creator",
-          content: "@DharmaWorksLLC"
+          content: "@" + socialSettings.twitter
         },
         {
           property: "og:description",

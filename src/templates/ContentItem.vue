@@ -272,6 +272,7 @@
 </template>
 
 <script>
+import socialSettings from "../../data/social.json";
 import axios from "axios";
 export default {
   data() {
@@ -362,13 +363,13 @@ export default {
     getThumbnailImage() {
       if (this.$page.contentItem.thumbnail_image != null) {
         return (
-          "https://www.dharmaworks.com" +
+          process.env.GRIDSOME_APP_URL +
           this.$page.contentItem.thumbnail_image.src
         );
       }
       if (this.$page.contentItem.cover_image != null) {
         return (
-          "https://www.dharmaworks.com" + this.$page.contentItem.cover_image.src
+          process.env.GRIDSOME_APP_URL + this.$page.contentItem.cover_image.src
         );
       } else {
         return "";
@@ -411,7 +412,7 @@ export default {
         },
         {
           name: "twitter:creator",
-          content: "@DharmaWorksLLC"
+          content: "@" + socialSettings.twitter
         },
         {
           property: "og:description",
