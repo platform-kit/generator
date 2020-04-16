@@ -5,8 +5,7 @@
     "platformkit": "./bin/run"
   },
   "scripts": {
-    "prebuild": "node ./scripts/installer.js",
-    "postinstall": "link-module-alias",
+    "prebuild": "node ./scripts/installer.js",    
     "build": "gridsome build",
     "develop": "gridsome develop",
     "explore": "gridsome explore"
@@ -16,12 +15,7 @@
     "/npm-shrinkwrap.json",
     "/oclif.manifest.json",
     "/src"
-  ],
-  "_moduleAliases": {
-    "platformkit-stripe": "lib/stripe.js",
-    "platformkit-product": "lib/product.js",
-    "platformkit-cart": "lib/cart.js"
-  },
+  ],  
   "dependencies": {
     "@babel/preset-typescript": "^7.9.0",
     "@fortawesome/fontawesome-free": "^5.12.1",
@@ -67,8 +61,10 @@
     "nodemailer": "^6.4.6",
     "nodemailer-mailgun-transport": "^2.0.0",
     "nodemailer-smtp-transport": "^2.7.4",
-    "oclif": "^1.15.2",
-    "platformkit-utils": "file:./lib",
+    "oclif": "^1.15.2",    
+    "platformkit-stripe": "file:./lib/stripe",
+    "platformkit-product": "file:./lib/product",
+    "platformkit-cart": "file:./lib/cart",
     "plyr": "^3.5.10",
     "promisify-node": "^0.5.0",
     "sharp": "^0.25.2",

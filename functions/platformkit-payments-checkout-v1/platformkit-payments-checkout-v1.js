@@ -30,9 +30,9 @@ exports.handler = async (event, context) => {
       });
     }
 
-    var stripeTools = require('platformkit-stripe');
-    var productTools = require('platformkit-product');
-    var cartTools = require('platformkit-cart');
+    var stripeTools = require('../../lib/stripe/stripe');
+    var productTools = require('../../lib/product/product');
+    var cartTools = require('../../lib/cart/cart');
     if (decodedUser != null) {
       var user = new stripeTools(decodedUser.sub);
     }

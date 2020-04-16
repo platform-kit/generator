@@ -49,7 +49,7 @@ exports.handler = async (event, context) => {
     if (tokenResult == true) {
 
       var meta = { user: {} };
-      var stripeTools = require('platformkit-stripe');
+      var stripeTools = require('../../lib/stripe/stripe');
       var user = new stripeTools(decodedUser.sub);
       var user = await user.getDetails();
       meta.user = user;

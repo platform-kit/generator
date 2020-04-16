@@ -10038,7 +10038,13 @@ pkg-up@^3.1.0:
   dependencies:
     find-up "^3.0.0"
 
-"platformkit-utils@file:./lib":
+"platformkit-cart@file:./lib/cart":
+  version "0.0.0"
+
+"platformkit-product@file:./lib/product":
+  version "0.0.0"
+
+"platformkit-stripe@file:./lib/stripe":
   version "0.0.0"
 
 plyr@^3.5.10, plyr@^3.5.6:
