@@ -223,7 +223,7 @@ export default {
       publishableKey: process.env.GRIDSOME_STRIPE_PUBLIC_KEY,
       cancelUrl: process.env.GRIDSOME_APP_URL,
       items: [],
-      successUrl: process.env.GRIDSOME_APP_URL,
+      successUrl: null,
       checkoutSession: null,
       sessionId: null,
       socialSettings: socialSettings,
@@ -245,6 +245,10 @@ export default {
       this.cancelUrl = window.location.href;
       this.successUrl = window.location.href;
     }
+
+    var successUrl = process.env.GRIDSOME_APP_URL + '/success';
+    successUrl = successUrl.replace('//success', '/success');
+    this.successUrl = successUrl;
   },
   methods: {
     subscribe(plan) {

@@ -72,8 +72,8 @@ exports.handler = async (event, context) => {
     var stripeItems = {items: [{plan: pushed.plan.id}]};
     var data = stripeItems;
   
-
-
+    var successUrl = process.env.APP_URL + '/success?productId=' + pushed.product.id + '&planId=' + pushed.plan.id;
+    successUrl = successUrl.replace('//success', '/success');
 
     if (id != null) {
       var session = await (async () => {
@@ -83,7 +83,7 @@ exports.handler = async (event, context) => {
           // mode: 'subscription',
           payment_method_types: ['card'],
           subscription_data: stripeItems,
-          success_url: process.env.APP_URL,
+          success_url: successUrl,
           cancel_url: process.env.APP_URL
         });
       })();
@@ -98,7 +98,7 @@ exports.handler = async (event, context) => {
           // mode: 'subscription',
           payment_method_types: ['card'],     
           subscription_data: stripeItems,
-          success_url: process.env.APP_URL,
+          success_url: successUrl,
           cancel_url: process.env.APP_URL
         });
       })();
@@ -109,7 +109,7 @@ exports.handler = async (event, context) => {
           // mode: 'subscription',
           payment_method_types: ['card'],        
           subscription_data: stripeItems,
-          success_url: process.env.APP_URL,
+          success_url: successUrl,
           cancel_url: process.env.APP_URL
         });
       })();
