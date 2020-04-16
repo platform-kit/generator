@@ -6,6 +6,7 @@
   },
   "scripts": {
     "prebuild": "node ./scripts/installer.js",
+    "postinstall": "link-module-alias",
     "build": "gridsome build",
     "develop": "gridsome develop",
     "explore": "gridsome explore"
@@ -16,7 +17,12 @@
     "/oclif.manifest.json",
     "/src"
   ],
-  "dependencies": {    
+  "_moduleAliases": {
+    "platformkit-stripe" : "lib/stripe.js",
+    "platformkit-product" : "lib/product.js",
+    "platformkit-cart" : "lib/cart.js"
+  },
+  "dependencies": {
     "@babel/preset-typescript": "^7.9.0",
     "@fortawesome/fontawesome-free": "^5.12.1",
     "@fortawesome/free-solid-svg-icons": "^5.12.1",
@@ -46,6 +52,7 @@
     "gridsome-plugin-rss": "^1.2.0",
     "hashids": "^2.2.1",
     "jsonwebtoken": "^8.5.1",
+    "link-module-alias": "^1.2.0",
     "mailgun-js": "^0.22.0",
     "marked": "^0.8.1",
     "moment": "^2.24.0",
@@ -68,10 +75,7 @@
     "v-markdown": "^1.0.2",
     "vue": "^2.6.11",
     "vue-plyr": "^6.0.4",
-    "vue-stripe-checkout": "^3.2.2",
-    "platformkit-cart": "file:lib/cart.js",
-    "platformkit-product": "file:lib/product.js",
-    "platformkit-stripe": "file:lib/stripe.js"
+    "vue-stripe-checkout": "^3.2.2"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.27",
