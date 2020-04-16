@@ -34,7 +34,7 @@ class CopyDataCommand extends Command {
     if (fs.existsSync('./data')) {
       // Do something
       console.log(123);
-      ncp('./data', './netlify/functions/data', function (err) {
+      ncp('./data', './functions/platformkit-content-read-v1/data', function (err) {
         if (err) {
           return console.error(err);
         }
