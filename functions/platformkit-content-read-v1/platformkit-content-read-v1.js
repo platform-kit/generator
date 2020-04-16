@@ -36,12 +36,9 @@ exports.handler = async (event, context) => {
     // Get the relevant static file    
     var fs = require('fs');
     console.log(__dirname);
-    if(__dirname.includes('.netlify')){
-      var content = __dirname + '/../../../data/content/' + file + '.md';
-    }
-    else {
-      var content = __dirname + '/../../data/content/' + file + '.md';
-    }
+    var content = 'data/content/' + file + '.md';
+
+    console.log(content);
     
     var errormessage = null;
     content = fs.readFileSync(content, 'utf8');

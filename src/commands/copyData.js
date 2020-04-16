@@ -29,7 +29,18 @@ class CopyDataCommand extends Command {
           }
           console.log('done!');
           });
-    }    
+    }  
+    
+    if (fs.existsSync('./data')) {
+      // Do something
+      console.log(123);
+      ncp('./data', './netlify/functions/data', function (err) {
+        if (err) {
+          return console.error(err);
+        }
+        console.log('done!');
+        });
+  }  
     
     ncp('./README.md', './static/docs/README.md', function (err) {
       if (err) {
