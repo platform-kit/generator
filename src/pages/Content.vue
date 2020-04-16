@@ -256,12 +256,7 @@ query {
         description
         minutes_to_consume
         cover_image
-        path
-        tags {
-          id
-          title
-          path
-        }
+        path      
       }
     }
   }
@@ -275,12 +270,7 @@ query {
         featured
         description
         cover_image
-        path
-        tags {
-          id
-          title
-          path
-        }
+        path        
       }
     }
   }
@@ -294,12 +284,7 @@ query {
         featured
         description
         cover_image
-        path
-        tags {
-          id
-          title
-          path
-        }
+        path        
       }
     }
   }

@@ -4,18 +4,21 @@
 // Changes here requires a server restart.
 // To restart press CTRL + C in terminal and run `gridsome develop`
 
+var companySettings = require("./data/company.json");
 
-var getImage = function (input){
-  var str = "/images/";    
-  if(input != null) {    
-      str = input;
-      if(str.hasOwnProperty('src')){
-        str = input.src;
-      }
-  }            
+console.log('Company Name is: ' + companySettings.companyName);
+
+var getImage = function (input) {
+  var str = "/images/";
+  if (input != null) {
+    str = input;
+    if (str.hasOwnProperty('src')) {
+      str = input.src;
+    }
+  }
   str = str.split('/images/').pop();
-  
-  if(str == '/images/' || str == '' || str == null) {
+
+  if (str == '/images/' || str == '' || str == null) {
     str = '/images/chat-avatar.jpg';
   }
   else {
@@ -26,14 +29,14 @@ var getImage = function (input){
 }
 
 module.exports = {
-  siteName: 'PlatformKit',
-  siteUrl: 'https://www.platformkit.com',
-  siteDescription: 'A framework for building content, software, and e-commerce platforms.',
-  titleTemplate: '%s - PlatformKit',
+  siteName: companySettings.companyName || 'PlatformKit',
+  siteUrl: process.env.APP_URL,
+  siteDescription: companySettings.companyName || 'Built with PlatformKit',
+  titleTemplate: '%s - ' + (companySettings.companyName || 'PlatformKit'),
 
-  chainWebpack (config) {
+  chainWebpack(config) {
     //config.mode('development')
-  },  
+  },
 
   icon: {
     favicon: './static/logos/icon.png',
@@ -43,18 +46,17 @@ module.exports = {
   templates: {
     ContentItem: '/content/:slug',
     Offering: '/buy/:slug',
-    LandingPage: '/:slug',
-    Tag: '/tag/:id'
+    LandingPage: '/:slug'
   },
 
-  plugins: [    
+  plugins: [
     {
       use: `gridsome-plugin-netlify-cms`,
       options: {
         publicPath: `/admin-local`,
         htmlPath: `src/admin-local/index.html`,
         configPath: `src/admin-local/config.yml`,
-        modulePath: `src/admin-local/index.js` ,
+        modulePath: `src/admin-local/index.js`,
         //repository: process.env.REPOSITORY 
       }
     },
@@ -64,7 +66,7 @@ module.exports = {
         publicPath: `/admin`,
         htmlPath: `src/admin/index.html`,
         configPath: `src/admin/config.yml`,
-        modulePath: `src/admin/index.js` 
+        modulePath: `src/admin/index.js`
       }
     },
     {
@@ -90,11 +92,6 @@ module.exports = {
         typeName: 'ContentItem',
         path: 'data/content/*.md',
         refs: {
-          // Creates a GraphQL collection from 'tags' in front-matter and adds a reference.
-          tags: {
-            typeName: 'Tag',
-            create: true
-          }
         }
       }
     },
@@ -106,11 +103,6 @@ module.exports = {
         typeName: 'Offering',
         path: 'data/offerings/*.md',
         refs: {
-          // Creates a GraphQL collection from 'tags' in front-matter and adds a reference.
-          tags: {
-            typeName: 'Tag',
-            create: true
-          }
         }
       }
     },
@@ -120,7 +112,7 @@ module.exports = {
       use: '@gridsome/source-filesystem',
       options: {
         typeName: 'SubscriptionPlan',
-        path: 'data/subscriptionPlans/*.md',       
+        path: 'data/subscriptionPlans/*.md',
       }
     },
 
@@ -131,11 +123,6 @@ module.exports = {
         typeName: 'Collection',
         path: 'data/collections/*.md',
         refs: {
-          // Creates a GraphQL collection from 'tags' in front-matter and adds a reference.
-          tags: {
-            typeName: 'Tag',
-            create: true
-          }
         }
       }
     },
@@ -147,7 +134,6 @@ module.exports = {
         typeName: 'SocialPost',
         path: 'data/socialPosts/*.md',
         refs: {
-          
         }
       }
     },
@@ -159,7 +145,7 @@ module.exports = {
         typeName: 'PageElement',
         path: 'data/pageElements/*.md',
         refs: {
-          
+
         }
       }
     },
@@ -172,7 +158,7 @@ module.exports = {
         typeName: 'ValueProposition',
         path: 'data/valuePropositions/*.md',
         refs: {
-          
+
         }
       }
     },
@@ -214,7 +200,7 @@ module.exports = {
         enforceTrailingSlashes: false,
         // Optional: a method that accepts a node and returns true (include) or false (exclude)
         // Example: only past-dated nodes: `filterNodes: (node) => node.date <= new Date()`
-        filterNodes: (node) => true, 
+        filterNodes: (node) => true,
         // Optional: a method that accepts a node and returns an object for `Feed.addItem()`
         // See https://www.npmjs.com/package/feed#example for available properties
         // NOTE: `date` field MUST be a Javascript `Date` object
@@ -222,19 +208,17 @@ module.exports = {
           title: node.title,
           description: node.description,
           image: 'https://www.dharmaworks.com' + node.thumbnail_image,
-          date: node.date || node.fields.date,          
+          date: node.date || node.fields.date,
           content: JSON.stringify(
             {
               published: node.published,
               repost_rules: node.repost_rules
             }
-          )         
+          )
         })
       }
     }
   ],
-
-  
 
   transformers: {
     //Add markdown support to all file-system sources

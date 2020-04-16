@@ -315,12 +315,7 @@ query {
         featured
         description
         cover_image
-        path
-        tags {
-          id
-          title
-          path
-        }
+        path        
       }
     }
   }
@@ -334,12 +329,7 @@ query {
         featured
         description
         cover_image
-        path
-        tags {
-          id
-          title
-          path
-        }
+        path        
       }
     }
   }
@@ -354,12 +344,7 @@ query {
         description
         content
         cover_image
-        path
-        tags {
-          id
-          title
-          path
-        }
+        path        
       }
     }
   }
@@ -375,12 +360,7 @@ query {
         description
         cover_image
         content
-        path
-        tags {
-          id
-          title
-          path
-        }
+        path        
       }
     }
   }
@@ -394,12 +374,7 @@ query {
         featured
         description
         cover_image
-        path
-        tags {
-          id
-          title
-          path
-        }
+        path        
       }
     }
   }

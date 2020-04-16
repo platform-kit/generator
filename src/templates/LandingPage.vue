@@ -194,12 +194,7 @@ query LandingPage ($id: ID!) {
         featured
         description
         cover_image
-        path
-        tags {
-          id
-          title
-          path
-        }
+        path        
         offerings
       }
     }
@@ -217,12 +212,7 @@ query LandingPage ($id: ID!) {
         type
         description
         cover_image
-        path
-        tags {
-          id
-          title
-          path
-        }
+        path        
       }
     }
   }
@@ -247,12 +237,7 @@ query LandingPage ($id: ID!) {
         description
         minutes_to_consume
         cover_image
-        path
-        tags {
-          id
-          title
-          path
-        }
+        path        
       }
     }
   }

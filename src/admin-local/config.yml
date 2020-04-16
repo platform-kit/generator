@@ -20,7 +20,8 @@ collections:
         name: "company"
         file: "data/company.json"
         fields:
-          - {label: Comapany Name, name: company-name, widget: string, required: false}
+          - {label: Comapany Name, name: companyName, widget: string, required: false}
+          - {label: Site Description, name: siteDescription, widget: string, required: false}
           - {label: address, name: address, widget: text, required: false}        
       - label: " 💎 Brand"
         name: "brand"

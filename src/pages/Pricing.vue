@@ -90,12 +90,7 @@ query {
         type
         description
         cover_image
-        path
-        tags {
-          id
-          title
-          path
-        }
+        path        
       }
     }
   }
@@ -112,12 +107,7 @@ query {
         published
         description
         cover_image
-        path
-        tags {
-          id
-          title
-          path
-        }
+        path        
         offerings
       }
     }

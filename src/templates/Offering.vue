@@ -397,12 +397,7 @@ query Offering ($id: ID!) {
       }
       path
       buy_button_html
-      buy_button_url
-      tags {
-        id
-        title
-        path
-      }
+      buy_button_url      
   }
   plans: allSubscriptionPlan(sortBy: "price", order: DESC, filter: { published: { eq: true }}) {
     edges {

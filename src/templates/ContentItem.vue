@@ -233,19 +233,16 @@
         >{{ $options.filters.markdown($page.contentItem.excerpt) }}</div>
       </div>
     </div>
-    
+
     <div v-if="$page.contentItem.topics != null" class="row">
       <div v-for="listedTopic in $page.contentItem.topics" v-bind:key="listedTopic" class="w-100">
         <div v-for="topic in $page.topics.edges" v-bind:key="topic" class="w-100">
-          <div class="w-100"
+          <div
+            class="w-100"
             v-for="valueProposition in $page.valuePropositions.edges"
             v-bind:key="valueProposition"
           >
-           
-
-
-
-              <div
+            <div
               class="bg-dark justify-content-center text-light text-center w-100 d-inline-flex"
               style="
                 height:500px;                                     
@@ -259,23 +256,12 @@
                 <a
                   v-for="page in $page.pages.edges"
                   v-bind:key="page"
-                  
                   :href="'/' + page.node.slug"
                   x-v-on:click="window.location.assign('/' + page.node.slug)"
                   class="d-inline-block btn btn-light btn-lg mt-3 raised br-25"
                 >Learn More</a>
               </div>
             </div>
-
-
-
-
-
-
-
-
-
-
           </div>
         </div>
       </div>
@@ -473,12 +459,7 @@ query ContentItem ($id: ID!) {
         featured
         description
         cover_image
-        path
-        tags {
-          id
-          title
-          path
-        }
+        path        
         offerings
       }
     }
@@ -496,12 +477,7 @@ query ContentItem ($id: ID!) {
         type
         description
         cover_image
-        path
-        tags {
-          id
-          title
-          path
-        }
+        path        
       }
     }
   }

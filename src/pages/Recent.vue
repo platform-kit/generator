@@ -40,12 +40,7 @@ query {
         description
         cover_image
         thumbnail_image
-        path
-        tags {
-          id
-          title
-          path
-        }
+        path        
       }
     }
   }
