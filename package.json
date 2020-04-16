@@ -5,6 +5,7 @@
     "platformkit": "./bin/run"
   },
   "scripts": {
+    "prebuild": "node ./scripts/installer.js",
     "build": "gridsome build",
     "develop": "gridsome develop",
     "explore": "gridsome explore"
