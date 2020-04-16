@@ -14,13 +14,17 @@
       <!-- Featured posts -->
       <div class="posts mt-4">
         <div class="container mt-1 mt-lg-0">
-          <div class="row mt-2 mb-3" v-for="edge, index in $page.featuredContent.edges" :key="edge.node.id" v-if="edge.node.cover_image != null && edge.node.cover_image != ''">
+          <div
+            class="row mt-2 mb-3"
+            v-for="edge, index in $page.featuredContent.edges"
+            :key="edge.node.id"
+          >
             <br />
             <span
               class="badge badge-pill px-3 bg-light-blue border-light-blue text-primary"
-              style="float:right;z-index:900 !important;margin-left:0px;margin-top:5px;position:relative;left:-12px;top:30px;"
+              style="float:right;z-index:999 !important;margin-left:0px;margin-top:5px;position:relative;left:-12px;top:30px;"
             >
-              <span class="opacity-90">{{ edge.node.minutes_to_consume }} Minute Read</span>
+              <span>{{ edge.node.minutes_to_consume }} Minute Read</span>
             </span>
             <b-card
               v-on:click="window.location.assign('/content/' + edge.node.slug)"
@@ -28,7 +32,7 @@
               class="d-none d-md-inline-flex raised hero-card border-0 mb-3 p-0 mr-md-4 w-100"
               :key="edge.node.id"
               :post="edge.node"
-              v-bind:class="{ odd: (index % 2 === 0) == false, even: (index % 2 === 0 ) }"
+              v-bind:class="{ odd: index % 2 !== 0, even: (index %2 === 0) }"
             >
               <div
                 v-if="edge.node.cover_image != null && edge.node.cover_image != ''"
@@ -74,18 +78,18 @@
             <b-card
               v-on:click="window.location.assign('/content/' + edge.node.slug)"
               v-else
-              class="d-none d-md-inline-block raised hero-card border-0 mb-3"
-              
+              class="d-none d-md-inline-block raised hero-card w-100 border-0 mb-3 mr-4 d-md-inline-flex"
               :post="edge.node"
             >
-              <b-card-text class="pt-3 px-3 text-primary" style="line-height:25px;">
-                <h5>{{ edge.node.title }}</h5>
+            <div class="p-4 text-center w-100 my-auto" style="height:100%;">
+              <b-card-text class="pt-0 px-3 text-primary" style="line-height:25px;">
+                <h3>{{ edge.node.title }}</h3>
               </b-card-text>
-              <b-card-text class="pb-5 px-3" style="line-height:28px;">
+              <b-card-text class="pb-5 px-3" style="line-height:28px;font-size:150%;font-weight:300;">
                 {{ edge.node.description.substr(0, 66) }}
-                <span style="opacity:.5;">...</span>
+                <span v-if="edge.node.description.length > 66"  style="opacity:.5;">...</span>
               </b-card-text>
-
+              </div>
               <b-button
                 :href="'/content/' + edge.node.slug"
                 style="position:absolute;bottom:25px;right:25px;width:calc(100% - 55px)"
@@ -98,8 +102,8 @@
             <b-card
               overlay
               class="d-inline-block d-md-none raised border-0 mb-3 pull-left mx-0 px-0 h-100 mr-md-3"
-              
               :post="edge.node"
+              style="z-index:99;"
               v-if="edge.node.cover_image != null"
               :img-src="edge.node.cover_image"
               img-top
@@ -129,18 +133,20 @@
 
             <b-card
               v-else
-              class="raised border-0 mb-3 pull-left mx-0 px-0 h-100 mr-md-3"
+              class="raised border-0 mb-3 pull-left mx-0 px-0 h-100 mr-md-3 w-100 d-inline-block d-md-none"
               :key="edge.node.id"
               :post="edge.node"
+              style="min-height:300px;"
             >
               <b-card-text class="pt-3 px-3 text-primary" style="line-height:25px;">
                 <h5>{{ edge.node.title }}</h5>
+                <p class="card-text text-dark" style="font-size:133%;">{{ edge.node.description }}</p>
               </b-card-text>
 
               <b-button
                 :href="'/content/' + edge.node.slug"
                 style="position:absolute;bottom:25px;right:25px;width:calc(100% - 55px)"
-                variant="light"
+                variant="primary"
               >
                 Read Article
                 <span style="opacity:0.5;">→</span>
@@ -372,5 +378,8 @@ export default {
 <style lang="scss">
 .isMobile {
   margin-top: 250px !important;
+}
+.d-md-inline-flex .card-body {
+  display:inline-flex !important;
 }
 </style>
