@@ -53,7 +53,13 @@ exports.handler = async (event, context) => {
     if (tokenResult == true) {
 
       var meta = { user: {} };
-      var stripeTools = require('../../lib/stripe/stripe');
+      if(process.env.ENVIRONMENT == 'development'){
+        var stripeTools = require('../../lib/stripe/stripe');
+      }
+      else {
+        var stripeTools = require('/lib/stripe/stripe');
+      }
+      
       var user = new stripeTools(decodedUser.sub);
       var user = await user.getDetails();
       meta.user = user;
