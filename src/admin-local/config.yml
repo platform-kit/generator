@@ -176,6 +176,7 @@ collections:
     label: "🗂️ Content"
     label_singular: "Content Item"
     description: "Create & publish individual content items here."
+    sortableFields: ['commit_date', 'title', 'commit_author', 'language.en']
     editor:
       preview: false
     folder: "data/content"
