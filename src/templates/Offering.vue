@@ -209,7 +209,7 @@
 </template>
 
 <script>
-import { StripeCheckout } from "vue-stripe-checkout";
+import { StripeCheckout } from "../../node_overwrites/vue-stripe-checkout/vue-stripe-checkout";
 import axios from "axios";
 import socialSettings from "../../data/social.json";
 
