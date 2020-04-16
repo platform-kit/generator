@@ -26,10 +26,10 @@ var getImage = function (input){
 }
 
 module.exports = {
-  siteName: 'DharmaWorks',
-  siteUrl: 'https://www.dharmaworks.com',
-  siteDescription: 'Transformation & manifestation tools, content, & coaching.',
-  titleTemplate: 'DharmaWorks - %s',
+  siteName: 'PlatformKit',
+  siteUrl: 'https://www.platformkit.com',
+  siteDescription: 'A framework for building content, software, and e-commerce platforms.',
+  titleTemplate: '%s - PlatformKit',
 
   chainWebpack (config) {
     //config.mode('development')
