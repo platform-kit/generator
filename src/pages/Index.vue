@@ -58,8 +58,7 @@ export default {
     }
   },
   metaInfo: {
-    title:
-      "Transformational techniques, tools, & services for the modern seeker."
+   
   },
   methods: {
     redirectToLandingPage(id) {
