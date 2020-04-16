@@ -36,7 +36,7 @@ exports.handler = async (event, context) => {
     // Get the relevant static file    
     var fs = require('fs');
     console.log(__dirname);
-    var content = 'data/content/' + file + '.md';
+    var content = __dirname + '/data/content/' + file + '.md';
 
     console.log(content);
     
