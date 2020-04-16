@@ -16,7 +16,7 @@
     "/oclif.manifest.json",
     "/src"
   ],
-  "dependencies": {
+  "dependencies": {    
     "@babel/preset-typescript": "^7.9.0",
     "@fortawesome/fontawesome-free": "^5.12.1",
     "@fortawesome/free-solid-svg-icons": "^5.12.1",
@@ -68,7 +68,10 @@
     "v-markdown": "^1.0.2",
     "vue": "^2.6.11",
     "vue-plyr": "^6.0.4",
-    "vue-stripe-checkout": "^3.2.2"
+    "vue-stripe-checkout": "^3.2.2",
+    "platformkit-cart": "file:lib/cart",
+    "platformkit-product": "file:lib/product",
+    "platformkit-stripe": "file:lib/stripe"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.27",
