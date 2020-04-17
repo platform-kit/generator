@@ -37,7 +37,7 @@ exports.handler = async (event, context) => {
     var fs = require('fs');
     console.log(__dirname);
     var content = __dirname + '/data/content/' + file + '.md';
-
+    
     console.log(content);
     
     var errormessage = null;
