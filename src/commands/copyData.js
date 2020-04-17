@@ -10,27 +10,27 @@ var path = "workspace/repository";
 
 console.log(token)
 
-const {Command, flags} = require('@oclif/command')
+const { Command, flags } = require('@oclif/command')
 
 class CopyDataCommand extends Command {
   async run() {
-    const {flags} = this.parse(CopyDataCommand)
-  
+    const { flags } = this.parse(CopyDataCommand)
+
     // Copy files from repo
     var ncp = require('ncp').ncp;
     ncp.limit = 16;
 
     if (fs.existsSync('./workspace/repository/data')) {
-        // Do something
-        console.log(123);
-        ncp('./workspace/repository/data', './data', function (err) {
-          if (err) {
-            return console.error(err);
-          }
-          console.log('done!');
-          });
-    }  
-    
+      // Do something
+      console.log(123);
+      ncp('./workspace/repository/data', './data', function (err) {
+        if (err) {
+          return console.error(err);
+        }
+        console.log('done!');
+      });
+    }
+
     if (fs.existsSync('./data')) {
       // Do something
       console.log(123);
@@ -39,33 +39,55 @@ class CopyDataCommand extends Command {
           return console.error(err);
         }
         console.log('done!');
-        });
-  }  
-
-  if (fs.existsSync('./lib')) {
-    // Do something
-    console.log(123);
-    ncp('./lib', './functions/platformkit-content-read-v1/lib', function (err) {
-      if (err) {
-        return console.error(err);
-      }
-      console.log('done!');
       });
-}  
-    
+    }
+
+    if (fs.existsSync('./data')) {
+      // Do something
+      console.log(123);
+      ncp('./data', './functions/platformkit-payments-checkout-v1/data', function (err) {
+        if (err) {
+          return console.error(err);
+        }
+        console.log('done!');
+      });
+    }
+
+    if (fs.existsSync('./lib')) {
+      // Do something
+      console.log(123);
+      ncp('./lib', './functions/platformkit-content-read-v1/lib', function (err) {
+        if (err) {
+          return console.error(err);
+        }
+        console.log('done!');
+      });
+    }
+
+    if (fs.existsSync('./lib')) {
+      // Do something
+      console.log(123);
+      ncp('./lib', './functions/platformkit-payments-checkout-v1/lib', function (err) {
+        if (err) {
+          return console.error(err);
+        }
+        console.log('done!');
+      });
+    }
+
     ncp('./README.md', './static/docs/README.md', function (err) {
       if (err) {
         return console.error(err);
       }
       console.log('done!');
-      });
+    });
 
     if (fs.existsSync('./data/docs')) {
       ncp('./data/docs', './static/docs', function (err) {
-      if (err) {
-        return console.error(err);
-      }
-      console.log('done!');
+        if (err) {
+          return console.error(err);
+        }
+        console.log('done!');
       });
     }
 
@@ -74,14 +96,14 @@ class CopyDataCommand extends Command {
         return console.error(err);
       }
       console.log('done!');
-      });
+    });
 
-      ncp('./static/files/touch-icon.jpg', './static/docs/touch-icon.jpg', function (err) {
-        if (err) {
-          return console.error(err);
-        }
-        console.log('done!');
-        });
+    ncp('./static/files/touch-icon.jpg', './static/docs/touch-icon.jpg', function (err) {
+      if (err) {
+        return console.error(err);
+      }
+      console.log('done!');
+    });
 
   }
 }

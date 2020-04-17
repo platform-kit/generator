@@ -57,7 +57,7 @@ exports.handler = async (event, context) => {
         var stripeTools = require('../../lib/stripe/stripe');
       }
       else {
-        var stripeTools = require('/lib/stripe/stripe');
+        var stripeTools = require('./lib/stripe/stripe');
       }
       
       var user = new stripeTools(decodedUser.sub);
