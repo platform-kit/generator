@@ -30,8 +30,7 @@ exports.handler = async (event, context) => {
       });
     }
 
-    var stripeTools = require('./lib/stripe/stripe');
-    var productTools = require('./lib/product/product');
+    var stripeTools = require('./lib/stripe/stripe');    
     var cartTools = require('./lib/cart/cart');
     if (decodedUser != null) {
       var user = new stripeTools(decodedUser.sub);
