@@ -9,24 +9,40 @@ class SyncStripeCommand extends Command {
     async run() {
         const { flags } = this.parse(SyncStripeCommand)
 
-        const testFolder = './data/offerings';
-        var productTools = require('../../lib/product');
+        const productsFolder = './data/offerings';
+        var productTools = require('../../lib/product/product');
 
-        fs.readdir(testFolder, (err, files) => {
-            files.forEach(file => {
-                //console.log(file);
+        fs.readdir(productsFolder, (err, files) => {
+            files.forEach(file => {                
                 void async function() {
+                    console.log("File: ");
+                    console.log(file);
                     var productFile = new productTools(file);                
                     var product = await(productFile.pushToStripe());
                     var variants = await(productFile.pushVariantsToStripe());
-                    console.log(product);
+                    var plans = await(productFile.pushPlansToStripe());
+                    //console.log(product);
                   }();
-                
-                //console.log(product);
-                //var product = await productFile.pushToStripe();
-                //console.log(product);
+                                
             });
         });
+
+        /*
+        const plansFolder = './data/subscriptionPlans';
+        var planTools = require('../../lib/plan/plan');
+        fs.readdir(plansFolder, (err, files) => {
+            files.forEach(file => {                
+                void async function() {
+                    console.log("File: ");
+                    console.log(file);
+                    var planFile = new planTools(file);                
+                    var plan = await(planFile.pushToStripe());                    
+                    console.log(plan);
+                  }();
+                                
+            });
+        });
+        */
     }
 }
 

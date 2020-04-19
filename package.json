@@ -5,7 +5,7 @@
     "platformkit": "./bin/run"
   },
   "scripts": {
-    "prebuild": "node ./scripts/installer.js",    
+    "prebuild": "node ./scripts/installer.js",
     "build": "gridsome build",
     "develop": "gridsome develop",
     "explore": "gridsome explore"
@@ -15,7 +15,7 @@
     "/npm-shrinkwrap.json",
     "/oclif.manifest.json",
     "/src"
-  ],  
+  ],
   "dependencies": {
     "@babel/preset-typescript": "^7.9.0",
     "@fortawesome/fontawesome-free": "^5.12.1",
@@ -28,6 +28,7 @@
     "@ncwidgets/file-relation": "^0.6.1",
     "@ncwidgets/id": "^0.6.0",
     "@ncwidgets/reorder": "^0.6.0",
+    "@octokit/rest": "^17.3.0",
     "@pake/react-color": "^3.0.0",
     "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
@@ -40,6 +41,7 @@
     "dotenv-webpack": "^1.7.0",
     "front-matter": "^3.1.0",
     "fse": "^4.0.1",
+    "gitorm": "^0.0.25",
     "gridsome": "^0.7.0",
     "gridsome-plugin-feed": "^1.0.2",
     "gridsome-plugin-netlify-cms": "^1.0.9",
@@ -61,10 +63,10 @@
     "nodemailer": "^6.4.6",
     "nodemailer-mailgun-transport": "^2.0.0",
     "nodemailer-smtp-transport": "^2.7.4",
-    "oclif": "^1.15.2",    
-    "platformkit-stripe": "file:./lib/stripe",
-    "platformkit-product": "file:./lib/product",
+    "oclif": "^1.15.2",
     "platformkit-cart": "file:./lib/cart",
+    "platformkit-product": "file:./lib/product",
+    "platformkit-stripe": "file:./lib/stripe",
     "plyr": "^3.5.10",
     "promisify-node": "^0.5.0",
     "sharp": "^0.25.2",

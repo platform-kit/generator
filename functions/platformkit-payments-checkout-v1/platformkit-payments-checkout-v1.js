@@ -49,29 +49,20 @@ exports.handler = async (event, context) => {
     var cart = new cartTools();
     var error = false;
     var message = null;
-    //var lineItems = cart.getItemsForCheckout(items);
-    var stripeItems = cart.getItemsForCheckout(items);
-    console.log('----');
-    var pushed = await(cart.push(stripeItems));
-    var cartContents = {items: [{plan: pushed.plan.id}]};
+    
+    var stripeItems = await cart.decode(items);
+    
+    var product = stripeItems[0];
+    var plan = stripeItems[1];
+    
 
 
-    /*
-    return {
-      statusCode: 500,
 
-      body: JSON.stringify(pushed, null, 3)
-      // // more keys you can return:
-      // headers: { "headerName": "headerValue", ... },
-      // isBase64Encoded: true,
-    }
-    */
-
-    console.log('PLAN: ' + pushed.plan.id);
-    var stripeItems = {items: [{plan: pushed.plan.id}]};
-    var data = stripeItems;
+    
+    
+    var data = {items: [{plan: await plan.generateId() }]};
   
-    var successUrl = process.env.APP_URL + '/success?productId=' + pushed.product.id + '&planId=' + pushed.plan.id;
+    var successUrl = process.env.APP_URL + '/success?productId=' + product.id + '&planId=' + await plan.generateId();
     successUrl = successUrl.replace('//success', '/success');
 
     if (id != null) {
@@ -81,7 +72,7 @@ exports.handler = async (event, context) => {
           customer: id,
           // mode: 'subscription',
           payment_method_types: ['card'],
-          subscription_data: stripeItems,
+          subscription_data: data,
           success_url: successUrl,
           cancel_url: process.env.APP_URL
         });
@@ -96,7 +87,7 @@ exports.handler = async (event, context) => {
           customer_email: email,
           // mode: 'subscription',
           payment_method_types: ['card'],     
-          subscription_data: stripeItems,
+          subscription_data: data,
           success_url: successUrl,
           cancel_url: process.env.APP_URL
         });
@@ -107,7 +98,7 @@ exports.handler = async (event, context) => {
         return await stripe.checkout.sessions.create({
           // mode: 'subscription',
           payment_method_types: ['card'],        
-          subscription_data: stripeItems,
+          subscription_data: data,
           success_url: successUrl,
           cancel_url: process.env.APP_URL
         });
