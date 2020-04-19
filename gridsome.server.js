@@ -78,7 +78,9 @@ module.exports = function (api) {
       if (node.hasOwnProperty('buy_button_data') == false) {
         node.buy_button_data = '{}';
       }
-      node.buy_button_data = '{}';
+      if (node.hasOwnProperty('variants') == false) {
+        node.variants = null;
+      }
 
       if (node.hasOwnProperty('buy_button_data') == false) {
         node.price = null;
