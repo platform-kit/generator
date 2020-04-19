@@ -1,7 +1,6 @@
 
 const Git = require("nodegit")
 require('dotenv-flow').config()
-const repo = process.env.REPOSITORY;
 const token = process.env.GITHUB_TOKEN;
 const fs = require("fs"); // Or `import fs from "fs";` with ESM
 var promisify = require("promisify-node");
@@ -15,7 +14,11 @@ const {Command, flags} = require('@oclif/command')
 class GetDataCommand extends Command {
   async run() {
     const {flags} = this.parse(GetDataCommand)
-        
+    var repo = process.env.GITHUB_REPOSITORY;
+
+    if(!repo.includes('://')) {
+      repo = 'https://github.com/' + repo;
+    }
     console.log(repo)
 
     if(token != null && typeof token != 'undefined'){
