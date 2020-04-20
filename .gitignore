@@ -14,6 +14,7 @@ static/social-rss.xml
 static/*.xml
 workspace/*
 workspace/repository
+docs/logos*
 # Local Netlify folder
 .netlify
 .git.bfg*

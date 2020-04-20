@@ -22,7 +22,7 @@ class CopyStaticFilesCommand extends Command {
 
     if (fs.existsSync('./workspace/repository/static')) {
       // Do something
-      console.log(123);
+      console.log('Copied static files.');
       ncp('./workspace/repository/static', './static', function (err) {
         if (err) {
           return console.error(err);
@@ -30,8 +30,12 @@ class CopyStaticFilesCommand extends Command {
         console.log('done!');
       });
     }
+    else {
+      console.log('No repository in workspace.');
+    }
 
-    if (process.env.DOCS_MODE == true){
+    if (process.env.DOCS_MODE == 'true'){
+      console.log('Docs Mode');
       // Do something      
       ncp('./static/logos', './static/docs/logos', function (err) {
         if (err) {
