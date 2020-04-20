@@ -1,6 +1,6 @@
 <div align="center">
     <img width="50" height="50"  src="https://www.platformkit.com/logos/icon-color.png"/>
-    <h1 style="margin-bottom:15px;margin-top:10px; border:none;font-weight:100;"><span style="opacity:0.5;">PlatformKit</span> Engine</h1>
+    <h1 style="margin-bottom:15px;margin-top:10px; border:none;font-weight:100;color:#000 !important;"><span style="opacity:0.5;">PlatformKit</span> Engine</h1>
 </div>
 
 > A standalone backend for **platforms**.
