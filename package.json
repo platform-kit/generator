@@ -1,5 +1,6 @@
 {
   "name": "platformkit-generator",
+  "description": "Open-Source Static Site Generator for content, software, and e-commerce platforms.",
   "private": false,
   "bin": {
     "platformkit": "./bin/run"
