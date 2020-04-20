@@ -16,8 +16,6 @@
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Jamstack_logo_%282017%29.svg/640px-Jamstack_logo_%282017%29.svg.png" style="margin: 10px;max-height: 33px;background: #fff;padding: 5px;border-radius: 4px;"/>
 <br>
-Static Site Generator - <a href="https://www.platformkit.com/docs/#/generator">Documentation</a> <br>
-Analytics Engine - <a href="https://www.platformkit.com/docs/#/engine">Documentation</a>
 
 <span style="display:inline-block;">Made with 💖 + ⚡ by <a href="https://www.dharmaworks.com" target="_blank">&nbsp;DharmaWorks</a></span> 
 
