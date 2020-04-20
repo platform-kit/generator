@@ -1,4 +1,4 @@
-<div align="center">
+<div align="center" style="margin-top:15%;">
     <img width="50" height="50"  src="https://www.platformkit.com/logos/icon-color.png"/>
     <h1 style="margin-bottom:15px;margin-top:10px; border:none;font-weight:100;"><span style="opacity:0.5;">PlatformKit</span> Framework</h1>
 
