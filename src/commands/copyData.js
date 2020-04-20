@@ -73,30 +73,7 @@ class CopyDataCommand extends Command {
         }
         console.log('done!');
       });
-    }
-    
-    if (fs.existsSync('./data/docs')) {
-      ncp('./data/docs', './static/docs', function (err) {
-        if (err) {
-          return console.error(err);
-        }
-        console.log('done!');
-      });
-    }
-
-    ncp('./static/files/icon.png', './static/docs/icon.png', function (err) {
-      if (err) {
-        return console.error(err);
-      }
-      console.log('done!');
-    });
-
-    ncp('./static/files/touch-icon.jpg', './static/docs/touch-icon.jpg', function (err) {
-      if (err) {
-        return console.error(err);
-      }
-      console.log('done!');
-    });
+    }    
 
   }
 }
