@@ -5,6 +5,8 @@
 
 > A standalone backend for **platforms**.
 
+# Overview
+
 ## Business Features
 - [x] Analytics API
 
@@ -110,11 +112,11 @@ heroku run -a $app_name php artisan postdeploy:heroku
 
 ---
 
-## License
+# License
 
 Licensed under the [MIT license](http://opensource.org/licenses/MIT).
 
-## Resources
+# Resources
 
 Documentation, content, training & more at https://www.platformkit.com 
 

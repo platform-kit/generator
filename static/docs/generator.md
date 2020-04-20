@@ -5,6 +5,8 @@
 
 > A static site generator for building content, software, and e-commerce **platforms**.
 
+# Overview
+
 ## Business Features
 - [x] Generate business ideas.
 - [x] Create a marketing plan.
@@ -76,11 +78,11 @@ To install via the command line, enter the target folder and run these commands:
 7. Site is available at `http://localhost:8080` and CMS at `http://localhost:8080/admin-local`
 8. Happy coding 🎉🙌
 
-## Development Guide
+# Development Guide
 
 For more detailed instructions, check out the [Development Guide](/guides/development.md)
 
-## Resources
+# Resources
 
 Documentation, content, training & more at https://www.platformkit.com 
 
