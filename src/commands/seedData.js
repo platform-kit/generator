@@ -18,14 +18,7 @@ class SeedDataCommand extends Command {
       }
       console.log('done!');
     });
-
-    ncp('./README.md', './static/docs/README.md', function (err) {
-      if (err) {
-        return console.error(err);
-      }
-      console.log('done!');
-    });
-
+   
     ncp('./static/logos', './static/docs', function (err) {
       if (err) {
         return console.error(err);
