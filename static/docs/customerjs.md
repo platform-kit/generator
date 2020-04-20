@@ -27,6 +27,15 @@
 - [x] Google Analytics
 - [x] Countly
 
+# Installation
+
+## Via Command Line
+`yarn add customer-js`
+
+## Via Browser
+```<script src="https://unpkg.com/customer-js@0.0.3/customer.js"/>```
+
+
 # License
 
 Licensed under the [MIT license](http://opensource.org/licenses/MIT).
