@@ -1,6 +1,6 @@
 <div align="center">
     <img width="50" height="50"  src="https://www.platformkit.com/logos/icon-color.png"/>
-    <h1 style="margin-bottom:15px;margin-top:10px; border:none;font-weight:100;color:#000 !important;">PlatformKit</h1>
+    <h1 style="margin-bottom:15px;margin-top:10px; border:none;font-weight:100;color:#e96900 !important;">platform<span style="opacity:.5;color:#7b8594;">kit</span></h1>
 
 <quote>A full-stack framework for building content, software, and e-commerce platforms.</quote>
 

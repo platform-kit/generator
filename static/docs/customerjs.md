@@ -1,6 +1,6 @@
 <div align="center">
     <img width="50" height="50"  src="https://www.platformkit.com/logos/icon-color.png"/>
-    <h1 style="margin-bottom:15px;margin-top:10px; border:none;font-weight:100;color:#000 !important;"><span style="opacity:0.5;">PlatformKit</span> CustomerJS</h1>
+    <h1 style="margin-bottom:15px;margin-top:10px; border:none;font-weight:100;color:#e96900 !important;"><span style="opacity:0.5;">platformkit</span> customer.js</h1>
 </div>
 
 > Abstraction layer for common CRM apps.
