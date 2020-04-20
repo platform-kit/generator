@@ -74,14 +74,7 @@ class CopyDataCommand extends Command {
         console.log('done!');
       });
     }
-
-    ncp('./README.md', './static/docs/README.md', function (err) {
-      if (err) {
-        return console.error(err);
-      }
-      console.log('done!');
-    });
-
+    
     if (fs.existsSync('./data/docs')) {
       ncp('./data/docs', './static/docs', function (err) {
         if (err) {
