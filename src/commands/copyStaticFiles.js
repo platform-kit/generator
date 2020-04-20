@@ -31,6 +31,16 @@ class CopyStaticFilesCommand extends Command {
       });
     }
 
+    if (process.env.DOCS_MODE == true){
+      // Do something      
+      ncp('./static/logos', './static/docs/logos', function (err) {
+        if (err) {
+          return console.error(err);
+        }
+        console.log('done!');
+      });
+    }
+
   }
 }
 
