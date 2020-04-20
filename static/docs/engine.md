@@ -3,7 +3,7 @@
     <h1 style="margin-bottom:15px;margin-top:10px; border:none;font-weight:100;color:#e96900 !important;"><span style="opacity:0.5;">platformkit</span> engine</h1>
 </div>
 
-> A standalone backend for **platforms**.
+> A standalone backend for platforms.
 
 [GitHub Repository](https://github.com/platform-kit/engine)
 

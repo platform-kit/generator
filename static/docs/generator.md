@@ -3,7 +3,7 @@
     <h1 style="margin-bottom:15px;margin-top:10px; border:none;font-weight:100;color:#e96900 !important;"><span style="opacity:0.5;">platformkit</span> generator</h1>
 </div>
 
-> A static site generator for building content, software, and e-commerce **platforms**.
+> A static site generator for building content, software, and e-commerce platforms.
 
 [GitHub Repository](https://github.com/platform-kit/generator)
 
