@@ -7,82 +7,116 @@
     <span style="opacity:0.5;">PlatformKit</span> Engine
 </div>
 
-> A static site generator for building content, software, and e-commerce **platforms**.
+> A standalone backend for **platforms**.
 
 ## Business Features
-- [x] Generate business ideas.
-- [x] Create a marketing plan.
-- [x] Build landing pages.
-- [x] Manage & publish content.
-- [x] Sell products & services.
-- [x] Sell subscriptions.
-- [x] Schedule social media posts.
-- [x] Help desk & documentation.
-- [x] A/B test everything.
+- [x] Analytics API
 
-## Developer Features
+## Developer Benefits
 - [x] 1-step install/deploy.
-- [x] Local development environment.
-- [x] Integrated analytics & marketing automation.
-- [x] Edit or add custom template components easily.
 
-## End-User Features
-- [x] Beautiful and simple design.
-- [x] Lightning-fast search.
-- [x] Even works offline.
+## End-User Benefits
+- [x] Pro Privacy
 
 ## Tech Stack
-- [x] **Markdown** for data storage
-- [x] **GraphQL** for APIs
-- [x] **Gridsome** for static site generation
-- [x] **Vue** for markup
-- [x] **Bootstrap** for UI
-- [x] **OCLIF** for CLI
+- [x] **Heroku/Dokku** for deployment
+- [x] **PostgreSQL** for database
+- [x] **Laravel** for framework/ORM
 
+# Local Development
 
-## See it in action
+**1. Configure database, app key, & .env**
 
-<a href="https://www.platformkit.com" target="_blank">https://www.platformkit.com</a> (Docs only)
+Clone this repository and run the following commands:
 
-<a href="https://www.dharmaworks.com" target="_blank">https://www.dharmaworks.com</a> (Content + E-Commerce)
+```bash
+composer install
+cp .env.example .env
+php artisan key:generate
+php artisan migrate
+npm install 
+npm run dev
+```
 
-## Latest Build Status
-![Netlify Status](https://api.netlify.com/api/v1/badges/899741a9-07d9-47c8-b9c3-eaa0f624b96b/deploy-status)
+**2. Run Server**
 
-## Cloud Installation
+```bash
+php artisan serve
+```
 
-Click the button below to deploy to Netlify instantly.
+# Deployment
 
-<a href="https://app.netlify.com/start/deploy?repository=https://github.com/platform-kit/generator"><img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify"></a>
+### Via Heroku Deploy Button
 
-#### If you want to generate the content/e-commerce portion of the site
+Click this button to deploy to Heroku instantly.
 
-Build Command: `./bin/run getData; ./bin/run copyData; gridsome build`
+<a href="https://www.heroku.com/deploy/?template=https://github.com/platform-kit/engine"><img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy"></a>
 
-Publish Directory: `dist`
+### Via Heroku Command Line Interface
 
-#### If you only want to generate the docs
+If you prefer to deploy from the command line, do the following:
 
-Build Command: `./bin/run getData; ./bin/run copyData; gridsome build`
+**1. Create a Heroku app**
 
-Publish Directory: `dist/docs`
+Create an app name
 
-## Local Installation
+```bash
+app_name=heroku-laravel57-test-app
+```
 
-To install via the command line, enter the target folder and run these commands:
+Create Heroku app
 
-1. Install PlatformKit Generator: `git clone https://github.com/platform-kit/generator project-name` where `project-name` is the name of your project.
-2. Install dependencies: `yarn install`
-3. Install starter content: `./bin/run seedData`
-4. Install Gridsome CLI: `npm install --global @gridsome/cli`
-5. Start the local DEV server at`gridsome develop`
-6. Start local CMS server `npx netlify-cms-proxy-server` 
-7. Site is available at `http://localhost:8080` and CMS at `http://localhost:8080/admin-local`
-8. Happy coding 🎉🙌
+```bash
+heroku apps:create $app_name
+heroku addons:create heroku-postgresql:hobby-dev --app $app_name
+heroku addons:create heroku-redis:hobby-dev --app $app_name
+heroku buildpacks:add heroku/php --app $app_name
+heroku buildpacks:add heroku/nodejs --app $app_name
+```
 
-## Development Guide
+**2. Add Heroku git remote**
 
-For more detailed instructions, check out the [Development Guide](/guides/development.md)
+```bash
+heroku git:remote --app $app_name
+```
+
+**3. Set config parameters**
+
+For Laravel to operate correctly you need to set `APP_KEY`:
+
+```bash
+heroku config:set --app $app_name APP_KEY=$(php artisan --no-ansi key:generate --show)
+```
+
+Set Queues, sessions and cache to use redis
+
+```bash
+heroku config:set --app $app_name QUEUE_CONNECTION=redis SESSION_DRIVER=redis CACHE_DRIVER=redis
+```
+
+Optionally set your app's environment to development
+
+```bash
+heroku config:set --app $app_name APP_ENV=development APP_DEBUG=true APP_LOG_LEVEL=debug
+```
+
+**4. Deploy to Heroku**
+
+```bash
+ git push heroku master
+```
+
+**5. Run migrations**
+
+```bash
+heroku run -a $app_name php artisan postdeploy:heroku
+```
+
+---
+
+## License
+
+Licensed under the [MIT license](http://opensource.org/licenses/MIT).
 
 ## Resources
 
