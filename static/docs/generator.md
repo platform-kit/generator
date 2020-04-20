@@ -5,7 +5,7 @@
 
 > A static site generator for building content, software, and e-commerce platforms.
 
-[source: github.com/platform-kit/generator](https://github.com/platform-kit/generator)
+[github: platform-kit/generator](https://github.com/platform-kit/generator)
 
 ## Business Features
 - [x] Generate business ideas.

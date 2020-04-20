@@ -5,7 +5,7 @@
 
 > Abstraction layer for common CRM apps.
 
-[source: github.com/platform-kit/customer-js](https://github.com/platform-kit/customer-js)
+[github: platform-kit/customer-js](https://github.com/platform-kit/customer-js)
 
 ## Business Features
 - [x] Analytics Abstraction Layer

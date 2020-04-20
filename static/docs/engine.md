@@ -5,7 +5,7 @@
 
 > A standalone backend for platforms.
 
-[source: github.com/platform-kit/engine](https://github.com/platform-kit/engine)
+[github: platform-kit/engine](https://github.com/platform-kit/engine)
 
 ## Business Features
 - [x] Analytics API
