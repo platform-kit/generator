@@ -2,7 +2,7 @@
     <img width="50" height="50"  src="https://www.platformkit.com/logos/icon-color.png"/>
     <h1 style="margin-bottom:15px;margin-top:10px; border:none;font-weight:100;color:#000 !important;"><span style="opacity:0.5;">PlatformKit</span> Framework</h1>
 
-<quote>A framework for building content, software, and e-commerce platforms.</quote>
+<quote>A full-stack framework for building content, software, and e-commerce platforms.</quote>
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Markdown-mark.svg/416px-Markdown-mark.svg.png" style="background:#fff;border-radius:4px;margin:10px;max-height:33px;"/>
 
