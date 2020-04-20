@@ -1,6 +1,4 @@
- # Overview
-
-The framework is comprised of several key pieces.
+The framework is comprised of 3 key pieces.
 
 ## [Generator](/generator)
 > A static site generator for building content, software, and e-commerce platforms.
