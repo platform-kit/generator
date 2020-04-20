@@ -8,5 +8,5 @@ The framework is comprised of several key pieces.
 ## [Engine](/engine)
 > A standalone backend for platforms.
 
-## [CustomerJS](/customer-js)
+## [CustomerJS](/customerjs)
 > Abstraction layer for common CRM apps.
