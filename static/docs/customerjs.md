@@ -5,6 +5,8 @@
 
 > Abstraction layer for common CRM apps.
 
+[GitHub Repository](https://github.com/platform-kit/customer-js)
+
 # Overview
 
 ## Business Features

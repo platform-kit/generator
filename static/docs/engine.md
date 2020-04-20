@@ -5,6 +5,8 @@
 
 > A standalone backend for **platforms**.
 
+[GitHub Repository](https://github.com/platform-kit/engine)
+
 # Overview
 
 ## Business Features
