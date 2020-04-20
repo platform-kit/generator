@@ -1,13 +1,11 @@
 <div align="center">
     <img width="50" height="50"  src="https://www.platformkit.com/logos/icon-color.png"/>
-    <h1 style="margin-bottom:15px;margin-top:10px; border:none;font-weight:100;color:#e96900 !important;"><span style="opacity:0.5;">platformkit</span> engine</h1>
+    <h1 style="margin-bottom:15px;margin-top:10px; border:none;font-weight:100;color:#e96900 !important;"><span style="opacity:0.5;color:#4776c5;">platformkit</span> engine</h1>
 </div>
 
 > A standalone backend for platforms.
 
-[GitHub Repository](https://github.com/platform-kit/engine)
-
-# Overview
+[source: github.com/platform-kit/engine](https://github.com/platform-kit/engine)
 
 ## Business Features
 - [x] Analytics API

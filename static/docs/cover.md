@@ -1,5 +1,5 @@
 <div align="center">
-    <img  height="50"  src="https://www.platformkit.com/logos/logo.png"/>    
+    <img  height="50"  src="https://www.platformkit.com/logos/logo.png" style="background:#fff;border-radius:5px; padding:5px 10px;"/><br>
 
 <quote>A full-stack framework for building content, software, and e-commerce platforms.</quote>
 
@@ -13,7 +13,7 @@
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Bootstrap_logo.svg/1200px-Bootstrap_logo.svg.png" style="margin:10px 10px 10px 20px;max-width:33px;padding:-10px;border-radius:33px;"/>
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Jamstack_logo_%282017%29.svg/640px-Jamstack_logo_%282017%29.svg.png" style="margin: 10px;max-height: 33px;background: #fff;padding: 5px;border-radius: 4px;"/>
+<img src="https://github.com/laravel/art/blob/master/laravel-logo.png?raw=true" style="margin: 10px 10px 10px 20px;max-height: 35px;"/>
 <br>
 
 <span style="display:inline-block;">Made with 💖 + ⚡ by <a href="https://www.dharmaworks.com" target="_blank">&nbsp;DharmaWorks</a></span> 
