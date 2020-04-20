@@ -34,7 +34,7 @@ class CopyStaticFilesCommand extends Command {
       console.log('No repository in workspace.');
     }
 
-    if (process.env.DOCS_MODE == 'true' || process.env.DOCS_MODE == true){
+    //if (process.env.DOCS_MODE == 'true' || process.env.DOCS_MODE == true){
       console.log('Docs Mode');
       // Do something      
       ncp('./static/logos', './static/docs/logos', function (err) {
@@ -43,7 +43,7 @@ class CopyStaticFilesCommand extends Command {
         }
         console.log('done!');
       });
-    }
+    //}
 
   }
 }
