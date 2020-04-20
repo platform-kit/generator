@@ -12,7 +12,6 @@ data
 static/rss.xml
 static/social-rss.xml
 static/*.xml
-static/docs/README.md
 workspace/*
 workspace/repository
 # Local Netlify folder
