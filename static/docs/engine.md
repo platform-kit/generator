@@ -110,8 +110,6 @@ heroku config:set --app $app_name APP_ENV=development APP_DEBUG=true APP_LOG_LEV
 heroku run -a $app_name php artisan postdeploy:heroku
 ```
 
----
-
 # License
 
 Licensed under the [MIT license](http://opensource.org/licenses/MIT).

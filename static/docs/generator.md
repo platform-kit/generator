@@ -82,6 +82,10 @@ To install via the command line, enter the target folder and run these commands:
 
 For more detailed instructions, check out the [Development Guide](/guides/development.md)
 
+# License
+
+Licensed under the [MIT license](http://opensource.org/licenses/MIT).
+
 # Resources
 
 Documentation, content, training & more at https://www.platformkit.com 
