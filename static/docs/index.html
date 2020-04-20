@@ -1,159 +1,180 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Documentation</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name="description" content="Description">
-  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css">
   <link rel="icon" href="icon-color.png" sizes="16x16" type="image/png">
   <link rel="apple-touch-icon" href="touch-icon.png">
 
   <style>
-    body {
-      
-    }
-    section.cover.show{            
-      
-      background:linear-gradient(-90deg,rgba(255,255,255,0), rgba(100, 100, 210, 0.1) )!important;
-      border-bottom:1px solid rgba(100,100,100,0.1) !important;
-      z-index:10000 !important;
-      
-    }
-    .markdown-section code{    
-    color: #005ce9 !important;
-    background: #005ce911 !important;
+    body {}
+
+    section.cover.show {
+
+      background: linear-gradient(-90deg, rgba(255, 255, 255, 0), rgba(100, 100, 210, 0.1)) !important;
+      border-bottom: 1px solid rgba(100, 100, 100, 0.1) !important;
+      z-index: 10000 !important;
+
     }
 
-    .markdown-section a {      
+    .markdown-section code {
+      color: #005ce9 !important;
+      background: #005ce911 !important;
+    }
+
+    .markdown-section a {
       background: #f2f6fd;
       opacity: 1 !important;
       padding: 5px 10px;
       border-radius: 5px;
-  }
-
-    
-    a span {
-      
-
     }
+
+
+    a span {}
 
     li.active .section-link {
-      color:#fd4e3e !important;
+      color: #fd4e3e !important;
     }
 
-    a, h1, h2, h3, h4, h5, h6 {
-      color:#888 !important;
+    a,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: #888 !important;
     }
+
     .search input {
-    
-      background:rgba(77,77,77,0.2);
-      border-radius:4px;
-      transition: all 0.3s;      
-    }
-    
-    .markdown-section strong {      
-        color:#777;
-    }
-    .search input:focus,.search input:active {
-    
-    background: #fff;
-    border-radius:4px;
-  }
 
-    aside, .sidebar {
-      
-      
+      background: rgba(77, 77, 77, 0.2);
+      border-radius: 4px;
+      transition: all 0.3s;
+    }
+
+    .markdown-section strong {
+      color: #777;
+    }
+
+    .search input:focus,
+    .search input:active {
+
+      background: #fff;
+      border-radius: 4px;
+    }
+
+    aside,
+    .sidebar {
+
+
       border: none !important;
-      z-index:10;            
+      z-index: 10;
       height: 100vh !important;
-      /* background: #a5b9ec22 !important; */ /* equivalent color with transparency */
-      background:#f2f6fd !important;
+      /* background: #a5b9ec22 !important; */
+      /* equivalent color with transparency */
+      background: #f2f6fd !important;
       padding: 15px !important;
       border-radius: 0px;
     }
 
-    
+
 
     nav {
-      z-index:100 !important;
-      position:fixed !important;
+      z-index: 100 !important;
+      position: fixed !important;
     }
 
-    @media(min-width:768px){
-      main, .content {
-        padding-top:90px;
-        
+    @media(min-width:768px) {
+
+      main,
+      .content {
+        padding-top: 90px;
+
       }
     }
-    @media(max-width:768px){
-      main, .content {
-        padding-top:20px;
-        
+
+    @media(max-width:768px) {
+
+      main,
+      .content {
+        padding-top: 20px;
+
       }
     }
 
     .raised {
-      box-shadow:0px 3px 12px rgba(0,50,125,0.15);
+      box-shadow: 0px 3px 12px rgba(0, 50, 125, 0.15);
     }
 
     .content a:not(.anchor) {
-      background: #f2f6fd;
-      transition:all 0.3s;
+      background: #fff;
+      transition: all 0.3s;
+      border: 1px solid #ffe3d9;
       padding: 4px 10px;
       border-radius: 4px;
-      color:#000 !important;
+      color: #ff5400 !important;
       text-decoration: none;
     }
+
     .content a:not(.anchor):hover {
       background: #c1d0e9;
-      }
-
-    .anchor span {
-      color:rgb(40, 67, 116) !important; 
     }
 
-    h2 a, h3 a, h4 a, h5 a, h6 a {
-      opacity:0.66 !important;
+    .anchor span {
+      color: rgb(40, 67, 116) !important;
+    }
+
+    h2 a,
+    h3 a,
+    h4 a,
+    h5 a,
+    h6 a {
+      opacity: 0.66 !important;
     }
 
     .sidebar-toggle {
       position: fixed;
-      background:transparent !important;
+      background: transparent !important;
       min-width: auto;
-      border-radius:4px !important;
-      width:auto !important;      
+      border-radius: 4px !important;
+      width: auto !important;
     }
 
-    
+
     body.close .sidebar-toggle {
-      background-color:transparent !important;
+      background-color: transparent !important;
     }
-  
+
 
     div.search {
-      
-      border-bottom:none !important;
+
+      border-bottom: none !important;
     }
 
-    #dark_mode {    
+    #dark_mode {
       margin-top: -35px !important;
       margin-bottom: 32px;
-      top:10px !important;
-      left:0px !important;
-      margin-bottom:25px !important;
+      top: 10px !important;
+      left: 0px !important;
+      margin-bottom: 25px !important;
     }
 
     #dark_mode label {
-      position:absolute !important;
-      top:0px !important;
-      left:15px !important;
-      margin-top:20px !important;      
+      position: absolute !important;
+      top: 0px !important;
+      left: 15px !important;
+      margin-top: 20px !important;
     }
 
-   label {
-      color:#717083 !important;
+    label {
+      color: #717083 !important;
     }
 
 
@@ -164,29 +185,28 @@
     }
 
     .app-name-link img {
-      max-width:100px;
+      max-width: 100px;
     }
 
     .sidebar-nav a {
-      text-decoration:none;
-      color:#000 !important;
+      text-decoration: none;
+      color: #000 !important;
     }
+
     .sidebar-nav li a {
-      color:#606e84 !important;
+      color: #606e84 !important;
     }
   </style>
-  <link
-    rel="stylesheet"
-    href="//cdn.jsdelivr.net/npm/docsify-dark-mode@latest/dist/style.min.css"
-  />
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-dark-mode@latest/dist/style.min.css" />
 </head>
+
 <body>
-  
-    
-  
-    <div id="app"></div>
-  
-  
+
+
+
+  <div id="app"></div>
+
+
   <script>
     window.$docsify = {
       name: 'platform-kit',
@@ -202,8 +222,8 @@
       relativePath: false,
       auto2top: true,
       subMaxLevel: 2,
-      maxLevel: 4,    
-      search : 'auto',
+      maxLevel: 4,
+      search: 'auto',
       darkMode: {
         dark: {
           background: "#111",
@@ -216,7 +236,7 @@
           textColor: "#000"
         }
       }
-    ,
+      ,
 
 
     }
@@ -226,4 +246,5 @@
   <script src="//cdn.jsdelivr.net/npm/docsify-dark-mode@latest/dist/index.min.js"></script>
 
 </body>
+
 </html>
