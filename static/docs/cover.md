@@ -7,9 +7,9 @@
 
 <img src="https://github.com/graphql/graphql-spec/blob/master/resources/GraphQL%20Logo.png?raw=true" style="margin:10px 10px 10px 20px;max-width:33px;padding:-10px;border-radius:33px;"/>
 
-<img src="https://gridsome.org/logos/logo-circle-dark.svg" style="margin:10px 10px 10px 20px;max-width:33px;padding:-10px;border-radius:33px;"/>
-
 <img src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/vue/vue.png" style="margin:10px 10px 10px 20px;max-width:33px;padding:-10px;"/>
+
+<img src="https://gridsome.org/logos/logo-circle-dark.svg" style="margin:10px 10px 10px 20px;max-width:33px;padding:-10px;border-radius:33px;"/>
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Bootstrap_logo.svg/1200px-Bootstrap_logo.svg.png" style="margin:10px 10px 10px 20px;max-width:33px;padding:-10px;border-radius:33px;"/>
 
