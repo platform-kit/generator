@@ -6,40 +6,59 @@
 
 [github: platform-kit/customer-js](https://github.com/platform-kit/customer-js)
 
-## Business Features
+## Benefits
+
+<!-- tabs:start -->
+
+#### ** Business **
 - [x] Analytics Abstraction Layer
 - [x] Customer Relationship Management Abstraction Layer
 
-## Developer Benefits
+#### ** Developers **
 - [x] 1-step install (just copy/paste);
 
-## End-User Benefits
+#### ** End-Users **
 - [x] Pro Privacy
 
-## Supported CRM Apps
+
+<!-- tabs:end -->
+
+## Supported Apps
+
+<!-- tabs:start -->
+
+#### ** CRMs **
 - [x] Intercom
 - [x] Drift
 - [x] Gist
 
-## Supported Analytics Apps
+#### ** Analyics Platforms **
 - [x] Mixpanel
 - [x] Google Analytics
 - [x] Countly
 
-# Installation
 
-## Via Command Line
+<!-- tabs:end -->
+
+## Installation
+
+<!-- tabs:start -->
+
+#### ** Via Command Line **
 `yarn add customer-js`
 
-## Via Browser
+#### ** Via Browser **
+
 ```<script src="https://unpkg.com/customer-js@0.0.3/customer.js"/>```
 
+<!-- tabs:end -->
 
-# License
+
+## License
 
 Licensed under the [MIT license](http://opensource.org/licenses/MIT).
 
-# Resources
+## Resources
 
 Documentation, content, training & more at https://www.platformkit.com 
 

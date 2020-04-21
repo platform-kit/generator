@@ -238,16 +238,21 @@
       auto2top: true,
       subMaxLevel: 2,
       maxLevel: 4,
-        
-      onlyCover: true,    
-      formatUpdated: '{MM}/{DD} {HH}:{mm}',
-
-      formatUpdated: function (time) {
-        // ...
-
-        return time;
+      search: 'auto',
+      onlyCover: true,
+      tabs: {
+        persist: true,      // default
+        sync: true,      // default
+        theme: 'classic', // default
+        tabComments: true,      // default
+        tabHeadings: true       // default
       },
-
+      pagination: {
+        previousText: 'Previous',
+        nextText: 'Next',
+        crossChapter: true,
+        crossChapterText: true,
+      },
       darkMode: {
         dark: {
           background: "#111",
@@ -268,6 +273,25 @@
   <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/docsify-dark-mode@latest/dist/index.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify-copy-code"></script>
+  <script src="https://cdn.jsdelivr.net/npm/docsify-tabs@1"></script>
+  <script src="//unpkg.com/docsify-pagination/dist/docsify-pagination.min.js"></script>
+
+
+
+  <style>
+    :root {
+      --docsifytabs-border-color: #ddd;
+      --docsifytabs-tab-highlight-color: #075ee9;
+    }
+
+    .docsify-tabs__tab {
+
+
+      color: #075ee9;
+      background: #fff;
+    }
+  </style>
 
 </body>
 
