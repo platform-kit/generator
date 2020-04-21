@@ -23,8 +23,8 @@
 
 <br>
 
-<a href="#/readme" style="background:#e4e4f1;padding:5px 10px; border-radius:4px;color:#000 !important;">Read The Docs</a>
-
 <span style="display:inline-block;">Made with 💖 + ⚡ by <a href="https://www.dharmaworks.com" target="_blank">&nbsp;DharmaWorks</a></span> 
+
+<a href="#/readme" style="background:#e4e4f1;padding:5px 10px; border-radius:4px;color:#000 !important;">Read The Docs</a>
 
 </div>
