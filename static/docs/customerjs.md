@@ -17,7 +17,7 @@
 #### ** Developers **
 - [x] 1-step install (just copy/paste);
 
-#### ** End-Users **
+#### ** Users **
 - [x] Pro Privacy
 
 
