@@ -6,21 +6,35 @@
 
 [github: platform-kit/engine](https://github.com/platform-kit/engine)
 
-## Business Features
+
+## Benefits
+
+<!-- tabs:start -->
+
+#### ** Business **
 - [x] Analytics API
 
-## Developer Benefits
+#### ** Developers **
 - [x] 1-step install/deploy.
 
-## End-User Benefits
+#### ** Users **
 - [x] Pro Privacy
 
+<!-- tabs:end -->
+
 ## Tech Stack
+
 - [x] **Heroku/Dokku** for deployment
 - [x] **PostgreSQL** for database
 - [x] **Laravel** for framework/ORM
 
-# Local Development
+
+
+## Installation
+
+<!-- tabs:start -->
+
+#### ** Local **
 
 **1. Configure database, app key, & .env**
 
@@ -41,7 +55,7 @@ npm run dev
 php artisan serve
 ```
 
-# Deployment
+#### ** Cloud **
 
 ### Via Heroku Deploy Button
 
@@ -108,12 +122,13 @@ heroku config:set --app $app_name APP_ENV=development APP_DEBUG=true APP_LOG_LEV
 ```bash
 heroku run -a $app_name php artisan postdeploy:heroku
 ```
+<!-- tabs:end -->
 
-# License
+## License
 
 Licensed under the [MIT license](http://opensource.org/licenses/MIT).
 
-# Resources
+## Resources
 
 Documentation, content, training & more at https://www.platformkit.com 
 
