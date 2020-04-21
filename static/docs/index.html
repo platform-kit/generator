@@ -116,11 +116,11 @@
     .content a:not(.anchor) {
       background: none;
       transition: all 0.3s;
-
+      display: inline-block;
       padding: 4px 10px;
       border-radius: 4px;
       color: #075ee9 !important;
-      text-decoration: none;
+      text-decoration: none !important;
     }
 
     .content a:not(.anchor):hover {
@@ -286,10 +286,15 @@
     }
 
     .docsify-tabs__tab {
-
-
-      color: #075ee9;
-      background: #fff;
+      color: #075ee9 !important;
+      border-color:#ddd  !important;
+      background: #eee !important;
+    }
+    .docsify-tabs__tab--active, .docsify-tabs__content {
+      background: #fff !important;
+    }
+    .docsify-tabs__content {
+      border-radius:0px 0px 4px 4px !important;
     }
   </style>
 
