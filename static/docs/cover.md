@@ -20,7 +20,10 @@
 <img class="raised" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Bootstrap_logo.svg/1200px-Bootstrap_logo.svg.png" style="width:33px;height:33px;margin:0px 0px 0px 10px;height:33px;padding:-10px;border-radius:33px;"/>
 
 <img class="raised" src="https://github.com/laravel/art/blob/master/laravel-logo.png?raw=true" style="width:33px;height:33px;background:#fff6f5;border-radius:33px;padding:5px 3px 5px 5px;margin: 0px 0px 0px 10px;height: 33px;"/>
+
 <br>
+
+<a href="/docs/#/readme" style="background:#e4e4f1;padding:5px 10px; border-radius:4px;color:#000 !important;">Read The Docs</a>
 
 <span style="display:inline-block;">Made with 💖 + ⚡ by <a href="https://www.dharmaworks.com" target="_blank">&nbsp;DharmaWorks</a></span> 
 

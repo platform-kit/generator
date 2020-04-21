@@ -238,7 +238,16 @@
       auto2top: true,
       subMaxLevel: 2,
       maxLevel: 4,
-      search: 'auto',
+        
+      onlyCover: true,    
+      formatUpdated: '{MM}/{DD} {HH}:{mm}',
+
+      formatUpdated: function (time) {
+        // ...
+
+        return time;
+      },
+
       darkMode: {
         dark: {
           background: "#111",
