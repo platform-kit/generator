@@ -6,27 +6,33 @@
 
 [github: platform-kit/generator](https://github.com/platform-kit/generator)
 
-## Business Features
-- [x] Generate business ideas.
-- [x] Create a marketing plan.
+## Benefits
+
+<!-- tabs:start -->
+
+## ** Business **
 - [x] Build landing pages.
 - [x] Manage & publish content.
 - [x] Sell products & services.
 - [x] Sell subscriptions.
+- [x] Create a marketing plan.
 - [x] Schedule social media posts.
-- [x] Help desk & documentation.
-- [x] A/B test everything.
+- [x] Help & documentation.
 
-## Developer Features
+## ** Developers **
 - [x] 1-step install/deploy.
 - [x] Local development environment.
 - [x] Integrated analytics & marketing automation.
 - [x] Edit or add custom template components easily.
 
-## End-User Features
+## ** Users **
+- [x] Supports Apple Pay & Google Pay.
 - [x] Beautiful and simple design.
 - [x] Lightning-fast search.
+- [x] No tracking cookies.
 - [x] Even works offline.
+
+<!-- tabs:end -->
 
 ## Tech Stack
 - [x] **Markdown** for data storage
@@ -37,7 +43,11 @@
 - [x] **OCLIF** for CLI
 
 
-## Cloud Installation
+## Installation
+
+<!-- tabs:start -->
+
+#### ** Cloud **
 
 Click the button below to deploy to Netlify instantly.
 
@@ -59,7 +69,7 @@ Build Command: `./bin/run getData; ./bin/run copyData; gridsome build`
 
 Publish Directory: `dist/docs`
 
-## Local Installation
+#### ** Local **
 
 To install via the command line, enter the target folder and run these commands:
 
@@ -72,15 +82,11 @@ To install via the command line, enter the target folder and run these commands:
 7. Site is available at `http://localhost:8080` and CMS at `http://localhost:8080/admin-local`
 8. Happy coding 🎉🙌
 
-## Development Guide
+<!-- tabs:end -->
 
 For more detailed instructions, check out the [Development Guide](/guides/development.md)
 
-## License
-
 Licensed under the [MIT license](http://opensource.org/licenses/MIT)
-
-## Resources
 
 Documentation, content, training & more at https://www.platformkit.com 
 

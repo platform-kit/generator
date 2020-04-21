@@ -54,11 +54,7 @@
 <!-- tabs:end -->
 
 
-## License
-
 Licensed under the [MIT license](http://opensource.org/licenses/MIT).
-
-## Resources
 
 Documentation, content, training & more at https://www.platformkit.com 
 
