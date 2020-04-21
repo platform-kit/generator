@@ -34,28 +34,34 @@
                   class="mb-1 btn btn-light btn-outline-dark  btn-block"
                   :to="'https://facebook.com/' + socialSettings.facebook"
                 >
-                  <i class="fa fa-facebook"></i>
+                  <i class="fa fa-facebook"></i> Facebook
                 </g-link>
                 <g-link
                   v-if="socialSettings != null && socialSettings.instagram != null"
                   class="mb-1 btn btn-light btn-outline-dark btn-block"
                   :to="'https://instagram.com/' + socialSettings.instagram"
                 >
-                  <i class="fa fa-instagram"></i>
+                  <i class="fa fa-instagram"></i> Instagram
                 </g-link>
                 <g-link
                   v-if="socialSettings != null && socialSettings.twitter != null"
                   class="mb-1 btn btn-light btn-outline-dark btn-block"
                   :to="'https://twitter.com/' + socialSettings.twitter"
                 >
-                  <i class="fa fa-twitter"></i>
+                  <i class="fa fa-twitter"></i> Twitter
                 </g-link>
                 <g-link
                   v-if="socialSettings != null && socialSettings.github != null"
                   class="btn btn-light btn-outline-dark btn-block"
                   :to="'https://github.com/' + socialSettings.github"
                 >
-                  <i class="fa fa-github"></i>
+                  <i class="fa fa-github"></i> Github
+                </g-link>
+                  <g-link                  
+                  class="btn btn-light btn-outline-dark btn-block"
+                  :to="'/docs'"
+                >
+                  <i class="fa fa-book"></i> Documentation
                 </g-link>
             </li>
 					</ul>
