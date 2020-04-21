@@ -114,9 +114,9 @@
     }
 
     .content a:not(.anchor) {
-      background: #fff;
+      background: none;
       transition: all 0.3s;
-      border: 1px solid #ffe3d9;
+      
       padding: 4px 10px;
       border-radius: 4px;
       color: #ff5400 !important;
@@ -128,13 +128,18 @@
     }
 
     a.anchor:hover {
-      background-color:#c1d0e9;
-      text-decoration:none;
+      background-color: #c1d0e9;
+      text-decoration: none;
 
     }
 
     .anchor span {
       color: rgb(40, 67, 116) !important;
+    }
+
+    .anchor {
+      background: #fff !important;
+      box-shadow:0px 20px 10px rgba(0,50,150,0.05);
     }
 
     h2 a,

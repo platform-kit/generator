@@ -1,5 +1,5 @@
-<div align="center">    
-    <h1 style="margin-bottom:15px;margin-top:10px; border:none;font-weight:100;"><span style="opacity:0.66;">platformkit</span> <span style="">customer.js</span></h1>
+<div align="center" style="background:#fff;border-radius:5px;padding:10px 10px 5px 10px;margin-top:20px;">
+    <h1 style="margin-bottom:15px;margin-top:10px; border:none;font-weight:100;color:#000 !important;"><span>platformkit</span> <span style="">customer.js</span></h1>
 </div>
 
 > Abstraction layer for common CRM apps.
