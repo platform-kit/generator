@@ -1,7 +1,10 @@
 <div align="center">
-    <img  height="50"    src="logos/logo-black.svg" style="    max-width: 250px;
-    display: block;        
-    cursor:pointer;"
+    <img  height="50"    src="logos/logo-black.svg" style=" max-width: 250px;
+    background: #fff;
+    padding: 10px 15px;
+    display: block;
+    cursor: pointer;
+    border-radius: 35px;"
     onclick="window.location.assign('#/generator')"/><br>
 
 <quote>A full-stack framework for building content, software, and e-commerce platforms.</quote>
