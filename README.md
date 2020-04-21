@@ -7,11 +7,11 @@
 <quote>A static site generator for building content, software, and e-commerce platforms.</quote>
 
 <div class="links">
-    <a href="https://platformkit.com/docs">Documentation</a>                    
+    <a href="https://www.platformkit.com/">Documentation</a>                    
 </div>
 
 <div class="links" style="margin-top:35px;">
 <span style="margin-bottom:10px;display:block;">Made with 💖 + ⚡ by</span>
-    <a href="https://dharmaworks.com" style="background:none;">Dharmaworks</a>
+    <a href="https://www.dharmaworks.com" style="background:none;">Dharmaworks</a>
 </div>
 </div>
