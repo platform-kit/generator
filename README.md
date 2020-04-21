@@ -13,7 +13,7 @@
 <div class="links">
     <a href="https://www.platformkit.com/">Documentation</a>                    
 </div>
-
+<br>
 
 <div class="links" style="margin-top:35px;">
 <span style="margin-bottom:10px;display:block;">Made with 💖 + ⚡ by</span>
