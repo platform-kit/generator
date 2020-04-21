@@ -1,5 +1,4 @@
 <div align="center">
-    <img width="50" height="50"  src="https://www.platformkit.com/logos/icon-color.png" />
     <h1 style="margin-bottom:15px;margin-top:10px; border:none;font-weight:100;"><span style="opacity:0.66;">platformkit</span> <span style="">generator</span></h1>
 </div>
 
