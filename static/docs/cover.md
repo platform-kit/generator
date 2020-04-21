@@ -1,5 +1,5 @@
 <div align="center">
-    <img  height="50"    src="logos/logo-black.png" style="    max-width: 250px;
+    <img  height="50"    src="logos/logo-black.svg" style="    max-width: 250px;
     display: block;        
     cursor:pointer;"
     onclick="window.location.assign('#/generator')"/><br>
