@@ -3,7 +3,9 @@
     display: block;
     background: #fff;
     border-radius: 25px;
-    padding: 10px 25px;"/><br>
+    padding: 10px 25px;
+    cursor:pointer;"
+    onclick="window.location.assign('#/generator')"/><br>
 
 <quote>A full-stack framework for building content, software, and e-commerce platforms.</quote>
 
