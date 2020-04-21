@@ -147,6 +147,10 @@
 
     }
 
+    a:hover {
+      text-decoration: none !important;
+    }
+
     h2 a,
     h3 a,
     h4 a,
@@ -285,24 +289,30 @@
       --docsifytabs-tab-highlight-color: #075ee9;
     }
 
-    .docsify-tabs > .docsify-tabs__tab:first-of-type {
-      border-radius:4px 0px 0px 0px;
+    .docsify-tabs>.docsify-tabs__tab:first-of-type {
+      border-radius: 4px 0px 0px 0px;
     }
 
-    .docsify-tabs > .docsify-tabs__tab:last-of-type {
-      border-radius:0px 4px 0px 0px;
+    .docsify-tabs>.docsify-tabs__tab:last-of-type {
+      border-radius: 0px 4px 0px 0px;
     }
 
     .docsify-tabs__tab {
-      color: #075ee9 !important;
-      border-color:#ddd  !important;
+      border-color: #ddd !important;
       background: #eee !important;
     }
-    .docsify-tabs__tab--active, .docsify-tabs__content {
+
+    .docsify-tabs__tab--active,
+    .docsify-tabs__content {
       background: #fff !important;
     }
+
+    .docsify-tabs__tab--active {
+      color: #075ee9 !important;
+    }
+
     .docsify-tabs__content {
-      border-radius:0px 0px 4px 4px !important;
+      border-radius: 0px 0px 4px 4px !important;
     }
   </style>
 
