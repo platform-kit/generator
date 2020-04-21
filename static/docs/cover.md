@@ -1,5 +1,9 @@
 <div align="center">
-    <img  height="50" class="raised"  src="https://www.platformkit.com/logos/logo.png" style="max-width:250px;display:block;background:#fff;border-radius:5px; padding:5px 10px;"/><br>
+    <img  height="50" class="raised"  src="https://www.platformkit.com/logos/logo.png" style="    max-width: 250px;
+    display: block;
+    background: #fff;
+    border-radius: 25px;
+    padding: 10px 25px;"/><br>
 
 <quote>A full-stack framework for building content, software, and e-commerce platforms.</quote>
 
