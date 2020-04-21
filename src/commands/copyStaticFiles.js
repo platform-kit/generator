@@ -20,6 +20,17 @@ class CopyStaticFilesCommand extends Command {
     var ncp = require('ncp').ncp;
     ncp.limit = 16;
 
+      //if (process.env.DOCS_MODE == 'true' || process.env.DOCS_MODE == true){
+        console.log('Docs Mode');
+        // Do something      
+        ncp('./static/logos', './static/docs/logos', function (err) {
+          if (err) {
+            return console.error(err);
+          }
+          console.log('done!');
+        });
+      //}
+
     if (fs.existsSync('./workspace/repository/static')) {
       // Do something
       console.log('Copied static files.');
@@ -34,16 +45,7 @@ class CopyStaticFilesCommand extends Command {
       console.log('No repository in workspace.');
     }
 
-    //if (process.env.DOCS_MODE == 'true' || process.env.DOCS_MODE == true){
-      console.log('Docs Mode');
-      // Do something      
-      ncp('./static/logos', './static/docs/logos', function (err) {
-        if (err) {
-          return console.error(err);
-        }
-        console.log('done!');
-      });
-    //}
+  
 
   }
 }
