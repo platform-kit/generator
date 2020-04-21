@@ -44,10 +44,10 @@
 
 <!-- tabs:start -->
 
-#### ** Via Command Line **
+#### ** Command Line **
 `yarn add customer-js`
 
-#### ** Via Browser **
+#### ** Browser **
 
 ```<script src="https://unpkg.com/customer-js@0.0.3/customer.js"/>```
 
