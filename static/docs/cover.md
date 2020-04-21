@@ -1,9 +1,6 @@
 <div align="center">
-    <img  height="50" class="raised"  src="https://www.platformkit.com/logos/logo.png" style="    max-width: 250px;
-    display: block;
-    background: #fff;
-    border-radius: 25px;
-    padding: 10px 25px;
+    <img  height="50"    src="logos/logo-black.png" style="    max-width: 250px;
+    display: block;        
     cursor:pointer;"
     onclick="window.location.assign('#/generator')"/><br>
 
