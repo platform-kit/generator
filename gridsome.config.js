@@ -19,7 +19,7 @@ var getImage = function (input) {
   str = str.split('/images/').pop();
 
   if (str == '/images/' || str == '' || str == null) {
-    str = '/images/chat-avatar.jpg';
+    str = '/logos/icon.png';
   }
   else {
     str = '/images/' + str;
