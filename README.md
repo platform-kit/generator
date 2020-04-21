@@ -1,9 +1,7 @@
 <div align="center">
 <img width="50" height="50"  src="https://www.platformkit.com/logos/icon-black.png"/>
-<br>
 <h1 style="margin-bottom:15px;margin-top:10px; border:none;"><span style="opacity:0.5;">PlatformKit</span> Generator</h1>
 </div>
-
 
 <div align="center">
 
