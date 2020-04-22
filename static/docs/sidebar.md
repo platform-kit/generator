@@ -2,5 +2,3 @@
 - [Principles](principles)
 - [Architecture](architecture)
 - [Site Generator](generator)
-- [Data Engine](engine)
-- [Customer.js](customerjs)

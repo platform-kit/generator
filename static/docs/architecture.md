@@ -15,19 +15,20 @@ It also ensures that the benefits of adoption compound exponentially.
 
 Consider the following examples.
 
+### If you don't already have a website
+
+If you don't yet have a website, you can generate a fully-featured website in under 5 minutes by deploying [generator](generator) to Netlify. 
+
+Generator integrates with engine and customer.js out of the box. No code required.
+
 ### If you already have a website and want to integrate analytics
 
 If you already have a website, and you want to add a CRM like Drift chat or an analytics service such as Google Analytics, you might integrate [customer.js](/customerjs) instead of directly implementing the first-party Javascript library. This enables you to add or switch to another service provider (i.e. Intercom or MixPanel) without rewriting a single line of code.
 
 ### If you already have a website with analytics and want to host your data privately
 
-If you already have a website using customer.js, you can easily switch to (or add) a private analytics database by deploying [engine](engine) and changing a single line of code in your customer.js integration.
+If you already have a website using customer.js, you can easily switch to (or add) a private analytics database by connecting platformkit's analytics API to a database and changing a single line of code in your customer.js integration.
 
-### If you don't already have a website
-
-If you don't yet have a website, you can generate a fully-featured website in under 5 minutes by deploying [generator](generator) to Netlify. 
-
-Generator integrates with engine and customer.js out of the box. No code required.
 
 <hr>
 
