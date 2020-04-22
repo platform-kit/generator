@@ -3,4 +3,4 @@
 - [Architecture](architecture)
 - [Site Generator](generator)
 - [Data Engine](engine)
-- [Customer Toolkit](customerjs)
+- [Customer.js](customerjs)

@@ -38,18 +38,18 @@
 
 ## Tech Stack
 - Data Layer
-    - [x] [Markdown](https://www.markdownguide.org/getting-started/) for flat data storage
+    - [x] [Markdown](https://www.markdownguide.org/getting-started/) & [JSON](https://www.json.org/json-en.html) for flat data storage
     - [x] [Sequelize](https://sequelize.org/) for database queries
     - [x] [GraphQL](https://www.graphql.com/) for internal API
 - Business Layer
-    - [x] [Node](https://nodejs.org/) for library development
+    - [x] [JWT](https://jwt.io/) for authentication
+    - [x] [Node](https://nodejs.org/) for package development
     - [x] [OCLIF](https://oclif.io/) for command line interface
     - [x] [Serverless Functions](https://serverless-stack.com/chapters/what-is-serverless.html) for external APIs
 - Presentation Layer (optional)
     - [x] [Vue](https://vuejs.org/) for UI state management
-    - [x] [Bootstrap](https://getbootstrap.com/) for UI styles
-    - [x] [Bootstrap-Vue](https://bootstrap-vue.js.org/) for UI components
     - [x] [Gridsome](https://gridsome.org/) for static site generation
+    - [x] [Bootstrap-Vue](https://bootstrap-vue.js.org/) for UI components
 
 ## Use Cases
 

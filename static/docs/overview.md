@@ -13,5 +13,5 @@
 [Data Engine](/engine)
 > A standalone analytics backend for platforms.
 
-[Customer Toolkit](/customerjs)
+[Customer.js](/customerjs)
 > Abstraction layer for common CRM apps.
