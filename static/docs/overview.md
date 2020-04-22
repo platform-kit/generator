@@ -10,5 +10,5 @@ The framework is comprised of 3 key pieces.
 [Analytics Engine](/engine)
 > A standalone analytics backend for platforms.
 
-[CustomerJS](/customerjs)
+[Customer Toolkit](/customerjs)
 > Abstraction layer for common CRM apps.
