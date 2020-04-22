@@ -7,23 +7,31 @@
     <img style="max-height:300px;" src="images/diagram.png">
 </div>
 
-Pages
-> Design beautiful landing pages with or without code.
+#### Pages
+- Design beautiful landing pages with or without code.
 
-Content
-> Publish audio, video, & written content.
+#### Content
+- Publish audio video, & written content.
+- Sell individual items.
+- Sell subscriptions.
 
-Auth
-> Allow users to sign up, log in, and control what they can access.
+#### Auth
+- Allow users to register.
+- Passwordless login via magic links sent by email.
+- Control what content, pages, and APIs your users can access.
+- Integrate with other applications via JWT (Javascript Web Tokens).
 
-Analytics
-> Track clicks, page views, conversions, & custom events.
+#### Analytics
+- Track clicks, page views, conversions, & custom events.
+- Supports all major analytics apps, or a private database.
+- Circumvent adblockers by handling analytics on the server.
 
-Payments
-> Charge for products, services, & subscriptions via credit card, Apple Pay, & Google pay.
+#### Payments
+- Charge for products, services, & subscriptions.
+- Users can pay via credit card, Apple Pay, & Google pay.
 
-Web-Hooks
-> Automate your dataflow.
+#### Web-Hooks
+- Automate your dataflow with web-hooks.
 
-Infrastructure
-> Automate your infrastructure deployments.
+#### Infrastructure
+- Automate your infrastructure deployments with build scripts.

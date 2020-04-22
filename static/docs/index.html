@@ -328,10 +328,11 @@
     .sidebar li {
       padding-left:10px;
     }
-    .sidebar li.active {
-      background: rgba(0,0,150,0.05);
+    .sidebar li.active, .sidebar li:hover {
+      background: rgba(0,0,150,0.05) !important;
       border-radius:4px !important;
       overflow:hidden;
+      transition:0.5s all;
     }
     .sidebar li.active a {
       border-right:none !important;
