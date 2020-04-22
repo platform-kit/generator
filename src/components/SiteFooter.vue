@@ -57,12 +57,12 @@
                 >
                   <i class="fa fa-github"></i> Github
                 </g-link>
-                  <g-link                  
+                <a href="/docs"             
                   class="btn btn-light btn-outline-dark btn-block"
-                  :to="'/docs'"
+                  @click="window.location.assign('/docs')"                  
                 >
                   <i class="fa fa-book"></i> Documentation
-                </g-link>
+                </a>
             </li>
 					</ul>
 				</div>
