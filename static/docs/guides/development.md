@@ -1,5 +1,3 @@
-## Development Guide
-
 PlatformKit is designed to allow the content and the site generator to be developed separately. 
 
 However you can also develop them together as a single project. 

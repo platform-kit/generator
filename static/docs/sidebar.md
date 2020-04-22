@@ -1,4 +1,8 @@
-- [Overview](overview)
-- [Principles](principles)
-- [Architecture](architecture)
-- [Site Generator](generator)
+- Overview
+    - [Features](features)
+    - [Principles](principles)
+    - [Architecture](architecture)    
+    - [Development Guide](guides/development)    
+- Components
+    - [Site Generator](generator)
+    - [Customer.JS](customerjs)

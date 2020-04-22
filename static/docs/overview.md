@@ -2,36 +2,11 @@
     <h1 style="margin-bottom:15px;margin-top:10px; border:none;font-weight:100;color:#000 !important;">Overview</h1>
 </div>
 
-<div align="center" style="background:#fff;padding:10px;border-radius:5px;margin-top:10px;">
-    PlatformKit has 7 key features.<br><br>
-    <img style="max-height:300px;" src="images/diagram.png">
-</div>
-
-#### Pages
-- Design beautiful landing pages with or without code.
-
-#### Content
-- Publish audio video, & written content.
-- Sell individual items.
-- Sell subscriptions.
-
-#### Auth
-- Allow users to register.
-- Passwordless login via magic links sent by email.
-- Control what content, pages, and APIs your users can access.
-- Integrate with other applications via JWT (Javascript Web Tokens).
-
-#### Analytics
-- Track clicks, page views, conversions, & custom events.
-- Supports all major analytics apps, or a private database.
-- Circumvent adblockers by handling analytics on the server.
-
-#### Payments
-- Charge for products, services, & subscriptions.
-- Users can pay via credit card, Apple Pay, & Google pay.
-
-#### Web-Hooks
-- Automate your dataflow with web-hooks.
-
-#### Infrastructure
-- Automate your infrastructure deployments with build scripts.
+- Overview
+    - [Features](features)
+    - [Principles](principles)
+    - [Architecture](architecture)    
+    - [Development Guide](guides/development)    
+- Components
+    - [Site Generator](generator)
+    - [Customer.JS](customerjs)
