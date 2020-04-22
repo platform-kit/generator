@@ -54,7 +54,7 @@ php artisan serve
 
 Click this button to deploy to Heroku instantly.
 
-<a href="https://www.heroku.com/deploy/?template=https://github.com/platform-kit/engine"><img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy"></a>
+<a style="padding-top:10px;" href="https://www.heroku.com/deploy/?template=https://github.com/platform-kit/engine"><img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy"></a>
 
 ### Via Heroku Command Line Interface
 
