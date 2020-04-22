@@ -8,25 +8,20 @@
     onclick="window.location.assign('#/generator')"/>
 
 <quote>A full-stack framework for building content, software, and e-commerce platforms.</quote>
-<br><br>
 
-<img class="raised" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Markdown-mark.svg/416px-Markdown-mark.svg.png" style="background:#fff;border-radius:4px;margin:0px;max-height:33px;"/>
 
+<img class="raised" src="https://cdn1.iconfinder.com/data/icons/hawcons/32/699251-icon-24-file-sql-512.png" style="width:33px;height:33px;background:#fff;border-radius:33px;padding:2px;margin: 0px 0px 0px 10px;height: 33px;"/>
+<img class="raised" src="https://cdn4.iconfinder.com/data/icons/logos-and-brands-1/512/205_Markdown_logo_logos-512.png" style="background:#fff;border-radius:4px;margin:0px 0px 0px 10px;max-height:33px;border-radius:33px; padding:6px;background:#fff;display:inline;"/>
+<br>
+<img class="raised" src="https://gridsome.org/logos/logo-circle-dark.svg" style="margin:0px 0px 0px 10px;width:33px;height:33px;padding:-10px;border-radius:33px;"/>
+<img class="raised" src="https://cdn.auth0.com/blog/jwtalgos/logo.png" style="margin:0px 0px 0px 10px;width:33px;height:33px;padding:-10px;border-radius:33px;"/>
 <img class="raised" src="https://github.com/graphql/graphql-spec/blob/master/resources/GraphQL%20Logo.png?raw=true" style="margin:0px 0px 0px 10px;width:33px;height:33px;padding:-10px;border-radius:33px;"/>
+<br>
 
 <div class="raised" style="background-color:#e3ffe9; background-image:url('https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/vue/vue.png'); background-size:66%;border-radius:33px;width:33px;display:inline-block;background-repeat:no-repeat; background-position:center center;height:33px;padding:5px 5px 5px 5px;margin:0px 0px 0px 10px;"></div>
-
-<img class="raised" src="https://gridsome.org/logos/logo-circle-dark.svg" style="margin:0px 0px 0px 10px;width:33px;height:33px;padding:-10px;border-radius:33px;"/>
-
 <img class="raised" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Bootstrap_logo.svg/1200px-Bootstrap_logo.svg.png" style="width:33px;height:33px;margin:0px 0px 0px 10px;height:33px;padding:-10px;border-radius:33px;"/>
 
-<img class="raised" src="https://github.com/laravel/art/blob/master/laravel-logo.png?raw=true" style="width:33px;height:33px;background:#fff6f5;border-radius:33px;padding:5px 3px 5px 5px;margin: 0px 0px 0px 10px;height: 33px;"/>
 
-<div style="width:100%;display:block;margin-bottom:40px;"></div>
-
-<span style="display:inline-block;">Made with 💖 + ⚡ by <a href="https://www.dharmaworks.com" target="_blank">&nbsp;DharmaWorks</a></span> 
-<br><br>
-
-<a href="#/overview" style="background: #f2f6fe; border: 1px solid #d1e0ff;padding:5px 10px; border-radius:4px;color:#000 !important;">Get Started</a>
+<a href="#/overview" style="background: #f2f6fe; border: 1px solid #d1e0ff;padding:5px 10px; border-radius:4px;color:#000 !important;margin-top:5px;">Get Started</a>
 
 </div>
