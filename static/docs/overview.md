@@ -3,15 +3,27 @@
 </div>
 
 <div align="center" style="background:#fff;padding:10px;border-radius:5px;margin-top:10px;">
-    The framework is comprised of 3 key pieces.<br><br>
-    <img style="max-height:200px;" src="images/diagram.png">
+    PlatformKit has 7 key features.<br><br>
+    <img style="max-height:300px;" src="images/diagram.png">
 </div>
 
-[Site Generator](/generator)
-> A static site generator for building content, software, and e-commerce platforms.
+Pages
+> Design beautiful landing pages with or without code.
 
-[Data Engine](/engine)
-> A standalone analytics backend for platforms.
+Content
+> Publish audio, video, & written content.
 
-[Customer.js](/customerjs)
-> Abstraction layer for common CRM apps.
+Auth
+> Allow users to sign up, log in, and control what they can access.
+
+Analytics
+> Track clicks, page views, conversions, & custom events.
+
+Payments
+> Charge for products, services, & subscriptions via credit card, Apple Pay, & Google pay.
+
+Web-Hooks
+> Automate your dataflow.
+
+Infrastructure
+> Automate your infrastructure deployments.
