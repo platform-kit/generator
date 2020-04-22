@@ -10,7 +10,7 @@
 [Site Generator](/generator)
 > A static site generator for building content, software, and e-commerce platforms.
 
-[Analytics Engine](/engine)
+[Data Engine](/engine)
 > A standalone analytics backend for platforms.
 
 [Customer Toolkit](/customerjs)
