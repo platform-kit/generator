@@ -23,13 +23,13 @@
 - Integrate with other applications via JWT (Javascript Web Tokens).
 
 #### Analytics
+- Integrate with major analytics/CRM apps.
 - Track clicks, page views, conversions, & custom events.
-- Supports all major analytics apps, or a private database.
-- Circumvent adblockers by handling analytics on the server.
+- Circumvent adblockers by handling analytics on your own server.
 
 #### Payments
 - Charge for products, services, & subscriptions.
-- Users can pay via credit card, Apple Pay, & Google pay.
+- Accept payments via credit card, Apple Pay, & Google Pay.
 
 #### Web-Hooks
 - Automate your dataflow with web-hooks.
