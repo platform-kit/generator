@@ -22,7 +22,7 @@
                 :src="brandSettings.logo"
                 style="transform:scale(1.5);margin-left:25px;margin-top:-5px;width:100%;max-width:90px;max-height:40px;display:inline-block;"
               />
-              <span class="text-dark opacity-80" v-else>PlatformKit</span>
+              <span class="text-dark opacity-80" v-else>{{ companySettings.name || 'PlatformKit' }}</span>
             </a>
 
             <a
@@ -386,6 +386,7 @@ query {
 import Logo from "~/components/Logo.vue";
 import SiteFooter from "~/components/SiteFooter.vue";
 import moment from "moment";
+import companySettings from "../../data/company.json";
 import brandSettings from "../../data/brand.json";
 import themeSettings from "../../data/theme.json";
 import socialSettings from "../../data/social.json";
@@ -403,6 +404,7 @@ export default {
       thirtyDaysAgo: null,
       result: null,
       currentPage: null,
+      companySettings: companySettings,
       brandSettings: brandSettings,
       themeSettings: themeSettings,
       socialSettings: socialSettings,
@@ -462,6 +464,7 @@ export default {
 
     let list = this.$static.featuredContent.edges;
     let results = [];
+    /*
     $.each(list, function(key, value) {
       var date = moment(value.node.date);
       var thirtyDaysAgo = moment().subtract(30, "days");
@@ -472,6 +475,7 @@ export default {
         results.push(key);
       }
     });
+    */
 
     //console.log(results)
     this.newContent = results;

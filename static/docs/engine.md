@@ -2,33 +2,26 @@
     <h1 style="margin-bottom:15px;margin-top:10px; border:none;font-weight:100;color:#000 !important;"><span>platformkit</span> <span style="">engine</span></h1>
 </div>
 
-> A standalone backend for platforms.
+> A standalone analytics backend for platforms.
 
+> [!CODE]
 [github: platform-kit/engine](https://github.com/platform-kit/engine)
 
 
-## Benefits
+## Features
 
 <!-- tabs:start -->
 
-#### ** Business **
-- [x] Analytics API
-
 #### ** Developers **
-- [x] 1-step install/deploy.
-
-#### ** Users **
-- [x] Pro Privacy
+- [x] Analytics API
+- [x] 1-step install/deploy
 
 <!-- tabs:end -->
 
 ## Tech Stack
 
-- [x] **Heroku/Dokku** for deployment
-- [x] **PostgreSQL** for database
-- [x] **Laravel** for framework/ORM
-
-
+- [x] [Heroku](http://heroku.com/) / [Dokku](http://dokku.com/) for deployment
+- [x] [PostgreSQL](https://www.postgresql.org/) for database
 
 ## Installation
 

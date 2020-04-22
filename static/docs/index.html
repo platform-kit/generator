@@ -8,7 +8,7 @@
   <meta name="description" content="Description">
   <meta name="viewport"
     content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css">
+  <link rel="stylesheet" href="https://unpkg.com/docsify/lib/themes/vue.css">
   <link rel="icon" href="logos/icon-black.png" sizes="16x16" type="image/png">
   <link rel="apple-touch-icon" href="logos/touch-icon.png">
 
@@ -216,11 +216,11 @@
       color: #606e84 !important;
     }
   </style>
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-dark-mode@latest/dist/style.min.css" />
-  <link rel="stylesheet" href="unpkg.com/@fortawesome/fontawesome-free/css/fontawesome.css" />
-  <link rel="stylesheet" href="unpkg.com/@fortawesome/fontawesome-free/css/brands.css" />
-  <link rel="stylesheet" href="unpkg.com/@fortawesome/fontawesome-free/css/regular.css" />
-  <link rel="stylesheet" href="unpkg.com/@fortawesome/fontawesome-free/css/solid.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-dark-mode@latest/dist/style.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free/css/fontawesome.css" />
+  <link rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free/css/brands.css" />
+  <link rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free/css/regular.css" />
+  <link rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free/css/solid.css" />
 </head>
 
 <body>
@@ -232,7 +232,7 @@
     window.$docsify = {
       name: 'platform-kit',
       repo: 'platform-kit',
-      coverpage: 'cover.md',
+      coverpage: false,
       homepage: 'README.md',
       loadSidebar: 'sidebar.md',
       loadNavbar: 'navbar.md',
@@ -260,20 +260,60 @@
         crossChapter: true,
         crossChapterText: true,
       },
-      darkMode: {
-        dark: {
-          background: "#111",
-          toggleBtnBg: "#075ee9",
-          textColor: "#fff"
+      'flexible-alerts': {
+        comment: {
+          label: "Comment",
+
+          // localization
+          label: {
+            '/en-GB/': 'Comment',
+            '/': 'Kommentar'
+          },
+
+          // Assuming that we use Font Awesome
+          icon: "fas fa-comment",
+          className: "info"
         },
-        light: {
-          background: "white",
-          toggleBtnBg: "#333",
-          textColor: "#000"
+        code: {
+          label: "Source Code",
+
+          // localization
+          label: {
+            '/en-GB/': 'Source Code',
+            '/': 'Source Code'
+          },
+
+          // Assuming that we use Font Awesome
+          icon: "fab fa-github",
+          className: "sourcecode"
+        },
+        idea: {
+          label: "Idea",
+
+          // localization
+          label: {
+            '/en-GB/': 'Idea',
+            '/': 'Idea'
+          },
+
+          // Assuming that we use Font Awesome
+          icon: "fas fa-asterisk",
+          className: "idea"
+        },
+        concept: {
+          label: "Key Concept",
+
+          // localization
+          label: {
+            '/en-GB/': 'Key Concept',
+            '/': 'Key Concept'
+          },
+
+          // Assuming that we use Font Awesome
+          icon: "fas fa-lightbulb",
+          className: "concept"
         }
       }
-      ,
-
 
     }
   </script>
@@ -283,9 +323,50 @@
   <script src="https://cdn.jsdelivr.net/npm/docsify-copy-code"></script>
   <script src="https://cdn.jsdelivr.net/npm/docsify-tabs@1"></script>
   <script src="https://unpkg.com/docsify-pagination/dist/docsify-pagination.min.js"></script>
-  <script src="https://unpkg.com/docsify-fontawesome/dist/docsify-fontawesome.min.js"></script>
+  <script src="https://unpkg.com/docsify-plugin-flexible-alerts"></script>
 
   <style>
+    .markdown-section p {
+      padding-left: 10px;
+    }
+
+    .alert.flat.concept {
+        background-color: #fffad5;
+        border-color: #f8ff4a;
+    }
+
+    .alert.concept p, .alert.idea p {
+      color: rgba(0,0,0,0.8) !important;
+    }
+
+    .alert.sourcecode {
+      border: 1px solid #075ee933;
+      border-left-width: 1px;
+      border-radius: .25rem;
+      background: #f2f6fe;
+    }
+
+    .idea.alert i {
+        margin-right: .5rem;        
+        color: royalblue;
+    }
+
+    .alert i {
+      opacity: .4;
+    }
+
+    .alert {
+      margin-top:10px;
+    }
+
+
+    .alert.idea {
+      border: 1px solid #075ee933;
+      border-left-width: 1px;
+      border-radius: .25rem;
+      background: #fff !important;
+    }
+
     :root {
       --docsifytabs-border-color: #ddd;
       --docsifytabs-tab-highlight-color: #075ee9;
@@ -299,6 +380,15 @@
       border-radius: 0px 4px 0px 0px;
     }
 
+    .docsify-tabs--classic .docsify-tabs__tab--active {
+      box-shadow: none !important;
+    }
+
+    .docsify-tabs__tab:focus {
+      box-shadow: none !important;
+      outline: none !important;
+    }
+
     .docsify-tabs__tab {
       border-color: #ddd !important;
       background: #eee !important;
@@ -310,7 +400,7 @@
     }
 
     .docsify-tabs__tab--active {
-      color: #075ee9 !important;
+      color: #333 !important;
     }
 
     .docsify-tabs__content {
@@ -325,15 +415,19 @@
       position: fixed !important;
       left: 0px !important;
       width: 100% !important;
-      padding:0;
-      margin:0px;
-      z-index:1 !important;
-      background:#fafcff;
+      padding: 0;
+      margin: 0px;
+      z-index: 1 !important;
+      background: #fafcff;
       text-align: left !important;
     }
 
     aside.sidebar {
-      margin-top:0px;
+      margin-top: 0px;
+    }
+
+    .docsify-pagination-container {
+      border: none !important;
     }
   </style>
 

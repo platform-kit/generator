@@ -4,18 +4,22 @@
 
 > Abstraction layer for common CRM apps.
 
+> [!CODE]
 [github: platform-kit/customer-js](https://github.com/platform-kit/customer-js)
 
-## Benefits
+## Features
 
 <!-- tabs:start -->
 
 #### ** Business **
-- [x] Analytics Abstraction Layer
-- [x] Customer Relationship Management Abstraction Layer
+- [x] Track page views
+- [x] Track custom events
+- [x] Persistent user profiles
 
 #### ** Developers **
-- [x] 1-step install (just copy/paste);
+- [x] 1-step install
+- [x] Integrate Analytics & CRM with 1 package
+- [x] Decrease technical debt via abstraction
 
 #### ** Users **
 - [x] Pro Privacy

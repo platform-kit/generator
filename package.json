@@ -41,6 +41,7 @@
     "dotenv-flow": "^3.1.0",
     "dotenv-webpack": "^1.7.0",
     "front-matter": "^3.1.0",
+    "fs": "^0.0.1-security",
     "fse": "^4.0.1",
     "gitorm": "^0.0.25",
     "gridsome": "^0.7.0",
@@ -81,6 +82,9 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.27",
     "@fortawesome/free-brands-svg-icons": "^5.12.1",
     "@fortawesome/vue-fontawesome": "^0.1.9",
+    "dotenv": "^8.2.0",
+    "dotenv-flow": "^3.1.0",
+    "dotenv-webpack": "^1.7.0",
     "node-sass": "^4.12.0",
     "sass-loader": "^8.0.0"
   },

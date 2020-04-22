@@ -1,14 +1,32 @@
-<div align="center" style="background:#fff;border-radius:5px;padding:10px 10px 5px 10px;margin-top:20px;">
-    <h1 style="margin-bottom:15px;margin-top:10px; border:none;font-weight:100;color:#000 !important;">Overview</h1>
-</div>
+<div align="center" style="padding-top:50px;">
+    <img  width="200"    src="logos/logo-black.svg" style=" max-width: 250px;
+    background: #fff;
+    padding: 10px 15px;
+    display: block;
+    cursor: pointer;
+    border-radius: 35px;"
+    onclick="window.location.assign('#/generator')"/>
 
-The framework is comprised of 3 key pieces.
+<quote>A full-stack framework for building content, software, and e-commerce platforms.</quote>
 <br><br>
-[Generator](/generator)
-> A static site generator for building content, software, and e-commerce platforms.
 
-[Engine](/engine)
-> A standalone backend for platforms.
+<img class="raised" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Markdown-mark.svg/416px-Markdown-mark.svg.png" style="background:#fff;border-radius:4px;margin:0px;max-height:33px;"/>
 
-[CustomerJS](/customerjs)
-> Abstraction layer for common CRM apps.
+<img class="raised" src="https://github.com/graphql/graphql-spec/blob/master/resources/GraphQL%20Logo.png?raw=true" style="margin:0px 0px 0px 10px;width:33px;height:33px;padding:-10px;border-radius:33px;"/>
+
+<div class="raised" style="background-color:#e3ffe9; background-image:url('https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/vue/vue.png'); background-size:66%;border-radius:33px;width:33px;display:inline-block;background-repeat:no-repeat; background-position:center center;height:33px;padding:5px 5px 5px 5px;margin:0px 0px 0px 10px;"></div>
+
+<img class="raised" src="https://gridsome.org/logos/logo-circle-dark.svg" style="margin:0px 0px 0px 10px;width:33px;height:33px;padding:-10px;border-radius:33px;"/>
+
+<img class="raised" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Bootstrap_logo.svg/1200px-Bootstrap_logo.svg.png" style="width:33px;height:33px;margin:0px 0px 0px 10px;height:33px;padding:-10px;border-radius:33px;"/>
+
+<img class="raised" src="https://github.com/laravel/art/blob/master/laravel-logo.png?raw=true" style="width:33px;height:33px;background:#fff6f5;border-radius:33px;padding:5px 3px 5px 5px;margin: 0px 0px 0px 10px;height: 33px;"/>
+
+<div style="width:100%;display:block;margin-bottom:40px;"></div>
+
+<span style="display:inline-block;">Made with 💖 + ⚡ by <a href="https://www.dharmaworks.com" target="_blank">&nbsp;DharmaWorks</a></span> 
+<br><br>
+
+<a href="#/overview" style="background: #f2f6fe; border: 1px solid #d1e0ff;padding:5px 10px; border-radius:4px;color:#000 !important;">Get Started</a>
+
+</div>
