@@ -2,8 +2,11 @@
     <h1 style="margin-bottom:15px;margin-top:10px; border:none;font-weight:100;color:#000 !important;">Overview</h1>
 </div>
 
-The framework is comprised of 3 key pieces.
-<br><br>
+<div align="center">
+    The framework is comprised of 3 key pieces.<br><br>
+    <img style="max-height:200px;" src="images/diagram.png">
+</div>
+
 [Site Generator](/generator)
 > A static site generator for building content, software, and e-commerce platforms.
 

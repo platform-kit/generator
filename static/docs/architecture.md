@@ -5,7 +5,6 @@
 > [!concept|style:flat|label:Key Idea - Holons ]
 A holon is something that is capable of functioning simultaneously as a whole and as a part of a larger whole.
 
-
 In addition to working together as part of a whole, each component of PlatformKit is designed to function and provide value on its own.
 
 This approach provides several benefits. New users can adopt incrementally. Likewise, users can also migrate away incrementally.
