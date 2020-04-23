@@ -6,7 +6,7 @@
     - [Features](features)
     - [Principles](principles)
     - [Architecture](architecture)    
-    - [Development Guide](guides/development)    
+    - [Local Development](guides/development)    
 - Components
     - [Site Generator](generator)
     - [Customer.JS](customerjs)

@@ -1,3 +1,8 @@
+<div align="center" style="background:#fff;border-radius:5px;padding:10px 10px 5px 10px;margin-top:20px;">
+    <h1 style="margin-bottom:15px;margin-top:10px; border:none;font-weight:100;color:#000 !important;"><span style="">Local Development</span></h1>
+</div>
+
+
 PlatformKit is designed to allow the content and the site generator to be developed separately. 
 
 However you can also develop them together as a single project. 
