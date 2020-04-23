@@ -13,12 +13,12 @@
 
 #### Content
 - Publish audio video, & written content.
-- Sell individual items.
+- Sell individual content items.
 - Sell subscriptions.
 
 #### Auth
 - Allow users to register.
-- Passwordless login via magic links sent by email.
+- Passwordless login (magic link sent by email.)
 - Control what content, pages, and APIs your users can access.
 - Integrate with other applications via JWT (Javascript Web Tokens).
 
@@ -32,7 +32,9 @@
 - Accept payments via credit card, Apple Pay, & Google Pay.
 
 #### Web-Hooks
-- Automate your dataflow with web-hooks.
+- Send & receive web-hooks.
+- Run scripts in response to incoming web-hooks.
 
 #### Infrastructure
-- Automate your infrastructure deployments with build scripts.
+- Deploy your own cloud with Infrastructure As Code scripts.
+- Deploy cloud infrastructure for your customers.
