@@ -6,6 +6,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Panel</title>
   <link rel="icon" type="image/png" href="../../logos/icon-color.png">
+  <script>
+    var user = JSON.parse(localStorage.setItem("netlify-cms-user"));
+    if(user != null) {
+      user.backendName = "proxy";
+    }
+    localStorage.setItem("netlify-cms-user", JSON.stringify(user));
+
+    if (!window.location.href.includes('#')) {
+      this.window.location.assign('/admin-local/#');
+      this.window.location.reload();
+    }
+    if (window.location.href.includes('reload')) {
+      this.window.location.assign('/admin-local/');      
+    }
+    
+    console.log(localStorage.getItem("netlify-cms-user"));    
+  </script>
   <script src="127.0.0.1:8888/index.js" type="module"></script>
   <style>
     html {

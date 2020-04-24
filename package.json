@@ -10,6 +10,10 @@
     "build": "gridsome build",
     "develop": "gridsome develop",
     "explore": "gridsome explore",
+    "dev": "./bin/run seedData; ./bin/run getData; ./bin/run copyData; ./bin/run copyStaticFiles; netlify dev",
+    "start-cms-server": "npx netlify-cms-proxy-server;",
+    "start-cms-server-workspace": "cd ./workspace/repository; npx netlify-cms-proxy-server;",
+    "open-cms" : "open 'http://localhost:8888/admin-local/#'",
     "generate": "./bin/run seedData; ./bin/run getData; ./bin/run copyData; ./bin/run copyStaticFiles; gridsome build;"
   },
   "files": [
