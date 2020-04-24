@@ -1,6 +1,6 @@
 ---
 title: Launch Your Own Platform
-id: page-bxS-eKa4c
+id: page-bxs-eKa4c
 slug: launch-your-own-platform
 published: true
 description: ''

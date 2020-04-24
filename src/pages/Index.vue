@@ -39,13 +39,12 @@ export default {
   },
   created() {
     try {
-      this.window = window;
-
-      if (this.themeSettings.hasOwnProperty("homepage")) {
+      this.window = window;      
+      if (this.themeSettings.homepage != null) {
         this.redirectToLandingPage(this.themeSettings.homepage);
       } else {
         window.location.assign("/content");
-        this.redirecting = redirecting;
+        this.redirecting = true;
       }
     } catch (error) {
       console.log(error);
@@ -61,21 +60,22 @@ export default {
    
   },
   methods: {
-    redirectToLandingPage(id) {
-      if (this.$page.allPages.edges.length > 0) {
+    redirectToLandingPage(id) {    
+      
+      if (this.$page.allPages.edges.length > 0) {        
         let list = this.$page.allPages.edges;
         let results = [];
         let homepage = this.themeSettings.homepage;
         let window = this.window;
         let redirecting = false;
-        $.each(list, function(key, value) {
-          if (value.node.id == homepage) {
+        console.log(list);
+        $.each(list, function(key, value) {            
+          if (value.node.id == homepage) {                        
             var redirect = "/" + value.node.slug;
             redirecting = true;
             window.location.assign(redirect);
           }
         });
-
         this.redirecting = redirecting;
       }
     },

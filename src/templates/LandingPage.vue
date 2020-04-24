@@ -88,7 +88,7 @@
         <div v-else-if="section.type == 'collections'" class="border-bottom row">
           <div
             v-if="section.list.includes(edge.node.id)"
-            v-on:click="window.location.assign('/buy/' + edge.node.slug)"
+            
             v-for="edge, index in $page.collections.edges"
             class="justify-content-center px-0 pr-md-2 mb-4 col-md-12"
             v-bind:class="{ 'col-lg-3': section.list.length >= 4, 'col-lg-6': section.list.length == 2, 'col-lg-4': section.list.length == 3, 'col-lg-12': section.list.length == 1   }"
@@ -112,6 +112,7 @@
                   class="col-md-4 px-0 pr-md-2 mb-1"
                 >
                   <div
+                  v-on:click="window.location.assign('/buy/' + edge.node.slug)"
                     class="card raised border-0 mb-1 pull-left mx-0 px-0 h-100 mr-md-3 px-0 pb-3 m-0 mb-4"
                     :key="edge.node.id"
                     :post="edge.node"

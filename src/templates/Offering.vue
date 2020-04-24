@@ -47,7 +47,7 @@
           >
             <div
               class="d-block w-100"
-              v-if="$page.offering.variants == null && ($page.offering.buy_button_html == null || $page.offering.buy_button_html == '') && ($page.offering.buy_button_url == null || $page.offering.buy_button_url == '')"
+              v-if="1 == 2 && $page.offering.variants == null && ($page.offering.buy_button_html == null || $page.offering.buy_button_html == '') && ($page.offering.buy_button_url == null || $page.offering.buy_button_url == '')"
             >
               <div class="bg-light border br-5 p-3 w-100 d-block">
                 <div class="btn btn-lg text-left pr-0 pl-0 ml-0 my-2 price mr-4">
@@ -77,7 +77,7 @@
                 </stripe-checkout>
               </div>
             </div>
-            <div class="d-block w-100" v-if="$page.offering.variants != null">
+            <div class="d-block w-100" v-if="1 == 2 && $page.offering.variants != null">
               <div
                 class="bg-light border br-5 p-3 w-100 d-block mb-2 text-right"
                 v-for="variant in $page.offering.variants"
@@ -384,17 +384,7 @@ query Offering ($id: ID!) {
       plans
       boost      
       description
-      cover_image
-      variants {
-        id
-        name
-        price
-        image
-        attributes {
-          key
-          value
-        }
-      }
+      cover_image      
       path
       buy_button_html
       buy_button_url      
