@@ -80,7 +80,7 @@ Click the button below to deploy to Netlify instantly.
 
 If you want to generate the content/e-commerce portion of the site - 
 
-Build Command: `./bin/run getData; ./bin/run copyData; gridsome build`
+Build Command: `npm run generate`
 
 Publish Directory: `dist`
 
@@ -88,7 +88,7 @@ Publish Directory: `dist`
 
 If you only want to generate the docs -
 
-Build Command: `./bin/run getData; ./bin/run copyData; gridsome build`
+Build Command: `./bin/run getData; ./bin/run copyData;`
 
 Publish Directory: `dist/docs`
 
