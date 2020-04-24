@@ -9,7 +9,8 @@
     "prebuild": "node ./scripts/installer.js",
     "build": "gridsome build",
     "develop": "gridsome develop",
-    "explore": "gridsome explore"
+    "explore": "gridsome explore",
+    "generate": "./bin/run seedData; ./bin/run getData; ./bin/run copyData; ./bin/run copyStaticFiles; gridsome build;"
   },
   "files": [
     "/bin",
@@ -66,6 +67,7 @@
     "nodemailer-mailgun-transport": "^2.0.0",
     "nodemailer-smtp-transport": "^2.7.4",
     "oclif": "^1.15.2",
+    "open": "^7.0.3",
     "platformkit-cart": "file:./lib/cart",
     "platformkit-product": "file:./lib/product",
     "platformkit-stripe": "file:./lib/stripe",
