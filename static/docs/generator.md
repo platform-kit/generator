@@ -90,7 +90,7 @@ If you only want to generate the docs -
 
 Build Command: `./bin/run getData; ./bin/run copyData;`
 
-Publish Directory: `dist/docs`
+Publish Directory: `static/docs`
 
 #### ** Local **
 
