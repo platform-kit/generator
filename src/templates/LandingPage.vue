@@ -109,7 +109,8 @@
                   v-for="edge, index in $page.offerings.edges"
                   v-bind:key="edge.node.id"
                   v-if="collection.node.offerings.includes(edge.node.id) && edge.node.featured == true"
-                  class="col-md-4 px-0 pr-md-2 mb-1"
+                  class="col-12  px-0 pr-md-2 mb-1"
+                  v-bind:class="{ 'col-lg-3': collection.node.offerings.length >= 4, 'col-lg-6': collection.node.offerings.length == 2, 'col-lg-4': collection.node.offerings.length == 3, 'col-lg-12': collection.node.offerings.length == 1   }"
                 >
                   <div
                   v-on:click="window.location.assign('/buy/' + edge.node.slug)"
