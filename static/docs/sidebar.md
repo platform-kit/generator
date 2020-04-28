@@ -1,9 +1,0 @@
-- Overview
-    - [Features](features)
-    - [Principles](principles)
-    - [Architecture](architecture)    
-    - [Directory Structure](structure)    
-    - [Local Development Guide](guides/development)    
-- Components
-    - [Site Generator](generator)
-    - [Customer.JS](customerjs)

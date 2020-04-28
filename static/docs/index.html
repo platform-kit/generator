@@ -11,9 +11,143 @@
   <link rel="stylesheet" href="https://unpkg.com/docsify/lib/themes/vue.css">
   <link rel="icon" href="logos/icon-black.png" sizes="16x16" type="image/png">
   <link rel="apple-touch-icon" href="logos/touch-icon.png">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-dark-mode@latest/dist/style.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free/css/fontawesome.css" />
+  <link rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free/css/brands.css" />
+  <link rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free/css/regular.css" />
+  <link rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free/css/solid.css" />
+  <link rel="stylesheet" href="https://unpkg.com/prismjs/themes/prism-tomorrow.css">
 
-  <style>   
+</head>
 
+<body>
+  <nav style="width:100%;"></nav>
+  <div id="app"></div>
+
+  <script>
+    window.$docsify = {
+      name: 'platform-kit',
+      repo: 'platform-kit',
+
+      onlyCover: true,
+      homepage: 'md/README.md',
+      loadSidebar: true,
+      loadNavbar: false, // IMPORTANT
+      alias: {
+
+        'md/.*/sidebar.md': 'md/sidebar.md',
+      },
+      logo: 'logos/logo-black.svg',
+      name: 'Documentation',
+      nameLink: '#',
+      themeColor: '#2d2d42',
+      relativePath: false,
+      auto2top: true,
+      subMaxLevel: 2,
+      maxLevel: 4,
+      search: {
+        hideOtherSidebarContent: true, // whether or not to hide other sidebar content
+      },
+
+      tabs: {
+        persist: true,      // default
+        sync: true,      // default
+        theme: 'classic', // default
+        tabComments: true,      // default
+        tabHeadings: true       // default
+      },
+      pagination: {
+        previousText: 'Previous',
+        nextText: 'Next',
+        crossChapter: true,
+        crossChapterText: true,
+      },
+
+      select: {
+        detectOperatingSystem: {
+          enabled: false,
+          menuId: "operating-system"
+        },
+        sync: false,
+        theme: "classic"
+      },
+      'flexible-alerts': {
+        comment: {
+          label: "Comment",
+
+          // localization
+          label: {
+            '/en-GB/': 'Comment',
+            '/': 'Kommentar'
+          },
+
+          // Assuming that we use Font Awesome
+          icon: "fas fa-comment",
+          className: "info"
+        },
+        guide: {
+          label: "Guide",
+
+          // Assuming that we use Font Awesome
+          icon: "fas fa-book",
+          className: "guide"
+        },
+        code: {
+          label: "Source Code",
+
+          // localization
+          label: {
+            '/en-GB/': 'Source Code',
+            '/': 'Source Code'
+          },
+
+          // Assuming that we use Font Awesome
+          icon: "fab fa-github",
+          className: "sourcecode"
+        },
+        idea: {
+          label: "Idea",
+
+          // localization
+          label: {
+            '/en-GB/': 'Idea',
+            '/': 'Idea'
+          },
+
+          // Assuming that we use Font Awesome
+          icon: "fas fa-asterisk",
+          className: "idea"
+        },
+        concept: {
+          label: "Key Concept",
+
+          // localization
+          label: {
+            '/en-GB/': 'Key Concept',
+            '/': 'Key Concept'
+          },
+
+          // Assuming that we use Font Awesome
+          icon: "fas fa-lightbulb",
+          className: "concept"
+        }
+      }
+
+    }
+  </script>
+  <script src="https://unpkg.com/docsify/lib/docsify.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/docsify-dark-mode@latest/dist/index.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/docsify-copy-code"></script>
+  <script src="https://cdn.jsdelivr.net/npm/docsify-tabs@1"></script>
+  <script src="https://unpkg.com/docsify-pagination/dist/docsify-pagination.min.js"></script>
+  <script src="https://unpkg.com/docsify-plugin-flexible-alerts"></script>
+  <script src="https://cdn.jsdelivr.net/npm/docsify-select@1"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-bash.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-json.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markdown.min.js"></script>
+
+  <style>
     section.cover.show {
 
       background: #f2f6fd !important;
@@ -22,9 +156,13 @@
 
     }
 
-    .markdown-section code {
+    .markdown-section li > code, .markdown-section p > code {
       color: #005ce9 !important;
       background: #005ce911 !important;
+    }
+
+    .markdown-section pre {
+      border-radius:3px !important;
     }
 
     .markdown-section a {
@@ -35,7 +173,7 @@
     }
 
 
-    a span {}
+
 
     li.active .section-link {
       color: #000 !important;
@@ -59,7 +197,7 @@
     }
 
     .markdown-section strong {
-      color: #777;
+      color: royalblue;
     }
 
     .search input:focus,
@@ -118,12 +256,12 @@
       display: inline-block;
       padding: 4px 10px;
       border-radius: 4px;
-      color: #075ee9 !important;
+      color: #3b48de !important;
       text-decoration: none !important;
     }
 
     .content a:not(.anchor):hover {
-      background: #075ee922;
+      background: #e6efff;
     }
 
     a.anchor:hover {
@@ -132,17 +270,15 @@
 
     }
 
-    .anchor span {
-      color: #000;
-    }
+
 
     h1 .anchor {
-      background: #fff !important;
+      background: transparent !important;
       box-shadow: 0px 5px 5px rgba(0, 50, 150, 0.2);
     }
 
     .anchor {
-      background: #fff !important;
+      background: transparent !important;
 
     }
 
@@ -185,7 +321,12 @@
       margin-bottom: 25px !important;
     }
 
+    .github-corner svg {
+      fill: #1a3ca2;
+    }
+
     #dark_mode label {
+      background: linear-gradient(90deg, #1a3ca2, royalblue) !important;
       position: absolute !important;
       top: 0px !important;
       left: 15px !important;
@@ -214,158 +355,167 @@
     .sidebar-nav li a {
       color: #606e84 !important;
     }
-  </style>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-dark-mode@latest/dist/style.min.css" />
-  <link rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free/css/fontawesome.css" />
-  <link rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free/css/brands.css" />
-  <link rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free/css/regular.css" />
-  <link rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free/css/solid.css" />
-</head>
 
-<body>
-
-  <div id="app"></div>
-
-
-  <script>
-    window.$docsify = {
-      name: 'platform-kit',
-      repo: 'platform-kit',
-      coverpage: false,
-      homepage: 'README.md',
-      loadSidebar: 'sidebar.md',
-      loadNavbar: 'navbar.md',
-      logo: 'logos/logo-black.svg',
-      name: 'Documentation',
-      nameLink: '#',
-      themeColor: '#222',
-      // basePath: 'https://raw.githubusercontent.com/platform-kit/generator/master',
-      relativePath: false,
-      auto2top: true,
-      subMaxLevel: 2,
-      maxLevel: 4,
-      search: 'auto',
-      onlyCover: true,
-      tabs: {
-        persist: true,      // default
-        sync: true,      // default
-        theme: 'classic', // default
-        tabComments: true,      // default
-        tabHeadings: true       // default
-      },
-      pagination: {
-        previousText: 'Previous',
-        nextText: 'Next',
-        crossChapter: true,
-        crossChapterText: true,
-      },
-      'flexible-alerts': {
-        comment: {
-          label: "Comment",
-
-          // localization
-          label: {
-            '/en-GB/': 'Comment',
-            '/': 'Kommentar'
-          },
-
-          // Assuming that we use Font Awesome
-          icon: "fas fa-comment",
-          className: "info"
-        },
-        code: {
-          label: "Source Code",
-
-          // localization
-          label: {
-            '/en-GB/': 'Source Code',
-            '/': 'Source Code'
-          },
-
-          // Assuming that we use Font Awesome
-          icon: "fab fa-github",
-          className: "sourcecode"
-        },
-        idea: {
-          label: "Idea",
-
-          // localization
-          label: {
-            '/en-GB/': 'Idea',
-            '/': 'Idea'
-          },
-
-          // Assuming that we use Font Awesome
-          icon: "fas fa-asterisk",
-          className: "idea"
-        },
-        concept: {
-          label: "Key Concept",
-
-          // localization
-          label: {
-            '/en-GB/': 'Key Concept',
-            '/': 'Key Concept'
-          },
-
-          // Assuming that we use Font Awesome
-          icon: "fas fa-lightbulb",
-          className: "concept"
-        }
-      }
-
+    .sidebar-nav i {
+      color: #17367ee8;
+      opacity: .5;
+      margin-right: 11px;
+      text-shadow: 1px 2px #0043ff30, 0px 1px #fff;
     }
-  </script>
-  <script src="https://unpkg.com/docsify/lib/docsify.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/docsify-dark-mode@latest/dist/index.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/docsify-copy-code"></script>
-  <script src="https://cdn.jsdelivr.net/npm/docsify-tabs@1"></script>
-  <script src="https://unpkg.com/docsify-pagination/dist/docsify-pagination.min.js"></script>
-  <script src="https://unpkg.com/docsify-plugin-flexible-alerts"></script>
 
-  <style>
+    .sidebar-nav .active i {
+      opacity: 1 !important;
+    }
+
+    .sidebar-nav>ul>li {
+      margin-bottom: 10px !important;
+    }
+
     .sidebar li {
-      padding-left:10px;
-      margin-right:10px;
-      overflow:hidden !important;      
+      padding-left: 10px;
+      margin-right: 10px;
+      overflow: hidden !important;
     }
-    .sidebar li.active, .sidebar li:hover {
-      background: rgba(0,0,150,0.05) !important;
-      border-radius:4px !important;      
-      transition:0.5s all;
+
+    main h1 i {
+      opacity: .3;
+      font-size: 85% !important;
+      margin-right: 10px;
     }
+
+    .sidebar li.active,
+    .sidebar li:hover {
+      background: rgba(0, 0, 150, 0.05) !important;
+      border-radius: 4px !important;
+      transition: 0.5s all;
+    }
+
+    .sidebar ul>li.active>a {
+      text-shadow: -1px 0px 1px #fff, 2px 0px 1px rgba(0, 0, 100, .125) !important;
+      color: #002082 !important;
+    }
+
     .sidebar li.active a {
-      border-right:none !important;
+      border-right: none !important;
     }
 
     .markdown-section p {
       padding-left: 10px;
     }
 
+    .markdown-section table {
+      margin-top: 10px;
+      overflow: hidden;
+      display: table !important;
+      font-size: 80%;
+      box-shadow: 0px 3px 15px rgba(0, 100, 150, 0.2);
+    }
+
+    .markdown-section table tbody {}
+
+    .markdown-section td {}
+
+    td.bg-green {
+      background: #eefff1;
+    }
+
+    .markdown-section thead th:first-child {
+      border-radius: 4px 0px 0px 0px;
+    }
+
+    .markdown-section thead th:last-child {
+      border-radius: 0px 4px 0px 0px;
+    }
+
+    .markdown-section thead th {
+      background: #0f2361 !important;
+      border-color: transparent;
+      color: #f2f6fe;
+    }
+
+    .markdown-section thead th:nth-child(2n) {
+      background: #1f3169 !important;
+    }
+
+    .markdown-section table,
+    .markdown-section thead,
+    .markdown-section tr,
+    .markdown-section th {
+      border: none;
+
+    }
+
+    .markdown-section th {
+      border: 1px solid #eee;
+    }
+
+    .markdown-section table,
+    .markdown-section thead {
+      width: 100%;
+    }
+
+
+    .markdown-section table i {
+      opacity: 0.5;
+    }
+
+    .icon-green {
+      color: green;
+      opacity: 1 !important;
+    }
+
+    .fa-check {
+      color: green;
+    }
+
+    .fa-times-circle {
+      color: rgb(153, 15, 15);
+    }
+
+    .alert.guide {
+      background: linear-gradient(45deg, #fff, #f6f8ff) !important;
+      border-left-width: 1px;
+      border-color: #e6eaf8;
+    }
+
+    .alert .title {
+      opacity: 0.5 !important;
+      color:#000;
+    }
+
     .alert.flat.concept {
-        background-color: #fffad5;
-        border-color: #f8ff4a;
+      background: linear-gradient(45deg, #fffffc, #fffbec) !important;
+      border-color: #ffeda9;
     }
 
     .alert.concept i {
-      color:orange;
+      color: orange;
     }
 
-    .alert.concept p, .alert.idea p {
-      color: rgba(0,0,0,0.8) !important;
+    .alert.concept p,
+    .alert.idea p {
+      color: rgba(0, 0, 0, 0.8) !important;
     }
 
     .alert.sourcecode {
       border: 1px solid #075ee933;
       border-left-width: 1px;
       border-radius: .25rem;
-      background: #f2f6fe;
+      border-color: #d1f1db !important;
+      background: linear-gradient(-90deg, #f4fffa, #fff) !important;
+    }
+
+    .alert.sourcecode a {
+      color: rgba(0, 100, 125, 0.78) !important;
+    }
+
+    .alert.alert.sourcecode a {
+      background: #b5ffcf94;
     }
 
     .idea.alert i {
-        margin-right: .5rem;        
-        color: royalblue;
+      margin-right: .5rem;
+      color: royalblue;
     }
 
     .alert i {
@@ -373,7 +523,7 @@
     }
 
     .alert {
-      margin-top:10px;
+      margin-top: 10px;
     }
 
 
@@ -443,10 +593,76 @@
       margin-top: 0px;
     }
 
-  
+
 
     .docsify-pagination-container {
       border: none !important;
+    }
+
+    .content h1:first-of-type a span {
+      color: #8f9ec5 !important;
+    }
+
+    .content h1:first-of-type>a {
+      margin-top: 10px;
+      box-shadow: none !important;
+      border-radius: 4px;
+      width: 100%;
+      text-align: center;
+      font-weight: 500 !important;
+
+    }
+
+
+    p {
+      color:auto !important;
+    }
+
+
+    .content ul li {
+      margin: 5px 0px;      
+    }
+
+    .content ul {
+
+      border-radius: 4px;
+    }
+
+    .content ul:first-of-type li a {}
+
+    .content ul:first-of-type ul li a {
+      font-weight: 400 !important;
+    }
+
+    .app-name-link {
+      background: #fff;
+      padding: 10px 10px 0px 10px;
+      border-radius: 25px;
+      box-shadow: 0px 5px 25px rgba(0, 50, 125, 0.15);
+    }
+
+    .search input:focus {
+      box-shadow: 0 0 5px #91adff;
+      border: 1px solid #a9bfff;
+    }
+
+    .markdown-section tr:nth-child(1n) {
+      background-color: #fff;
+    }
+
+    .markdown-section code,
+    .markdown-section pre,
+    .markdown-section pre>code {
+      color: #eee;
+      /* default color for elements not styled by prism theme */
+      background-color: #111133;
+      /* dark background, because vue.css modify it */
+    }
+
+    /* because the bgcolor change in previous css rule. font-color when using inline code tag */
+    .markdown-section code {
+      color: #eee;
+      color: #333;
     }
   </style>
 
