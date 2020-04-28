@@ -7,11 +7,11 @@
     - [Pages](#pages) 
     - [Page Elements](#page-Elements) 
     - [Social Media Posts](#social-media-posts) 
-    - [Value Propositions](#valuePropositions)    
+    - [Value Propositions](#value-propositions)    
 - [E-Commerce Models](#e-commerce-models)
-    - [Collections](collections)
-    - [Offerings](offerings)
-    - [Subscription Plans](#subscriptionPlans)
+    - [Offerings](#offerings)
+    - [Collections](#collections)    
+    - [Subscription Plans](#subscription-plans)
 
 <hr>
 
@@ -19,7 +19,9 @@
 
 ### Topics
 
-`data/topics/*.md`
+Directory: `data/topics/*.md`
+
+GraphQL Model: `Topic`
 
 <!-- tabs:start -->
 
@@ -44,7 +46,9 @@ valuePropositions:
 
 ### Content Items
 
-`data/content/*.md`
+Directory: `data/content/*.md`
+
+GraphQL Model: `ContentItem`
 
 <!-- tabs:start -->
 
@@ -92,7 +96,9 @@ inspiration for Markdown's syntax is the format of plain text email.
 
 ### Pages
 
-`data/pages/*.md`
+Directory: `data/pages/*.md`
+
+GraphQL Model: `LandingPage`
 
 <!-- tabs:start -->
 
@@ -124,7 +130,9 @@ sections:
 
 ### Page Elements
 
-`data/pageElements/*.md`
+Directory: `data/pageElements/*.md`
+
+GraphQL Model: `PageElement`
 
 <!-- tabs:start -->
 
@@ -149,7 +157,9 @@ code:
 
 ### Social Media Posts
 
-`data/socialPosts/*.md`
+Directory: `data/socialPosts/*.md`
+
+GraphQL Model: `SocialPost`
 
 <!-- tabs:start -->
 
@@ -184,11 +194,49 @@ repost_rules:
 
 <!-- tabs:end -->
 
+### Value Propositions
+
+Directory: `data/valuePropositions/*.md`
+
+GraphQL Model: `ValueProposition`
+
+<!-- tabs:start -->
+
+#### ** Example **
+
+```markdown
+---
+conversionPage: page-bxS-eKa4c
+call_to_action_button_url: /services
+relatedCollections:
+  - collection-jF56aqYVr
+slug: launch-your-own-ecommerce-platform
+relatedValues:
+  - value-sgW-0XJZG
+featured: true
+published: true
+date: 2020-03-26T20:41:57.040Z
+call_to_action_text: Are you ready to launch your business TODAY?
+cover_image: /files/examples/leap-design-YucomIwAKXQ-unsplash.jpg
+headline: Launch your own content platform
+call_to_action_button_text: Learn More
+title: Launch your own e-commerce platform
+id: valueProposition-IuH13NPbn
+call_to_action_button: Get Started
+description: Launch your own content platform
+collection: collection-jF56aqYVr
+---
+```
+
+<!-- tabs:end -->
+
 ## E-Commerce Models
 
 ### Offerings
 
-`data/offerings/*.md`
+Directory: `data/offerings/*.md`
+
+GraphQL Model: `Offering`
 
 <!-- tabs:start -->
 
@@ -235,14 +283,15 @@ description: >-
   eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
   in culpa qui officia deserunt mollit anim id est laborum.
 ---
-
 ```
-
+All prices are in $USD.
 <!-- tabs:end -->
 
 ### Collections
 
-`data/collections/*.md`
+Directory: `data/collections/*.md`
+
+GraphQL Model: `Collection`
 
 <!-- tabs:start -->
 
@@ -289,7 +338,9 @@ inspiration for Markdown's syntax is the format of plain text email.
 
 ### Subscription Plans
 
-`data/subscriptionPlans/*.md`
+Directory: `data/subscriptionPlans/*.md`
+
+GraphQL Model: `SubscriptionPlan`
 
 <!-- tabs:start -->
 
@@ -306,8 +357,7 @@ interval: month
 price: 99
 role: prototype
 ---
-
-
 ```
+All prices are in $USD.
 
 <!-- tabs:end -->
