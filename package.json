@@ -49,6 +49,7 @@
     "fs": "^0.0.1-security",
     "fse": "^4.0.1",
     "gitorm": "^0.0.25",
+    "graphql-sequelize": "^9.4.0",
     "gridsome": "^0.7.0",
     "gridsome-plugin-feed": "^1.0.2",
     "gridsome-plugin-netlify-cms": "^1.0.9",

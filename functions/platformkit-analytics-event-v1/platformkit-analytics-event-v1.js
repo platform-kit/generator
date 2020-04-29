@@ -6,9 +6,17 @@ exports.handler = async (event, context) => {
     try {
         // Get event data from url parameters
 
-        const params = event.queryStringParameters || null;
+        var params = event.queryStringParameters || null;
+    
+        if(typeof params.data == 'string') {
+            params.data = JSON.parse(params.data);
+        }
+
+
         var data = params;
         var message = null;
+
+        
 
         if (ANALYTICS_ENDPOINT != null) {
 
