@@ -149,7 +149,7 @@ exports.handler = async (event, context) => {
             });
 
             User.sync({ alter: true });
-            User.findOrCreate({ where: { email: email }, defaults: { verified: false } });
+            User.findOrCreate({ where: { email: email } });
 
         }
 
