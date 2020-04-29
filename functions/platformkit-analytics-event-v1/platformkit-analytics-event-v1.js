@@ -71,12 +71,14 @@ exports.handler = async (event, context) => {
             }, {
                 sequelize,
                 modelName: 'event',
-                
+                tableName: 'pk_events',
                 updatedAt: 'updated_at',
                 createdAt: 'created_at'
                 
                 // options
             });
+
+            await Event.sync({ alter: true });
 
             await Event.create({
                 event: params.event,
