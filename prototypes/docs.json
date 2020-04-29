@@ -1,0 +1,9 @@
+{
+    "repositories": [
+        {
+            "repository": "https://github.com/platform-kit/generator",
+            "baseDirectory": "static/docs",
+            "outputDirectory": "static/docs"
+        }
+    ]
+}

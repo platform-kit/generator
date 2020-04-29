@@ -17,5 +17,5 @@ Date: `2020-04-28`
 - site generator
 - site generator pages: content, products, services, pricing
 - site generator templates: offering, landing page
-- api endpoints: auth, content, & checkout
+- api endpoints: auth, content, checkout, & analytics
 - documentation

@@ -7,4 +7,5 @@
     - [Auth](/md/api/auth)   
     - [Content](/md/api/content)   
     - [Checkout](/md/api/checkout)    
+    - [Analytics](/md/api/analytics)    
 - [<i class="fas fa-fw fa-book-open"></i>Changelog](/md/changelog)
