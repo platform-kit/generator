@@ -23,17 +23,72 @@ exports.handler = async (event, context) => {
         const jwt = require('jsonwebtoken');
         const loginSecretKey = process.env.JWT_SECRET; //example generation: node -e "console.log(require('crypto').randomBytes(256).toString('base64'));"                         
         var data = jwt.verify(token, loginSecretKey);
-        
+
+
+
         Cryptr = require('cryptr');
         //const cryptr = new Cryptr(process.env.JWT_SECRET);
         //const email = cryptr.decrypt(data.sub);
         //data.sub = email;
         token = token = jwt.sign({ sub: data.sub }, loginSecretKey, { expiresIn: '365 days' });
         data = jwt.verify(token, loginSecretKey);
-        var message = null;      
+        var message = null;
         message = 'Token validated.';
 
+        if (process.env.DATABASE_URL != null) {
+            const Sequelize = require('sequelize');
+            const sequelize = new Sequelize(process.env.DATABASE_URL);
+            sequelize
+                .authenticate()
+                .then(() => {
+                    console.log('Connection has been established successfully.');
+                })
+                .catch(err => {
+                    console.error('Unable to connect to the database:', err);
+                });
 
+            const Model = Sequelize.Model;
+            class User extends Model { };
+            User.init({
+                // attributes               
+                email: {
+                    type: Sequelize.TEXT
+                    // allowNull defaults to true
+                },
+                verified: {
+                    type: Sequelize.BOOLEAN
+                    // allowNull defaults to true
+                },
+                verified_at: {
+                    type: Sequelize.DATE,
+                    allowNull: true
+                },
+            }, {
+                sequelize,
+                modelName: 'user',
+                tableName: 'pk_users',
+                updatedAt: 'updated_at',
+                createdAt: 'created_at'
+
+                // options
+            });
+
+            await User.sync({ alter: true });
+
+            var currentUser = await User.findOrCreate({
+                where: { email: data.sub }
+            }).then(([user, created]) => {
+                console.log(user.get({
+                  plain: true
+                }))
+                console.log(created)
+                user.verified = true;
+                var date = new Date();
+                user.verified_at = date.toDateString();
+                user.save();
+              })
+            
+        }
 
         return {
             statusCode: 200,
@@ -43,9 +98,6 @@ exports.handler = async (event, context) => {
             // headers: { "headerName": "headerValue", ... },
             // isBase64Encoded: true,
         }
-
-
-
 
     } catch (err) {
         return { statusCode: 500, body: JSON.stringify({ status: 500, data: data, error: true, message: err.toString() }, null, 3) }

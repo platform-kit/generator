@@ -1,4 +1,4 @@
-# Checkout API
+# Analytics API
 
 `/functions/platformkit-analytics-event-v1`
 
@@ -30,7 +30,9 @@
 
 <!-- tabs:end -->
 
-If environment variable `DATABASE_URL` is set, a database record will be saved. The database must be PGSQL or MySQL.
+If environment variable `DATABASE_URL` is set, a database record will be saved to a table called `pk_events`. 
+
+The database must be PGSQL or MySQL.
 
 If the environment variable `ANALYTICS_ENDPOINT` is set, the event data will be posted to the specified url.
 

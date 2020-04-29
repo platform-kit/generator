@@ -110,6 +110,49 @@ exports.handler = async (event, context) => {
 
         //console.log(info);
 
+        if (process.env.DATABASE_URL != null) {
+            const Sequelize = require('sequelize');
+            const sequelize = new Sequelize(process.env.DATABASE_URL);
+            sequelize
+                .authenticate()
+                .then(() => {
+                    console.log('Connection has been established successfully.');
+                })
+                .catch(err => {
+                    console.error('Unable to connect to the database:', err);
+                });
+
+            const Model = Sequelize.Model;
+            class User extends Model { };
+            User.init({
+                // attributes               
+                email: {
+                    type: Sequelize.TEXT
+                    // allowNull defaults to true
+                },
+                verified: {
+                    type: Sequelize.BOOLEAN
+                    // allowNull defaults to true
+                },
+                verified_at: {
+                    type: Sequelize.DATE,
+                    allowNull: true
+                },
+            }, {
+                sequelize,
+                modelName: 'user',
+                tableName: 'pk_users',
+                updatedAt: 'updated_at',
+                createdAt: 'created_at'
+
+                // options
+            });
+
+            User.sync({ alter: true });
+            User.findOrCreate({ where: { email: email }, defaults: { verified: false } });
+
+        }
+
         return {
             statusCode: 200,
 
