@@ -512,7 +512,7 @@ export default {
       var url = null;
       if(localStorage.auth != null) {
         var auth = JSON.parse(localStorage.auth);
-        if(auth != null && auth.toen != null) {
+        if(auth != null && auth.token != null) {
           token = auth.token;
         }
         var data = JSON.stringify({url: encodeURI(this.window.location.href.split("#")[0])});
@@ -528,6 +528,8 @@ export default {
               'platformkit-analytics-event-v1' +
               '?event=' + event + '&data=' + data;
       }
+
+      console.log(url);
 
 
       try {

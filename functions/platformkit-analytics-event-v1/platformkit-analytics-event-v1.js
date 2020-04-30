@@ -44,16 +44,33 @@ exports.handler = async (event, context) => {
         if (process.env.DATABASE_URL != null) {
 
             try {
+                
+                
+                var headers = event.headers; 
+                console.log('Authorization: \n\n\n\n');
+                console.log(headers.authorization);
+                var token =  headers.authorization || event.queryStringParameters.token ||  null;
+                console.log(token);
 
-                var token = event.queryStringParameters.token || null;
+                if(token.includes('Bearer ')) {
+                    token = token.split('Bearer ')[1];
+                    console.log('\n\n\n Bearer: \n\n\n' + token);
+                }
+                                
                 if(token != null && token != '') {
                     const jwt = require('jsonwebtoken');
                     const loginSecretKey = process.env.JWT_SECRET;
+                    try {
                     token = jwt.verify(token, loginSecretKey);
+                    } catch (err){
+                        console.log(err);
+                        token = null;
+                    }
                 }
                 else {
                     token = null;
                 }
+                
 
                 const Sequelize = require('sequelize');
                 const sequelize = new Sequelize(process.env.DATABASE_URL);
