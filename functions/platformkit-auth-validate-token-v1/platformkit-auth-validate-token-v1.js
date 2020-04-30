@@ -21,19 +21,11 @@ exports.handler = async (event, context) => {
         var token = event.queryStringParameters.token || null;
 
         const jwt = require('jsonwebtoken');
-        const loginSecretKey = process.env.JWT_SECRET; //example generation: node -e "console.log(require('crypto').randomBytes(256).toString('base64'));"                         
-        var data = jwt.verify(token, loginSecretKey);
-
-
-
-        Cryptr = require('cryptr');
-        //const cryptr = new Cryptr(process.env.JWT_SECRET);
-        //const email = cryptr.decrypt(data.sub);
-        //data.sub = email;
+        const loginSecretKey = process.env.JWT_SECRET;
+        var data = jwt.verify(token, loginSecretKey);        
         token = token = jwt.sign({ sub: data.sub }, loginSecretKey, { expiresIn: '365 days' });
         data = jwt.verify(token, loginSecretKey);
-        var message = null;
-        message = 'Token validated.';
+        var message = 'Token validated.';
 
         if (process.env.DATABASE_URL != null) {
             const Sequelize = require('sequelize');

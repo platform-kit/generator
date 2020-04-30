@@ -7,16 +7,14 @@ exports.handler = async (event, context) => {
         // Get event data from url parameters
 
         var params = event.queryStringParameters || null;
-    
-        if(typeof params.data == 'string') {
+
+        if (typeof params.data == 'string') {
             params.data = JSON.parse(params.data);
         }
 
-
         var data = params;
+        console.log(params);
         var message = null;
-
-        
 
         if (ANALYTICS_ENDPOINT != null) {
 
@@ -41,49 +39,71 @@ exports.handler = async (event, context) => {
                     console.log(message);
                 }
             });
-
         }
 
         if (process.env.DATABASE_URL != null) {
-            const Sequelize = require('sequelize');
-            const sequelize = new Sequelize(process.env.DATABASE_URL);
-            sequelize
-                .authenticate()
-                .then(() => {
-                    console.log('Connection has been established successfully.');
-                })
-                .catch(err => {
-                    console.error('Unable to connect to the database:', err);
+
+            try {
+
+                var token = event.queryStringParameters.token || null;
+                if(token != null && token != '') {
+                    const jwt = require('jsonwebtoken');
+                    const loginSecretKey = process.env.JWT_SECRET;
+                    token = jwt.verify(token, loginSecretKey);
+                }
+                else {
+                    token = null;
+                }
+
+                const Sequelize = require('sequelize');
+                const sequelize = new Sequelize(process.env.DATABASE_URL);
+                sequelize
+                    .authenticate()
+                    .then(() => {
+                        console.log('Connection has been established successfully.');
+                    })
+                    .catch(err => {
+                        console.error('Unable to connect to the database:', err);
+                    });
+
+                const Model = Sequelize.Model;
+                class Event extends Model { };
+                Event.init({
+                    // attributes
+                    event: {
+                        type: Sequelize.STRING,
+                        allowNull: true
+                    },
+                    data: {
+                        type: Sequelize.JSONB
+                        // allowNull defaults to true
+                    },
+                    token: {
+                        type: Sequelize.JSONB,
+                        allowNull: true
+                        // allowNull defaults to true
+                    }
+                }, {
+                    sequelize,
+                    modelName: 'event',
+                    tableName: 'pk_events',
+                    updatedAt: 'updated_at',
+                    createdAt: 'created_at'
+
+                    // options
                 });
 
-            const Model = Sequelize.Model;
-            class Event extends Model { };
-            Event.init({
-                // attributes
-                event: {
-                    type: Sequelize.STRING,
-                    allowNull: true
-                },
-                data: {
-                    type: Sequelize.JSONB
-                    // allowNull defaults to true
-                }
-            }, {
-                sequelize,
-                modelName: 'event',
-                tableName: 'pk_events',
-                updatedAt: 'updated_at',
-                createdAt: 'created_at'
-                
-                // options
-            });
+                await Event.sync({ alter: true });
 
-            await Event.sync({ alter: true });
-
-            await Event.create({
-                event: params.event,
-                data: params.data
-              });
+                await Event.create({
+                    event: params.event,
+                    data: params.data,
+                    token: token
+                });
+            }
+            catch (err) {
+                console.log(err);
+            }
 
         }
         return {

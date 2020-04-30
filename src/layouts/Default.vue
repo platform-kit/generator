@@ -492,6 +492,8 @@ export default {
     this.window.setInterval(() => {
       this.itemCount();
     }, 100);
+
+    this.addAnalyticEvent();
   },
   methods: {
     getUrlVars() {
@@ -504,6 +506,46 @@ export default {
       );
       return vars;
     },
+    addAnalyticEvent(event) {
+      if(event == null) { event = 'page_view'; }
+      var token = null;
+      var url = null;
+      if(localStorage.auth != null) {
+        var auth = JSON.parse(localStorage.auth);
+        if(auth != null && auth.toen != null) {
+          token = auth.token;
+        }
+        var data = JSON.stringify({url: encodeURI(this.window.location.href.split("#")[0])});
+        url = process.env.GRIDSOME_API_URL +
+              'platformkit-analytics-event-v1' +
+              "?token=" +
+              token + '&event=' + event + '&data=' + data;              
+      }      
+
+      else { 
+        
+        url = process.env.GRIDSOME_API_URL +
+              'platformkit-analytics-event-v1' +
+              '?event=' + event + '&data=' + data;
+      }
+
+
+      try {
+        axios
+          .get(
+            url
+          )
+          .then(response =>            
+            console.log(response)
+          )
+          .catch(function(error) {
+            console.log(error);
+          });
+      } catch (error) {
+        console.log(error);
+      }
+    },
+
     callApi(input) {
       try {
         axios
@@ -527,6 +569,7 @@ export default {
     },
 
     requestLogin() {
+      //this.addAnalyticEvent('login_request');
       try {
         this.authRequestStatus = 'loading';
         axios
