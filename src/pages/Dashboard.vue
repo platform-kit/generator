@@ -13,18 +13,18 @@
       <b-collapse class="collapse navbar-collapse" id="collapse-1">
         <ul class="navbar-nav mr-auto w-100">
           <li class="nav-item active">
-            <a class="nav-link d-none d-xl-inline-block" href="#">
+            <a class="nav-link" href="#">
               Key Metrics
               <span class="sr-only">(current)</span>
             </a>
           </li>
-          <li class="nav-item d-none">
+          <li class="nav-item ">
             <a class="nav-link" href="#">Content</a>
           </li>
-          <li class="nav-item d-none">
+          <li class="nav-item ">
             <a class="nav-link" href="#">Sales</a>
           </li>
-          <li class="nav-item d-none">
+          <li class="nav-item ">
             <a class="nav-link" href="#">APIs</a>
           </li>
 
