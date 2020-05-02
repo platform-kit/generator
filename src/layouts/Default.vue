@@ -70,6 +70,10 @@
                   style="padding:0px !important;"
                   class="my-auto text-dark nav-link p-0 mx-0 mx-lg-3 d-inline-block"
                 >
+                  <b-dropdown-item href="#logout" :href="'/dashboard'" v-if="auth.user.permissions.dashboard == 'all'">
+                    Dashboard
+                    
+                  </b-dropdown-item>
                   <b-dropdown-item href="#logout" @click="logout()">
                     Sign Out
                     <i class="text-danger fa fa-sign-out m-1 pull-right"></i>
