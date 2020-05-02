@@ -139,7 +139,8 @@ var now = new Moment();
 var begin = new Moment().subtract(1, "month");
 now = now.format("YYYY[-]MM[-]DD");
 begin = begin.format("YYYY[-]MM[-]DD");
-var token = JSON.parse(localStorage.auth).token;
+var token = JSON.parse(localStorage.auth).user.tokens.analytics.token;
+//alert(token);
 
 var url = null;
 if (
