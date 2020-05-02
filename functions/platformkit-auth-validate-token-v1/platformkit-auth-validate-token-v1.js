@@ -18,11 +18,21 @@ exports.handler = async (event, context) => {
     try {
         // Get filename from url parameter
 
-        var token = event.queryStringParameters.token || null;
+        var headers = event.headers;
+        console.log('Authorization: \n\n\n\n');
+        console.log(headers.authorization);
+        var token = headers.authorization || event.queryStringParameters.token || null;
+        console.log(token);
+
+        if (token.includes('Bearer ')) {
+            token = token.split('Bearer ')[1];
+            console.log('\n\n\n Bearer: \n\n\n' + token);
+        }
+
 
         const jwt = require('jsonwebtoken');
         const loginSecretKey = process.env.JWT_SECRET;
-        var data = jwt.verify(token, loginSecretKey);        
+        var data = jwt.verify(token, loginSecretKey);
         token = token = jwt.sign({ sub: data.sub }, loginSecretKey, { expiresIn: '365 days' });
         data = jwt.verify(token, loginSecretKey);
         var message = 'Token validated.';
@@ -55,12 +65,17 @@ exports.handler = async (event, context) => {
                     type: Sequelize.DATE,
                     allowNull: true
                 },
+                permissions: {
+                    type: Sequelize.JSONB,
+                    allowNull: true
+                }
             }, {
                 sequelize,
                 modelName: 'user',
                 tableName: 'pk_users',
                 updatedAt: 'updated_at',
-                createdAt: 'created_at'
+                createdAt: 'created_at',
+                verifiedAt: 'verified_at',
 
                 // options
             });
@@ -71,21 +86,35 @@ exports.handler = async (event, context) => {
                 where: { email: data.sub }
             }).then(([user, created]) => {
                 console.log(user.get({
-                  plain: true
+                    plain: true
                 }))
                 console.log(created)
                 user.verified = true;
                 var date = new Date();
                 user.verified_at = date.toDateString();
                 user.save();
-              })
-            
+                return user;
+            });
+
+            var user = {}
+            user.verified = (currentUser.verified ==true);
+            user.createdAt = currentUser.created_at;
+            user.permissions = currentUser.permissions;
+
+            if(currentUser.permissions.dashboard == 'all' && process.env.CUBE_ANALYTICS_SECRET != null) {                
+                user.tokens = {};
+                var analyticstToken = jwt.sign({ sub: data.sub }, process.env.CUBE_ANALYTICS_SECRET , { expiresIn: '1 day' });            
+                var analyticstTokenData = jwt.verify(analyticstToken, process.env.CUBE_ANALYTICS_SECRET );
+                user.tokens.analytics = {token: analyticstToken, expires: analyticstTokenData.exp};
+            }
+            //user = currentUser;
+
         }
 
         return {
             statusCode: 200,
 
-            body: JSON.stringify({ status: 200, data, error: false, message: message, token: token }, null, 3)
+            body: JSON.stringify({ status: 200, data, error: false, message: message, token: token, user: user }, null, 3)
             // // more keys you can return:
             // headers: { "headerName": "headerValue", ... },
             // isBase64Encoded: true,

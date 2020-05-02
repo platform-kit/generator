@@ -12,7 +12,7 @@ import { faShoppingCart, faCartPlus, faCalendar } from '@fortawesome/free-solid-
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import marked from 'marked'
 import themeSettings from '../data/theme.json'
-
+import { Laue } from 'laue';
 import Vue from 'vue'
 import VuePlyr from 'vue-plyr'
 
@@ -44,6 +44,8 @@ export default function (Vue, { router, head, isClient }) {
   Vue.use(BootstrapVue)
 
   Vue.use(IconsPlugin)
+
+  Vue.use(Laue);
 
   // Vue Plyr - video player
   // The second argument is optional and sets the default config values for every player.
