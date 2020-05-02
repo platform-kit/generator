@@ -2,7 +2,7 @@
   <div id="app" class="gradient-light-green-to-white">
     <client-only>
       <div class="container-fluid">
-        <div class="row" style="height:100vh;">
+        <div class="row sidebar-row ">
           <div class="col-12 col-xl-2 sidebar border-right text-center py-4 raised">
             <a href="/" class="d-inline-block ml-2">
               <img class src="/logos/logo-black.png" style="max-height:50px;padding:10px" />
@@ -1016,6 +1016,12 @@ export default {
 .carousel-slide img {
   opacity: 0 !important;
   float: left;
+}
+
+@media(min-width:768px){
+  .sidebar-row {
+    height:100vh;
+  }
 }
 
 .sidebar {
