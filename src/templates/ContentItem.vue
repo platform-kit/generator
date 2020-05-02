@@ -277,6 +277,7 @@ import axios from "axios";
 export default {
   data() {
     return {
+      window: null,
       relatedCollection: null,
       relatedCollections: null,
       relatedProductsCount: 0,
@@ -305,8 +306,59 @@ export default {
     } catch (error) {
       console.log(error);
     }
+    this.window = window;
+    this.addAnalyticEvent();
+    
   },
   methods: {
+     addAnalyticEvent(event) {
+      if(event == null) { event = 'content_view'; }
+      var token = null;
+      var url = null;
+      if(localStorage.auth != null) {
+        var auth = JSON.parse(localStorage.auth);
+        if(auth != null && auth.token != null) {
+          token = auth.token;
+        }
+        var data = {};
+        data.url = encodeURI(this.window.location.href.split("#")[0]);
+        data.contentItem = this.$page.contentItem.id;
+        data.path = this.$page.contentItem.path;
+        if(this.$page.contentItem.topics != null){
+          data.topics = this.$page.contentItem.topics;
+        }
+        data = JSON.stringify(data);
+        url = process.env.GRIDSOME_API_URL +
+              'platformkit-analytics-event-v1' +
+              "?token=" +
+              token + '&event=' + event + '&data=' + data;              
+      }      
+
+      else { 
+        
+        url = process.env.GRIDSOME_API_URL +
+              'platformkit-analytics-event-v1' +
+              '?event=' + event + '&data=' + data;
+      }
+
+      console.log(data);
+
+
+      try {
+        axios
+          .get(
+            url
+          )
+          .then(response =>            
+            console.log(response)
+          )
+          .catch(function(error) {
+            console.log(error);
+          });
+      } catch (error) {
+        console.log(error);
+      }
+    },
     getPremiumContent(file) {
       //alert(file);
       try {

@@ -12,19 +12,16 @@
 
       <b-collapse class="collapse navbar-collapse" id="collapse-1">
         <ul class="navbar-nav mr-auto w-100">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">
-              Key Metrics
-              <span class="sr-only">(current)</span>
-            </a>
+          <li class="nav-item"  v-bind:class="{ active: view == null }">
+            <a class="nav-link" href="#" @click="view = null">Key Metrics</a>
           </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="#">Content</a>
+          <li class="nav-item" v-bind:class="{ active: view == 'content' }">
+            <a class="nav-link" href="#" @click="view = 'content'">Content</a>
           </li>
-          <li class="nav-item ">
+          <li class="nav-item d-none">
             <a class="nav-link" href="#">Sales</a>
           </li>
-          <li class="nav-item ">
+          <li class="nav-item d-none">
             <a class="nav-link" href="#">APIs</a>
           </li>
 
@@ -55,7 +52,10 @@
       </b-collapse>
     </nav>
 
-    <div class="container-fluid my-3 px-5 pb-0">
+    <div
+      class="container-fluid my-3 px-5 pb-0"
+      v-if="userCanViewDashboard() == true && view == null"
+    >
       <div class="row pt-3">
         <div class="col-4">
           <query-builder :cubejs-api="cubejsApi" :query="usersTotal">
@@ -96,8 +96,8 @@
             </template>
           </query-builder>
         </div>
-      </div>      
-      <div class="row mt-4" style="">
+      </div>
+      <div class="row mt-4" style>
         <div class="col-sm-6 mb-1">
           <query-builder :cubejs-api="cubejsApi" :query="newUsersOverTime">
             <template v-slot="{ loading, resultSet }" class="h-100">
@@ -116,6 +116,81 @@
             <template v-slot="{ loading, resultSet }">
               <Chart
                 title="Page Views Over Time"
+                type="stackedBar"
+                :loading="loading"
+                :result-set="resultSet"
+                class="br-5"
+              />
+            </template>
+          </query-builder>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="container-fluid my-3 px-5 pb-0"
+      v-else-if="userCanViewDashboard() == true && view == 'content'"
+    >
+      <div class="row pt-3">
+        <div class="col-4">
+          <query-builder :cubejs-api="cubejsApi" :query="topicsTotal">
+            <template v-slot="{ loading, resultSet }">
+              <Chart
+                title="Topics"
+                type="number"
+                :loading="loading"
+                :result-set="resultSet"
+                class="br-5"
+              />
+            </template>
+          </query-builder>
+        </div>    
+        <div class="col-4">
+          <query-builder :cubejs-api="cubejsApi" :query="contentItemsTotal">
+            <template v-slot="{ loading, resultSet }">
+              <Chart
+                class="br-5"
+                title="Content Items"
+                type="number"
+                :loading="loading"
+                :result-set="resultSet"
+              />
+            </template>
+          </query-builder>
+        </div>
+        <div class="col-4">
+          <query-builder :cubejs-api="cubejsApi" :query="contentItemsPublished">
+            <template v-slot="{ loading, resultSet }">
+              <Chart
+                title="Content Items Published"
+                type="number"
+                :loading="loading"
+                :result-set="resultSet"
+                class="br-5"
+              />
+            </template>
+          </query-builder>
+        </div>            
+      </div>
+      <div class="row mt-4" style>
+        <div class="col-sm-6 mb-1">
+          <query-builder :cubejs-api="cubejsApi" :query="contentViewsOverTime">
+            <template v-slot="{ loading, resultSet }" class="h-100">
+              <Chart
+                title="Content Views by Topic"
+                type="stackedBar"
+                :loading="loading"
+                :result-set="resultSet"
+                class="br-5"
+              />
+            </template>
+          </query-builder>
+        </div>
+        <div class="col-sm-6 mb-1">
+          <query-builder :cubejs-api="cubejsApi" :query="contentViewsOverTimeByItem">
+            <template v-slot="{ loading, resultSet }">
+              <Chart
+                title="Content Views by Item"
                 type="stackedBar"
                 :loading="loading"
                 :result-set="resultSet"
@@ -165,6 +240,7 @@ export default {
   data() {
     return {
       auth: null,
+      view: null,
       cubejsApi,
       usersTotal: { measures: ["PkUsers.count"] },
       verifiedUsersTotal: {
@@ -188,6 +264,7 @@ export default {
       },
       newUsersOverTime: {
         measures: ["PkUsers.count"],
+        dimensions: ["PkUsers.verified"],
         timeDimensions: [
           {
             dimension: "PkUsers.createdAt",
@@ -198,7 +275,7 @@ export default {
       },
       pageViewsOverTime: {
         measures: ["PkEvents.count"],
-        dimensions: ["PkEvents.event"],
+        dimensions: [ "PkEvents.signed"],
         filters: [
           {
             dimension: "PkEvents.event",
@@ -213,7 +290,78 @@ export default {
             granularity: "day"
           }
         ]
-      }
+      },
+      contentItemsTotal: {
+        measures: ["PkFiles.count"],
+        filters: [
+          {
+            dimension: "PkFiles.path",
+            operator: "contains",
+            values: ["content"]
+          }
+        ]
+      },
+      contentItemsPublished: {
+        measures: ["PkFiles.count"],
+        filters: [
+          {
+            dimension: "PkFiles.path",
+            operator: "contains",
+            values: ["content"]
+          },{
+            dimension: "PkFiles.published",
+            operator: "equals",
+            values: ["true"]
+          }
+        ]
+      },
+        topicsTotal: {
+        measures: ["PkFiles.count"],
+        filters: [
+          {
+            dimension: "PkFiles.path",
+            operator: "contains",
+            values: ["topic"]
+          }
+        ]
+      },
+      contentViewsOverTime: {
+        measures: ["PkEvents.count"],
+        dimensions: ["PkEvents.topics"],
+        filters: [
+          {
+            dimension: "PkEvents.event",
+            operator: "equals",
+            values: ["content_view"]
+          }
+        ],
+        timeDimensions: [
+          {
+            dimension: "PkEvents.createdAt",
+            dateRange: [begin, now],
+            granularity: "day"
+          }
+        ]
+      },
+      contentViewsOverTimeByItem: {
+        measures: ["PkEvents.count"],
+        dimensions: ["PkEvents.contentItem"],
+        
+        filters: [
+          {
+            dimension: "PkEvents.event",
+            operator: "equals",
+            values: ["content_view"]
+          }
+        ],
+        timeDimensions: [
+          {
+            dimension: "PkEvents.createdAt",
+            dateRange: [begin, now],
+            granularity: "day"
+          }
+        ]
+      },
     };
   },
   created() {
@@ -248,11 +396,18 @@ export default {
     } catch (error) {
       console.log(error);
     }
+    //this.userCanViewDashboard();
   },
   metaInfo: {
     title: "Dashboard"
   },
-  methods: {}
+  methods: {
+    userCanViewDashboard() {
+      if (this.auth.user.tokens.analytics.token != null) {
+        return true;
+      }
+    }
+  }
 };
 </script>
 
@@ -274,7 +429,7 @@ export default {
 @media (max-width: 991px) {
   .loginDropdown {
     width: 100% !important;
-    text-align:center;
+    text-align: center;
   }
 }
 </style>

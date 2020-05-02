@@ -25,6 +25,7 @@ exports.handler = async (event, context) => {
             ];
 
             message = "Event received.";
+            
             var meta = {
                 "urls": URLS
             }
@@ -40,9 +41,9 @@ exports.handler = async (event, context) => {
                 }
             });
         }
-
+        
         if (process.env.DATABASE_URL != null) {
-
+            
             try {
                 
                 
@@ -52,12 +53,13 @@ exports.handler = async (event, context) => {
                 var token =  headers.authorization || event.queryStringParameters.token ||  null;
                 console.log(token);
 
-                if(token.includes('Bearer ')) {
+                if(token != null && token.includes('Bearer ')) {
                     token = token.split('Bearer ')[1];
                     console.log('\n\n\n Bearer: \n\n\n' + token);
                 }
-                                
+                                                   
                 if(token != null && token != '') {
+                    
                     const jwt = require('jsonwebtoken');
                     const loginSecretKey = process.env.JWT_SECRET;
                     try {
@@ -71,7 +73,6 @@ exports.handler = async (event, context) => {
                     token = null;
                 }
                 
-
                 const Sequelize = require('sequelize');
                 const sequelize = new Sequelize(process.env.DATABASE_URL);
                 sequelize
@@ -92,7 +93,8 @@ exports.handler = async (event, context) => {
                         allowNull: true
                     },
                     data: {
-                        type: Sequelize.JSONB
+                        type: Sequelize.JSONB,
+                        allowNull: true
                         // allowNull defaults to true
                     },
                     token: {
