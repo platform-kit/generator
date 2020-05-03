@@ -12,9 +12,9 @@
     >
       <template v-for="metric in metrics">
         <la-bar :prop="metric" v-bind:key="metric" :width="6" :label="metric.split(',')[0]"></la-bar>
-      </template>
+      </template> 
       <la-y-axis :nbTicks="2" :format="v => parseFloat(v).toLocaleString()"></la-y-axis>
-      <la-x-axis prop="x" :format="dateFormatter" :interval="6"></la-x-axis>
+      <la-x-axis prop="x" :format="dateFormatter" :interval="31"></la-x-axis>
       <la-tooltip />
     </la-cartesian>
   </div>
@@ -50,7 +50,7 @@ export default {
       }
     },
     dateFormatter: function(value) {
-      return moment(value).format("MMM YY");
+      return moment(value).format("M/YY");
     }
   },
   data() {

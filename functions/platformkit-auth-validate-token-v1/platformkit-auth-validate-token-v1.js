@@ -101,7 +101,7 @@ exports.handler = async (event, context) => {
             user.createdAt = currentUser.created_at;
             user.permissions = currentUser.permissions;
 
-            if(currentUser.permissions.dashboard == 'all' && process.env.CUBE_ANALYTICS_SECRET != null) {                
+            if(currentUser.permissions != null && currentUser.permissions.dashboard == 'all' && process.env.CUBE_ANALYTICS_SECRET != null) {                
                 user.tokens = {};
                 var analyticstToken = jwt.sign({ sub: data.sub }, process.env.CUBE_ANALYTICS_SECRET , { expiresIn: '1 day' });            
                 var analyticstTokenData = jwt.verify(analyticstToken, process.env.CUBE_ANALYTICS_SECRET );

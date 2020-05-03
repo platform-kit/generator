@@ -252,7 +252,7 @@
           <query-builder :cubejs-api="cubejsApi" :query="revenueOverTime">
             <template v-slot="{ loading, resultSet }" >
               <Chart
-                title="Revenue / Month"
+                title="Revenue / Month - Last 6 Months"
                 type="stackedBar"
                 :loading="loading"
                 :result-set="resultSet"
@@ -276,6 +276,7 @@ var now = new Moment();
 var begin = new Moment().subtract(2, "month");
 now = now.format("YYYY[-]MM[-]DD");
 begin = begin.format("YYYY[-]MM[-]DD");
+var sixmonths = new Moment().subtract(6, "month").format("YYYY[-]MM[-]DD");
 var token = JSON.parse(localStorage.auth).user.tokens.analytics.token;
 //alert(token);
 
@@ -447,7 +448,7 @@ export default {
         measures: ["PkStripeTransactions.sum"],
         timeDimensions: [
           {
-            dateRange: [begin, now],
+            dateRange: [sixmonths, now],
             dimension: "PkStripeTransactions.transactionDate",
             granularity: "day"
           }

@@ -38,7 +38,7 @@ export default {
   },
   methods: {
     dateFormatter: function(value) {
-      return moment(value).format("MMM YY");
+      return moment(value).format("M YY");
     }
   },
   computed: {
