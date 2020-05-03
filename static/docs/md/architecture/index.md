@@ -14,5 +14,5 @@ It also ensures that the benefits of adoption compound exponentially.
 <hr/>
 <div align="center">
     <label style="background:rgba(180,200,255,0.2);padding:3px 10px;border-radius:3px;">Diagram of holinic software architecture</label><br><br>
-    <img src="images/diagram.png" style="background:#fff;border-radius:4px;max-width:550px;"/>
+    <img src="images/diagram.png" style="background:#fff;border-radius:4px;width:100%;max-width:550px;"/>
 </div>
