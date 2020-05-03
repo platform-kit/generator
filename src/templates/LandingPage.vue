@@ -22,7 +22,7 @@
                 v-for="page in $page.pages.edges"
                 v-if="page.node.id == edge.node.conversionPage"
                 :href="'/' + page.node.slug"
-                v-on:click="window.location.assign('/' + page.node.slug)"
+                v-on:click="convert(page.node.slug)"
                 class="d-inline-block btn btn-light btn-lg mt-3 raised br-25"
               >Learn More</a>
             </div>
@@ -296,6 +296,10 @@ export default {
     }
   },
   methods: {
+    convert(input){
+      
+      window.location.assign('/' + input);
+    },
     goToCollection(id) {
       alert(id);
     },

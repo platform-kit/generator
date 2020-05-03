@@ -257,7 +257,7 @@
                   v-for="page in $page.pages.edges"
                   v-bind:key="page"
                   :href="'/' + page.node.slug"
-                  x-v-on:click="window.location.assign('/' + page.node.slug)"
+                  v-on:click="convert(page.node.slug, valueProposition)"
                   class="d-inline-block btn btn-light btn-lg mt-3 raised br-25"
                 >Learn More</a>
               </div>
@@ -311,7 +311,12 @@ export default {
     
   },
   methods: {
-     addAnalyticEvent(event) {
+    convert(slug, valueProposition){
+      var data = {"valueProposition": valueProposition.node.id};
+      this.addAnalyticEvent('conversion', data);
+      window.location.assign('/' + slug);
+    },
+     addAnalyticEvent(event, extraData) {
       if(event == null) { event = 'content_view'; }
       var token = null;
       var url = null;
@@ -321,6 +326,9 @@ export default {
           token = auth.token;
         }
         var data = {};
+        if(typeof extraData == 'object') {
+          var data = Object.assign(data, extraData);
+        }
         data.url = encodeURI(this.window.location.href.split("#")[0]);
         data.contentItem = this.$page.contentItem.id;
         data.path = this.$page.contentItem.path;

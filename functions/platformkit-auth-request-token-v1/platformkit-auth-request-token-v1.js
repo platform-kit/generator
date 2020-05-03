@@ -138,6 +138,10 @@ exports.handler = async (event, context) => {
                     type: Sequelize.DATE,
                     allowNull: true
                 },
+                permissions: {
+                    type: Sequelize.JSONB,
+                    allowNull: true
+                }
             }, {
                 sequelize,
                 modelName: 'user',
