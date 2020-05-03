@@ -275,7 +275,7 @@ export default {
       },
       pageViewsOverTime: {
         measures: ["PkEvents.count"],
-        
+        //segments: ["PkEvents.users"],
         filters: [
           {
             dimension: "PkEvents.event",
