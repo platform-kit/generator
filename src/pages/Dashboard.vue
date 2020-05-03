@@ -12,14 +12,14 @@
 
       <b-collapse class="collapse navbar-collapse" id="collapse-1">
         <ul class="navbar-nav mr-auto w-100">
-          <li class="nav-item"  v-bind:class="{ active: view == null }">
+          <li class="nav-item" v-bind:class="{ active: view == null }">
             <a class="nav-link" href="#" @click="view = null">Key Metrics</a>
           </li>
           <li class="nav-item" v-bind:class="{ active: view == 'content' }">
             <a class="nav-link" href="#" @click="view = 'content'">Content</a>
           </li>
-          <li class="nav-item d-none">
-            <a class="nav-link" href="#">Sales</a>
+          <li class="nav-item" v-bind:class="{ active: view == 'sales' }">
+            <a class="nav-link" href="#" @click="view = 'sales'">Sales</a>
           </li>
           <li class="nav-item d-none">
             <a class="nav-link" href="#">APIs</a>
@@ -144,7 +144,7 @@
               />
             </template>
           </query-builder>
-        </div>    
+        </div>
         <div class="col-4">
           <query-builder :cubejs-api="cubejsApi" :query="contentItemsTotal">
             <template v-slot="{ loading, resultSet }">
@@ -170,7 +170,7 @@
               />
             </template>
           </query-builder>
-        </div>            
+        </div>
       </div>
       <div class="row mt-4" style>
         <div class="col-sm-6 mb-1">
@@ -199,6 +199,68 @@
             </template>
           </query-builder>
         </div>
+      </div>
+    </div>
+
+    <div
+      class="container-fluid my-3 px-5 pb-0"
+      v-else-if="userCanViewDashboard() == true && view == 'sales'"
+    >
+      <div class="row pt-3">
+        <div class="col-4">
+          <query-builder :cubejs-api="cubejsApi" :query="customersTotal">
+            <template v-slot="{ loading, resultSet }">
+              <Chart
+                title="Paying Customers"
+                type="number"
+                :loading="loading"
+                :result-set="resultSet"
+                class="br-5"
+              />
+            </template>
+          </query-builder>
+        </div>
+        <div class="col-4">
+          <query-builder :cubejs-api="cubejsApi" :query="subscriptionsTotal">
+            <template v-slot="{ loading, resultSet }">
+              <Chart
+                class="br-5"
+                title="Subscriptions"
+                type="number"
+                :loading="loading"
+                :result-set="resultSet"
+              />
+            </template>
+          </query-builder>
+        </div>
+        <div class="col-4">
+          <query-builder :cubejs-api="cubejsApi" :query="revenueTotal">
+            <template v-slot="{ loading, resultSet }">
+              <Chart
+                title="Total Revenue ($)"
+                type="number"
+                :loading="loading"
+                :result-set="resultSet"
+                class="br-5"
+              />
+            </template>
+          </query-builder>
+        </div>
+      </div>
+      <div class="row mt-4" style>
+        <div class="col-12 mb-1">
+          <query-builder :cubejs-api="cubejsApi" :query="revenueOverTime">
+            <template v-slot="{ loading, resultSet }" >
+              <Chart
+                title="Revenue / Month"
+                type="stackedBar"
+                :loading="loading"
+                :result-set="resultSet"
+                class="br-5"
+              />
+            </template>
+          </query-builder>
+        </div>        
       </div>
     </div>
   </Admin>
@@ -308,14 +370,15 @@ export default {
             dimension: "PkFiles.path",
             operator: "contains",
             values: ["content"]
-          },{
+          },
+          {
             dimension: "PkFiles.published",
             operator: "equals",
             values: ["true"]
           }
         ]
       },
-        topicsTotal: {
+      topicsTotal: {
         measures: ["PkFiles.count"],
         filters: [
           {
@@ -346,7 +409,7 @@ export default {
       contentViewsOverTimeByItem: {
         measures: ["PkEvents.count"],
         dimensions: ["PkEvents.contentItem"],
-        
+
         filters: [
           {
             dimension: "PkEvents.event",
@@ -362,6 +425,60 @@ export default {
           }
         ]
       },
+
+      customersTotal: {
+        measures: ["PkStripeCustomers.count"]
+      },
+      subscriptionsTotal: {
+        measures: ["PkStripeSubscriptions.count"]
+      },
+      revenueTotal: {
+        measures: ["PkStripeTransactions.sum"],
+        dimensions: ["PkStripeTransactions.amount"],
+        filters: [
+          {
+            dimension: "PkStripeTransactions.amount",
+            operator: "gt",
+            values: ["0"]
+          }
+        ]
+      },
+      revenueOverTime: {
+        measures: ["PkStripeTransactions.sum"],
+        timeDimensions: [
+          {
+            dimension: "PkStripeTransactions.transactionDate",
+            granularity: "month"
+          }
+        ],
+        dimensions: [],
+        filters: [
+          {
+            dimension: "PkStripeTransactions.sum",
+            operator: "gt",
+            values: ["0"]
+          }
+        ]
+      },
+      contentViewsOverTimeByItem: {
+        measures: ["PkEvents.count"],
+        dimensions: ["PkEvents.contentItem"],
+
+        filters: [
+          {
+            dimension: "PkEvents.event",
+            operator: "equals",
+            values: ["content_view"]
+          }
+        ],
+        timeDimensions: [
+          {
+            dimension: "PkEvents.createdAt",
+            dateRange: [begin, now],
+            granularity: "day"
+          }
+        ]
+      }
     };
   },
   created() {

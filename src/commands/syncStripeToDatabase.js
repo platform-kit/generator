@@ -233,6 +233,12 @@ class SyncStripeToDatabaseCommand extends Command {
                 stripeId: {
                     type: Sequelize.TEXT
                 },
+                amount: {
+                    type: Sequelize.INTEGER
+                },
+                transactionDate: {
+                    type: Sequelize.DATE
+                },
                 json: {
                     type: Sequelize.JSONB,
                     allowNull: true
@@ -247,9 +253,9 @@ class SyncStripeToDatabaseCommand extends Command {
 
             await StripeTransaction.sync({ alter: true });
             StripeTransaction
-                .findOrCreate({ where: { stripeId: transaction.id }, defaults: { json: transaction } })
+                .findOrCreate({ where: { stripeId: transaction.id }, defaults: { transactionDate: new Date(transaction.created * 1000), json: transaction, amount: transaction.amount } })
                 .then(([result, created]) => {
-                    result.update({ json: transaction });
+                    result.update({ transactionDate: new Date(transaction.created * 1000), json: transaction, amount: transaction.amount });
                     console.log(result.get({
                         plain: true
                     }))
