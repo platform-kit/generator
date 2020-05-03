@@ -273,7 +273,7 @@ import Chart from "~/components/Chart.vue";
 import Admin from "~/layouts/Admin.vue";
 import Moment from "moment";
 var now = new Moment();
-var begin = new Moment().subtract(1, "month");
+var begin = new Moment().subtract(2, "month");
 now = now.format("YYYY[-]MM[-]DD");
 begin = begin.format("YYYY[-]MM[-]DD");
 var token = JSON.parse(localStorage.auth).user.tokens.analytics.token;
@@ -447,8 +447,9 @@ export default {
         measures: ["PkStripeTransactions.sum"],
         timeDimensions: [
           {
+            dateRange: [begin, now],
             dimension: "PkStripeTransactions.transactionDate",
-            granularity: "month"
+            granularity: "day"
           }
         ],
         dimensions: [],
