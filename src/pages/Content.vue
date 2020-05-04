@@ -21,7 +21,7 @@
           >
             <br />
             <span
-              class="badge badge-pill px-3 bg-light-blue border-light-blue text-primary"
+              class="badge badge-pill px-3 bg-light-green text-dark-green"
               style="float:right;z-index:999 !important;margin-left:0px;margin-top:5px;position:relative;left:-12px;top:30px;"
             >
               <span>{{ edge.node.minutes_to_consume }} Minute Read</span>
