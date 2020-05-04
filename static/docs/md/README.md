@@ -30,8 +30,52 @@
 
 <br>
 </div>
-<iframe style="border:none !important;" src="https://player.vimeo.com/video/414917709?color=ffc107&byline=0&portrait=0" width="300" height="300" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
 
-<a href="#/md/overview" style="background: #f2f6fe; border: 1px solid #d1e0ff;padding:5px 15px; border-radius:25px;color:#000 !important;margin-top:5px;">Get Started</a>
+
+
+
+
+<div class="container">
+
+<div class="video_wrapper">
+<div style="position:relative;height:330px;width:330px;">
+  <iframe src="https://player.vimeo.com/video/414917709" style="border:none !important;position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+  
+  </div>
+  <script src="https://player.vimeo.com/api/player.js"></script>
+</div>
+  
+  </div>
+
+
+
+
+
+
+
+
+
+
+<a href="#/md/overview" style="background: #f2f6fe; border: 1px solid #d1e0ff;padding:5px 15px; border-radius:25px;color:#000 !important;margin-top:25px;">Get Started</a>
 
 </div>
+
+<style>
+.container {
+  height:330px;
+  width:330px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.video_wrapper {
+  width: 330px;
+  height:330px;
+  iframe {
+    border-radius: 20px;
+    overflow:hidden;
+  }
+  
+}
+</style>
