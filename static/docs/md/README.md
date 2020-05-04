@@ -8,12 +8,12 @@
     onclick="window.location.assign('#/md/overview')"/>
 
 <quote>A full-stack framework for building content, software, and e-commerce platforms.</quote>
-
+<div style="display:none;">
 <div class="raised" style="background-image:url(https://git-scm.com/images/logos/logomark-orange@2x.png);display:inline-block;height:33px;width:33px;border-radius:33px;background-size:55%;margin-left:10px;background-position:center;background-repeat:no-repeat;background-color:#fff;"></div><br>
 <img class="raised" src="https://cdn4.iconfinder.com/data/icons/logos-and-brands-1/512/205_Markdown_logo_logos-512.png" style="background:#fff;border-radius:4px;margin:0px 0px 0px 10px;max-height:33px;border-radius:33px; padding:6px;background:#fff;display:inline;"/>
 <img class="raised" src="https://cdn1.iconfinder.com/data/icons/hawcons/32/699251-icon-24-file-sql-512.png" style="width:33px;height:33px;background:#fff;border-radius:33px;padding:2px 2px 2px 1px;margin: 0px 0px 0px 10px;height: 33px;"/>
 <br>
-<div style="margin:10px">
+<div style="margin:10px;">
 
 <img class="raised" src="https://cdn2.iconfinder.com/data/icons/nodejs-1/512/nodejs-512.png" style="background:#fff;width:33px;height:33px;margin:0px 0px 0px 10px;height:33px;border-radius:33px;"/>
 <img class="raised" src="https://d2eip9sf3oo6c2.cloudfront.net/tags/images/000/000/036/thumb/jwt.png" style="background:#fff;margin:0px 0px 0px 10px;width:33px;height:33px;padding:5px;border-radius:33px;"/>
@@ -29,8 +29,8 @@
 <div class="raised" style="background-color:#fff; background-image:url('https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/vue/vue.png'); background-size:66%;border-radius:33px;width:33px;display:inline-block;background-repeat:no-repeat; background-position:center center;height:33px;padding:5px 5px 5px 5px;margin:0px 0px 0px 10px;"></div>
 
 <br>
-
-
+</div>
+<iframe style="border:none !important;" src="https://player.vimeo.com/video/414917709?color=ffc107&byline=0&portrait=0" width="300" height="300" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
 
 <a href="#/md/overview" style="background: #f2f6fe; border: 1px solid #d1e0ff;padding:5px 15px; border-radius:25px;color:#000 !important;margin-top:5px;">Get Started</a>
 
