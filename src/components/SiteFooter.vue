@@ -10,13 +10,13 @@
 				</div>
 				<div class="col-md-2">
 					<ul class="list-group mr-0 list-group-flush">
-						<li class="list-group-item border-0"><a href="/products" class="w-100 text-dark px-0  btn text-left">Featured Products</a></li>
+						<li class="list-group-item border-0"><a href="/products" class="w-100 text-dark px-0  btn text-left">Products</a></li>
 						<li class="list-group-item border-0 text-weight-200" v-for="edge, index in $static.featuredProducts.edges"><a :href="'/buy/' + edge.node.slug" class="text-dark">{{ edge.node.title }}</a></li>																	
 					</ul>
 				</div>
 				<div class="col-md-2">
 					<ul class="list-group mr-0 list-group-flush">
-						<li class="list-group-item border-0"><a href="/services" class="w-100 text-dark px-0  btn text-left">Featured Services</a></li>
+						<li class="list-group-item border-0"><a href="/services" class="w-100 text-dark px-0  btn text-left">Services</a></li>
 						<li class="list-group-item border-0 text-weight-200" v-for="edge, index in $static.featuredServices.edges"><a :href="'/buy/' + edge.node.slug" class="text-dark">{{ edge.node.title }}</a></li>																	
 					</ul>
 				</div>
