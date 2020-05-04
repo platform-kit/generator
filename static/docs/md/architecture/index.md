@@ -21,7 +21,7 @@ Iterating upon your process pays the greatest dividends.
 
 Each new insight yields better results.
 
-- Inspirations
+- Inspired by...
  - [This Guy](https://simonsinek.com/product/start-with-why/)
  - [This Idea](https://www.fsgoriginals.com/books/iterating-grace)
  - [This Book](https://wwnorton.com/books/Platform-Revolution)
