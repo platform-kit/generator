@@ -1,5 +1,9 @@
 # <i class="fas fa-fw fa-cogs"></i>Architecture
 
+<div align="center">
+    <img src="images/diagram.png" style="background:#fff;border-radius:4px;width:100%;max-width:550px;"/>
+</div>
+
 > [!concept|style:flat|label:Key Idea - Holons ]
 A holon is something that is capable of functioning simultaneously as a whole and as a part of a larger whole.
 
@@ -17,8 +21,6 @@ Iterating upon your process pays the greatest dividends.
 
 Each new insight yields better results.
 
-<hr/>
-
 - Inspirations
  - [This Guy](https://simonsinek.com/product/start-with-why/)
  - [This Idea](https://www.fsgoriginals.com/books/iterating-grace)
@@ -26,9 +28,3 @@ Each new insight yields better results.
  - [This Messsage](https://www.liveyourmessage.com/)
  - [This Framework](https://laravel.com/)
  - [This Methodology](https://leanstack.com/)
-
-<hr/>
-
-<div align="center">
-    <img src="images/diagram.png" style="background:#fff;border-radius:4px;width:100%;max-width:550px;"/>
-</div>

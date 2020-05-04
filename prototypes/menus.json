@@ -27,6 +27,15 @@
             "permissions_required": [
                 {"dashboard":"all"}
             ]
+        },
+        "docs": {
+            "label": "Docs",
+            "icon": "fa-book",
+            "url": "/docs",
+            "target": "_blank",
+            "permissions_required": [
+                {"dashboard":"all"}
+            ]        
         }
     }
 }
