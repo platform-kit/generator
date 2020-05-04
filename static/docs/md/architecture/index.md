@@ -9,7 +9,23 @@ This approach provides several benefits. New users can adopt incrementally. Like
 
 This mitigates risk, minimizes technical debt, and maximizes agility for the end-user.
 
-It also ensures that the benefits of adoption compound exponentially.
+When you separate execution from abstraction, you can iterate on your process.
+
+This ensures that the benefits of your efforts compound exponentially.
+
+Iterating upon your process pays the greatest dividends.
+
+Each new insight yields better results.
+
+<hr/>
+
+- Inspirations
+ - [This Guy](https://simonsinek.com/product/start-with-why/)
+ - [This Idea](https://www.fsgoriginals.com/books/iterating-grace)
+ - [This Book](https://wwnorton.com/books/Platform-Revolution)
+ - [This Messsage](https://www.liveyourmessage.com/)
+ - [This Framework](https://laravel.com/)
+ - [This Methodology](https://leanstack.com/)
 
 <hr/>
 
