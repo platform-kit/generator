@@ -1,3 +1,4 @@
+const dotenv = require('dotenv').config();
 var sesAccessKey = process.env.MAIL_USER;
 var sesSecretKey = process.env.MAIL_KEY;
 var mailHost = process.env.MAIL_HOST;
@@ -21,6 +22,8 @@ console.log(process.env.MAIL_API_KEY);
 // Docs on event and context https://www.netlify.com/docs/functions/#the-handler-method
 exports.handler = async (event, context) => {
 
+
+
     const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY;
 
     var hasSubscription = false;
@@ -34,13 +37,12 @@ exports.handler = async (event, context) => {
         var data = null;
         var message = null;
         let token = null;
-        const Cryptr = require('cryptr');
-        const cryptr = new Cryptr(process.env.JWT_SECRET);
-        const encryptedEmail = cryptr.encrypt(email);
-
+        
 
         const jwt = require('jsonwebtoken');
+        
         const loginSecretKey = process.env.JWT_SECRET; //example generation: node -e "console.log(require('crypto').randomBytes(256).toString('base64'));"
+        console.log('\n\n\n'+ loginSecretKey);
         const jwtOptions = {
             issuer: process.env.APP_DOMAIN,
             audience: process.env.APP_DOMAIN,
