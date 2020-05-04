@@ -108,28 +108,28 @@
                 </form>
                 <g-link
                   v-if="socialSettings != null && socialSettings.facebok != null"
-                  class="nav-item btn btn-light btn-outline-light text-dark d-none d-xl-inline-block"
+                  class="nav-item btn btn-white text-dark d-none d-xl-inline-block"
                   :to="'https://facebook.com/' + socialSettings.facebook"
                 >
                   <i class="fa fa-facebook"></i>
                 </g-link>
                 <g-link
                   v-if="socialSettings != null && socialSettings.instagram != null"
-                  class="nav-item btn btn-light btn-outline-light text-dark d-none d-xl-inline-block"
+                  class="nav-item btn btn-white text-dark d-none d-xl-inline-block"
                   :to="'https://instagram.com/' + socialSettings.instagram"
                 >
                   <i class="fa fa-instagram"></i>
                 </g-link>
                 <g-link
                   v-if="socialSettings != null && socialSettings.twitter != null"
-                  class="nav-item btn btn-light btn-outline-light text-dark d-none d-xl-inline-block"
+                  class="nav-item btn btn-white text-dark d-none d-xl-inline-block"
                   :to="'https://twitter.com/' + socialSettings.twitter"
                 >
                   <i class="fa fa-twitter"></i>
                 </g-link>
                 <g-link
                   v-if="socialSettings != null && socialSettings.github != null"
-                  class="nav-item btn btn-light btn-outline-light text-dark d-none d-xl-inline-block"
+                  class="nav-item btn btn-white text-dark d-none d-xl-inline-block"
                   :to="'https://github.com/' + socialSettings.github"
                 >
                   <i class="fa fa-github"></i>
@@ -1258,6 +1258,13 @@ export default {
   background: #000;
   border: #000 1px solid;
   color: #fff;
+}
+
+.btn-white {
+    background: linear-gradient(0deg, #f0f4f9, #fff);
+    border-radius: 25px;
+    border: 1px solid rgba(49, 93, 179, 0.21);
+    box-shadow: 0px 5px 10px rgba(0,50,150,0.1);
 }
 
 .snipcart-modal__container {

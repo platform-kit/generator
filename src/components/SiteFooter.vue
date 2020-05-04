@@ -4,68 +4,70 @@
 			<div class="row">				
 				<div class="col-md-3">
 					<ul class="list-group mr-0 list-group-flush">
-						<li class="list-group-item border-0"><a href="/" class="w-100 text-dark text-weight-500 btn border-light-blue bg-very-light-blue">Featured Content</a></li>
+						<li class="list-group-item border-0"><a href="/" class="w-100 text-dark px-0  btn text-left ">Featured Content</a></li>
 						<li class="list-group-item border-0 text-weight-200" v-for="edge, index in $static.featuredContent.edges"><a :href="'/content/' + edge.node.slug" class="text-dark">{{ edge.node.title }}</a></li>																	
 					</ul>
 				</div>
-				<div class="col-md-3">
+				<div class="col-md-2">
 					<ul class="list-group mr-0 list-group-flush">
-						<li class="list-group-item border-0"><a href="/products" class="w-100 text-dark text-weight-500 btn border-light-blue bg-very-light-blue">Featured Products</a></li>
+						<li class="list-group-item border-0"><a href="/products" class="w-100 text-dark px-0  btn text-left">Featured Products</a></li>
 						<li class="list-group-item border-0 text-weight-200" v-for="edge, index in $static.featuredProducts.edges"><a :href="'/buy/' + edge.node.slug" class="text-dark">{{ edge.node.title }}</a></li>																	
 					</ul>
 				</div>
-				<div class="col-md-3">
+				<div class="col-md-2">
 					<ul class="list-group mr-0 list-group-flush">
-						<li class="list-group-item border-0"><a href="/services" class="w-100 text-dark text-weight-500 btn border-light-blue bg-very-light-blue">Featured Services</a></li>
+						<li class="list-group-item border-0"><a href="/services" class="w-100 text-dark px-0  btn text-left">Featured Services</a></li>
 						<li class="list-group-item border-0 text-weight-200" v-for="edge, index in $static.featuredServices.edges"><a :href="'/buy/' + edge.node.slug" class="text-dark">{{ edge.node.title }}</a></li>																	
 					</ul>
 				</div>
-				<div class="col-md-3">
+				<div class="col-md-2">
 					<ul class="list-group mr-0 list-group-flush">
-						<li class="list-group-item border-0 text-dark"><a href="#" class="w-100 text-dark btn border-light-blue bg-very-light-blue text-weight-500">Company</a></span></li>					      					
-					
-						
+						<li class="list-group-item border-0 text-dark d-none"><a href="#" class="w-100 text-dark px-0 btn text-left">Company</a></li>					      																
 						<li class="list-group-item border-0 text-weight-200" v-if="legalSettings != null && legalSettings.copyright != null"><span class="footer__links"><span  style="white-space: pre;">{{ legalSettings.copyright }}</span></span></li>
             <li class="list-group-item border-0 text-weight-200" v-if="legalSettings.terms != null && legalSettings.terms != ''"><span class="footer__links"><a href="/terms" class="text-dark">Terms of Service</a></span></li>
-						<li class="list-group-item border-0 text-weight-200">Built with <a href="https://www.platformkit.com" target="_blank">PlatformKit</a></li>
+						<li class="list-group-item border-0 text-weight-200">Built with <a href="https://www.platformkit.com" target="_blank">PlatformKit</a></li>            
+					</ul>
+				</div>
+        <div class="col-md-3">
+          <ul class="list-group mr-0 list-group-flush">
             <li class="list-group-item border-0 text-weight-200">
               <g-link
                   v-if="socialSettings != null && socialSettings.facebok != null"
-                  class="mb-1 btn btn-light btn-outline-dark  btn-block"
+                  class="mb-1 btn btn-white  btn-block"
                   :to="'https://facebook.com/' + socialSettings.facebook"
                 >
                   <i class="fa fa-facebook"></i> Facebook
                 </g-link>
                 <g-link
                   v-if="socialSettings != null && socialSettings.instagram != null"
-                  class="mb-1 btn btn-light btn-outline-dark btn-block"
+                  class="mb-1 btn btn-white btn-block"
                   :to="'https://instagram.com/' + socialSettings.instagram"
                 >
                   <i class="fa fa-instagram"></i> Instagram
                 </g-link>
                 <g-link
                   v-if="socialSettings != null && socialSettings.twitter != null"
-                  class="mb-1 btn btn-light btn-outline-dark btn-block"
+                  class="mb-1 btn btn-white btn-block"
                   :to="'https://twitter.com/' + socialSettings.twitter"
                 >
                   <i class="fa fa-twitter"></i> Twitter
                 </g-link>
                 <g-link
                   v-if="socialSettings != null && socialSettings.github != null"
-                  class="btn btn-light btn-outline-dark btn-block"
+                  class="btn btn-white btn-block"
                   :to="'https://github.com/' + socialSettings.github"
                 >
                   <i class="fa fa-github"></i> Github
                 </g-link>
                 <a href="/docs"             
-                  class="btn btn-light btn-outline-dark btn-block"
+                  class="btn btn-white btn-block"
                   @click="window.location.assign('/docs')"                  
                 >
                   <i class="fa fa-book"></i> Documentation
                 </a>
             </li>
-					</ul>
-				</div>
+          </ul>
+        </div>
 			</div>
 		</div>
 	</div>
