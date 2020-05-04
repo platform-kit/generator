@@ -2,15 +2,21 @@
   <div id="app" class="gradient-light-green-to-white">
     <client-only>
       <div class="container-fluid">
-        <div class="row sidebar-row ">
+        <div class="row sidebar-row">
           <div class="col-12 col-xl-2 sidebar border-right text-center py-4 raised">
             <a href="/" class="d-inline-block ml-2">
               <img class src="/logos/logo-black.png" style="max-height:50px;padding:10px" />
             </a>
             <ul class="nav flex-column mt-4 text-left d-none d-xl-block">
-              <li class="nav-item mb-2">
-                <a class="nav-link" href="#">
-                  <i class="fa fa-fw fa-bar-chart mr-3 text-dark-blue opacity-30"></i>Dashboard
+              <li
+                class="nav-item mb-2"
+                v-for="menuItem in menuSettings.admin"
+                :key="menuItem.index"
+                
+              >
+                <a class="nav-link" v-if="userHasPermission(menuItem.permissions_required) && (menuItem.environment == null || menuItem.environment == environment)" :href="menuItem.url" :target="menuItem.target" >
+                  <i class="fa fa-fw mr-3 text-dark-blue opacity-30" :class="menuItem.icon"></i>
+                  {{ menuItem.label }}
                 </a>
               </li>
               <li class="nav-item">
@@ -116,6 +122,7 @@ query {
 import Logo from "~/components/Logo.vue";
 import SiteFooter from "~/components/SiteFooter.vue";
 import moment from "moment";
+import menuSettings from "../../data/menus.json";
 import companySettings from "../../data/company.json";
 import brandSettings from "../../data/brand.json";
 import themeSettings from "../../data/theme.json";
@@ -125,6 +132,7 @@ import axios from "axios";
 export default {
   data() {
     return {
+      environment: null,
       cart: null,
       count: null,
       search: null,
@@ -134,6 +142,7 @@ export default {
       thirtyDaysAgo: null,
       result: null,
       currentPage: null,
+      menuSettings: menuSettings,
       companySettings: companySettings,
       brandSettings: brandSettings,
       themeSettings: themeSettings,
@@ -155,15 +164,25 @@ export default {
     Logo,
     SiteFooter
   },
-  async mounted() {
+  async mounted() {       
+    if(process.env.GRIDSOME_APP_URL.includes('8888')){
+      this.environment = 'development';    
+    }
+    else {
+      this.environment = 'production';
+    }
     var oldAuth = null;
     if (localStorage.auth != null) {
       //alert(typeof localStorage.auth);
       var oldAuth = JSON.parse(localStorage.auth);
-      if (oldAuth != null && oldAuth.token != null && typeof oldAuth.user.tokens.analytics == 'undefined' ) {        
+      if (
+        oldAuth != null &&
+        oldAuth.token != null &&
+        typeof oldAuth.user.tokens.analytics == "undefined"
+      ) {
         // console.log("Old Auth:");
         // console.log(oldAuth);
-        var token = oldAuth.token;        
+        var token = oldAuth.token;
       }
     } else {
       oldAuth = null;
@@ -180,7 +199,6 @@ export default {
     }
     this.window = window;
 
-    
     if (typeof token != "undefined") {
       this.$userToken = token;
       this.callApi({
@@ -230,7 +248,7 @@ export default {
 
     this.addAnalyticEvent();
   },
-  methods: {
+  methods: {    
     getUrlVars() {
       var vars = {};
       var parts = this.window.location.href.replace(
@@ -241,6 +259,28 @@ export default {
       );
       return vars;
     },
+    userHasPermission(input) {
+      //console.log(input);
+      if (
+        this.auth != null &&
+        this.auth.user != null &&
+        this.auth.user.permissions != null
+      ) {
+        var hasPermission = false;
+         Object.values(input).forEach(function(item) {
+           Object.keys(item).forEach(function(permission) {
+            //required:
+            //alert(permission + " - " + Object.values(item));
+            var auth = JSON.parse(localStorage.auth);
+            hasPermission = auth.user.permissions[permission] == Object.values(item);                                  
+            //return auth.user.permissions[permission] == Object.values(item);                                  
+            
+          });
+        });
+        return hasPermission;
+      }
+    },
+
     addAnalyticEvent(event) {
       if (event == null) {
         event = "page_view";
@@ -1018,9 +1058,9 @@ export default {
   float: left;
 }
 
-@media(min-width:768px){
+@media (min-width: 768px) {
   .sidebar-row {
-    height:100vh;
+    height: 100vh;
   }
 }
 

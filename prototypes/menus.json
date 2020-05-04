@@ -1,0 +1,32 @@
+{
+    "admin": {
+        "dashboard": {
+            "label": "Dashboard",
+            "icon": "fa-bar-chart",
+            "url": "/dashboard",
+            "permissions_required": [
+                {"dashboard":"all"}
+            ]
+        },
+        "content": {
+            "label": "Content",
+            "icon": "fa-pencil",
+            "url": "/admin/#",
+            "target": "_blank",
+            "environment": "production",
+            "permissions_required": [
+                {"dashboard":"all"}
+            ]
+        },
+        "content-dev": {
+            "label": "Content",
+            "icon": "fa-pencil",
+            "url": "/admin-local/#",
+            "target": "_blank",
+            "environment": "development",
+            "permissions_required": [
+                {"dashboard":"all"}
+            ]
+        }
+    }
+}
