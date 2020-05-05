@@ -28,16 +28,12 @@
 
 <div class="raised" style="background-color:#fff; background-image:url('https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/vue/vue.png'); background-size:66%;border-radius:33px;width:33px;display:inline-block;background-repeat:no-repeat; background-position:center center;height:33px;padding:5px 5px 5px 5px;margin:0px 0px 0px 10px;"></div>
 
-<br>
+<br style="margin-bottom:25px;">
 </div>
-
-
-
-
-
-
-
- <iframe src="https://player.vimeo.com/video/414917709" style="border:none !important;width:100%;height:330px;" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+<br>
+<div style="width:350px;height:350px !important;display:inline-block;margin:auto;">
+    <iframe src="https://player.vimeo.com/video/414917709" class="raised" style="margin:0px;padding:0px;border:none !important;height:100%;width:100%;border-radius:5px;overflow:hidden;" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+ </div>
   
   
 
