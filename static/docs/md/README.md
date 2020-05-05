@@ -31,7 +31,7 @@
 <br style="margin-bottom:25px;">
 </div>
 <br>
-<div style="width:330px;height:330px !important;display:inline-block;margin:auto;">
+<div style="width:300px;height:300px !important;display:inline-block;margin:auto;">
     <iframe src="https://player.vimeo.com/video/414917709" class="raised" style="margin:0px;padding:0px;border:none !important;height:100%;width:100%;border-radius:5px;overflow:hidden;" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
  </div>
   
