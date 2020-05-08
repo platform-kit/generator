@@ -5,14 +5,6 @@
       v-if="($page.contentItem.media_full != null && $page.contentItem.media_full != '') || ($page.contentItem.media_preview != null && $page.contentItem.media_preview  != '') "
       style="width:100%;min-height:330px;height:auto;background-size:cover !important;background-position:center;display:block;"
     >
-      <div
-        style="pointer-events:none;position:absolute;top:0px;left:-100px;height:calc(100vh - 0px);cursor:pointer;background:#000;min-height:300px;width:100%;background-size:cover;background-position:center;z-index:0 !important;filter:blur(50px) contrast(200%);opacity:0.35;width:calc(100% + 200px);"
-        v-if="$page.contentItem.cover_image != null && $page.contentItem.cover_image != null != ''"
-        class="d-flex justify-content-center"
-        :style="{ backgroundImage:
-                  'url('+ $page.contentItem.cover_image + ')'
-                 }"
-      ></div>
       <div class="container">
         <div
           class="row"
@@ -39,8 +31,7 @@
                  }"
               >
                 <div
-                  class="my-auto raised bg-light br-25 text-center justify-content-center d-flex"
-                  style="height:50px;width:50px;background-image:linear-gradient(0deg, rgba(0,150,200,0.5) -20%, #fff);"
+                  class="my-auto raised bg-light br-25 text-center justify-content-center d-flex btn-login"
                 >
                   <span class="my-auto fa fa-play"></span>
                 </div>
@@ -59,7 +50,7 @@
               <vue-plyr style="background:#000;" v-else-if="media.includes('vimeo')">
                 <div class="plyr__video-embed">
                   <iframe
-                    style="height:calc(100vh - 300px) !important;"
+                    style="height:calc(100vh - 500px) !important;"
                     :src="media + '?loop=false&byline=false&portrait=false&title=false&speed=true&transparent=0&gesture=media'"
                     allowfullscreen
                     allowtransparency
@@ -103,19 +94,11 @@
                 class="opacity-90 mt-0 d-inline-block d-lg-none"
               >Sign up or sign to to view this content.</h5>
             </div>
-            <div
-              class="btn br-25 px-4 mt-3 mb-5 border-0 raised"
-              style="background-image:linear-gradient(0deg, rgba(0,150,200,0.25) -20%, #fff 80%);"
-              v-b-modal.modal-login
-            >
+            <div class="btn br-25 px-4 mt-3 mb-5 border-0 raised btn-shiny" v-b-modal.modal-login>
               Sign In
               <i class="fa fa-user ml-2"></i>
             </div>
-            <a
-              class="btn br-25 px-4 mt-3 mb-5 ml-2 border-0 raised"
-              style="background-image:linear-gradient(0deg, rgba(0,150,200,0.25) -20%, #fff 80%);"
-              href="/pricing"
-            >
+            <a class="btn br-25 px-4 mt-3 mb-5 ml-2 border-0 raised btn-shiny" href="/pricing">
               Sign Up
               <i class="fa fa-sign-in ml-2"></i>
             </a>
@@ -138,7 +121,7 @@
           >
             <div class="plyr__video-embed">
               <iframe
-                style="height:calc(100vh - 300px) !important;"
+                style="height:calc(100vh - 500px) !important;"
                 :src="media + '?loop=false&byline=false&portrait=false&title=false&speed=true&transparent=0&gesture=media'"
                 allowfullscreen
                 allowtransparency
@@ -149,7 +132,7 @@
           <vue-plyr style="background:#000;" v-else-if="media.includes('vimeo')">
             <div class="plyr__video-embed">
               <iframe
-                style="height:calc(100vh - 300px) !important;"
+                style="height:calc(100vh - 500px) !important;"
                 :src="media + '?loop=false&byline=false&portrait=false&title=false&speed=true&transparent=0&gesture=media'"
                 allowfullscreen
                 allowtransparency
@@ -172,7 +155,6 @@
           </vue-plyr>
         </div>
       </div>
-      <div class="w-100 bg-none d-block" style="height:45px;"></div>
     </div>
     <div v-else>
       <b-card
@@ -213,15 +195,25 @@
 
     <div class="container" id="more">
       <div class="row mx-0 mx-md-0 justify-content-center p-3 p-xl-0">
+        <h1
+          v-if="hasVideo()"
+          class="title d-none d-md-block text-dark text-weight-800 text-shadow mb-5"
+        >{{ $page.contentItem.title }}</h1>
+        <h2
+          v-if="hasVideo()"
+          class="title d-block d-md-none text-dark text-weight-800 text-shadow text-center"
+        >{{ $page.contentItem.title }}</h2>
         <div
-          v-if="premiumContent != null && premiumContent.error != true"
-          class="content  bg-none pt-3 px-3 px-md-3 py-md-5"
+          v-if="premiumContent != null && premiumContent.error != true && $page.contentItem.content != null"
+          class="content bg-none pt-0 px-3 px-md-3 pb-5"
+          v-bind:class="{ 'pt-5': hasVideo() == false }"
           v-html="$page.contentItem.content"
         >{{ $page.contentItem.content }}</div>
         <div
           v-else
           v-html="$options.filters.markdown($page.contentItem.excerpt)"
-          class="content  bg-none pt-3 px-3 px-md-3 py-md-5"
+          class="content bg-none pt-0 px-3 px-md-3 pb-5"
+          v-bind:class="{ 'pt-5': hasVideo() == false }"
         >{{ $options.filters.markdown($page.contentItem.excerpt) }}</div>
       </div>
     </div>
@@ -242,8 +234,8 @@
                 background-position:center center;"
               :style="{ backgroundImage: `url('${valueProposition.node.cover_image}')` }"
             >
-              <div class="w-100 my-auto py-0 px-2 pr-0 pr-lg-4">
-                <h2>{{ valueProposition.node.call_to_action_text }}</h2>
+              <div class="w-100 my-auto py-0 px-2 pr-0 pr-lg-4 px-4">
+                <h2 class="vp-title">{{ valueProposition.node.call_to_action_text }}</h2>
 
                 <a
                   v-for="page in $page.pages.edges"
@@ -258,8 +250,6 @@
         </div>
       </div>
     </div>
-
-    <!-- Recent posts -->
   </Layout>
 </template>
 
@@ -302,11 +292,15 @@ export default {
     this.addAnalyticEvent();
   },
   methods: {
-    hasVideo(){
-      if(this.$page.contentItem.media.includes('vimeo') || this.$page.contentItem.media.includes('youtube') || this.$page.contentItem.media.includes('.mp4')){
+    hasVideo() {
+      if (
+        this.media != "undefined" &&
+        (this.media.includes("vimeo") ||
+          this.media.includes("youtube") ||
+          this.media.includes(".mp4"))
+      ) {
         return true;
-      }
-      else {
+      } else {
         return false;
       }
     },
@@ -607,6 +601,19 @@ query ContentItem ($id: ID!) {
   -webkit-text-fill-color: transparent;
 }
 
+.title.text-dark {
+  color: #000 !important;
+  margin-top:25px !important;
+  background-image: -webkit-linear-gradient(45deg, #000000, #888db1) !important;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.vp-title {
+  font-family: "DM Serif Text", serif !important;
+}
+
 .subtitle {
   font-family: "DM Serif Text", serif !important;
   font-size: 180%;
@@ -623,6 +630,10 @@ query ContentItem ($id: ID!) {
 
 .coverCard .card-body {
   background: radial-gradient(#09122065 0px, #00000000 100%);
+}
+
+.content a[href*="#"] {  
+  margin-left:-8px !important;  
 }
 </style>
 
@@ -702,10 +713,6 @@ query ContentItem ($id: ID!) {
   margin-top: calc(var(--space) / 2);
 }
 
-.contentItem .main {
-  background:linear-gradient(0deg,  #fff 100vh, #041b336c);
-}
-
 .content b,
 .content strong {
   font-weight: 300 !important;
@@ -719,14 +726,28 @@ query ContentItem ($id: ID!) {
 
 .content a {
   color: #007bff;
-  background:#fff;  
+  background: #fff;
   padding: 4px;
-  border-radius:3px;  
-  transition:all 0.3s;
+  border-radius: 3px;
+  transition: all 0.3s;
 }
-.content a:hover {  
-  background:#007bff2e;
-  text-decoration:none;  
-  box-shadow:0px 3px 10px #007bff2e,0px 3px 3px #1b30462e;
-  }
+.content a:hover {
+  background: #007bff2e;
+  text-decoration: none;
+  box-shadow: 0px 3px 10px #007bff2e, 0px 3px 3px #1b30462e;
+}
+
+.btn-login {
+  height: 50px;
+  width: 50px;
+  background-image: linear-gradient(0deg, rgba(0, 150, 200, 0.5) -20%, #fff);
+}
+
+.btn-shiny {
+  background-image: linear-gradient(
+    0deg,
+    rgba(0, 53, 200, 0.25) -20%,
+    #fff 80%
+  );
+}
 </style>
