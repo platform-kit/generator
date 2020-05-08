@@ -951,8 +951,13 @@ export default {
   background: #ecf5ff;
 }
 
-.bg-light-green {
+
+.bg-green {
   background: #3fe29f;
+}
+
+.bg-light-green {
+  background: #bdffe4;
 }
 
 .text-dark-green {

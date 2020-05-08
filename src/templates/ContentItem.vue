@@ -1,12 +1,12 @@
 <template>
-  <Layout>
+  <Layout class="contentItem">
     <div
       class="d-inline-block justify-content-center text-center"
       v-if="($page.contentItem.media_full != null && $page.contentItem.media_full != '') || ($page.contentItem.media_preview != null && $page.contentItem.media_preview  != '') "
       style="width:100%;min-height:330px;height:auto;background-size:cover !important;background-position:center;display:block;"
     >
       <div
-        style="pointer-events:none;position:absolute;top:0px;left:-100px;height:500px;cursor:pointer;background:#000;min-height:300px;width:100%;background-size:cover;background-position:center;z-index:0 !important;filter:blur(50px) contrast(200%);opacity:0.35;width:calc(100% + 200px);"
+        style="pointer-events:none;position:absolute;top:0px;left:-100px;height:calc(100vh - 0px);cursor:pointer;background:#000;min-height:300px;width:100%;background-size:cover;background-position:center;z-index:0 !important;filter:blur(50px) contrast(200%);opacity:0.35;width:calc(100% + 200px);"
         v-if="$page.contentItem.cover_image != null && $page.contentItem.cover_image != null != ''"
         class="d-flex justify-content-center"
         :style="{ backgroundImage:
@@ -161,7 +161,6 @@
             style="background:#000;overflow:hidden;border-radius:5px;"
             v-else-if="media.includes('youtube')"
           >
-            123
             <div class="plyr__video-embed">
               <iframe
                 :src="media + '?loop=false&byline=false&portrait=false&title=false&speed=true&transparent=0&gesture=media'"
@@ -177,8 +176,8 @@
     </div>
     <div v-else>
       <b-card
-        class="mb-4 px-0 bg-dark card-image-tinted border-0"
-        style="width:100%;height:500px;                                                         
+        class="px-0 bg-dark card-image-tinted border-0 coverCard"
+        style="width:100%;height:calc(100vh - 50px);                                                         
                 background-size:cover;
                 border-radius:0px !important;
                 background-position:center !important;"
@@ -187,17 +186,24 @@
                  }"
       >
         <div class="row h-100">
-          <div class="col-sm-12 text-center" style="margin-top:150px;">
+          <div class="col-sm-12 text-center my-auto">
             <h1
-              class="d-none d-md-block text-white text-weight-300 text-shadow"
+              class="d-none d-md-block text-white text-weight-800 text-shadow title"
             >{{ $page.contentItem.title }}</h1>
             <h2
-              class="d-block d-md-none text-white text-weight-300 text-shadow"
+              class="d-block d-md-none text-white text-weight-800 text-shadow title"
             >{{ $page.contentItem.title }}</h2>
-            <div
-              class="badge badge-pill badge-dark border-0 px-3 py-2 text-white opacity-90 mt-3 text-weight-400 bg-black"
-              style="font-size:85%;"
-            >{{ $page.contentItem.subtitle }}</div>
+
+            <div class="text-white py-4">
+              <span class="description p-3">{{ $page.contentItem.description }}</span>
+            </div>
+            <span
+              class="badge badge-pill px-3 py-2 mt-4 border text-light"
+              style="z-index:999 !important;margin-left:0px;margin-top:5px;margin-bottom:25px;"
+            >
+              <i class="fa fa-fw fa-clock-o text-light mr-2"></i>
+              <span>{{ $page.contentItem.minutes_to_consume }} Minute Read</span>
+            </span>
             <br />
             <a data-scroll href="#more" class="scroll-button-down mt-4"></a>
           </div>
@@ -205,31 +211,17 @@
       </b-card>
     </div>
 
-    <div class="container">
-      <div class="row mx-0 mx-md-0 justify-content-center">
-        <div
-          id="more"
-          class="col-md-12 bg-white br-5 py-5 p-md-5 mb-0 text-center"
-          style="font-size:115%; margin-top:-50px;z-index:9; box-shadow:0px -16px 16px rgba(0,50,100,0.09)"
-        >
-          <div v-if="media != '' && media != null">
-            <h4 class="d-block text-dark text-weight-300">{{ $page.contentItem.title }}</h4>
-            <p
-              class="py-2 text-dark text-weight-400 mb-2"
-              style="font-size:100%;"
-            >{{ $page.contentItem.subtitle }}</p>
-          </div>
-          {{ $page.contentItem.description }}
-        </div>
+    <div class="container" id="more">
+      <div class="row mx-0 mx-md-0 justify-content-center p-3 p-xl-0">
         <div
           v-if="premiumContent != null && premiumContent.error != true"
-          class="content col-md-9 bg-none border-top mt-3 pt-5 px-3 p-md-5"
+          class="content  bg-none pt-3 px-3 px-md-3 py-md-5"
           v-html="$page.contentItem.content"
         >{{ $page.contentItem.content }}</div>
         <div
           v-else
           v-html="$options.filters.markdown($page.contentItem.excerpt)"
-          class="content col-md-9 bg-none border-top mt-3 pt-5 px-3 p-md-5"
+          class="content  bg-none pt-3 px-3 px-md-3 py-md-5"
         >{{ $options.filters.markdown($page.contentItem.excerpt) }}</div>
       </div>
     </div>
@@ -308,58 +300,68 @@ export default {
     }
     this.window = window;
     this.addAnalyticEvent();
-    
   },
   methods: {
-    convert(slug, valueProposition){
-      var data = {"valueProposition": valueProposition.node.id};
-      this.addAnalyticEvent('conversion', data);
-      window.location.assign('/' + slug);
+    hasVideo(){
+      if(this.$page.contentItem.media.includes('vimeo') || this.$page.contentItem.media.includes('youtube') || this.$page.contentItem.media.includes('.mp4')){
+        return true;
+      }
+      else {
+        return false;
+      }
     },
-     addAnalyticEvent(event, extraData) {
-      if(event == null) { event = 'content_view'; }
+    convert(slug, valueProposition) {
+      var data = { valueProposition: valueProposition.node.id };
+      this.addAnalyticEvent("conversion", data);
+      window.location.assign("/" + slug);
+    },
+    addAnalyticEvent(event, extraData) {
+      if (event == null) {
+        event = "content_view";
+      }
       var token = null;
       var url = null;
-      if(localStorage.auth != null) {
+      if (localStorage.auth != null) {
         var auth = JSON.parse(localStorage.auth);
-        if(auth != null && auth.token != null) {
+        if (auth != null && auth.token != null) {
           token = auth.token;
         }
         var data = {};
-        if(typeof extraData == 'object') {
+        if (typeof extraData == "object") {
           var data = Object.assign(data, extraData);
         }
         data.url = encodeURI(this.window.location.href.split("#")[0]);
         data.contentItem = this.$page.contentItem.id;
         data.path = this.$page.contentItem.path;
-        if(this.$page.contentItem.topics != null){
+        if (this.$page.contentItem.topics != null) {
           data.topics = this.$page.contentItem.topics;
         }
         data = JSON.stringify(data);
-        url = process.env.GRIDSOME_API_URL +
-              'platformkit-analytics-event-v1' +
-              "?token=" +
-              token + '&event=' + event + '&data=' + data;              
-      }      
-
-      else { 
-        
-        url = process.env.GRIDSOME_API_URL +
-              'platformkit-analytics-event-v1' +
-              '?event=' + event + '&data=' + data;
+        url =
+          process.env.GRIDSOME_API_URL +
+          "platformkit-analytics-event-v1" +
+          "?token=" +
+          token +
+          "&event=" +
+          event +
+          "&data=" +
+          data;
+      } else {
+        url =
+          process.env.GRIDSOME_API_URL +
+          "platformkit-analytics-event-v1" +
+          "?event=" +
+          event +
+          "&data=" +
+          data;
       }
 
       console.log(data);
 
-
       try {
         axios
-          .get(
-            url
-          )
-          .then(response =>            
-            console.log(response)
-          )
+          .get(url)
+          .then(response => console.log(response))
           .catch(function(error) {
             console.log(error);
           });
@@ -505,6 +507,7 @@ query ContentItem ($id: ID!) {
       cover_image
       media_preview
       media_full
+      minutes_to_consume
       requiredSubscription
       path
       topics
@@ -579,6 +582,49 @@ query ContentItem ($id: ID!) {
   }
 }
 </page-query>
+
+<style>
+@import url("https://fonts.googleapis.com/css?family=DM+Serif+Text&display=swap");
+
+@media (min-width: 991px) {
+  .title {
+    font-size: 400%;
+  }
+}
+
+@media (max-width: 991px) {
+  .title {
+    font-size: 275%;
+  }
+}
+.title {
+  font-family: "DM Serif Text", serif !important;
+  background: -webkit-linear-gradient(#fafaff, #fff);
+  text-shadow: 0px 10px 30px rgba(16, 18, 51, 0.4),
+    0px 3px 5px rgba(16, 18, 51, 0.1);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+  font-family: "DM Serif Text", serif !important;
+  font-size: 180%;
+  font-weight: 200 !important;
+  text-shadow: 0px 3px 2px rgba(49, 51, 80, 0.25),
+    1px 5px 4px rgba(20, 20, 56, 0.2) !important;
+}
+
+.description {
+  font-size: 133%;
+  background: none !important;
+  color: #fff !important;
+}
+
+.coverCard .card-body {
+  background: radial-gradient(#09122065 0px, #00000000 100%);
+}
+</style>
 
 
 <style lang="scss">
@@ -656,6 +702,10 @@ query ContentItem ($id: ID!) {
   margin-top: calc(var(--space) / 2);
 }
 
+.contentItem .main {
+  background:linear-gradient(0deg,  #fff 100vh, #041b336c);
+}
+
 .content b,
 .content strong {
   font-weight: 300 !important;
@@ -666,4 +716,17 @@ query ContentItem ($id: ID!) {
   white-space: pre-wrap;
   display: inline !important;
 }
+
+.content a {
+  color: #007bff;
+  background:#fff;  
+  padding: 4px;
+  border-radius:3px;  
+  transition:all 0.3s;
+}
+.content a:hover {  
+  background:#007bff2e;
+  text-decoration:none;  
+  box-shadow:0px 3px 10px #007bff2e,0px 3px 3px #1b30462e;
+  }
 </style>

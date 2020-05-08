@@ -56,7 +56,7 @@
                       <h3>{{ edge.node.title }}</h3>
                       <br />
                       <span
-                        class="badge badge-pill px-3 bg-light-green border-light-green text-dark-green"
+                        class="badge badge-pill px-3 bg-green border-light-green text-dark-green"
                         style="position:absolute;top:12px;left:-10px;"
                       >
                         <span class="opacity-90">{{ edge.node.minutes_to_consume }} Minute Read</span>
