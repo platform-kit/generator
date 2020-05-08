@@ -578,7 +578,7 @@ query ContentItem ($id: ID!) {
 </page-query>
 
 <style>
-@import url("https://fonts.googleapis.com/css?family=DM+Serif+Text&display=swap");
+
 
 @media (min-width: 991px) {
   .title {
@@ -608,10 +608,6 @@ query ContentItem ($id: ID!) {
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-}
-
-.vp-title {
-  font-family: "DM Serif Text", serif !important;
 }
 
 .subtitle {

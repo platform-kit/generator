@@ -15,7 +15,7 @@
                 background-position:center center;"
             :style="{ backgroundImage: `url('${edge.node.cover_image}')` }"
           >
-            <div class="w-100 my-auto py-0 px-2 pr-0 pr-lg-4">
+            <div class="w-100 my-auto py-0 px-2 pr-0 pr-lg-4 vp-title">
               <h2>{{ edge.node.call_to_action_text }}</h2>
 
               <a

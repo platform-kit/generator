@@ -681,6 +681,9 @@ export default {
 </script>
 
 <style lang="scss">
+
+@import url("https://fonts.googleapis.com/css?family=DM+Serif+Text&display=swap");
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -1295,5 +1298,9 @@ export default {
 .carousel-slide img {
   opacity: 0 !important;
   float: left;
+}
+
+.vp-title {
+  font-family: "DM Serif Text", serif !important;
 }
 </style>
