@@ -70,10 +70,11 @@
                   style="padding:0px !important;"
                   class="my-auto text-dark nav-link p-0 mx-0 mx-lg-3 d-inline-block"
                 >
-                  <b-dropdown-item href="#logout" :href="'/dashboard'" v-if="auth.user.permissions != null && auth.user.permissions.dashboard == 'all'">
-                    Dashboard
-                    
-                  </b-dropdown-item>
+                  <b-dropdown-item
+                    href="#logout"
+                    :href="'/dashboard'"
+                    v-if="auth.user.permissions != null && auth.user.permissions.dashboard == 'all'"
+                  >Dashboard</b-dropdown-item>
                   <b-dropdown-item href="#logout" @click="logout()">
                     Sign Out
                     <i class="text-danger fa fa-sign-out m-1 pull-right"></i>
@@ -84,11 +85,16 @@
                   Login
                 </a>
 
-                <a href="#" class="nav-link snipcart-checkout mr-2 text-primary d-none d-sm-block" v-if="count > 0">
+                <a
+                  href="#"
+                  class="nav-link snipcart-checkout mr-2 text-primary d-none d-sm-block"
+                  v-if="count > 0"
+                >
                   <font-awesome
                     :icon="['fa', 'shopping-cart']"
                     class="text-primary opacity-50 mr-2"
-                  /><span class="d-none d-xl-inline">Cart</span>
+                  />
+                  <span class="d-none d-xl-inline">Cart</span>
                   <div
                     class="badge badge-pill text-white mt-1 mb-1 ml-1 mr-0"
                     style="float:right;position:relative;top:-1px;left:5px;display:block;border-radius:25px;height:auto;width:auto;"
@@ -269,7 +275,7 @@
             <b-form-input autocomplete="off" placeholder="tony.stark@marvel.com" v-model="email"></b-form-input>
           </b-input-group>
         </div>
-        
+
         <div class="pb-4 px-4 text-center my-auto" v-else>
           <i class="fa fa-check text-success opacity-90 mb-2"></i>
           <br />
@@ -462,8 +468,8 @@ export default {
     var arr = URL.split("/");
     var str = arr[1];
     this.currentPage = arr[3];
-    if(arr[4] != null) {
-      this.currentPage = this.currentPage + '/' + arr[4];
+    if (arr[4] != null) {
+      this.currentPage = this.currentPage + "/" + arr[4];
     }
 
     let list = this.$static.featuredContent.edges;
@@ -511,39 +517,44 @@ export default {
       return vars;
     },
     addAnalyticEvent(event) {
-      if(event == null) { event = 'page_view'; }
+      if (event == null) {
+        event = "page_view";
+      }
       var token = null;
       var url = null;
-      if(localStorage.auth != null) {
+      if (localStorage.auth != null) {
         var auth = JSON.parse(localStorage.auth);
-        if(auth != null && auth.token != null) {
+        if (auth != null && auth.token != null) {
           token = auth.token;
         }
-        var data = JSON.stringify({url: encodeURI(this.window.location.href.split("#")[0])});
-        url = process.env.GRIDSOME_API_URL +
-              'platformkit-analytics-event-v1' +
-              "?token=" +
-              token + '&event=' + event + '&data=' + data;              
-      }      
-
-      else { 
-        
-        url = process.env.GRIDSOME_API_URL +
-              'platformkit-analytics-event-v1' +
-              '?event=' + event + '&data=' + data;
+        var data = JSON.stringify({
+          url: encodeURI(this.window.location.href.split("#")[0])
+        });
+        url =
+          process.env.GRIDSOME_API_URL +
+          "platformkit-analytics-event-v1" +
+          "?token=" +
+          token +
+          "&event=" +
+          event +
+          "&data=" +
+          data;
+      } else {
+        url =
+          process.env.GRIDSOME_API_URL +
+          "platformkit-analytics-event-v1" +
+          "?event=" +
+          event +
+          "&data=" +
+          data;
       }
 
       console.log(url);
 
-
       try {
         axios
-          .get(
-            url
-          )
-          .then(response =>            
-            console.log(response)
-          )
+          .get(url)
+          .then(response => console.log(response))
           .catch(function(error) {
             console.log(error);
           });
@@ -577,7 +588,7 @@ export default {
     requestLogin() {
       //this.addAnalyticEvent('login_request');
       try {
-        this.authRequestStatus = 'loading';
+        this.authRequestStatus = "loading";
         axios
           .get(
             process.env.GRIDSOME_API_URL +
@@ -594,7 +605,6 @@ export default {
           .catch(function(error) {
             console.log(error);
           });
-          
       } catch (error) {
         console.log(error);
       }
@@ -681,7 +691,6 @@ export default {
 </script>
 
 <style lang="scss">
-
 @import url("https://fonts.googleapis.com/css?family=DM+Serif+Text&display=swap");
 
 .header {
@@ -953,7 +962,6 @@ export default {
 .bg-very-light-blue {
   background: #ecf5ff;
 }
-
 
 .bg-green {
   background: #3fe29f;
@@ -1269,10 +1277,10 @@ export default {
 }
 
 .btn-white {
-    background: linear-gradient(0deg, #f0f4f9, #fff);
-    border-radius: 25px;
-    border: 1px solid rgba(49, 93, 179, 0.21);
-    box-shadow: 0px 5px 10px rgba(0,50,150,0.1);
+  background: linear-gradient(0deg, #f0f4f9, #fff);
+  border-radius: 25px;
+  border: 1px solid rgba(49, 93, 179, 0.21);
+  box-shadow: 0px 5px 10px rgba(0, 50, 150, 0.1);
 }
 
 .snipcart-modal__container {
@@ -1301,6 +1309,13 @@ export default {
 }
 
 .vp-title {
-  font-family: "DM Serif Text", serif !important;
+  font-size: 300% !important;
+  font-family: "DM Serif Text", serif !important;  
+  background: -webkit-linear-gradient(#fafaff, #fff);
+  text-shadow: 0px 10px 30px rgba(16, 18, 51, 0.4),
+    0px 3px 5px rgba(16, 18, 51, 0.1);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 </style>

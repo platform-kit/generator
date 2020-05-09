@@ -7,14 +7,14 @@ featured: true
 thumbnail_image: /files/6-tips-thumbnail.jpg
 relatedCollections:
   - manifesting
-media_full: 'https://player.vimeo.com/video/397439878'
+media_full: 'https://player.vimeo.com/video/414917709'
 keywords: publishing content
 slug: content-example-vimeo
 subtitle: Subtitle goes here.
 description: This is a basic example of a content post.
 minutes_to_consume: 2
 date: 2019-03-14T00:00:00.000Z
-media_preview: 'https://player.vimeo.com/video/181873015'
+media_preview: 'https://player.vimeo.com/video/414917709'
 cover_image: /files/examples/jakob-owens-CiUR8zISX60-unsplash.jpg
 series: false
 tags:
@@ -25,13 +25,3 @@ topics:
   - topic-KIRVXSW_O
 requiredSubscription:
   - subscriptionPlan-KIs4QHz_W
----
-
-### This is markdown content
-
-A Markdown-formatted document should be publishable as-is, as plain text, without looking
-like it's been marked up with tags or formatting instructions. 
-
-While Markdown's syntax has been influenced by several existing text-to-HTML filters -- including [Setext](http://docutils.sourceforge.net/mirror/setext.html), [atx](http://www.aaronsw.com/2002/atx/), [Textile](http://textism.com/tools/textile/), [reStructuredText](http://docutils.sourceforge.net/rst.html),
-[Grutatext](http://www.triptico.com/software/grutatxt.html), and [EtText](http://ettext.taint.org/doc/) -- the single biggest source of
-inspiration for Markdown's syntax is the format of plain text email.

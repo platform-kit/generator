@@ -44,7 +44,8 @@
                   :src="media"
                   playsinline
                   controls
-                  style="width:100%;max-height:600px;margin:0px;border-radius:5px;overflow:hidden;"
+                  :poster="getThumbnailImage()"
+                  style="width:100%;max-height:600px;margin:0px;border-radius:5px !important;overflow:hidden !important;"
                 ></video>
               </vue-plyr>
               <vue-plyr style="background:#000;" v-else-if="media.includes('vimeo')">
@@ -111,6 +112,7 @@
               :src="media"
               playsinline
               controls
+              :poster="getThumbnailImage()"
               style="width:100%;max-height:600px;margin:0px;border-radius:5px;"
             ></video>
           </vue-plyr>
@@ -417,18 +419,20 @@ export default {
       return true;
     },
     getThumbnailImage() {
+      
       if (this.$page.contentItem.thumbnail_image != null) {
         return (
           process.env.GRIDSOME_APP_URL +
-          this.$page.contentItem.thumbnail_image.src
+          this.$page.contentItem.thumbnail_image
         );
       }
       if (this.$page.contentItem.cover_image != null) {
         return (
-          process.env.GRIDSOME_APP_URL + this.$page.contentItem.cover_image.src
+          process.env.GRIDSOME_APP_URL + this.$page.contentItem.cover_image
         );
       } else {
-        return "";
+        var url = null;
+        return url;
       }
     },
     getRelatedCollection() {
@@ -639,6 +643,10 @@ query ContentItem ($id: ID!) {
   max-height: calc(100vh - 300px) !important;
   max-width: 1200px !important;
   width: 100%;
+}
+
+.plyr--video{
+  border-radius:5px;
 }
 
 .plyr,

@@ -15,8 +15,8 @@
                 background-position:center center;"
             :style="{ backgroundImage: `url('${edge.node.cover_image}')` }"
           >
-            <div class="w-100 my-auto py-0 px-2 pr-0 pr-lg-4 vp-title">
-              <h2>{{ edge.node.call_to_action_text }}</h2>
+            <div class="w-100 my-auto py-0 px-2 pr-0 pr-lg-4 ">
+              <h2 class="vp-title">{{ edge.node.call_to_action_text }}</h2>
 
               <a
                 v-for="page in $page.pages.edges"
@@ -53,7 +53,7 @@
                       class="pt-3 px-3 text-light d-inline-block"
                       style="line-height:25px;"
                     >
-                      <h3>{{ edge.node.title }}</h3>
+                      <h3 class="contentItemTitle">{{ edge.node.title }}</h3>
                       <br />
                       <span
                         class="badge badge-pill px-3 bg-green border-light-green text-dark-green"
@@ -374,5 +374,10 @@ export default {
 .description {
   line-height: 150%;
   font-size: 200%;
+}
+
+.contentItemTitle {
+  font-family: 'Open Sans';
+  font-weight:700 !important;
 }
 </style>
