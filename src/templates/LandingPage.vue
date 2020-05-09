@@ -380,4 +380,13 @@ export default {
   font-family: 'Open Sans';
   font-weight:700 !important;
 }
+
+.card-deck:first-child {
+  margin-top:-38px !important;
+}
+@media(max-width:991px){
+  .card-deck:first-child {
+  margin-top:-60px !important;
+}
+}
 </style>
