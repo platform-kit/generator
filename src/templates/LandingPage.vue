@@ -29,7 +29,7 @@
           </div>
         </div>
 
-        <div v-else-if="section.type == 'contentItems'" class="border-bottom row">
+        <div v-else-if="section.type == 'contentItems'" class="contentItems border-bottom row">
           <div class="posts py-3 container" v-if="$page.contentItems.edges.length > 0">
             <div class="col-md-12 px-0 px-md-3">
               <b-card-group deck class="my-3 mt-4 my-md-3 mt-md-5">
@@ -381,11 +381,11 @@ export default {
   font-weight:700 !important;
 }
 
-.card-deck:first-child {
+.contentItems:first-of-type .card-deck {
   margin-top:-38px !important;
 }
 @media(max-width:991px){
-  .card-deck:first-child {
+  .contentItems:first-of-type .card-deck {
   margin-top:-60px !important;
 }
 }
