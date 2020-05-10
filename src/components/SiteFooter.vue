@@ -22,7 +22,7 @@
 				</div>
 				<div class="col-md-2">
 					<ul class="list-group mr-0 list-group-flush">
-						<li class="list-group-item border-0 text-dark d-none"><a href="#" class="w-100 text-dark px-0 btn text-left">Company</a></li>					      																
+						<li class="list-group-item border-0 text-dark text-weight-200"><div  class="w-100 text-dark px-0 btn text-left">About</div></li>					      																
 						<li class="list-group-item border-0 text-weight-200" v-if="legalSettings != null && legalSettings.copyright != null"><span class="footer__links"><span  style="white-space: pre;">{{ legalSettings.copyright }}</span></span></li>
             <li class="list-group-item border-0 text-weight-200" v-if="legalSettings.terms != null && legalSettings.terms != ''"><span class="footer__links"><a href="/terms" class="text-dark">Terms of Service</a></span></li>
 						<li class="list-group-item border-0 text-weight-200">Built with <a href="https://www.platformkit.com" target="_blank">PlatformKit</a></li>            
