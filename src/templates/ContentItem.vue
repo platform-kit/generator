@@ -48,7 +48,7 @@
                   style="width:100%;max-height:600px;margin:0px;border-radius:5px !important;overflow:hidden !important;"
                 ></video>
               </vue-plyr>
-              <vue-plyr style="background:#000;" v-else-if="media.includes('vimeo')">
+              <vue-plyr style="background:#000;" v-else-if="media.includes('vimeo')" >
                 <div class="plyr__video-embed">
                   <iframe
                     style="height:calc(100vh - 500px) !important;"
@@ -609,7 +609,7 @@ query ContentItem ($id: ID!) {
   background-clip: text;
   -webkit-text-fill-color: transparent;
   text-shadow: none !important;
-  margin-bottom:50px;
+  margin-bottom: 50px;
   font-size: 250%;
   font-family: "Open Sans" !important;
   font-weight: 600 !important;
@@ -646,8 +646,26 @@ query ContentItem ($id: ID!) {
   width: 100%;
 }
 
+:root {
+  --plyr-color-main: #ffffff !important;
+}
+
+.plyr__control--overlaid, 
+.plyr--video .plyr__control.plyr__tab-focus, .plyr--video .plyr__control:hover, .plyr--video .plyr__control[aria-expanded=true] { 
+  background-color: var(--plyr-color-main) !important;
+}
+
+.plyr--full-ui input[type=range] {
+  color: var(--plyr-color-main) !important;
+}
+
+.plyr__control--overlaid svg, .plyr--video .plyr__control.plyr__tab-focus, .plyr--video .plyr__control:hover, .plyr--video .plyr__control[aria-expanded=true] {   
+  fill:#333 !important;
+  color:#333 !important;
+}
+
 .plyr__poster {
-  background-size:cover !important;
+  background-size: cover !important;
 }
 
 .plyr--video {
