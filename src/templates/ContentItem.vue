@@ -419,11 +419,9 @@ export default {
       return true;
     },
     getThumbnailImage() {
-      
       if (this.$page.contentItem.thumbnail_image != null) {
         return (
-          process.env.GRIDSOME_APP_URL +
-          this.$page.contentItem.thumbnail_image
+          process.env.GRIDSOME_APP_URL + this.$page.contentItem.thumbnail_image
         );
       }
       if (this.$page.contentItem.cover_image != null) {
@@ -582,8 +580,6 @@ query ContentItem ($id: ID!) {
 </page-query>
 
 <style>
-
-
 @media (min-width: 991px) {
   .title {
     font-size: 400%;
@@ -607,11 +603,16 @@ query ContentItem ($id: ID!) {
 
 .title.text-dark {
   color: #000 !important;
-  margin-top:25px !important;
+  margin-top: 25px !important;
   background-image: -webkit-linear-gradient(45deg, #000000, #888db1) !important;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+  text-shadow: none !important;
+  margin-bottom:50px;
+  font-size: 250%;
+  font-family: "Open Sans" !important;
+  font-weight: 600 !important;
 }
 
 .subtitle {
@@ -632,8 +633,8 @@ query ContentItem ($id: ID!) {
   background: radial-gradient(#09122065 0px, #00000000 100%);
 }
 
-.content a[href*="#"] {  
-  margin-left:-8px !important;  
+.content a[href*="#"] {
+  margin-left: -8px !important;
 }
 </style>
 
@@ -645,8 +646,12 @@ query ContentItem ($id: ID!) {
   width: 100%;
 }
 
-.plyr--video{
-  border-radius:5px;
+.plyr__poster {
+  background-size:cover !important;
+}
+
+.plyr--video {
+  border-radius: 5px;
 }
 
 .plyr,
