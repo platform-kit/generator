@@ -202,7 +202,7 @@
               </p>
               <b-form-group>
                 <b-form-checkbox
-                  class="d-inline"
+                  class="d-inline mr-1"
                   id="search-content"
                   v-model="searchContent"
                   name="search-content"
