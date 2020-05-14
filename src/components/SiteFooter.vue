@@ -1,6 +1,6 @@
 <template>
 	<div class="w-100 d-block border-top p-3 pt-4" id="siteFooter">
-		<div class="container">
+		<div class="container container-footer">
 			<div class="row">				
 				<div class="col-md-3">
 					<ul class="list-group mr-0 list-group-flush">
@@ -155,3 +155,10 @@ export default {
   }
 }
 </script>
+
+<style>
+.container-footer {
+  width:100% !important;
+  max-width: 1380px !important;
+}
+</style>

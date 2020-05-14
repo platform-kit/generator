@@ -6,8 +6,6 @@
 
 var companySettings = require("./data/company.json");
 
-console.log('Company Name is: ' + companySettings.companyName);
-
 var getImage = function (input) {
   var str = "/images/";
   if (input != null) {
@@ -24,7 +22,7 @@ var getImage = function (input) {
   else {
     str = '/images/' + str;
   }
-  //console.log(str);
+  
   return str;
 }
 
@@ -33,9 +31,9 @@ module.exports = {
   siteUrl: process.env.APP_URL,
   siteDescription: companySettings.companyName || 'Built with PlatformKit',
   titleTemplate: '%s - ' + (companySettings.companyName || 'PlatformKit'),
-
+  runtimeCompiler: true,
   chainWebpack(config) {
-    //config.mode('development')
+    
   },
 
   icon: {
@@ -46,7 +44,8 @@ module.exports = {
   templates: {
     ContentItem: '/content/:slug',
     Offering: '/buy/:slug',
-    LandingPage: '/:slug'
+    LandingPage: '/:slug',
+    Doc: '/docs/:slug'
   },
 
   plugins: [
@@ -85,12 +84,24 @@ module.exports = {
         path: 'data/topics/*.md',
       }
     },
+   
     {
       // Create content from markdown files
       use: '@gridsome/source-filesystem',
       options: {
         typeName: 'ContentItem',
         path: 'data/content/*.md',
+        refs: {
+        }
+      }
+    },
+
+    {
+      // Create content from markdown files
+      use: '@gridsome/source-filesystem',
+      options: {
+        typeName: 'Doc',
+        path: 'data/docs/*.md',
         refs: {
         }
       }

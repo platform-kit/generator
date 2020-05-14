@@ -1,7 +1,7 @@
 <template>
   <Layout>
-    <div class="container-fluid" v-if="$page.landingPage.sections != null">
-      <div v-for="section, index in $page.landingPage.sections" class="section">
+    <div class="container-fluid px-0" v-if="$page.landingPage.sections != null">
+      <div v-for="section, index in $page.landingPage.sections" class="section px-3 px-lg-0">
         <div v-if="section.type == 'valuePropositions'" class="row">
           <div
             class="image-tinted bg-dark justify-content-center text-light text-center w-100 d-inline-flex"

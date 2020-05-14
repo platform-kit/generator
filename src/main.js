@@ -13,8 +13,9 @@ import '@fortawesome/fontawesome-svg-core/styles.css'
 import marked from 'marked'
 import themeSettings from '../data/theme.json'
 import { Laue } from 'laue';
-import Vue from 'vue'
 import VuePlyr from 'vue-plyr'
+import VuePrism from 'vue-prism'
+import 'prismjs/themes/prism.css'
 
 config.autoAddCss = false;
 library.add(faGithub, faTwitter)
@@ -28,10 +29,12 @@ export default function (Vue, { router, head, isClient }) {
 
   if (themeSettings != null && themeSettings.global_css != null) {
     head.style.push({
-      type: 'text/css',
+      type: 'stylesheet',
       cssText: themeSettings.global_css
     })
   }
+
+
   if (themeSettings != null && themeSettings.global_head != null) {
     head.script.push({
       innerHTML: themeSettings.global_head
@@ -47,6 +50,8 @@ export default function (Vue, { router, head, isClient }) {
 
   Vue.use(Laue);
 
+  Vue.use(VuePrism);
+
   // Vue Plyr - video player
   // The second argument is optional and sets the default config values for every player.
   Vue.use(VuePlyr, {
@@ -59,7 +64,6 @@ export default function (Vue, { router, head, isClient }) {
   Vue.component('font-awesome', FontAwesomeIcon)
 
   Vue.filter('markdown', (string) => marked(string))
-
 
   // Set default layout as a global component
   Vue.component('Layout', DefaultLayout)

@@ -581,17 +581,17 @@ query ContentItem ($id: ID!) {
 
 <style>
 @media (min-width: 991px) {
-  .title {
+  .contentItem .title {
     font-size: 400%;
   }
 }
 
 @media (max-width: 991px) {
-  .title {
+  .contentItem .title {
     font-size: 275%;
   }
 }
-.title {
+.contentItem .title {
   font-family: "DM Serif Text", serif !important;
   background: -webkit-linear-gradient(#fafaff, #fff);
   text-shadow: 0px 10px 30px rgba(16, 18, 51, 0.4),
@@ -601,7 +601,7 @@ query ContentItem ($id: ID!) {
   -webkit-text-fill-color: transparent;
 }
 
-.title.text-dark {
+.contentItem .title.text-dark {
   color: #000 !important;
   margin-top: 25px !important;
   background-image: -webkit-linear-gradient(45deg, #000000, #888db1) !important;

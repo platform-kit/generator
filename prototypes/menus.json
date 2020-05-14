@@ -37,5 +37,14 @@
                 {"dashboard":"all"}
             ]        
         }
+    },
+    "documentation": {
+        "docs": {
+            "label": "Docs",
+            "icon": "fa-book",
+            "url": "/docs",
+            "target": "_self",
+            "permissions_required": null
+        }
     }
 }

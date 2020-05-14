@@ -5,5 +5,6 @@
             "baseDirectory": "static/docs",
             "outputDirectory": "static/docs"
         }
-    ]
+    ],
+    "index": "\n# Introduction\n ## Heading 2 \n ### Heading 3 \n #### Heading 4 \n ##### Heading 5 \n ###### Heading 6 \n\n\n<br>  **Test** test test test test test.  \n\n\n<br> **Code - HTML:** \n```html\n<html></html>\n``` \n  **Code - Javascript:** \n```javascript\nconsole.log('test');\n```"
 }

@@ -1,1 +1,0 @@
-# <i class="fas fa-fw fa-project-diagram"></i> Integrations
