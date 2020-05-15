@@ -617,7 +617,7 @@ query ContentItem ($id: ID!) {
   margin-top: 0px !important;
   font-size: 150%;
   font-family: "Open Sans", serif !important;
-  font-weight: 00 !important;
+  font-weight: 100 !important;
 }
 
 .contentItem .title.text-dark:after {
