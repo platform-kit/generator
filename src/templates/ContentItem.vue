@@ -1,25 +1,27 @@
 <template>
   <Layout class="contentItem">
+    <h1
+      v-if="($page.contentItem.media_full != null || $page.contentItem.media_preview != null) && ($page.contentItem.media_full != '' || $page.contentItem.media_preview != '')"
+      class="title text-dark text-weight-800 text-shadow mb-5 pt-3 w-100 text-center mb-0"
+    >{{ $page.contentItem.title }}</h1>
+
     <div
-      class="d-inline-block justify-content-center text-center"
+      class="d-inline-block justify-content-center text-center pb-0 pb-lg-3 px-3"
       v-if="($page.contentItem.media_full != null && $page.contentItem.media_full != '') || ($page.contentItem.media_preview != null && $page.contentItem.media_preview  != '') "
-      style="width:100%;min-height:330px;height:auto;background-size:cover !important;background-position:center;display:block;"
+      style="width:100%;min-height:300px;height:auto;display:block;background:linear-gradient(90deg, rgb(2, 10, 21) 0px, rgb(16, 20, 23) 100%);"
     >
-      <div class="container">
+      <div class="container" style="max-width:1380px;">
         <div
           class="row"
           style="min-height:600px;"
-          v-if="media!= null && premiumContent != null && premiumContent.error == true"
+          v-if="media != null && premiumContent != null && premiumContent.error == true"
         >
           <div class="col-md-6 m-auto justify-content-center text-left px-4 mb-0 pb-0">
             <span
-              class="badge badge-pill badge-primary px-3 bg-light-blue text-primary pull-left mb-0 opacity-80 text-left"
+              class="badge badge-pill badge-primary px-3 bg-light-green text-dark-green pull-left mb-0 opacity-80 text-left"
               style="margin-left:30px;"
             >PREVIEW</span>
-            <span
-              class="badge px-3 pull-left mb-0 opacity-80 text-left"
-              style="margin-left:0px;color:#000;"
-            >{{ $page.contentItem.title }}</span>
+
             <div class="raised" style="border-radius:5px !important;overflow:hidden;margin:30px;">
               <div
                 v-b-modal.modal-login
@@ -48,7 +50,7 @@
                   style="width:100%;max-height:600px;margin:0px;border-radius:5px !important;overflow:hidden !important;"
                 ></video>
               </vue-plyr>
-              <vue-plyr style="background:#000;" v-else-if="media.includes('vimeo')" >
+              <vue-plyr style="background:#000;" v-else-if="media.includes('vimeo')">
                 <div class="plyr__video-embed">
                   <iframe
                     style="height:calc(100vh - 500px) !important;"
@@ -89,10 +91,10 @@
             </div>
             <div v-else>
               <h3
-                class="opacity-90 mt-2 d-none d-lg-inline-block"
+                class="opacity-90 mt-2 d-none d-lg-inline-block text-light"
               >Sign up or sign in to to view this content.</h3>
               <h5
-                class="opacity-90 mt-0 d-inline-block d-lg-none"
+                class="opacity-90 mt-0 d-inline-block d-lg-none text-light"
               >Sign up or sign to to view this content.</h5>
             </div>
             <div class="btn br-25 px-4 mt-3 mb-5 border-0 raised btn-shiny" v-b-modal.modal-login>
@@ -107,7 +109,7 @@
         </div>
 
         <div class="mx-0 px-0 d-block col-md-12 pb-3 mt-4 pt-1" v-else-if="media != null">
-          <vue-plyr class="br-5" style="background:#000;" v-if="media.includes('.mp4') ">
+          <vue-plyr class="br-5" v-if="media.includes('.mp4') ">
             <video
               :src="media"
               playsinline
@@ -195,26 +197,22 @@
       </b-card>
     </div>
 
-    <div class="container" id="more">
-      <div class="row mx-0 mx-md-0 justify-content-center p-3 p-xl-0">
-        <h1
-          v-if="hasVideo()"
-          class="title d-none d-md-block text-dark text-weight-800 text-shadow mb-5"
-        >{{ $page.contentItem.title }}</h1>
-        <h2
-          v-if="hasVideo()"
-          class="title d-block d-md-none text-dark text-weight-800 text-shadow text-center"
-        >{{ $page.contentItem.title }}</h2>
+    <div
+      class="w-100"
+      id="more"
+      v-if="($page.contentItem.excerpt != null && $page.contentItem.excerpt != '') || (media != null && auth != null) || ($page.contentItem.content != null && $page.contentItem.content != '')"
+    >
+      <div class="row mx-0 mx-md-0 justify-content-center p-0 p-xl-0">
         <div
           v-if="premiumContent != null && premiumContent.error != true && $page.contentItem.content != null"
-          class="content bg-none pt-0 px-3 px-md-3 pb-5"
+          class="content bg-none pt-0 px-3 px-md-3"
           v-bind:class="{ 'pt-5': hasVideo() == false }"
           v-html="$page.contentItem.content"
         >{{ $page.contentItem.content }}</div>
         <div
-          v-else
+          v-else-if="$page.contentItem.excerpt != null && $page.contentItem.excerpt != ''"
           v-html="$options.filters.markdown($page.contentItem.excerpt)"
-          class="content bg-none pt-0 px-3 px-md-3 pb-5"
+          class="content bg-none pt-0 px-3 px-md-3"
           v-bind:class="{ 'pt-5': hasVideo() == false }"
         >{{ $options.filters.markdown($page.contentItem.excerpt) }}</div>
       </div>
@@ -261,6 +259,7 @@ import axios from "axios";
 export default {
   data() {
     return {
+      auth: null,
       window: null,
       relatedCollection: null,
       relatedCollections: null,
@@ -602,17 +601,35 @@ query ContentItem ($id: ID!) {
 }
 
 .contentItem .title.text-dark {
+  box-shadow: 0px 0px 30px rgba(0, 50, 200, 0.05),
+    0px 0px 10px rgba(0, 50, 200, 0.05);
   color: #000 !important;
   margin-top: 25px !important;
-  background-image: -webkit-linear-gradient(45deg, #000000, #888db1) !important;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  text-align: center;
+  background: #f9fafb;
+
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+  -webkit-text-fill-color: unset !important;
   text-shadow: none !important;
-  margin-bottom: 50px;
-  font-size: 250%;
-  font-family: "Open Sans" !important;
-  font-weight: 600 !important;
+  margin-bottom: 0px !important;
+  padding: 30px 15px !important;
+  margin-top: 0px !important;
+  font-size: 150%;
+  font-family: "Open Sans", serif !important;
+  font-weight: 00 !important;
+}
+
+.contentItem .title.text-dark:after {
+  content: "";
+  background: linear-gradient(45deg, #669fe6, #0089ff29);
+  box-shadow: 0px 0px 15px rgba(0, 150, 250, 0.2);
+  width: 100%;
+  max-width: 125px;
+  display: none !important;
+  height: 6px;
+  margin: 15px auto 10px calc(50% - 62.5px);
+  border-radius: 3px;
 }
 
 .subtitle {
@@ -636,6 +653,14 @@ query ContentItem ($id: ID!) {
 .content a[href*="#"] {
   margin-left: -8px !important;
 }
+
+.content > * {
+  max-width: 800px;
+}
+
+.content {
+  padding: 50px !important;
+}
 </style>
 
 
@@ -650,18 +675,23 @@ query ContentItem ($id: ID!) {
   --plyr-color-main: #ffffff !important;
 }
 
-.plyr__control--overlaid, 
-.plyr--video .plyr__control.plyr__tab-focus, .plyr--video .plyr__control:hover, .plyr--video .plyr__control[aria-expanded=true] { 
+.plyr__control--overlaid,
+.plyr--video .plyr__control.plyr__tab-focus,
+.plyr--video .plyr__control:hover,
+.plyr--video .plyr__control[aria-expanded="true"] {
   background-color: var(--plyr-color-main) !important;
 }
 
-.plyr--full-ui input[type=range] {
+.plyr--full-ui input[type="range"] {
   color: var(--plyr-color-main) !important;
 }
 
-.plyr__control--overlaid svg, .plyr--video .plyr__control.plyr__tab-focus, .plyr--video .plyr__control:hover, .plyr--video .plyr__control[aria-expanded=true] {   
-  fill:#333 !important;
-  color:#333 !important;
+.plyr__control--overlaid svg,
+.plyr--video .plyr__control.plyr__tab-focus,
+.plyr--video .plyr__control:hover,
+.plyr--video .plyr__control[aria-expanded="true"] {
+  fill: #333 !important;
+  color: #333 !important;
 }
 
 .plyr__poster {
@@ -771,10 +801,6 @@ query ContentItem ($id: ID!) {
 }
 
 .btn-shiny {
-  background-image: linear-gradient(
-    0deg,
-    rgba(0, 53, 200, 0.25) -20%,
-    #fff 80%
-  );
+  background-image: linear-gradient(0deg, rgb(118, 138, 193) -20%, #fff 80%);
 }
 </style>

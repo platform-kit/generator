@@ -2,14 +2,10 @@
 title: Webhooks API
 id: webhooks-api
 slug: webhooks-api
-
 ---
-
 # Endpoint
 
 `/functions/platformkit-webhooks-event-v1`
-
-<!-- tabs:start -->
 
 ## Input
 
@@ -34,8 +30,6 @@ Authorization: 2g0wj2kgo3l3nfis....
    "message": "Event received."
 }
 ```
-
-<!-- tabs:end -->
 
 If environment variable `DATABASE_URL` is set, a database record will be saved to a table called `pk_webhooks` for further processing.
 

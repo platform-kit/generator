@@ -205,6 +205,47 @@ collections:
       - {label: "Cover Image", name: "cover_image", widget: "image", required: false}
       - {label: "Thumbnail Image", name: "thumbnail_image", widget: "image", required: false}      
       - {label: "Required Subscription", name: "requiredSubscription", widget: "relation", required: false, multiple: true, collection: "subscriptionPlans", searchFields: ["title", "description"], valueField: "id", displayFields: ["title"]}      
+  - name: "docs"
+    label: "📂 Docs"
+    label_singular: "Doc"
+    description: "Create beautiful documentation."
+    sortableFields: ['commit_date', 'title', 'commit_author', 'language.en']
+    editor:
+      preview: false
+    folder: "data/docs"
+    create: true
+    slug: "{{id}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - label: ID
+        name: id
+        widget: ncw-id
+        prefix: content          
+        hint: Automatically generated unique ID.
+      - {label: "Slug", name: "slug", widget: "string", required: true, pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', "Must be only lowercase letters, numbers, and dashes."],  hint: "This page will be available at yourwebsite.com/content/{slug}"}
+      - {label: "Published", name: "published", widget: "boolean", required: false}            
+      - {label: "Description", name: "description", widget: "text", required: false, hint: "A short summary of this content that will appear in search results."}                                    
+      - {label: "Nav", name: "nav", widget: "relation", collection: "navs", searchFields: ["title", "description"], valueField: "id", displayFields: ["title"], multiple: false, required: false, hint: "Select a nav for the sidebar. If none is selected, the default will be used."}            
+      - {label: "Topics", name: "topics", widget: "relation", collection: "topics", searchFields: ["title", "description"], valueField: "id", displayFields: ["title"], multiple: true, required: false, hint: "The topics this content covers."}            
+      - {label: "Content", name: "body", widget: "markdown", required: false}                  
+  - name: "navs"
+    label: "📋 Navs"
+    label_singular: "Nav"
+    description: "Create sidebars for content & docs."
+    sortableFields: ['commit_date', 'title', 'commit_author', 'language.en']
+    editor:
+      preview: false
+    folder: "data/navs"
+    create: true
+    slug: "{{id}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - label: ID
+        name: id
+        widget: ncw-id
+        prefix: content          
+        hint: Automatically generated unique ID.          
+      - {label: "Content", name: "body", widget: "markdown", required: false}                      
   - name: "topics"
     label: "🗃️ Topics"
     label_singular: "Topic"

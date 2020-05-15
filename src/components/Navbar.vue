@@ -55,16 +55,20 @@
                 <span class="d-inline-block my-1 d-md-inline">Account</span>
               </template>
               <b-dropdown-item
-                href="#logout"
                 :href="'/dashboard'"
                 v-if="auth.user.permissions != null && auth.user.permissions.dashboard == 'all'"
               >Dashboard</b-dropdown-item>
+              <b-dropdown-item
+                :href="'/admin-local/#'"
+                target="_blank"
+                v-if="auth.user.permissions != null && auth.user.permissions.dashboard == 'all'"
+              >Content</b-dropdown-item>
               <b-dropdown-item href="#logout" @click="logout()">
                 Sign Out
                 <i class="text-danger fa fa-sign-out m-1 pull-right"></i>
               </b-dropdown-item>
             </b-dropdown>
-            <span v-else class="btn-group">
+            <span v-else class="btn-group mt-2 mt-lg-0">
               <a
                 href="#login"
                 v-b-modal.modal-login
@@ -79,7 +83,7 @@
               <a
                 href="#register"
                 v-b-modal.modal-login
-                class="nav-link bg-primary mx-2"
+                class="nav-link bg-primary ml-0"
                 style="height:42px;"
               >
                 <span
@@ -189,7 +193,7 @@
         <template v-slot:modal-title>
           <i class="fa fa-fw fa-search text-dark-blue opacity-30 mr-2"></i>Search Results
         </template>
-        <div id="searchResults" v-if="search != null && search != ''">
+        <div id="searchResults">
           <div class="container">
             <div class="w-100 text-center">
               <p class="w-100">
@@ -226,7 +230,7 @@
                   :unchecked-value="false"
                 >Docs</b-form-checkbox>
               </b-form-group>
-              <div class="w-100 px-4 mx-1">
+              <div class="w-100 px-4 mx-1 mb-3">
                 <b-form-input
                   :autofocus="true"
                   class="form-control d-inline-block w-100"
@@ -238,7 +242,7 @@
                 />
               </div>
             </div>
-            <div id="contentResults">
+            <div id="contentResults" v-if="search != null && search != ''">
               <ul class="list-group my-3 p-0">
                 <li
                   class="list-group-item p-0 border-0"
@@ -454,6 +458,7 @@ import menuSettings from "../../data/menus.json";
 import themeSettings from "../../data/theme.json";
 import socialSettings from "../../data/social.json";
 import axios from "axios";
+import VueHotkey from "v-hotkey";
 
 export default {
   data() {
@@ -590,7 +595,19 @@ export default {
         });
     }
   },
+  computed: {
+    keymap() {
+      return {
+        // 'esc+ctrl' is OK.
+        
+      };
+    }
+  },
   methods: {
+    showSearch(input) {
+      this.search = input;
+      this.$bvModal.show("search-modal");
+    },
     userHasPermission(input) {
       if (input == null) {
         return true;
@@ -753,7 +770,7 @@ export default {
 
       if (position > 25) {
         position = position - 25;
-      }      
+      }
       result = result.substr(position, 300);
       return result;
     },
@@ -798,12 +815,17 @@ export default {
         this.count = window.Snipcart.api.items.count();
       }
     },
-
-    updateSearch() {
+    showSearch() {
+      this.$bvModal.show("search-modal");
+    },
+    updateSearch(input) {
+      if (typeof input != "undefined") {
+        this.search = input;
+      }
       if (this.search != null && this.search != "") {
         this.$bvModal.show("search-modal");
       } else {
-        this.$bvModal.hide("search-modal");
+        //this.$bvModal.hide("search-modal");
       }
     },
 
@@ -844,8 +866,13 @@ export default {
 
 .excerpt .highlight {
   font-weight: 800 !important;
-  padding:5px 0px;
-  background-color: rgb(255, 250, 227) !important;  
+  padding: 0px 5px;
+  background-color: rgb(255, 252, 146) !important;
   border-radius: 3px;
+}
+
+#search-modal .modal-dialog {
+  max-width: 810px;
+  margin-top: 13px !important;
 }
 </style>

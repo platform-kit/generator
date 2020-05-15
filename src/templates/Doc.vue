@@ -1,14 +1,18 @@
 <template>
   <Docs class="docs">
     <template v-slot:sidebar>
-      <v-runtime-template :template="template()" class="text-left"></v-runtime-template>
+      <v-runtime-template
+        v-for="edge in $page.sidebar.edges"
+        v-if="edge.node.id == getNavId()"
+        :template="template(edge.node.content)"
+      ></v-runtime-template>
     </template>
     <template v-slot:main>
       <div class="row col-lg-9 m-0 bg-white">
-        <div class="col-lg-9 px-3 pl-lg-5 pr-lg-0 pb-3 pb-lg-5 pull-right docs-content">
+        <div class="col-lg-9 px-3 pl-lg-5 pr-lg-0 pb-0 pb-lg-5 pull-right docs-content">
           <h1 class="pt-4 title text-center pb-4">{{ $page.docsIndex.title }}</h1>
           <div
-            class="border-0 p-0 pb-4 mb-3 d-block d-lg-none w-100 px-3"
+            class="border-0 p-0 pb-0 mb-3 d-block d-lg-none w-100"
             v-if="$page.docsIndex.content.includes('h1')"
           >
             <strong
@@ -20,7 +24,10 @@
                 style="color: #17367ee8;text-shadow: 1px 2px #006eff30, 0px 1px #fff;"
               ></i>ON THIS PAGE
             </strong>
-            <div class="docs-menu" v-html="$page.docsIndex.content">{{ $page.docsIndex.content }}</div>
+            <div
+              class="docs-menu border-bottom pb-3 mb-4"
+              v-html="$page.docsIndex.content"
+            >{{ $page.docsIndex.content }}</div>
           </div>
           <div
             v-if="docsSettings != null && docsSettings.index != null"
@@ -28,7 +35,7 @@
           >{{ $page.docsIndex.content }}</div>
           <br />
           <hr />
-          <div class="border-0 text-center mt-4">
+          <div class="border-0 text-center my-4">
             <small class="mb-3">
               <strong>Was this page helpful?</strong>
             </small>
@@ -40,11 +47,17 @@
                 <i class="fa fa-thumbs-down text-danger"></i>
               </div>
             </div>
+            <hr class="mt-4 mb-5 d-block d-lg-none" />
             <div
               class="docs-menu-mobile mt-4 text-left raised br-5 card border-0 d-block d-lg-none"
             >
-              <div class="card-header text-center text-dark-blue opacity-50 bg-light-blue">Menu</div>
-              <div class="card-body" v-html="$page.sidebar.content">{{ $page.sidebar.content }}</div>
+              <div class="card-body bottom-nav">
+                <v-runtime-template
+                  v-for="edge in $page.sidebar.edges"
+                  v-if="edge.node.id == getNavId()"
+                  :template="template(edge.node.content)"
+                ></v-runtime-template>
+              </div>
             </div>
           </div>
         </div>
@@ -80,12 +93,17 @@ query docsIndex ($id: ID!) {
         slug
         content
         title
+        nav
       }  
-  sidebar: doc(id: "doc-sidebar"){          
+  sidebar: allNav{
+    edges {
+      node {
         id
         slug
         content
-      }      
+      }
+    }    
+  }  
 }
 </page-query>
 
@@ -106,7 +124,8 @@ export default {
       docsSettings: docsSettings,
       window: null,
       pageMenu: null,
-      menuHtml: null
+      menuHtml: null,
+      markdown: null
     };
   },
   async mounted() {
@@ -120,8 +139,26 @@ export default {
     title: "Documentation"
   },
   methods: {
-    template() {
-      return "<div style='width:250px;height:100%;'>" + this.$options.filters.markdown(this.$page.sidebar.content) + "</div>";
+    getNavId() {
+      var id = null;
+      if (
+        typeof this.$page.docsIndex.nav == "undefined" ||
+        this.$page.docsIndex.nav == null ||
+        this.$page.docsIndex.nav == ""
+      ) {
+        id = "doc-sidebar";
+      } else {
+        id = this.$page.docsIndex.nav;
+      }
+
+      return id;
+    },
+    template(input) {
+      return (
+        "<div style='width:100%;max-width:100%;height:100%;text-align:left;'>" +
+        this.$options.filters.markdown(input) +
+        "</div>"
+      );
     },
     isMobile() {
       if (

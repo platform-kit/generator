@@ -84,6 +84,7 @@
     "sequelize": "^5.21.8",
     "sharp": "^0.25.2",
     "stripe": "^8.50.0",
+    "v-hotkey": "^0.8.0",
     "v-markdown": "^1.0.2",
     "v-runtime-template": "^1.10.0",
     "vue": "^2.6.11",

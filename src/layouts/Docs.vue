@@ -6,7 +6,7 @@
       <div class="container" id="content">
         <div class="row sidebar-row">
           <div class="d-none d-md-flex col-2 sidebar border-right text-center py-4">
-           <slot name="sidebar"></slot>
+            <slot name="sidebar"></slot>
           </div>
           <slot name="main">
             <div class="col-12 col-md-10 px-0 mx-0">
@@ -102,7 +102,6 @@ query {
 
 
 <script>
-
 import Logo from "~/components/Logo.vue";
 import Navbar from "~/components/Navbar.vue";
 import SiteFooter from "~/components/SiteFooter.vue";
@@ -114,8 +113,6 @@ import brandSettings from "../../data/brand.json";
 import themeSettings from "../../data/theme.json";
 import socialSettings from "../../data/social.json";
 import axios from "axios";
-
-
 
 export default {
   data() {
@@ -152,7 +149,7 @@ export default {
   components: {
     Logo,
     Docs,
-    Navbar,    
+    Navbar,
     SiteFooter
   },
   async mounted() {
@@ -541,7 +538,7 @@ export default {
 
 @media (min-width: 768px) {
   .docs-menu-container {
-    position: fixed;
+    /* position: fixed; */
   }
 }
 
@@ -1031,7 +1028,7 @@ input[type="search"] {
 }
 
 .bg-none {
-  background:none !important;
+  background: none !important;
 }
 
 .bg-light-blue {
@@ -1380,29 +1377,29 @@ input[type="search"] {
   float: left;
 }
 
-.sidebar ul {
+.sidebar ul, .bottom-nav ul {
   list-style: none !important;
   width: 100%;
 }
 
-.sidebar li {
+.sidebar li,.bottom-nav li {
   margin: 0px 0px 10px 0px;
 }
 
-.sidebar li i {
+.sidebar li i, .bottom-nav li i {
   color: #17367ee8;
   opacity: 0.5;
   margin-right: 11px;
   text-shadow: 1px 2px #006eff30, 0px 1px #fff;
 }
 
-.sidebar li a:hover {
+.sidebar li a:hover, .bottom-nav li a:hover {
   background: #d9d7f049 !important;
   color: #000 !important;
   text-decoration: none;
 }
 
-.sidebar li a {
+.sidebar li a, .bottom-nav li a {
   color: #333;
   width: 100%;
   padding: 5px 10px;
@@ -1410,15 +1407,33 @@ input[type="search"] {
   transition: all 0.3s;
   border-radius: 4px;
 }
-
-.sidebar li li a
-{
-  display:none;
+.sidebar li p {
+  margin:0px 0px 10px 0px;
+}
+ .sidebar li li a {
+  margin:0px !important;
+}
+.bottom-nav li li,
+.bottom-nav li p {
+  display: inline;
+  margin: 0px;
 }
 
-.sidebar li a.active ,.sidebar li a.visible
-{
-  display:inline-block;
+.sidebar li li a,
+.bottom-nav li li a {
+  display: none;
+  margin: 5px 0px;
+}
+
+.bottom-nav li li a.active,
+.bottom-nav li li a.visible {
+  display: block;
+  margin-left: 30px;
+}
+
+.sidebar li a.active,
+.sidebar li a.visible {
+  display: inline-block;
 }
 
 .sidebar li a.active {
@@ -1441,13 +1456,13 @@ input[type="search"] {
   padding-top: 52px !important;
   background: linear-gradient(180deg, transparent, #fff),
     linear-gradient(-90deg, #e4ebff49, transparent);
-  min-height: 100%;
+  min-height: 100vh;
 
   border-right: 1px solid rgba(0, 79, 160, 0.09) !important;
 }
 
 .sidebar > div {
-  position: fixed;
+  /* position: fixed; */
 }
 
 @media (max-width: 1200px) {
@@ -1514,5 +1529,11 @@ pre[class*="language-"] {
     padding-left: 8px !important;
     margin: 0px 0px 0px -12px !important;
   }
+}
+
+.menu-header {
+  background: #c7d9f0;
+  color: #071b52 !important;
+  font-weight: 700 !important;
 }
 </style>

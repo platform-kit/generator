@@ -22,7 +22,7 @@ var getImage = function (input) {
   else {
     str = '/images/' + str;
   }
-  
+
   return str;
 }
 
@@ -33,7 +33,7 @@ module.exports = {
   titleTemplate: '%s - ' + (companySettings.companyName || 'PlatformKit'),
   runtimeCompiler: true,
   chainWebpack(config) {
-    
+
   },
 
   icon: {
@@ -84,7 +84,7 @@ module.exports = {
         path: 'data/topics/*.md',
       }
     },
-   
+
     {
       // Create content from markdown files
       use: '@gridsome/source-filesystem',
@@ -102,6 +102,17 @@ module.exports = {
       options: {
         typeName: 'Doc',
         path: 'data/docs/*.md',
+        refs: {
+        }
+      }
+    },
+
+    {
+      // Create content from markdown files
+      use: '@gridsome/source-filesystem',
+      options: {
+        typeName: 'Nav',
+        path: 'data/navs/*.md',
         refs: {
         }
       }

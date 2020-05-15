@@ -1,7 +1,8 @@
 ---
+title: Docs Sidebar
 id: doc-sidebar
+slug: docs-sidebar
 ---
-
 - <a href="/docs" class="opacity-30 text-dark-blue bg-none"><i class="fa fa-fw opacity-0 mr-2"></i>Docs</a>
 - <g-link to="/docs/features"><i class="fa fa-fw fa-check-square mr-2"></i>Features</g-link>
 - <g-link to="/docs/installation"><i class="fa fa-fw fa-sign-in mr-2"></i>Installation</g-link>  
