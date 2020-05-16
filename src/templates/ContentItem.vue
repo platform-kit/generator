@@ -8,7 +8,7 @@
     <div
       class="d-inline-block justify-content-center text-center pb-0 pb-lg-3 px-3"
       v-if="($page.contentItem.media_full != null && $page.contentItem.media_full != '') || ($page.contentItem.media_preview != null && $page.contentItem.media_preview  != '') "
-      style="width:100%;min-height:300px;height:auto;display:block;background:linear-gradient(90deg, rgb(2, 10, 21) 0px, rgb(16, 20, 23) 100%);"
+      style="width:100%;min-height:300px;height:auto;display:block;background:linear-gradient(90deg, rgb(10, 20, 30) 0px, rgb(20, 30, 40) 100%);"
     >
       <div class="container" style="max-width:100%;">
         <div
