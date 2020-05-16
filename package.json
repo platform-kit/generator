@@ -11,6 +11,7 @@
     "develop": "gridsome develop",
     "explore": "gridsome explore",
     "dev": "./bin/run seedData; ./bin/run getData; ./bin/run copyData; ./bin/run copyStaticFiles; netlify dev",
+    "help": "./bin/run -h",
     "start-cms-server": "npx netlify-cms-proxy-server;",
     "start-cms-server-workspace": "cd ./workspace/repository; npx netlify-cms-proxy-server;",
     "open-cms": "open 'http://localhost:8888/admin-local/#'",

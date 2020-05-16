@@ -10,7 +10,7 @@
       v-if="($page.contentItem.media_full != null && $page.contentItem.media_full != '') || ($page.contentItem.media_preview != null && $page.contentItem.media_preview  != '') "
       style="width:100%;min-height:300px;height:auto;display:block;background:linear-gradient(90deg, rgb(2, 10, 21) 0px, rgb(16, 20, 23) 100%);"
     >
-      <div class="container" style="max-width:1380px;">
+      <div class="container" style="max-width:100%;">
         <div
           class="row"
           style="min-height:600px;"
@@ -25,7 +25,7 @@
             <div class="raised" style="border-radius:5px !important;overflow:hidden;margin:30px;">
               <div
                 v-b-modal.modal-login
-                style="cursor:pointer;background:#000;min-height:300px;width:100%;background-size:cover;background-position:center;"
+                style="cursor:pointer;min-height:300px;width:100%;background-size:cover;background-position:center;"
                 v-if="media == ''"
                 class="d-flex justify-content-center"
                 :style="{ backgroundImage:
@@ -39,7 +39,7 @@
                 </div>
               </div>
               <vue-plyr
-                style="border-radius:5px;overflow:hidden;background:#000;"
+                style="border-radius:5px;overflow:hidden;"
                 v-else-if="media.includes('.mp4') "
               >
                 <video
@@ -50,7 +50,7 @@
                   style="width:100%;max-height:600px;margin:0px;border-radius:5px !important;overflow:hidden !important;"
                 ></video>
               </vue-plyr>
-              <vue-plyr style="background:#000;" v-else-if="media.includes('vimeo')">
+              <vue-plyr v-else-if="media.includes('vimeo')">
                 <div class="plyr__video-embed">
                   <iframe
                     style="height:calc(100vh - 500px) !important;"
@@ -62,7 +62,7 @@
                 </div>
               </vue-plyr>
               <vue-plyr
-                style="background:#000;overflow:hidden;border-radius:5px;"
+                style="overflow:hidden;border-radius:5px;"
                 v-else-if="media.includes('youtube') "
               >
                 <div
@@ -120,7 +120,7 @@
           </vue-plyr>
           <vue-plyr
             class="br-5"
-            style="overflow:hidden;background:#000;"
+            style="overflow:hidden;"
             v-else-if="media.includes('vimeo')"
           >
             <div class="plyr__video-embed">
@@ -133,7 +133,7 @@
               ></iframe>
             </div>
           </vue-plyr>
-          <vue-plyr style="background:#000;" v-else-if="media.includes('vimeo')">
+          <vue-plyr v-else-if="media.includes('vimeo')">
             <div class="plyr__video-embed">
               <iframe
                 style="height:calc(100vh - 500px) !important;"
@@ -145,7 +145,7 @@
             </div>
           </vue-plyr>
           <vue-plyr
-            style="background:#000;overflow:hidden;border-radius:5px;"
+            style="overflow:hidden;border-radius:5px;"
             v-else-if="media.includes('youtube')"
           >
             <div class="plyr__video-embed">
@@ -200,9 +200,9 @@
     <div
       class="w-100"
       id="more"
-      v-if="($page.contentItem.excerpt != null && $page.contentItem.excerpt != '') || (media != null && auth != null) || ($page.contentItem.content != null && $page.contentItem.content != '')"
+      v-if="($page.contentItem.excerpt != null && $page.contentItem.excerpt != '') || media != null  || ($page.contentItem.content != null && $page.contentItem.content != '')"
     >
-      <div class="row mx-0 mx-md-0 justify-content-center p-0 p-xl-0">
+      <div class="row mx-0 mx-md-0 justify-content-center p-0 p-xl-0 test" v-if="$page.contentItem.content != null && $page.contentItem.content != '' && $page.contentItem.content != '\n'">
         <div
           v-if="premiumContent != null && premiumContent.error != true && $page.contentItem.content != null"
           class="content bg-none pt-0 px-3 px-md-3"
@@ -227,7 +227,8 @@
             v-bind:key="valueProposition"
           >
             <div
-              class="bg-dark justify-content-center text-light text-center w-100 d-inline-flex"
+            
+              class="bg-dark justify-content-center text-light text-center w-100 d-inline-flex "
               style="
                 height:500px;                                     
                 background-size:cover !important;

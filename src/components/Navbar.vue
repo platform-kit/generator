@@ -408,8 +408,7 @@ query {
       node {
         id
         title
-        slug        
-        description
+        slug                
         content               
       }
     }
@@ -777,7 +776,12 @@ export default {
     containsSearch(node) {
       var search = this.search.toLowerCase();
       var title = node.title.toLowerCase();
-      var description = node.description.toLowerCase();
+      if(node.hasOwnProperty('description')){
+        var description = node.description.toLowerCase();
+      }
+      else {
+        var description = '';
+       }
       var content = node.content.toLowerCase();
       var hasSubtitle = false;
       if (node.hasOwnProperty("subtitle") && node.subtitle.includes(search)) {

@@ -3,7 +3,7 @@
     <div class="container">
       <div class="row w-100 text-center mx-auto">
         <h2
-          class="justify-content-center text-center w-100 text-weight-200 mb-3 mt-3 pt-3 mr-3"
+          class="justify-content-center text-center w-100 text-weight-100 mb-3 mt-3 pt-3 mr-3"
         >Products</h2>
       </div>
     </div>
