@@ -13,7 +13,19 @@ The format is based on [Keep A Changelog.](https://keepachangelog.com/en/1.0.0/)
 
 # [Latest Release](#latest-release)
 
-Version: 0.0.3
+## [0.0.4](#0.0.4)
+
+Date: 2020-05-20
+
+### Changed
+
+- changed package name to "platformkit"
+- added new scripts to package.json
+- updated docs
+
+# [Older Releases](#older-releases)
+
+## [0.0.3](#0.0.3)
 
 Date: 2020-04-28
 
