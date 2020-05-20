@@ -35,9 +35,9 @@ npm install --global @gridsome/cli
 
 ### initialize the app
 
-./bin/run seedData
-netlify dev
-npx netlify-cms-proxy-server
+npm run init
+npm run develop
+npm run start-cms-server
 ```
 
 Site is available at http://localhost:8888

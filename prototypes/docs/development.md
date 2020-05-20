@@ -15,9 +15,9 @@ Below are the instructions for each.
 
 ```bash
 git clone https://github.com/platform-kit/generator project-name  ## `project-name` is the name of your project
-yarn install
+npm install
 npm run develop
-npx netlify-cms-proxy-server
+npx run cms
 ```
 
 Site is available at http://localhost:8888
@@ -38,8 +38,7 @@ npm run develop
 In a new terminal tab, change directory to the content repo workspace:
 
 ```bash
-cd workspace repository;
-npx netlify-cms-proxy-server
+cd workspace repository; npx netlify-cms-proxy-server
 ```
 
 CMS is available at http://localhost:8888/admin-local
