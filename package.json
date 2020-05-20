@@ -1,5 +1,5 @@
 {
-  "name": "platformkit-generator",
+  "name": "platformkit",
   "description": "Open-Source Static Site Generator for content, software, and e-commerce platforms.",
   "private": false,
   "bin": {
@@ -111,5 +111,5 @@
       "@oclif/plugin-help"
     ]
   },
-  "version": "0.0.3"
+  "version": "0.0.4"
 }
