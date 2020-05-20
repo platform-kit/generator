@@ -17,7 +17,7 @@ slug: index
  **<i class="fa fa-code opacity-50 mr-2"></i>Install via command line** 
  
  ```bash
- npm i platformkit-generator
+ npm i platformkit
  ``` 
 
 For more, see the  [Installation Guide.](/docs/installation)

@@ -29,7 +29,7 @@ To install via the command line, enter the target folder and run these commands:
 ```bash
 ### install platformkit and dev tools
 
-npm install platformkit-generator
+npm install platformkit
 npm install netlify-cli -g
 npm install --global @gridsome/cli
 
