@@ -277,7 +277,9 @@ var begin = new Moment().subtract(2, "month");
 now = now.format("YYYY[-]MM[-]DD");
 begin = begin.format("YYYY[-]MM[-]DD");
 var sixmonths = new Moment().subtract(6, "month").format("YYYY[-]MM[-]DD");
-var token = JSON.parse(localStorage.auth).user.tokens.analytics.token;
+if(typeof window != 'undefined'){
+  var token = JSON.parse(localStorage.auth).user.tokens.analytics.token;
+}
 //alert(token);
 
 var url = null;
@@ -485,7 +487,7 @@ export default {
   },
   created() {
     try {
-      if (localStorage.auth == null) {
+      if (window != null && localStorage.auth == null) {
         window.location.assign("/");
         this.redirecting = redirecting;
       }
@@ -522,7 +524,7 @@ export default {
   },
   methods: {
     userCanViewDashboard() {
-      if (this.auth.user.tokens.analytics.token != null) {
+      if (this.auth != null && this.auth.user != null && this.auth.user.tokens.analytics.token != null) {
         return true;
       }
     }

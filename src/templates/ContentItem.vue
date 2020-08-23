@@ -296,7 +296,7 @@ export default {
   methods: {
     hasVideo() {
       if (
-        typeof this.media != "undefined" && this.media.length > 0 && 
+        typeof this.media != "undefined" && this.media != null && this.media.length > 0 && 
         (this.media.includes("vimeo") ||
           this.media.includes("youtube") ||
           this.media.includes(".mp4"))
