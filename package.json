@@ -10,7 +10,7 @@
     "build": "gridsome build",    
     "develop": "gridsome develop",
     "explore": "gridsome explore",
-    "deploy": "./bin/run seedData; gridsome build",
+    "deploy": "./bin/run copyData; gridsome build",
     "manage": "npx netlify-cms-proxy-server;",    
     "manage-local": "cd ./workspace/repository; npx netlify-cms-proxy-server;"
   },
