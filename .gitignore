@@ -12,6 +12,7 @@ data
 static/rss.xml
 static/social-rss.xml
 static/*.xml
+static/files
 workspace/*
 workspace/repository
 docs/logos*
