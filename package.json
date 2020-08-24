@@ -6,6 +6,7 @@
     "platformkit": "./bin/run"
   },
   "scripts": {
+    "prebuild": "node ./scripts/installer.js",
     "init": "./bin/run seedData;",  
     "build": "gridsome build",    
     "develop": "gridsome develop",
