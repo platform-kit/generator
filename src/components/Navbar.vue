@@ -39,8 +39,8 @@
             </g-link>
             <g-link to="/products" class="nav-link" v-on:click="this.search = null">Products</g-link>
             <g-link to="/services" class="nav-link" v-on:click="this.search = null">Services</g-link>
-            <g-link to="/pricing" class="nav-link" v-on:click="this.search = null">Pricing</g-link>
-            <g-link to="/docs" class="nav-link" v-on:click="this.search = null">Docs</g-link>
+            <g-link to="/pricing" v-if="$static.subscriptions.edges.length > 1" class="nav-link" v-on:click="this.search = null">Pricing</g-link>
+            <g-link to="/docs" v-if="$static.docs.edges.length > 1" class="nav-link" v-on:click="this.search = null">Docs</g-link>
 
             <b-dropdown
               block
@@ -414,6 +414,22 @@ query {
     }
   }
   offerings: allOffering(sortBy: "price", order: ASC, filter: { published: { eq: true }}) {
+    edges {
+      node {
+        id
+        title
+        slug
+        type
+        date (format: "D. MMMM YYYY")        
+        featured
+        description
+        cover_image
+        content
+        path        
+      }
+    }
+  }
+    subscriptions: allOffering(sortBy: "price", order: ASC, filter: { published: { eq: true },  type: { eq: "subscription" }}) {
     edges {
       node {
         id
