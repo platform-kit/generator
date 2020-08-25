@@ -59,7 +59,8 @@
                 >
                   <i class="fa fa-github"></i> Github
                 </g-link>
-                <a href="/docs"             
+                <a href="/docs"
+                  v-if="$static.docs.edges.length > 1"             
                   class="btn btn-white btn-block"
                   @click="window.location.assign('/docs')"                  
                 >
@@ -119,6 +120,16 @@ query {
         description
         cover_image
         path      
+      }
+    }
+  }
+   docs: allDoc{
+    edges {
+      node {
+        id
+        title
+        slug                
+        content               
       }
     }
   }
