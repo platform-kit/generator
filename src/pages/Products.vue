@@ -18,6 +18,7 @@
           v-bind:key="collection.node.id"
           v-if="collection.node.featured == true  && collection.node.offerings.length > 0 && collectionHasProducts(collection)"
         >
+      
           <h3
             class="w-100 opacity-70 text-center text-primary mb-5 mt-2 mr-3"
           >{{ collection.node.title }}</h3>
@@ -25,10 +26,10 @@
             v-for="edge, index in $page.products.edges"
             v-bind:key="edge.node.id"
             v-if="collectionHasProducts(collection) && collection.node.offerings.includes(edge.node.id) && edge.node.featured == true && displayOrHide(edge.node.id) === true"
-            class="col-md-3 px-0 pr-md-2 mb-4"
+            class="col-md-3 px-0 pr-md-2 mb-3"
           >
             <div
-              class="card raised border-0 mb-1 pull-left mx-0 px-0 h-100 mr-md-3 px-0 pb-3 m-0"
+              class="card raised border-0 mb-1 pull-left mx-0 px-0 h-100 mr-md-3 px-0 pb-3 m-0 mb-5"
               :key="edge.node.id"
               :post="edge.node"
               v-if="displayOrHide(edge.node.slug) === true"
