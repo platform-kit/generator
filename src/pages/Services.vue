@@ -1,16 +1,16 @@
 <template>
   <Layout :show-logo="false">
-    <div class="container">
+    <div class="container d-none">
       <div class="row w-100 text-center mx-auto">
         <h2
-          class="justify-content-center text-center w-100 text-weight-200 mb-3 mt-3 pt-3 mr-3"
+          class="justify-content-center text-center w-100 text-weight-200 mb-3 mt-3 pt-3 mr-3 "
         >Services</h2>
       </div>
     </div>
 
     <!-- Recent posts -->
     <div class="posts" style="min-height:400px;">
-      <div class="container px-3">
+      <div class="container px-3 pt-4">
         <b-card-group
           deck
           class="mb-3 mt-2 justify-content-center"
