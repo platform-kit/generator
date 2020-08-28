@@ -85,7 +85,7 @@
             </div>
           </div>
         </div>
-        <div v-else-if="section.type == 'collections'" class="border-bottom row">
+        <div v-else-if="section.type == 'collections'" class="border-bottom row collections">
           <div
             v-if="section.list.includes(edge.node.id)"
             
@@ -386,6 +386,16 @@ export default {
 }
 @media(max-width:991px){
   .contentItems:first-of-type .card-deck {
+  margin-top:-60px !important;
+}
+}
+
+.collections .card-deck {
+  margin-top:-38px !important;
+}
+.collections .w-100 { displaY:none; }
+@media(max-width:991px){
+  .collections .card-deck {
   margin-top:-60px !important;
 }
 }
