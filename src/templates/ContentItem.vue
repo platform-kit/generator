@@ -188,7 +188,7 @@
               style="z-index:999 !important;margin-left:0px;margin-top:5px;margin-bottom:25px;"
             >
               <i class="fa fa-fw fa-clock-o text-light mr-2"></i>
-              <span>{{ $page.contentItem.minutes_to_consume }} Minute Read</span>
+              <span>{{ $page.contentItem.minutes_to_consume }} Minute<span v-if="edge.node.minutes_to_consume > 1">s</span></span>
             </span>
             <br />
             <a data-scroll href="#more" class="scroll-button-down mt-4"></a>

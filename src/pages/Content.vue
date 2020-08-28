@@ -24,7 +24,7 @@
               class="badge badge-pill px-3 bg-green text-dark-green"
               style="float:right;z-index:999 !important;margin-left:0px;margin-top:5px;position:relative;left:-12px;top:30px;"
             >
-              <span>{{ edge.node.minutes_to_consume }} Minute Read</span>
+              <span>{{ edge.node.minutes_to_consume }} Minute<span v-if="edge.node.minutes_to_consume > 1">s</span></span>
             </span>
             <b-card
               v-on:click="window.location.assign('/content/' + edge.node.slug)"
