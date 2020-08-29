@@ -25,6 +25,14 @@
                 v-on:click="convert(page.node.slug)"
                 class="d-inline-block btn btn-light btn-lg mt-3 raised br-25"
               >Learn More</a>
+                <a
+                
+                v-if="edge.node.call_to_action_button_text != null && edge.node.call_to_action_button_url.length > 0"
+                :href="edge.node.call_to_action_button_url"
+                
+                class="d-inline-block btn btn-light btn-lg mt-3 raised br-25"
+              >{{ edge.node.call_to_action_button_text }}</a>
+              
             </div>
           </div>
         </div>
@@ -79,6 +87,7 @@
                       Read Article
                       <span style="opacity:0.5;">→</span>
                     </b-button>
+                    
                   </b-card>
                 </div>
               </b-card-group>
@@ -99,7 +108,7 @@
                 class="mb-3 mt-2 mx-1 justify-content-center"
                 v-for="collection, index in $page.collections.edges"
                 v-bind:key="collection.node.id"
-                v-if="collection.node.featured == true  && collection.node.offerings.length > 0 && section.list.includes(collection.node.id)"
+                v-if="collection.node.offerings.length > 0 && section.list.includes(collection.node.id)"
               >
                 <h3
                   class="w-100 opacity-70 text-center text-primary mb-5 mt-4 pt-2 mr-3"
@@ -251,6 +260,7 @@ query LandingPage ($id: ID!) {
         headline
         call_to_action_text
         call_to_action_button_text
+        call_to_action_button_url
         conversionPage
         slug
         date (format: "D. MMMM YYYY")        
