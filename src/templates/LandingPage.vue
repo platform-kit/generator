@@ -6,7 +6,6 @@
           <div
             class="image-tinted bg-dark justify-content-center text-light text-center w-100 d-inline-flex"
             v-if="section.list.includes(edge.node.id)"
-            
             v-for="edge, index in $page.valuePropositions.edges"
             v-bind:class="{ 'col-lg-3': section.list.length >= 4, 'col-lg-6': section.list.length == 2, 'col-lg-4': section.list.length == 3, 'col-lg-12': section.list.length == 1   }"
             style="
@@ -15,7 +14,7 @@
                 background-position:center center;"
             :style="{ backgroundImage: `url('${edge.node.cover_image}')` }"
           >
-            <div class="w-100 my-auto py-0 px-2 pr-0 pr-lg-4 ">
+            <div class="w-100 my-auto py-0 px-2 pr-0 pr-lg-4">
               <h2 class="vp-title">{{ edge.node.call_to_action_text }}</h2>
 
               <a
@@ -25,14 +24,11 @@
                 v-on:click="convert(page.node.slug)"
                 class="d-inline-block btn btn-light btn-lg mt-3 raised br-25"
               >Learn More</a>
-                <a
-                
+              <a
                 v-if="edge.node.call_to_action_button_text != null && edge.node.call_to_action_button_url.length > 0"
                 :href="edge.node.call_to_action_button_url"
-                
                 class="d-inline-block btn btn-light btn-lg mt-3 raised br-25"
               >{{ edge.node.call_to_action_button_text }}</a>
-              
             </div>
           </div>
         </div>
@@ -67,7 +63,12 @@
                         class="badge badge-pill px-3 bg-green border-light-green text-dark-green"
                         style="position:absolute;top:12px;left:-10px;"
                       >
-                        <span class="opacity-90">{{ edge.node.minutes_to_consume }} Minute<span v-if="edge.node.minutes_to_consume > 1">s</span></span>
+                        <span class="opacity-90">
+                          {{ edge.node.minutes_to_consume }} Minute
+                          <span
+                            v-if="edge.node.minutes_to_consume > 1"
+                          >s</span>
+                        </span>
                       </span>
                       <h4
                         v-if="section.list.length == 1"
@@ -87,7 +88,6 @@
                       Read Article
                       <span style="opacity:0.5;">→</span>
                     </b-button>
-                    
                   </b-card>
                 </div>
               </b-card-group>
@@ -97,7 +97,6 @@
         <div v-else-if="section.type == 'collections'" class="border-bottom row collections">
           <div
             v-if="section.list.includes(edge.node.id)"
-            
             v-for="edge, index in $page.collections.edges"
             class="justify-content-center px-0 pr-md-2 mb-4 col-md-12"
             v-bind:class="{ 'col-lg-3': section.list.length >= 4, 'col-lg-6': section.list.length == 2, 'col-lg-4': section.list.length == 3, 'col-lg-12': section.list.length == 1   }"
@@ -114,18 +113,20 @@
                   class="w-100 opacity-70 text-center text-primary mb-5 mt-4 pt-2 mr-3"
                 >{{ collection.node.title }}</h3>
 
-                <div
-                  v-for="edge, index in $page.offerings.edges"
-                  v-bind:key="edge.node.id"
-                  v-if="collection.node.offerings.includes(edge.node.id) && edge.node.featured == true"
-                  class="col-12  px-0 pr-md-2 mb-1"
+            
+
+                      <div
+                  v-for="item in collection.node.offerings"
+                  
+                  
+                  class="col-12 px-0 pr-md-2 mb-1"
                   v-bind:class="{ 'col-lg-3': collection.node.offerings.length >= 4, 'col-lg-6': collection.node.offerings.length == 2, 'col-lg-4': collection.node.offerings.length == 3, 'col-lg-12': collection.node.offerings.length == 1   }"
                 >
                   <div
-                  v-on:click="window.location.assign('/buy/' + edge.node.slug)"
+                    v-on:click="window.location.assign('/buy/' + getOffering(item).slug)"
                     class="card raised border-0 mb-1 pull-left mx-0 px-0 h-100 mr-md-3 px-0 pb-3 m-0 mb-4"
-                    :key="edge.node.id"
-                    :post="edge.node"
+                    :key="getOffering(item).id"
+                    :post="getOffering(item)"
                   >
                     <div
                       class="card-header"
@@ -139,19 +140,19 @@
                     background-size:cover;
                     background-position:center center;
                     border-radius:5px 5px 0px 0px "
-                        :style="{ backgroundImage: `url('${edge.node.cover_image}')` }"
+                        :style="{ backgroundImage: `url('${getOffering(item).cover_image}')` }"
                       ></div>
                     </div>
                     <div class="card-body p-0">
                       <b-card-text class="pt-3 px-3" style="line-height:25px;">
-                        <h5>{{ edge.node.title }}</h5>
+                        <h5>{{ getOffering(item).title }}</h5>
                       </b-card-text>
                       <b-card-text class="pb-3 px-3 mb-4" style="line-height:28px;">
-                        {{ edge.node.description.substr(0, 120) }}
+                        {{ getOffering(item).description.substr(0, 120) }}
                         <span style="opacity:.5;">...</span>
                       </b-card-text>
                       <b-button
-                        :href="'/buy/' + edge.node.slug"
+                        :href="'/buy/' + getOffering(item).slug"
                         class="d-block"
                         variant="outline-primary"
                         style="position:absolute !important;bottom:15px;left:15px;width:calc(100% - 30px);"
@@ -162,6 +163,10 @@
                     </div>
                   </div>
                 </div>
+
+
+
+                
               </b-card-group>
             </div>
           </div>
@@ -295,7 +300,8 @@ export default {
   data() {
     return {
       test: null,
-      window: null
+      window: null,
+      results: null
     };
   },
   async mounted() {
@@ -304,11 +310,28 @@ export default {
     } catch (error) {
       console.log(error);
     }
+
+    this.getOffering();
   },
   methods: {
-    convert(input){
-      
-      window.location.assign('/' + input);
+    getOffering(id) {
+      if(typeof id == 'undefined'){
+         id = "offering-Kg8tzWA9Y";
+      }
+      var allOfferings = this.$page.offerings.edges;
+      var results = this.$page.offerings.edges.filter(function(edge) {
+        return edge.node.id === id;
+      });
+
+      if (results.length > 0) {
+        console.log(results[0].node);
+        return results[0].node;
+      } else {
+        return false;
+      }
+    },
+    convert(input) {
+      window.location.assign("/" + input);
     },
     goToCollection(id) {
       alert(id);
@@ -387,26 +410,28 @@ export default {
 }
 
 .contentItemTitle {
-  font-family: 'Open Sans';
-  font-weight:700 !important;
+  font-family: "Open Sans";
+  font-weight: 700 !important;
 }
 
 .contentItems:first-of-type .card-deck {
-  margin-top:-38px !important;
+  margin-top: -38px !important;
 }
-@media(max-width:991px){
+@media (max-width: 991px) {
   .contentItems:first-of-type .card-deck {
-  margin-top:-60px !important;
-}
+    margin-top: -60px !important;
+  }
 }
 
 .collections .card-deck {
-  margin-top:-38px !important;
+  margin-top: -38px !important;
 }
-.collections .w-100 { displaY:none; }
-@media(max-width:991px){
+.collections .w-100 {
+  display: none;
+}
+@media (max-width: 991px) {
   .collections .card-deck {
-  margin-top:-60px !important;
-}
+    margin-top: -60px !important;
+  }
 }
 </style>
