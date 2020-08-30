@@ -66,10 +66,7 @@
                         style="position:absolute;top:12px;left:-10px;"
                       >
                         <span class="opacity-90">
-                          {{ edge.node.minutes_to_consume }} Minute
-                          <span
-                            v-if="edge.node.minutes_to_consume > 1"
-                          >s</span>
+                          {{ edge.node.minutes_to_consume }} Minute<span v-if="edge.node.minutes_to_consume > 1">s</span>
                         </span>
                       </span>
                       <h4
