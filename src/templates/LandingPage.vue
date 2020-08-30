@@ -46,13 +46,15 @@
                 >
                   <b-card
                     overlay
-                    class="raised border-0 mb-3 pull-left mx-0 px-0 h-100 mr-md-3 bg-dark"
+                    class="raised border-0 mb-3 pull-left mx-0 px-0 h-100 mr-md-3 bg-dark w-100 d-block h-100 "
                     :key="edge.node.id"
                     :post="edge.node"
-                    :img-src="edge.node.cover_image"
-                    img-top
-                    img-width="50%;"
+                    style="background-size:cover;min-height:330px;" :style="{ backgroundImage: `url('${edge.node.cover_image}')` }"
+                   
                   >
+                  
+                    
+                    
                     <b-card-text
                       class="pt-3 px-3 text-light d-inline-block"
                       style="line-height:25px;"
