@@ -409,7 +409,7 @@ export default {
 }
 
 .contentItemTitle {
-  font-family: "Open Sans";
+  /* font-family: "Open Sans"; */
   font-weight: 700 !important;
 }
 
