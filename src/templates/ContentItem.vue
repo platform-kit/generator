@@ -202,7 +202,7 @@
       id="more"
       v-if="($page.contentItem.excerpt != null && $page.contentItem.excerpt != '') || media != null  || ($page.contentItem.content != null && $page.contentItem.content != '')"
     >
-      <div class="row mx-0 mx-md-0 justify-content-center p-0 p-xl-0 test" v-if="$page.contentItem.content != null && $page.contentItem.content != '' && $page.contentItem.content != '\n'">
+      <div class="row mx-0 mx-md-0 justify-content-center p-0 p-xl-0 test" v-if="$page.contentItem.content != null && $page.contentItem.content !== '' && $page.contentItem.content !== '\n' && $page.contentItem.requiredSubscription != null && $page.contentItem.requiredSubscription != ''">
         <div
           v-if="premiumContent != null && premiumContent.error != true && $page.contentItem.content != null"
           class="content bg-none pt-0 px-3 px-md-3"
@@ -216,6 +216,8 @@
           v-bind:class="{ 'pt-5': hasVideo() == false }"
         >{{ $options.filters.markdown($page.contentItem.excerpt) }}</div>
       </div>
+      <div v-else v-html="$page.contentItem.content">
+        {{ $page.contentItem.content }}</div>
     </div>
 
     <div v-if="$page.contentItem.topics != null" class="row">
