@@ -36,7 +36,7 @@
         <div v-else-if="section.type == 'contentItems'" class="contentItems border-bottom row">
           <div class="posts py-3 container" v-if="$page.contentItems.edges.length > 0">
             <div class="col-md-12 px-0 px-md-3">
-              <b-card-group deck class="my-3 mt-4 my-md-3 mt-md-5">
+              <b-card-group deck class="my-3 mt-4 my-md-3 mt-md-5 mr-2">
                 <div
                   v-if="section.list.includes(edge.node.id)"
                   v-on:click="window.location.assign('/content/' + edge.node.slug)"
@@ -146,9 +146,8 @@
                       <b-card-text class="pt-3 px-3" style="line-height:25px;">
                         <h5>{{ getOffering(item).title }}</h5>
                       </b-card-text>
-                      <b-card-text class="pb-3 px-3 mb-4" style="line-height:28px;">
-                        {{ getOffering(item).description.substr(0, 120) }}
-                        <span style="opacity:.5;">...</span>
+                      <b-card-text class="pb-3 px-3 mb-4" style="line-height:28px;" v-html="getOffering(item).description">                        
+                        <span v-if="getOffering(item).description.length >= 120" style="opacity:.5;">...</span>
                       </b-card-text>
                       <b-button
                         :href="'/buy/' + getOffering(item).slug"

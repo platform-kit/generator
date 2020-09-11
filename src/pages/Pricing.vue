@@ -52,9 +52,8 @@
                 <b-card-text class="pt-3 px-3" style="line-height:25px;">
                   <h5>{{ edge.node.title }}</h5>
                 </b-card-text>
-                <b-card-text class="pb-3 px-3 mb-4" style="line-height:28px;">
-                  {{ edge.node.description.substr(0, 120) }}
-                  <span style="opacity:.5;">...</span>
+                <b-card-text class="pb-3 px-3 mb-4" style="line-height:28px;" v-html="edge.node.description">
+                  
                 </b-card-text>
                 <b-button
                   :href="'/buy/' + edge.node.slug"

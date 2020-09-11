@@ -19,6 +19,7 @@
           <h4 class="my-3">{{ $page.offering.title}}</h4>
           <p
             v-if="$page.offering.description != null && $page.offering.description != ''"
+            v-html="$page.offering.description "
             class="text-dark my-3 pb-4"
           >{{ $page.offering.description }}</p>
           <div v-else class="mt-1 pt-1"></div>
