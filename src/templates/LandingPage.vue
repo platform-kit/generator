@@ -1,6 +1,6 @@
 <template>
   <Layout>
-    <div class="container-fluid px-0" v-if="$page.landingPage.sections != null">
+    <div class="container-fluid px-0" v-if="$page.landingPage.sections != null" style="overflow:hidden;">
       <div v-for="section, index in $page.landingPage.sections" class="section px-3 px-lg-0">
         <div v-if="section.type == 'valuePropositions'" class="row">
           <div
