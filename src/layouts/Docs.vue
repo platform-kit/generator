@@ -1456,7 +1456,7 @@ input[type="search"] {
   padding-top: 52px !important;
   background: linear-gradient(180deg, transparent, #fff),
     linear-gradient(-90deg, #e4ebff49, transparent);
-  min-height: 100%;
+  min-height: 100vh;
 
   border-right: 1px solid rgba(0, 79, 160, 0.09) !important;
 }

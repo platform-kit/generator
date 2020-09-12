@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="gradient-light-green-to-white">
+  <div id="app" class="admin gradient-light-green-to-white">
     <client-only>
       <div class="container-fluid">
         <div class="row sidebar-row">
@@ -1059,12 +1059,12 @@ export default {
 }
 
 @media (min-width: 768px) {
-  .sidebar-row {
+  .admin .sidebar-row {
     height: 100vh;
   }
 }
 
-.sidebar {
+.admin .sidebar {
   background: #f2f8fd;
   border-color: rgba(200, 200, 200, 0.3) !important;
   box-shadow: 0px 0px 100px rgba(0, 79, 160, 0.185);
