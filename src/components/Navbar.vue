@@ -267,7 +267,7 @@
                         >{{ edge.node.title }}</a>
                         <br />
                         <span class="pt-3">
-                          {{ edge.node.description }}
+                          {{ edge.node.description.replace( /(<([^>]+)>)/ig, '') }}
                           <br />
                           <a
                             class="btn btn-sm mt-3 btn-outline-primary text-capitalize mb-3"
