@@ -6,7 +6,7 @@
     >{{ $page.contentItem.title }}</h1>
 
     <div
-      class="d-inline-block justify-content-center text-center pb-0 pb-lg-3 px-3"
+      class="d-inline-block justify-content-center text-center pb-0 pb-lg-3 px-3 pt-3"
       v-if="($page.contentItem.media_full != null && $page.contentItem.media_full != '') || ($page.contentItem.media_preview != null && $page.contentItem.media_preview  != '') "
       style="width:100%;min-height:300px;height:auto;display:block;background:linear-gradient(90deg, rgb(10, 20, 30) 0px, rgb(20, 30, 40) 100%);"
     >

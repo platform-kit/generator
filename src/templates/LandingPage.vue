@@ -1,6 +1,6 @@
 <template>
   <Layout>
-    <div class="container-fluid px-0" v-if="$page.landingPage.sections != null" style="overflow:hidden;">
+    <div class="container-fluid landing-page px-0" v-if="$page.landingPage.sections != null" style="overflow:hidden;">
       <div v-for="section, index in $page.landingPage.sections" class="section px-3 px-lg-0">
         <div v-if="section.type == 'valuePropositions'" class="row">
           <div
@@ -430,6 +430,11 @@ export default {
 @media (max-width: 991px) {
   .collections .card-deck {
     margin-top: -60px !important;
+  }
+}
+@media (min-width: 991px) {
+  .landing-page .image-tinted {
+    background-position: calc(50% - 5px) !important;
   }
 }
 </style>
