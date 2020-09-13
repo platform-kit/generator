@@ -734,7 +734,7 @@ input[type="search"] {
 }
 
 .bg-light-green {
-  background: #bdffe4;
+  background: #bdffe4 !important;
 }
 
 .text-dark-green {
