@@ -19,7 +19,10 @@
     "/bin",
     "/npm-shrinkwrap.json",
     "/oclif.manifest.json",
-    "/src"
+    "/src",
+    "/lib",
+    "/functions"
+
   ],
   "dependencies": {
     "@babel/preset-typescript": "^7.9.0",
