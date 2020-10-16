@@ -1,0 +1,11 @@
+{
+  "name": "platformkit-content-read-v1",
+  "description": "Generate a content API from static files.",
+  "private": false,
+  "dependencies": {
+    "front-matter": "^4.0.2",
+    "fs": "0.0.1-security",
+    "jsonwebtoken": "^8.5.1"
+  },
+  "version": "0.0.1"
+}
