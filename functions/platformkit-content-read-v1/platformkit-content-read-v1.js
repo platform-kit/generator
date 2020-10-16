@@ -10,7 +10,7 @@ exports.handler = async (event, context) => {
     // Get filename from url parameter
     const file = event.queryStringParameters.file || '';
     var email = event.queryStringParameters.email || null;
-    const token = event.queryStringParameters.token || null;
+    const token = event.queryStringParameters.token || null;    
 
     var errorMessage = null;
 
@@ -36,7 +36,9 @@ exports.handler = async (event, context) => {
     // Get the relevant static file    
     var fs = require('fs');
     console.log(__dirname);
-    var content = __dirname + '/data/content/' + file + '.md';
+    var path = require('path');
+    var contentDir = process.env.CONTENT_DIR || 'data/content/';
+    var content = path.resolve(contentDir + file + '.md');
     
     console.log(content);
     
