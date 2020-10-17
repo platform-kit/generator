@@ -38,7 +38,7 @@ class GetDataCommand extends Command {
       };
       
       fse.remove(path).then(function() {
-        Git.Clone(repo, path, opts)
+        Git.Clone(repo, path, opts).catch()
           .done(function(repo) {
             if (repo instanceof Git.Repository) {
               console.info("We cloned the repo!");
@@ -49,7 +49,7 @@ class GetDataCommand extends Command {
           });
       });
     } else {
-      Git.Clone(repo, "workspace/" + 'repository').then(function(repository) {
+      Git.Clone(repo, "workspace/" + 'repository').catch().then(function(repository) {
         // Work with the repository object here.
         //console.log(repository)
       })
