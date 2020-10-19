@@ -5,11 +5,11 @@ import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import { IconsPlugin } from 'bootstrap-vue'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+/* import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { config, library } from '@fortawesome/fontawesome-svg-core'
 import { faGithub, faTwitter } from '@fortawesome/free-brands-svg-icons'
 import { faShoppingCart, faCartPlus, faCalendar } from '@fortawesome/free-solid-svg-icons'
-import '@fortawesome/fontawesome-svg-core/styles.css'
+import '@fortawesome/fontawesome-svg-core/styles.css' */
 import marked from 'marked'
 import themeSettings from '../data/theme.json'
 import { Laue } from 'laue'
@@ -18,9 +18,9 @@ import VuePrism from 'vue-prism'
 import 'prismjs/themes/prism.css'
 import VueHotkey from 'v-hotkey'
 
-config.autoAddCss = false;
-library.add(faGithub, faTwitter)
-library.add(faShoppingCart, faCartPlus, faCalendar)
+// config.autoAddCss = false;
+// library.add(faGithub, faTwitter)
+// library.add(faShoppingCart, faCartPlus, faCalendar)
 
 // Import default layout so we don't need to import it to every page
 import DefaultLayout from '~/layouts/Default.vue'
@@ -64,7 +64,7 @@ export default function (Vue, { router, head, isClient }) {
     emit: ['ended']
   })
 
-  Vue.component('font-awesome', FontAwesomeIcon)
+  // Vue.component('font-awesome', FontAwesomeIcon)
 
   Vue.filter('markdown', (string) => marked(string))
 
