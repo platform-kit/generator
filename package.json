@@ -7,12 +7,12 @@
   },
   "scripts": {
     "prebuild": "node ./scripts/installer.js",
-    "init": "./bin/run seedData;",  
-    "build": "gridsome build",    
+    "init": "./bin/run seedData;",
+    "build": "gridsome build",
     "develop": "gridsome develop",
     "explore": "gridsome explore",
     "deploy": "./bin/run copyData; gridsome build",
-    "manage": "npx netlify-cms-proxy-server;",    
+    "manage": "npx netlify-cms-proxy-server;",
     "manage-local": "cd ./workspace/repository; npx netlify-cms-proxy-server;"
   },
   "files": [
@@ -22,7 +22,6 @@
     "/src",
     "/lib",
     "/functions"
-
   ],
   "dependencies": {
     "@babel/preset-typescript": "^7.9.0",
@@ -95,7 +94,7 @@
     "vue-stripe-checkout": "^3.3.1"
   },
   "devDependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.28",
+    "@fortawesome/fontawesome-svg-core": "^1.2.32",
     "@fortawesome/free-brands-svg-icons": "^5.13.0",
     "@fortawesome/vue-fontawesome": "^0.1.9",
     "dotenv": "^8.2.0",
