@@ -6,6 +6,8 @@
 
 var companySettings = require("./data/company.json");
 
+var output = process.env.OUTPUT_DIR || 'dist';
+
 var getImage = function (input) {
   var str = "/images/";
   if (input != null) {
@@ -29,6 +31,7 @@ var getImage = function (input) {
 module.exports = {
   siteName: companySettings.companyName || 'PlatformKit',
   siteUrl: process.env.APP_URL,
+  outputDir: output,
   siteDescription: companySettings.companyName || 'Built with PlatformKit',
   titleTemplate: '%s - ' + (companySettings.companyName || 'PlatformKit'),
   runtimeCompiler: true,
