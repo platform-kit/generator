@@ -9,6 +9,7 @@
     "prebuild": "node ./scripts/installer.js",
     "init": "./bin/run seedData;",
     "build": "gridsome build",
+    "setup": "./bin/run getData; ./bin/run copyData; ./bin/run copyStaticFiles; gridsome develop",
     "develop": "gridsome develop",
     "explore": "gridsome explore",
     "deploy": "./bin/run copyData; gridsome build",

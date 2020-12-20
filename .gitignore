@@ -9,6 +9,7 @@ data
 .env
 .env.*
 !.env.example
+static/*
 static/rss.xml
 static/social-rss.xml
 static/*.xml
