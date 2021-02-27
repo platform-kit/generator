@@ -18,7 +18,7 @@ nav: doc-sidebar
  **<i class="fa fa-code opacity-50 mr-2"></i>Install via command line** 
  
  ```bash
- npm i platformkit
+ git clone https://github.com/platform-kit/generator {project} // name your {project} anything
  ``` 
 
 For more, see the  [Installation Guide.](/docs/installation)
