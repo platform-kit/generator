@@ -285,7 +285,10 @@ export default {
       var str = "/content/" + arr[1];
       //alert(str)
       const results = await this.$fetch(str);
-      this.getPremiumContent(arr[1]);
+      if(this.hasVideo() && this.requiredSubscription != "" && this.requiredSubscription != null){
+        
+          this.getPremiumContent(arr[1]);
+      }
 
       //this.relatedCollections = results.data.contentItem.relatedCollections;
       //this.getRelatedCollection();
