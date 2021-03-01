@@ -181,14 +181,14 @@
             >{{ $page.contentItem.title }}</h2>
 
             <div class="text-white py-4">
-              <span class="description p-3">{{ $page.contentItem.description }}</span>
+              <span class="description p-3" > {{ $page.contentItem.description }}</span>
             </div>
             <span
               class="badge badge-pill px-3 py-2 mt-4 border text-light"
               style="z-index:999 !important;margin-left:0px;margin-top:5px;margin-bottom:25px;"
             >
               <i class="fa fa-fw fa-clock-o text-light mr-2"></i>
-              <span>{{ $page.contentItem.minutes_to_consume }} Minute<span v-if="edge.node.minutes_to_consume > 1">s</span></span>
+              <span>{{ $page.contentItem.minutes_to_consume }} Minute<span v-if=" $page.contentItem.minutes_to_consume > 1">s</span></span>
             </span>
             <br />
             <a data-scroll href="#more" class="scroll-button-down mt-4"></a>
@@ -288,7 +288,8 @@ export default {
       if(this.hasVideo() && this.requiredSubscription != "" && this.requiredSubscription != null){
         
           this.getPremiumContent(arr[1]);
-      }
+      }      
+      
 
       //this.relatedCollections = results.data.contentItem.relatedCollections;
       //this.getRelatedCollection();
@@ -300,6 +301,7 @@ export default {
   },
   methods: {
     hasVideo() {
+      //return false;
       if (
         typeof this.media != "undefined" && this.media != null && this.media.length > 0 && 
         (this.media.includes("vimeo") ||
@@ -338,6 +340,7 @@ export default {
           data.topics = this.$page.contentItem.topics;
         }
         data = JSON.stringify(data);
+        if(typeof(data) != 'undefined') {
         url =
           process.env.GRIDSOME_API_URL +
           "platformkit-analytics-event-v1" +
@@ -346,7 +349,17 @@ export default {
           "&event=" +
           event +
           "&data=" +
-          data;
+          data; 
+        }
+        else {
+            url =
+          process.env.GRIDSOME_API_URL +
+          "platformkit-analytics-event-v1" +
+          "?token=" +
+          token +
+          "&event=" +
+          event 
+        }
       } else {
         url =
           process.env.GRIDSOME_API_URL +
@@ -370,8 +383,9 @@ export default {
         console.log(error);
       }
     },
-    getPremiumContent(file) {
+    getPremiumContent(file) {      
       //alert(file);
+      return null;
       try {
         var token = JSON.parse(localStorage.auth).token;
       } catch (err) {
@@ -647,6 +661,8 @@ query ContentItem ($id: ID!) {
 }
 
 .description {
+  max-width:900px !important;
+  display:inline-block;
   font-size: 133%;
   background: none !important;
   color: #fff !important;
