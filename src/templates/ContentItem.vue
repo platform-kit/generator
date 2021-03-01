@@ -661,7 +661,7 @@ query ContentItem ($id: ID!) {
 }
 
 .description {
-  max-width:900px !important;
+  max-width:600px !important;
   display:inline-block;
   font-size: 133%;
   background: none !important;
