@@ -35,7 +35,7 @@
               v-bind:class="{ odd: index % 2 !== 0, even: (index %2 === 0) }"
             >
               <div
-                v-if="edge.node.cover_image != null && edge.node.cover_image != ''"
+                v-if="edge.node.thumbnail_image != null && edge.node.thumbnail_image != ''"
                 style="width:50%;height:100%;                              
                 position: absolute;
                 top: 0px;
@@ -43,7 +43,7 @@
                 background-size:cover;
                 background-position:center center;"
                 class="card-image-tinted"
-                :style="{ backgroundImage: `url('${edge.node.cover_image}')` }"
+                :style="{ backgroundImage: `url('${edge.node.thumbnail_image}')` }"
               ></div>
               <div
                 class="hero-card-content p-0 p-md-3 p-lg-5 d-flex"
@@ -104,8 +104,8 @@
               class="d-inline-block d-md-none raised border-0 mb-3 pull-left mx-0 px-0 h-100 mr-md-3"
               :post="edge.node"
               style="z-index:99;"
-              v-if="edge.node.cover_image != null"
-              :img-src="edge.node.cover_image"
+              v-if="edge.node.thumbnail_image != null"
+              :img-src="edge.node.thumbnail_image"
               img-top
               img-width="50%;"
             >
@@ -256,6 +256,7 @@ query {
         description
         minutes_to_consume
         cover_image
+        thumbnail_image
         path      
       }
     }
@@ -270,6 +271,7 @@ query {
         featured
         description
         cover_image
+        thumbnail_image
         path        
       }
     }
