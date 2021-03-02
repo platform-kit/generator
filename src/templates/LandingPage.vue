@@ -12,7 +12,7 @@
                  min-height:500px;                                     
                 background-size:cover !important;
                 background-position:center center;"
-            :style="{ backgroundImage: `url('${edge.node.thumbnail_image}')` }"
+            :style="{ backgroundImage: `url('${edge.node.cover_image}')` }"
           >
             <div class="w-100 my-auto py-0 px-2 pr-0 pr-lg-4">
               <h2 class="vp-title">{{ edge.node.call_to_action_text }}</h2>
