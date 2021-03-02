@@ -28,7 +28,7 @@
             </span>
             <b-card
               v-on:click="window.location.assign('/content/' + edge.node.slug)"
-              v-if="edge.node.cover_image != null"
+              v-if="edge.node.thumbnail_image != null"
               class="d-none d-md-inline-flex raised hero-card border-0 mb-3 p-0 mr-md-4 w-100"
               :key="edge.node.id"
               :post="edge.node"
@@ -176,8 +176,8 @@
                 class="raised border-0 mb-3 pull-left mx-0 px-0 h-100 mr-md-3"
                 :key="edge.node.id"
                 :post="edge.node"
-                v-if="edge.node.cover_image != null"
-                :img-src="edge.node.cover_image"
+                v-if="edge.node.thumbnail_image != null"
+                :img-src="edge.node.thumbnail_image"
                 img-top
                 img-width="50%;"
               >
