@@ -12,7 +12,7 @@
                  min-height:500px;                                     
                 background-size:cover !important;
                 background-position:center center;"
-            :style="{ backgroundImage: `url('${edge.node.cover_image}')` }"
+            :style="{ backgroundImage: `url('${edge.node.thumbnail_image}')` }"
           >
             <div class="w-100 my-auto py-0 px-2 pr-0 pr-lg-4">
               <h2 class="vp-title">{{ edge.node.call_to_action_text }}</h2>
@@ -139,7 +139,7 @@
                     background-size:cover;
                     background-position:center center;
                     border-radius:5px 5px 0px 0px "
-                        :style="{ backgroundImage: `url('${getOffering(item).cover_image}')` }"
+                        :style="{ backgroundImage: `url('${getOffering(item).thumbnail_image}')` }"
                       ></div>
                     </div>
                     <div class="card-body p-0">
@@ -226,6 +226,7 @@ query LandingPage ($id: ID!) {
         type
         description
         cover_image
+        thumbnail_image
         path        
       }
     }
