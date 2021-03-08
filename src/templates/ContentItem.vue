@@ -118,11 +118,7 @@
               style="width:100%;max-height:600px;margin:0px;border-radius:5px;"
             ></video>
           </vue-plyr>
-          <vue-plyr
-            class="br-5"
-            style="overflow:hidden;"
-            v-else-if="media.includes('vimeo')"
-          >
+          <vue-plyr class="br-5" style="overflow:hidden;" v-else-if="media.includes('vimeo')">
             <div class="plyr__video-embed">
               <iframe
                 style="height:calc(100vh - 500px) !important;"
@@ -181,14 +177,19 @@
             >{{ $page.contentItem.title }}</h2>
 
             <div class="text-white py-4">
-              <span class="description p-3" > {{ $page.contentItem.description }}</span>
+              <span class="description p-3">{{ $page.contentItem.description }}</span>
             </div>
             <span
               class="badge badge-pill px-3 py-2 mt-4 border text-light"
               style="z-index:999 !important;margin-left:0px;margin-top:5px;margin-bottom:25px;"
             >
               <i class="fa fa-fw fa-clock-o text-light mr-2"></i>
-              <span>{{ $page.contentItem.minutes_to_consume }} Minute<span v-if=" $page.contentItem.minutes_to_consume > 1">s</span></span>
+              <span>
+                <span
+                  v-if=" $page.contentItem.minutes_to_consume > 1"
+                >{{ $page.contentItem.minutes_to_consume }} Minutes</span>
+                <span v-else>{{ $page.contentItem.minutes_to_consume }} Minute</span>
+              </span>
             </span>
             <br />
             <a data-scroll href="#more" class="scroll-button-down mt-4"></a>
@@ -202,13 +203,17 @@
       id="more"
       v-if="($page.contentItem.excerpt != null && $page.contentItem.excerpt != '') || media != null  || ($page.contentItem.content != null && $page.contentItem.content != '')"
     >
-      <div class="row mx-0 mx-md-0 justify-content-center p-0 p-xl-0 test" v-if="$page.contentItem.content != null && $page.contentItem.content !== '' && $page.contentItem.content !== '\n' && $page.contentItem.requiredSubscription != null && $page.contentItem.requiredSubscription != ''">
+      <div
+        class="row mx-0 mx-md-0 justify-content-center p-0 p-xl-0 test"
+        v-if="$page.contentItem.content != null && $page.contentItem.content !== '' && $page.contentItem.content !== '\n' && $page.contentItem.requiredSubscription != null && $page.contentItem.requiredSubscription != ''"
+      >
         <div
           v-if="premiumContent != null && premiumContent.error != true && $page.contentItem.content != null"
           class="content bg-none pt-0 px-3 px-md-3"
           v-bind:class="{ 'pt-5': hasVideo() == false }"
-          v-html="$page.contentItem.content"
-        >{{ $page.contentItem.content }}</div>
+        >
+          <v-runtime-template :template="template()"></v-runtime-template>
+        </div>
         <div
           v-else-if="$page.contentItem.excerpt != null && $page.contentItem.excerpt != ''"
           v-html="$options.filters.markdown($page.contentItem.excerpt)"
@@ -216,8 +221,9 @@
           v-bind:class="{ 'pt-5': hasVideo() == false }"
         >{{ $options.filters.markdown($page.contentItem.excerpt) }}</div>
       </div>
-      <div v-else v-html="$page.contentItem.content">
-        {{ $page.contentItem.content }}</div>
+      <div v-else>
+        <v-runtime-template :template="template()"></v-runtime-template>
+      </div>
     </div>
 
     <div v-if="$page.contentItem.topics != null" class="row">
@@ -229,8 +235,7 @@
             v-bind:key="valueProposition"
           >
             <div
-            
-              class="bg-dark justify-content-center text-light text-center w-100 d-inline-flex "
+              class="bg-dark justify-content-center text-light text-center w-100 d-inline-flex"
               style="
                 height:500px;                                     
                 background-size:cover !important;
@@ -257,11 +262,16 @@
 </template>
 
 <script>
+import VRuntimeTemplate from "v-runtime-template";
 import socialSettings from "../../data/social.json";
 import axios from "axios";
 export default {
+  components: {
+    VRuntimeTemplate
+  },
   data() {
     return {
+      options: {},
       auth: null,
       window: null,
       relatedCollection: null,
@@ -271,7 +281,6 @@ export default {
       media: null
     };
   },
-  components: {},
 
   async mounted() {
     try {
@@ -285,11 +294,13 @@ export default {
       var str = "/content/" + arr[1];
       //alert(str)
       const results = await this.$fetch(str);
-      if(this.hasVideo() && this.requiredSubscription != "" && this.requiredSubscription != null){
-        
-          this.getPremiumContent(arr[1]);
-      }      
-      
+      if (
+        this.hasVideo() &&
+        this.requiredSubscription != "" &&
+        this.requiredSubscription != null
+      ) {
+        this.getPremiumContent(arr[1]);
+      }
 
       //this.relatedCollections = results.data.contentItem.relatedCollections;
       //this.getRelatedCollection();
@@ -300,10 +311,19 @@ export default {
     this.addAnalyticEvent();
   },
   methods: {
+    template(input) {
+      return (
+        "<div>" +
+        this.$options.filters.markdown(this.$page.contentItem.content) +
+        "</div>"
+      );
+    },
     hasVideo() {
       //return false;
       if (
-        typeof this.media != "undefined" && this.media != null && this.media.length > 0 && 
+        typeof this.media != "undefined" &&
+        this.media != null &&
+        this.media.length > 0 &&
         (this.media.includes("vimeo") ||
           this.media.includes("youtube") ||
           this.media.includes(".mp4"))
@@ -340,25 +360,24 @@ export default {
           data.topics = this.$page.contentItem.topics;
         }
         data = JSON.stringify(data);
-        if(typeof(data) != 'undefined') {
-        url =
-          process.env.GRIDSOME_API_URL +
-          "platformkit-analytics-event-v1" +
-          "?token=" +
-          token +
-          "&event=" +
-          event +
-          "&data=" +
-          data; 
-        }
-        else {
-            url =
-          process.env.GRIDSOME_API_URL +
-          "platformkit-analytics-event-v1" +
-          "?token=" +
-          token +
-          "&event=" +
-          event 
+        if (typeof data != "undefined") {
+          url =
+            process.env.GRIDSOME_API_URL +
+            "platformkit-analytics-event-v1" +
+            "?token=" +
+            token +
+            "&event=" +
+            event +
+            "&data=" +
+            data;
+        } else {
+          url =
+            process.env.GRIDSOME_API_URL +
+            "platformkit-analytics-event-v1" +
+            "?token=" +
+            token +
+            "&event=" +
+            event;
         }
       } else {
         url =
@@ -383,7 +402,7 @@ export default {
         console.log(error);
       }
     },
-    getPremiumContent(file) {      
+    getPremiumContent(file) {
       //alert(file);
       return null;
       try {
@@ -467,6 +486,7 @@ export default {
       return "" + str;
     }
   },
+
   metaInfo() {
     return {
       title: this.$page.contentItem.title,
@@ -661,8 +681,8 @@ query ContentItem ($id: ID!) {
 }
 
 .description {
-  max-width:600px !important;
-  display:inline-block;
+  max-width: 900px !important;
+  display: inline-block;
   font-size: 133%;
   background: none !important;
   color: #fff !important;
@@ -824,5 +844,19 @@ query ContentItem ($id: ID!) {
 
 .btn-shiny {
   background-image: linear-gradient(0deg, rgb(118, 138, 193) -20%, #fff 80%);
+}
+
+mark {
+  background: #ffc10733 !important;
+  border-radius: 3px;
+  transition: 0.5s;
+  padding: 0px 2px 0px 3px;
+  white-space: pre-wrap;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+li:hover mark, p:hover mark {
+  background: #ffc10799 !important;
+  transition: 0.5s;
 }
 </style>
