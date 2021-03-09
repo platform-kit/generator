@@ -488,8 +488,13 @@ export default {
   },
 
   metaInfo() {
+    if(this.scripts.length > 0){
+      scripts = eval(this.scripts);
+    }
+    else { scripts = null };
     return {
       title: this.$page.contentItem.title,
+      script: [scripts],
       meta: [
         {
           name: "description",
@@ -855,7 +860,8 @@ mark {
   box-decoration-break: clone;
   -webkit-box-decoration-break: clone;
 }
-li:hover mark, p:hover mark {
+li:hover mark,
+p:hover mark {
   background: #ffc10799 !important;
   transition: 0.5s;
 }
