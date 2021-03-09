@@ -484,17 +484,14 @@ export default {
       //str =  str.split('/images/').pop()
       //alert(str)
       return "" + str;
-    }
+    },    
   },
 
   metaInfo() {
-    if(this.scripts.length > 0){
-      scripts = eval(this.scripts);
-    }
-    else { scripts = null };
+    
     return {
       title: this.$page.contentItem.title,
-      script: [scripts],
+      script: [{src: this.$page.contentItem.scripts, defer: true}],
       meta: [
         {
           name: "description",
@@ -551,6 +548,7 @@ query ContentItem ($id: ID!) {
       requiredSubscription
       path
       topics
+      scripts
   }
   collections: allCollection( sortBy: "slug", order: DESC, filter: { published: { eq: true } } ) {
     edges {
