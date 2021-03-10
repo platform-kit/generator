@@ -127,7 +127,8 @@ export default {
       useAuth: false,
       email: null,
       authRequestStatus: null,
-      authRequest: null
+      authRequest: null,
+      options: {'data': null}
     };
   },
   props: {
