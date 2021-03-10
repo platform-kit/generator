@@ -491,7 +491,7 @@ export default {
     
     return {
       title: this.$page.contentItem.title,
-      script: [{src: this.$page.contentItem.scripts, defer: true}],
+      //script: [{src: this.$page.contentItem.scripts, defer: true}],
       meta: [
         {
           name: "description",
@@ -547,8 +547,7 @@ query ContentItem ($id: ID!) {
       minutes_to_consume
       requiredSubscription
       path
-      topics
-      scripts
+      topics      
   }
   collections: allCollection( sortBy: "slug", order: DESC, filter: { published: { eq: true } } ) {
     edges {
