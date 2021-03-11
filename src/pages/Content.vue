@@ -14,10 +14,11 @@
       <!-- Featured posts -->
       <div class="posts mt-4">
         <div class="container mt-1 mt-lg-0">
-         <div class="row mt-2 mb-3">           
-            <div class="w-100 bg-none d-block p-3 br-5  mr-0 mr-md-4 text-center ">
+         <div class="row mt-2 mb-3">
+           <h5 class="text-center d-block d-md-none w-100 my-1">Featured Content</h5>           
+            <div class="w-100 bg-none d-block p-3 br-5  mr-0 mr-md-4 text-center mt-2">
               <div class="btn btn-sm btn-neutral text-dark m-1"><i class="fa fa-fw fa-cogs mx-0 opacity-50"></i><span class="d-none d-md-inline ml-0 ml-md-1"> Filters</span></div>                            
-              <div v-bind:class="{ 'bg-dark text-white': filterTags.includes(tag) }" v-bind:key="tag" v-for="tag in features.content.featuredTags" class="btn btn-sm bg-light-blue br-25 px-3 text-capitalize m-1"  @click="toggleTag(tag)">{{ tag }}</div>                                          
+              <div v-bind:class="{ 'tag-activated bg-dark text-white': filterTags.includes(tag), 'tags-selected': filterTags.length > 0 }" v-bind:key="tag" v-for="tag in features.content.featuredTags"  class="btn btn-sm br-25 px-3 text-capitalize m-1 tag-button"  @click="toggleTag(tag)">{{ tag }}</div>                                          
             </div>
          </div>
           <div
@@ -399,5 +400,28 @@ export default {
 }
 .d-md-inline-flex .card-body {
   display:inline-flex !important;
+}
+
+.tag-button {  
+  border:2px solid rgba(0,0,50,0.15);
+}
+
+.tag-button.tags-selected {
+  background:none !important;
+  box-shadow:0px 10px 10px rgba(0,50,50, 0.15);
+}
+
+.tag-button.tags-selected:hover {
+  background:rgba(0,50,150,0.08) !important;
+  box-shadow:0px 10px 10px rgba(0,50,50, 0.15);
+}
+
+
+.tag-activated.tags-selected {
+  background:#000 !important;
+}
+
+.tag-activated.tags-selected:hover {
+  background:#333 !important;
 }
 </style>
