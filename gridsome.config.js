@@ -29,11 +29,11 @@ var getImage = function (input) {
 }
 
 module.exports = {
-  siteName: process.env.SITE_NAME || companySettings.companyName ||'PlatformKit',
+  siteName: process.env.APP_NAME || companySettings.companyName ||'PlatformKit',
   siteUrl: process.env.APP_URL,
   outputDir: output,
   siteDescription: companySettings.companyName || 'Built with PlatformKit',
-  titleTemplate: '%s - ' + (process.env.SITE_NAME) || '%s - ' + (companySettings.companyName || 'PlatformKit'),
+  titleTemplate: '%s - ' + (process.env.APP_NAME) || '%s - ' + (companySettings.companyName || 'PlatformKit'),
   runtimeCompiler: true,
   chainWebpack(config) {
 
