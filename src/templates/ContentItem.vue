@@ -191,6 +191,10 @@
                 <span v-else>{{ $page.contentItem.minutes_to_consume }} Minute</span>
               </span>
             </span>
+            <span v-if="$page.contentItem.tags != null" v-for="tag in $page.contentItem.tags.slice(0, 3)"
+              class="text-capitalize badge badge-dark bg-black badge-pill px-3 py-2 ml-1" style="border:1px solid #000;"
+              
+            >{{ tag }}</span>
             <br />
             <a data-scroll href="#more" class="scroll-button-down mt-4"></a>
           </div>
@@ -271,7 +275,7 @@ export default {
   },
   data() {
     return {
-      options: {},
+      options: {"test-data": 123},
       auth: null,
       window: null,
       relatedCollection: null,
@@ -311,6 +315,9 @@ export default {
     this.addAnalyticEvent();
   },
   methods: {
+    getOptions(){
+      return this.options
+    },
     template(input) {
       return (
         "<div>" +
@@ -491,7 +498,7 @@ export default {
     
     return {
       title: this.$page.contentItem.title,
-      //script: [{src: this.$page.contentItem.scripts, defer: true}],
+      script: [{src: this.$page.contentItem.scripts, defer: true}],
       meta: [
         {
           name: "description",
@@ -532,6 +539,7 @@ query ContentItem ($id: ID!) {
   contentItem (id: $id) {
       id
       title
+      tags
       subtitle
       content
       slug
@@ -547,7 +555,8 @@ query ContentItem ($id: ID!) {
       minutes_to_consume
       requiredSubscription
       path
-      topics      
+      topics
+      scripts
   }
   collections: allCollection( sortBy: "slug", order: DESC, filter: { published: { eq: true } } ) {
     edges {
@@ -832,6 +841,7 @@ query ContentItem ($id: ID!) {
   border-radius: 3px;
   transition: all 0.3s;
 }
+
 .content a:hover {
   background: #007bff2e;
   text-decoration: none;

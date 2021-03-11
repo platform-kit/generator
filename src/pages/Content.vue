@@ -14,10 +14,17 @@
       <!-- Featured posts -->
       <div class="posts mt-4">
         <div class="container mt-1 mt-lg-0">
+         <div class="row mt-2 mb-3">           
+            <div class="w-100 bg-none d-block p-3 br-5  mr-0 mr-md-4 text-center ">
+              <div class="btn btn-sm btn-neutral text-dark m-1"><i class="fa fa-fw fa-cogs mx-0 opacity-50"></i><span class="d-none d-md-inline ml-0 ml-md-1"> Filters</span></div>                            
+              <div v-bind:class="{ 'bg-dark text-white': filterTags.includes(tag) }" v-bind:key="tag" v-for="tag in features.content.featuredTags" class="btn btn-sm bg-light-blue br-25 px-3 text-capitalize m-1"  @click="toggleTag(tag)">{{ tag }}</div>                                          
+            </div>
+         </div>
           <div
             class="row mt-2 mb-3"
             v-for="edge, index in $page.featuredContent.edges"
             :key="edge.node.id"
+            v-if="passesFilter(edge.node.tags)"
           >
             <br />
             <span
@@ -26,6 +33,7 @@
             >
               <span>{{ edge.node.minutes_to_consume }} Minute<span v-if="edge.node.minutes_to_consume > 1">s</span></span>
             </span>
+            
             <b-card
               v-on:click="window.location.assign('/content/' + edge.node.slug)"
               v-if="edge.node.thumbnail_image != null"
@@ -242,13 +250,13 @@
 </template>
 
 <page-query>
-query {
-  
+query {  
   featuredContent: allContentItem(sortBy: "date", order: DESC, filter: { published: { eq: true }, featured: { eq: true }}) {
     edges {
       node {
         id
         title
+        tags
         slug
         date (format: "D. MMMM YYYY")        
         featured
@@ -304,9 +312,14 @@ query {
 <script>
 import themeSettings from "../../data/theme.json";
 
+import features from "../../data/features.json";
+
+
 export default {
   data() {
     return {
+      filterTags: [],
+      features: features,
       window: null,
       themeSettings: themeSettings,
       redirecting: false
@@ -329,6 +342,24 @@ export default {
     title: "Featured Content"
   },
   methods: {
+    passesFilter(tags){      
+      var result = false;
+      if(this.filterTags.length == 0 ) { return true; }
+      else {
+        this.filterTags.forEach(element => {
+          if(tags.includes(element.toLowerCase()) || tags.includes(element)) {
+            //console.log(tags.includes(element));
+            result = true;
+          }
+        });
+        
+      }
+      return result;
+    },
+    toggleTag(input){          
+      this.filterTags.indexOf(input) === -1 ? this.filterTags.push(input) : this.filterTags.splice(this.filterTags.indexOf(input), 1);      
+      //console.log(this.filterTags);      
+    },
     redirectToLandingPage(id) {
       if (this.$page.allPages.edges.length > 0) {
         let list = this.$page.allPages.edges;
