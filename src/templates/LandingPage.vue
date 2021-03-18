@@ -25,7 +25,7 @@
                 class="d-inline-block btn btn-light btn-lg mt-3 raised br-25"
               >Learn More</a>
               <a
-                v-if="edge.node.call_to_action_button_text != null && edge.node.call_to_action_button_url.length > 0"
+                v-if="edge.node.call_to_action_button_text != null && edge.node.call_to_action_button_text != '' && edge.node.call_to_action_button_url.length > 0"
                 :href="edge.node.call_to_action_button_url"
                 class="d-inline-block btn btn-light btn-lg mt-3 raised br-25"
               >{{ edge.node.call_to_action_button_text }}</a>
@@ -139,7 +139,7 @@
                     background-size:cover;
                     background-position:center center;
                     border-radius:5px 5px 0px 0px "
-                        :style="{ backgroundImage: `url('${getOffering(item).thumbnail_image}')` }"
+                        :style="{ backgroundImage: `url('${getOffering(item).cover_image}')` }"
                       ></div>
                     </div>
                     <div class="card-body p-0">
@@ -170,13 +170,14 @@
           </div>
         </div>
 
-        <div v-else-if="section.type == 'html'">
+        <div v-else-if="section.type == 'pageElements'">          
           <div
-            v-if="section.list.includes(edge.node.id) && edge.node.code.lang == 'html'"
+            v-if="section.list.includes(edge.node.id) && edge.node.content != null"            
             v-for="edge, index in $page.pageElements.edges"
-            v-html="edge.node.code.code"
+            v-html="edge.node.content"
             class="row"
-          >test</div>
+          >          
+          </div>
         </div>
       </div>
     </div>
@@ -226,7 +227,6 @@ query LandingPage ($id: ID!) {
         type
         description
         cover_image
-        thumbnail_image
         path        
       }
     }
@@ -280,11 +280,8 @@ query LandingPage ($id: ID!) {
       node {
         id
         title
-        published
-        code {
-          code
-          lang
-        }              
+        content
+        published                   
       }
     }
   }
