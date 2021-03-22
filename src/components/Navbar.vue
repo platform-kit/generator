@@ -68,7 +68,7 @@
                 <i class="text-danger fa fa-sign-out m-1 pull-right"></i>
               </b-dropdown-item>
             </b-dropdown>
-            <span v-else class="btn-group mt-2 mt-lg-0">
+            <span v-else-if="featureSettings.login == true" class="btn-group mt-2 mt-lg-0 ">
               <a
                 href="#login"
                 v-b-modal.modal-login
@@ -472,6 +472,7 @@ import brandSettings from "../../data/brand.json";
 import menuSettings from "../../data/menus.json";
 import themeSettings from "../../data/theme.json";
 import socialSettings from "../../data/social.json";
+import featureSettings from "../../data/features.json";
 import axios from "axios";
 import VueHotkey from "v-hotkey";
 
@@ -495,6 +496,7 @@ export default {
       brandSettings: brandSettings,
       themeSettings: themeSettings,
       socialSettings: socialSettings,
+      featureSettings:featureSettings,
       window: null,
       lock: null,
       user: null,
