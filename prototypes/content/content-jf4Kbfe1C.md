@@ -17,6 +17,7 @@ date: 2019-03-14T00:00:00.000Z
 media_preview: ''
 cover_image: /files/examples/william-bayreuther-UqlWfdDiEIM-unsplash.jpg
 series: false
+scripts : ''
 tags:
   - Markdown
   - Cover Image
