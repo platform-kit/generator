@@ -724,6 +724,12 @@ query ContentItem ($id: ID!) {
   width: 100%;
 }
 
+@media(max-width:991px){
+.plyr__controls__item.plyr__control[data-plyr="fullscreen"]{
+  display:none;
+}
+}
+
 :root {
   --plyr-color-main: #ffffff !important;
 }
