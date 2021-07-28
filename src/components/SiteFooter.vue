@@ -1,28 +1,10 @@
 <template>
-	<div class="w-100 d-block border-top p-3 pt-4" id="siteFooter">
+	<div class="w-100 d-inline-block d-md-none border-top p-3 pt-4" id="siteFooter">
 		<div class="container container-footer">
 			<div class="row">				
-				<div class="col-md-3">
-					<ul class="list-group mr-0 list-group-flush">
-						<li class="list-group-item border-0"><a href="/" class="w-100 text-dark px-0  btn text-left ">Featured Content</a></li>
-						<li class="list-group-item border-0 text-weight-200" v-for="edge, index in $static.featuredContent.edges"><a :href="'/content/' + edge.node.slug" class="text-dark">{{ edge.node.title }}</a></li>																	
-					</ul>
-				</div>
-				<div class="col-md-2">
-					<ul class="list-group mr-0 list-group-flush">
-						<li class="list-group-item border-0"><a href="/products" class="w-100 text-dark px-0  btn text-left">Products</a></li>
-						<li class="list-group-item border-0 text-weight-200" v-for="edge, index in $static.featuredProducts.edges"><a :href="'/buy/' + edge.node.slug" class="text-dark">{{ edge.node.title }}</a></li>																	
-					</ul>
-				</div>
-				<div class="col-md-2">
-					<ul class="list-group mr-0 list-group-flush">
-						<li class="list-group-item border-0"><a href="/services" class="w-100 text-dark px-0  btn text-left">Services</a></li>
-						<li class="list-group-item border-0 text-weight-200" v-for="edge, index in $static.featuredServices.edges"><a :href="'/buy/' + edge.node.slug" class="text-dark">{{ edge.node.title }}</a></li>																	
-					</ul>
-				</div>
-				<div class="col-md-2">
-					<ul class="list-group mr-0 list-group-flush">
-						<li class="list-group-item border-0 text-dark text-weight-200"><div  class="w-100 text-dark px-0 btn text-left">About</div></li>					      																
+			
+				<div class="col-md-12 text-center">
+					<ul class="list-group mr-0  list-group-flush">						
 						<li class="list-group-item border-0 text-weight-200" v-if="legalSettings != null && legalSettings.copyright != null"><span class="footer__links"><span  style="white-space: pre;">{{ legalSettings.copyright }}</span></span></li>
             <li class="list-group-item border-0 text-weight-200" v-if="legalSettings.terms != null && legalSettings.terms != ''"><span class="footer__links"><a href="/terms" class="text-dark">Terms of Service</a></span></li>
 						<li class="list-group-item border-0 text-weight-200">Built with <a href="https://www.platformkit.com" target="_blank">PlatformKit</a></li>            
