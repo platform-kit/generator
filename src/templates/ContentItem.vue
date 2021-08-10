@@ -641,6 +641,40 @@ query ContentItem ($id: ID!) {
     font-size: 275%;
   }
 }
+
+.contentItem h1, .contentItem h2 {
+  text-align:center;
+}
+
+.contentItem h1, .contentItem h2, .contentItem h3, .contentItem h4, .contentItem h5, .contentItem h6{
+  margin-bottom:25px;
+  margin-top:25px;
+} 
+
+.contentItem h1 {
+  font-size:170%;
+}
+
+.contentItem h2 {
+  font-size:160%;
+}
+
+.contentItem h3 {
+  font-size:150%;
+}
+
+.contentItem h4 {
+  font-size:140%;
+}
+
+.contentItem h5 {
+  font-size:130%;
+}
+
+.contentItem h6 {
+  font-size:120%;
+}
+
 .contentItem .title {
   font-family: "DM Serif Text", serif !important;
   background: -webkit-linear-gradient(#fafaff, #fff);
@@ -722,6 +756,11 @@ query ContentItem ($id: ID!) {
   max-height: calc(100vh - 300px) !important;
   max-width: 1200px !important;
   width: 100%;
+}
+
+.plyr--audio .plyr__controls {
+    background: #e4edf5 !important;
+    border-radius:3px !important;
 }
 
 @media(max-width:991px){
